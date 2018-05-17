@@ -1,0 +1,301 @@
+\cleardoublepage 
+
+# Association--scatterplots{#Association}
+
+## Basic elements of the grammar of graphics
+
+Table:(\#tab:test) Summary of ggplot element.
+
+ggplot element     Description
+-------------      ---------
+Data	             ggplot uses a dataframe as input (e.g., data = mtcars.data)
+Geoms		           geometric element (e.g., geom_point, geom_bar)
+Mapping	           links data variables to aesthetic dimensions (aes)	(e.g., aes(x = cyl, y = mpg))
+Setting		         specifies value of aesthetic dimension directly	(e.g., colour = “blue”)
+Layers	           add components to base plot, most often	geoms (additional layers added with  “+”)
+Stats		           statistical summary, such as density or count; each geom has a default statistic
+Position	         adjusts the location of the plotted geom
+Annotations        text and graphical overlays 
+Coordinate system  Cartesian, polar or small multiple facets
+Themes	           sets of plot parameters (e.g., font, background)
+
+
+
+## Simple scatterplot 
+The simplest plot must include data, aesthetic mapping, and geom a geometric element. The data must be organized with each observation as a row and each variable as a column. For a scatterplot the geometric element is a point, and the aesthetic mapping links variables to properties of the geometric element. For a scatterplot this would be the x and y position of the point. the the point the x and y position must be specified, but other properties, such as color, size, alpha level, and shape, can be mapped to variables. These properties of the geometric element can also be set to specific values, such as specifying the color of the point.
+
+Figure \@ref(fig:simple-scatterplot) shows the ggplot2 code and associated scatterplot. The equation used to specify the plot implicitly specifies the values by their position, such as data being identifed as following "ggplot(".  The following speciifcations are equivalent:
+
+``
+ggplot(data = mtcars.df, mapping = aes(x = wt, y = mpg)) +
+  geom_point(colour = "darkblue")
+  
+ggplot(mtcars.df, aes(wt, mpg)) +
+  geom_point(colour = "darkblue")
+``
+
+
+```{r, simple-scatterplot, message=FALSE}
+
+library(tidyverse)
+
+mtcars.df = mtcars
+
+ggplot(data = mtcars.df, mapping = aes(x = wt, y = mpg)) +
+  geom_point(colour = "darkblue")
+
+```
+
+A powerful feature of ggplot2 is the abilty to add layers of geometric elements to a plot. Each layer can have its own data, mapping of aesthetic properties, and setting of aesthetic properties. The data and mapping specified in the base plot statement--"ggplot(data = mtcars.df, mapping = aes(x = wt, y = mpg))"--are global and apply to all layers, but can overridden by the any mappings specific to a layer. 
+Figure \@ref(fig:scatterplot-layering) shows a layer of red circles based on a subset of the data.
+
+
+
+```{r, scatterplot-layering}
+fourcyl.mtcars.df = mtcars.df %>% filter(cyl==4)
+
+ggplot(data = mtcars.df, mapping = aes(x = wt, y = mpg)) +
+  geom_point(colour = "darkblue") + 
+  geom_point(data = fourcyl.mtcars.df, colour = "red", shape = 21, size = 4)
+  
+  
+
+```
+
+
+
+## Scatterplot with additional mappings
+The scatterplot typically maps variables to the x and y position of the points, but ggplot allows for other mappings.  Figure \@ref(fig:scatterplot-mapping) shows mapping variables to the fill and size of the points. The shape, stroke, and color of the points are set to values they could also be mapped, which could quickly overload the graph. Note that only shapes 21-25 in Figure \@ref(fig:symbols) can include fill and stroke, with the other symbols color determines the color of the whole symbol not just the border.
+
+```{r, scatterplot-mapping, cache=TRUE}
+ggplot(data = mtcars, mapping = aes(x = wt, y = mpg, fill = hp, size = 1/qsec)) + 
+  geom_point(shape = 21, colour = "darkred", stroke = 2.) 
+```
+
+
+```{r, symbols, echo=FALSE, cache=TRUE}
+
+ggplot(data = data.frame(x = c(0: 25)), aes(x = x, y = x, shape = x)) + 
+  geom_point(size = 8) +
+  scale_shape_identity() +
+  facet_wrap(~ x, scales = 'free') + 
+  theme_void()
+```
+
+
+## Scatterplot with linear and loess fit
+The layers can include geometric elements beyond geom_point. Perhapts the most useful geoms to add to a scatterplot is a curve fit. Figure \@ref(fig:scatterplot-smooth) shows a simple scatterplot with two cruve fits.  The loess fit shows a smooth fit that indicates non-linar trends, and the blue line shows a linear regeression. The loess line highligths areas in the data that deviate from a linear relationship shown by the blue line. All three layers inherit the same x and y mapping from the ggplot base layer. 
+
+When building a plot each layer is placed on top of the preceding layer, such that the last layer lies on top of all the others.  With Figure \@ref(fig:scatterplot-smooth), the points are on the bottom and the light blue line is on top of the gray loess line.
+
+Table \@ref(tab:geoms) shows the full set of possible geometric elements that can be used to create graphs, the following chapters describe many of these.
+
+Note the smooth fit geoms include additional settings for the method and whether the line should include a standard error.
+
+```{r, scatterplot-smooth}
+
+ggplot(data = mtcars.df, aes(x = wt, y = mpg)) +
+  geom_point(colour = "darkblue") +
+  geom_smooth(method = "loess", se = FALSE, colour = "darkgrey") + 
+  geom_smooth(method = "lm", fill = "lightblue")
+
+```
+
+```{r, geoms, echo=FALSE}
+library(kableExtra)
+knitr::kable(ls(pattern = '^geom_', env = as.environment('package:ggplot2')))%>%
+  column_spec(1, width = "10em")
+# TODO indicate what chapter will cover each with link and icon
+# ggplot2:::.all_aesthetics
+```
+
+
+## Global and local regression 
+
+```{r}
+ggplot(data = mtcars.df, aes(x = wt, y = mpg)) +
+    geom_smooth(method = lm, colour = "darkgrey", size = .5) +
+  geom_point(aes(colour = as.factor(cyl))) +
+  geom_smooth(aes(colour = as.factor(cyl)), method = lm, se = FALSE)
+
+```
+
+
+## Quantile regression and other functional relationships
+Often the question the graph is meant to answer is not about the central tendency, but about the likelihood of relatively extreme values, such as the 25th and 75th percentiles.
+```{r}
+ggplot(data = mtcars.df, aes(x = wt, y = mpg)) +
+    geom_smooth(method = lm, colour = "darkgrey", size = .5) +
+  geom_point() +
+  geom_quantile(quantiles = c(.25, .75))
+
+```
+
+
+
+```{r, scatterplot-marginal}
+library(ggthemes)
+library(ggExtra) # For marginal histograms
+
+
+equation = function(x) {
+  lm_coef <- list(a = round(coef(x)[1], digits = 2),
+                  b = round(coef(x)[2], digits = 2),
+                  r2 = round(summary(x)$r.squared, digits = 2));
+  lm_eq <- substitute(italic(y) == a + b %.% italic(x)*","~~italic(R)^2~"="~r2,lm_coef)
+  as.character(as.expression(lm_eq));                 
+}
+
+mtcars.df = mtcars
+fit = lm(mpg~wt, data = mtcars.df)
+
+p = ggplot(mtcars.df, aes(x=wt, y=mpg)) + 
+  geom_point(colour = "darkblue") + 
+  geom_smooth(method=lm, se=FALSE) +
+  annotate("text", x = 4, y = 30, label = equation(fit), parse = TRUE) +
+  geom_rangeframe() + # Requires ggthemes 
+  theme_minimal()
+
+p = ggMarginal(p, type = "histogram")
+p
+
+```
+
+
+## Scatterplot with overplotting mitigation
+
+```{r, cache=TRUE}
+diamonds.df = diamonds
+
+ggplot(diamonds.df, aes(carat, price)) +
+  geom_point()
+
+ggplot(diamonds.df, aes(carat, price)) +
+  geom_point(size = .1)
+
+ggplot(diamonds.df, aes(carat, price)) +
+  geom_point(size = .3, shape = 21)
+
+
+ggplot(diamonds.df, aes(carat, price)) +
+  geom_point(size = .3, shape = 21, alpha = .3)
+
+ggplot(diamonds.df %>% sample_n(10000), aes(carat, price)) +
+  geom_point(size = .3, shape = 21, alpha = .3)
+
+
+ggplot(diamonds.df, aes(log(carat), log(price))) +
+  geom_point(size = .3, shape = 21, alpha = .3)
+
+ggplot(diamonds.df, aes(log(carat), log(price))) +
+  geom_count(show.legend=F, alpha =.3, shape =21)
+
+
+ggplot(data = mtcars.df, aes( x = disp, y = hp)) +
+  geom_point(colour = "grey40", shape = 21)+
+  geom_smooth(method = loess, colour = "grey40")+
+  geom_smooth(method = lm, se = FALSE, size = .75) +
+	geom_smooth(aes(colour = factor(cyl)), 
+		method = lm, se = FALSE, size = 1.5)
+
+```
+
+
+
+## Scatterplot matrix
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(lattice)
+library (car)
+library(hexbin)
+
+
+library (car)
+library(lattice)
+library(hexbin)
+library(ggplot2)
+library(dplyr)
+data = mtcars
+
+names(mtcars)
+
+sub.data = select(data, -am)
+
+splom(sub.data,
+      panel=panel.hexbinplot, #defines baseline features of all plots
+      
+      upper.panel = function(x, y, ...){
+        panel.hexbinplot(x, y, ...) # inserts semitranspartent scatterplot symbols
+        panel.abline(h=abs(cor(x, y))/range(y), lwd=1, lty=2, col="grey") # inserts a line with the height proportional to correlation
+      },
+      
+      diag.panel = function(x, ...){
+        d <- density(x, na.rm=TRUE)
+        yrng <- current.panel.limits()$ylim
+        d$y <- with(d, yrng[1] + 0.95 * diff(yrng) * y / max(y))
+        panel.lines(d)
+        panel.rug(x, ...) # inserts tick marks showing individual data points
+        panel.abline(v=mean(x), lwd=1, lty=2, col="grey") # inserts a vertical line for the mean
+        diag.panel.splom(x, ...) # sets features of diagnonal
+      },
+      
+      lower.panel = function(x, y, ...){
+        panel.hexbinplot(x, y, ...)
+        panel.loess(x, y, ..., col = 'red') # inserts a smoothed fit
+        panel.lmline(x, y, col="black", lwd=1, lty=2) # inserts a linear regression line
+      },
+      
+      pscale=0, varname.cex=.7 # inserts scale label and sets size of varialble name in diagonal
+)
+
+```
+
+
+## Categorical scatterplot
+```{r}
+mtcars.df = mtcars
+mtcars.df$gear = as.factor(mtcars.df$gear)
+mtcars.df$am = as.factor(mtcars.df$am)
+
+ggplot(mtcars.df, aes(gear, am)) + 
+  geom_count()
+ 
+ ggplot(mtcars.df, aes(gear, am)) + 
+  geom_jitter(width = 0.075, height = 0.075) 
+  
+s.mtcars.df = mtcars.df %>% group_by(gear, am) %>% summarise(count = n())
+
+ggplot(s.mtcars.df, aes(gear, am)) + 
+  geom_tile(aes(fill = count))
+
+```
+
+
+## Scatterplot with regression equation and marginal distributions
+Scatterplot augmented with marginal distributions, regression equation, and Tufte-inspired range frame.
+
+Marginal distributions show that a 1-D scatterplot is a histogram and that a 2-d histogram is a scatterplot. Chapter \@ref(Distribution) describes such plots in detail.
+
+Chapter \@ref(Polishing) shows how to add annotations, such as the equation.
+
+Derived from: 
+http://t-redactyl.io/blog/2016/05/creating-plots-in-r-using-ggplot2-part-11-linear-regression-plots.html
+
+
+
+## Table lens
+Table lens serves a similar purpose to the scatterplot but might be more familiar and focusses attention on individual variables and individual cases. Chapter \@ref(Tables) provides more detail on this technique.
+
+```{r, table_lens, echo=FALSE, message=FALSE}
+library(DT)
+sub.mtcars.df = mtcars.df %>% select(mpg, wt) %>% 
+  rownames_to_column("name") 
+
+datatable(sub.mtcars.df) %>% 
+  formatStyle(names(sub.mtcars.df[, 2:3]),
+  background = styleColorBar(range(sub.mtcars.df[, 2:3]), 'lightblue'),
+  backgroundSize = '98% 88%',
+  backgroundRepeat = 'no-repeat',
+  backgroundPosition = 'center')
+  
+```
+

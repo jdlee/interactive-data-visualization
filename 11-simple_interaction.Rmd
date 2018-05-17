@@ -1,0 +1,22 @@
+\cleardoublepage 
+
+# Interaction--zoom, annotate, highlight{#Interaction}
+
+
+
+```{r, message=FALSE}
+library(tidyverse)
+
+```
+
+
+
+```{r}
+library(ggiraph)
+
+mpg.plot =  ggplot(mpg, aes( x = displ, y = cty, color = hwy))+  	geom_point_interactive(aes(tooltip = model), size = 2) +  	labs(title = "ggiraph: interactive plots")
+	
+ggiraph(code = 	print(mpg.plot))
+
+```
+

@@ -1,0 +1,629 @@
+\cleardoublepage 
+
+# Polishing graph for publication{#Polishing}
+
+
+```{r, message=FALSE}
+library(tidyverse)
+
+```
+
+All graphs should have axis labels with units
+Legends should have titles
+Titles are often included in the figure caption and not the graph
+Annotations can label points and tell a story
+Annotations can label lines better than legends
+
+Labels and annotations added as another layer
+
+Create a plot
+Add axis labels, with units
+Annotate to tell a story
+Select and appropriate color palette
+Place the legend inside the graph
+Change the theme to increase the data to ink ratio
+Check that changing the theme did not undo your legend placement
+Save as a 5X5 inch image in a format to minimize blur
+
+
+
+```{r include=FALSE}
+mtcars.df = mtcars
+mtcars.df$name = row.names(mtcars)
+ggplot(mtcars.df, aes(disp, mpg, color = as.factor(cyl))) + geom_point() + 
+labs(x = "Displacement (cubic inches)",	 y = "Efficiency (mile per gallon)", 
+	 title = "Efficiency and engine size", 
+	 colour = "Number of cylinders")
+
+```
+
+
+```{r, cache = TRUE}
+ggplot(mtcars.df, aes(disp,  mpg, color = as.factor(cyl))) +  
+ annotate(geom = "rect", 
+	ymin = 20, ymax = 35, xmin = 65, xmax = 155, fill = "grey65", alpha = .5) +  
+ annotate(geom = "text", x = 115, y = 36, label = "High-power cars" )+ 
+ geom_point() +  
+ labs(x = "Displacement (cubic inches)", y = "Efficiency (mile per gallon)",        	title = "Efficiency and engine size", colour = "Number of cylinders")
+
+
+library(ggalt) 
+ggplot(mtcars, aes(disp, mpg))+ 
+geom_point()+    
+geom_encircle(data=filter(mtcars, mpg>24), s_shape=0.75, expand=0.05) +   
+labs(title = "ggalt: encircle annotation")
+
+
+library(ggrepel)
+
+ggplot(mtcars.df, aes(disp,  mpg, color = as.factor(cyl))) +   geom_point()+  
+geom_text_repel(aes(label = name), size = 2, show.legend = FALSE)
+
+## Labels on lines
+s.mpg.df = mpg %>% group_by(year, class) %>% 
+  summarise(h_mpg = mean(hwy, na.rm = TRUE)) %>% 
+  ungroup()
+
+ggplot(s.mpg.df, aes(year, h_mpg, colour = class))+
+	geom_line()+ 	
+	coord_cartesian(xlim = c(min(s.mpg.df$year), max(s.mpg.df$year) + 1)) + 	geom_text_repel( data = filter(s.mpg.df, year == max(year)), 
+		aes(label = class), size = 3, nudge_x = .5) + 
+	guides(color=FALSE)
+
+library(ggpmisc) # For stat_poly_eq for equation annotation  
+formula <- y ~ poly(x, 1, raw = TRUE)
+ggplot(mtcars, aes(x=disp, y=mpg)) + 
+	geom_point() +  
+	geom_smooth(method = "lm", formula = formula) +  	stat_poly_eq(aes(label =  paste(..eq.label.., ..adj.rr.label.., 
+		sep = "~~~~")), formula = formula, parse = TRUE, coef.digits = 2, label.x = 200, label.y = 30)
+
+
+```
+
+## Colour
+The palette of colors that is scaled to the data is set separately for “fill” and for “colour”
+
+Color palettes that work for discrete variables (e.g., factors) may not work for continuous, numeric variables
+
+Color palette design is complex and choice depends onNumber of categories in the data
+Ability to support black and white printingAbility to support color-deficient visionSize of the space being colored
+
+Small areas, such as points, benefit from saturated color, and large areas, such a bars are better with less intense color.
+
+Great resources to explain the basis of the Brewer, Viridis, and ptol palettes: http://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.htmlhttps://personal.sron.nl/~pault/
+
+
+```{r}
+ggplot(diamonds, aes(x = color, fill = cut)) + 
+	geom_bar() +
+  scale_fill_hue()+ 
+  labs(title = "ggplot: Default")
+
+ggplot(diamonds, aes(x = color, fill = cut)) + 	geom_bar() + 
+  scale_fill_brewer(palette = "Accent") + 
+  labs(title = "Brewer: Accent")
+
+```
+
+
+
+
+## Scales beyond color
+```{r}
+ggplot(mtcars, 
+		aes(disp,  mpg, colour = as.factor(am), shape = as.factor(am))) +
+  geom_point(size = 8) +   
+	scale_color_manual(values = c("0" = "blue", "1" = "red")) +  
+  scale_shape_manual(values = c("0" = "\u2642", "1" = "\u2640")) +  
+  labs(title = "custom shape: Male/Female")
+
+```
+
+## Themes and formatting
+```{r}
+ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + 	geom_point() + 	theme(legend.position = "bottom")
+
+ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + 	geom_point() + 	theme(legend.position = c(0.9, 0.8))
+
+```
+
+Turn off many theme elements
+```{r}
+ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + 
+geom_point() +
+	theme(axis.line=element_blank(), axis.text.x=element_blank(), 	axis.text.y=element_blank(), axis.ticks=element_blank(), 	axis.title.x=element_blank(), axis.title.y=element_blank(), 	legend.position="none", panel.background=element_blank(), 	panel.border=element_blank(), panel.grid.major=element_blank(), 	panel.grid.minor=element_blank(), plot.background=element_blank())
+
+```
+
+Predefined themes turn adjust many elements
+```{r}
+ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + 
+	geom_point() +
+	theme_void()
+```
+
+```{r}
+ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + 
+	geom_point() +
+  theme_minimal(base_size = 18, base_family = "Avenir")
+```
+
+
+```{r}
+#ipsum, latin for neat
+
+library(hrbrthemes)
+
+ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + 
+  geom_point() + 	
+  scale_colour_ipsum() + 
+	theme_ipsum()
+
+ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + 
+  geom_point() + 
+  scale_color_fivethirtyeight() +
+	theme_fivethirtyeight()
+
+ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + 
+  geom_point()+ 	
+  scale_color_few() +
+	theme_few()
+
+ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + 	
+  geom_point()+ 
+	geom_rangeframe()+ 
+	theme_tufte()
+
+```
+
+order of application matters
+```{r}
+ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + geom_point()+ 	scale_colour_ipsum() + 
+theme_ipsum() +
+theme(legend.position = c(.85, .8))
+
+ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + geom_point()+ 	scale_colour_ipsum() + 
+theme_ipsum() +
+theme(legend.position = c(.85, .8))+  
+theme_ipsum()
+
+```
+
+
+## Saving plots 
+For formal documents save graphs and import. Do not cut and paste from RStudio 
+Saving and importing provides consistent physical size, resolution, and aspect ratio: DO NOT re-scale in the document
+Vector formats (PDF, SVG) 	Provide crisp images even when zoomed in and raster
+File size scales with number of data points
+Raster formats (PNG, TIFF)	The dpi (dots per inch) defines the resolution of the image	File size scales with dimensions of graph and dpi
+
+```{r}
+mpg.plot = ggplot(mtcars, 
+	aes(disp,  mpg, color = as.factor(cyl))) + 
+	geom_point()
+
+ggsave(filename = "mpg.png", 
+	device = "png",
+	plot = mpg.plot, height = 4, width = 5, units = "in", 
+	dpi = 300)
+
+ggsave(filename = "mpg.pdf", device = "pdf", 
+      plot = mpg.plot, height = 4, width = 5, units = "in")
+```
+
+
+```{r}
+
+library(ggpubr)
+
+disp.plot = ggplot(mtcars, aes(mpg, disp))+geom_point()+  labs(title = "Combine plots with ggpubr")
+
+hp.plot = ggplot(mtcars, aes(mpg, hp))+geom_point()
+
+ggarrange(disp.plot, hp.plot, 
+	nrow=1, ncol = 2, align = "h")
+
+combined.plot = ggarrange(disp.plot, hp.plot, 
+	nrow=1, ncol = 2, align = "h")
+
+ggsave(filename = "combined_plot.png", plot = combined.plot,       	device = "png", 
+	dpi = 300, width = 6, height = 6, units = "in")
+
+```
+
+
+
+### Titles labels 
+```{r}
+library(tidyverse)
+library(ggalt)
+library(ggrepel)
+
+# Add names of cars to dataframe
+mtcars.df = mtcars
+mtcars.df$name = row.names(mtcars.df)
+
+## Axis labels, title, and legend
+ggplot(mtcars.df, aes(disp,  mpg, color = as.factor(cyl))) + 
+  geom_point()+
+  labs(x = "Displacement (cubic inches)", y = "Efficiency (mile per gallon)", 
+       title = "Efficiency and engine size", colour = "Number of cylinders")
+
+## Subtitle and caption
+ggplot(mtcars.df, aes(disp,  mpg, color = as.factor(cyl))) + 
+  geom_point()+
+  labs(x = "Displacement (cubic inches)", y = quote(alpha + beta + frac(delta, theta)), 
+       title = "Efficiency and engine size", subtitle = "mtcars data",
+       caption = "Caption if needed",
+       colour = "Number of cylinders")
+
+
+```
+
+
+### Annotations of data
+```{r}
+## Text and rectangle annotation 
+ggplot(mtcars.df, aes(disp,  mpg, color = as.factor(cyl))) + 
+  annotate(geom = "rect", ymin = 20, ymax = 35, xmin = 65, xmax = 155, fill = "grey65", alpha = .5) +
+  annotate(geom = "text", x = 115, y = 36, label = "High-power cars" ) +
+  geom_point()+
+  labs(x = "Displacement (cubic inches)", y = "Efficiency (mile per gallon)", 
+       title = "Efficiency and engine size", colour = "Number of cylinders")
+
+
+## Encircle pooints
+library(ggalt)
+
+ ggplot(mtcars, aes(disp, mpg))+
+    geom_point()+
+    geom_encircle(data=filter(mtcars, mpg>24),
+                   s_shape=0.75, expand=0.05) +
+   labs(title = "ggalt: encircle annotation")
+ 
+
+## Annotated points 
+## ggrepel package
+ggplot(mtcars.df, aes(disp,  mpg, color = as.factor(cyl))) + 
+  geom_point()+
+  geom_text_repel(aes(label = name), size = 2, show.legend = FALSE)+
+  labs(x = "Displacement (cubic inches)", y = "Efficiency (mile per gallon)", 
+       title = "Efficiency and engine size", colour = "Number of cylinders")
+
+
+## Add annotations to lines rather than legend
+s.mpg.df = mpg %>% group_by(year, class) %>% summarise(h_mpg = mean(hwy, na.rm = TRUE)) %>% ungroup()
+ 
+       
+ggplot(s.mpg.df, aes(year, h_mpg, colour = class))+geom_line()+
+   coord_cartesian(xlim = c(min(s.mpg.df$year), max(s.mpg.df$year) + 1)) +
+   geom_text_repel(
+     data = filter(s.mpg.df, year == max(year)),
+     aes(label = class),
+     size = 3, nudge_x = .5) +
+  guides(color=FALSE)
+
+
+library(ggpmisc) # For stat_poly_eq for equation annotation  
+# https://cran.r-project.org/web/packages/ggpmisc/vignettes/user-guide-1.html
+
+formula <- y ~ poly(x, 1, raw = TRUE)
+regression.plot =
+  ggplot(mtcars, aes(x=disp, y=mpg)) + 
+    geom_point() +
+  geom_smooth(method = "lm", formula = formula) +
+  stat_poly_eq(aes(label =  paste(..eq.label.., ..adj.rr.label.., sep = "~~~~")),
+                   formula = formula, parse = TRUE, coef.digits = 2, label.x = 200, label.y = 30)
+
+regression.plot 
+ggsave(file = "regression_annotation.pdf", plot = regression.plot)
+
+
+```
+
+## Color 
+
+
+### Resources to explain the basis form color choice
+Brewer, Viridis, and ptol palettes
+http://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3
+https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html
+https://personal.sron.nl/~pault/
+
+
+### Large and small area colors
+```{r, cache=TRUE, , echo=FALSE}
+library(hrbrthemes) # Themes tuned for font 
+library(ggthemes) # Many themes including tufte an ptol colors
+library(viridis)
+library(RColorBrewer)
+
+lc1.plot = ggplot(diamonds, aes(x = color, fill = cut)) + geom_bar() +
+  scale_fill_hue()+
+  labs(title = "ggplot: Default")
+
+lc2.plot = ggplot(diamonds, aes(x = color, fill = cut)) + geom_bar() +
+  scale_fill_brewer(palette = "Accent") +
+  labs(title = "Brewer: Accent")
+
+lc3.plot = ggplot(diamonds, aes(x = color, fill = cut)) + geom_bar() +
+ scale_fill_brewer(palette = "Dark2") +
+ labs(title = "Brewer: Dark2")
+
+lc4.plot = ggplot(diamonds, aes(x = color, fill = cut)) + geom_bar() +
+  scale_fill_brewer(palette = "Set2") +
+  labs(title = "Brewer: Set2")
+
+## hrbrthemes
+lc5.plot = ggplot(diamonds, aes(x = color, fill = cut)) + geom_bar() +
+  scale_fill_ipsum() +
+  labs(title = "hrbrthemes: ipsum")
+  
+lc6.plot = ggplot(diamonds, aes(x = color, fill = cut)) + geom_bar() +
+  scale_fill_ptol() +
+  labs(title = "ggthemes: ptol")
+  
+## viridis
+# ggplot(diamonds, aes(x = color, fill = cut)) + geom_bar() +
+#   scale_fill_viridis(discrete = TRUE) +
+#   labs(title = "Viridis: viridis")
+
+large.color.plot = ggarrange(lc1.plot, lc2.plot, lc3.plot, 
+                             lc4.plot, lc5.plot, lc6.plot,
+                       nrow=3, ncol = 2, align = "hv")
+large.color.plot
+```
+
+
+### Color for large and small areas
+What works for large areas of color might not work for small areas
+```{r, , cache=TRUE, echo = FALSE}
+c1.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl)))+geom_point()+
+  scale_colour_viridis(discrete = TRUE)+
+  labs(title = "Viridis: viridis")
+
+c2.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl)))+geom_point()+
+  scale_colour_brewer(palette = "Dark2")+
+  labs(title = "Brewer: Dark2")
+
+c3.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl)))+geom_point()+
+  scale_colour_brewer(palette = "Set1")+
+  labs(title = "Brewer: Set1")
+
+c4.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl)))+geom_point()+
+  scale_colour_brewer(palette = "Set2")+
+  labs(title = "Brewer: Set2")
+
+## hrbrthemes
+c5.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl)))+geom_point()+ 
+  scale_colour_ipsum()+
+  labs(title = "hbrbthemes: ipsum")
+
+c6.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl)))+geom_point()+ 
+  scale_color_ptol()+
+  labs(title = "hbrbthemes: ptol")
+
+small.color.plot = ggarrange(c1.plot, c2.plot, c3.plot, c4.plot, c5.plot, c6.plot,
+                       nrow=3, ncol = 2, align = "hv")
+small.color.plot
+```
+
+
+### Continuous color scales
+```{r}
+# Scales made for factors do not work with continuous variables
+ggplot(mtcars, aes(disp,  mpg, color = mpg))+geom_point()+
+  labs(title = "gplot: Default")
+  
+ggplot(mtcars, aes(disp,  mpg, color = mpg))+geom_point()+ 
+  scale_color_viridis(discrete = FALSE) +
+  labs(title = "viridis: viridis")
+
+##TODO Add parula
+
+```
+
+
+## Themes and theme options
+```{r}
+library(hrbrthemes) # Precise font and minimal grid
+library(ggthemes) # Huge variety of themes including Tufte and Few
+
+## Theme elements
+# Place legend at bottom
+ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point() +
+theme(legend.position = "bottom")
+
+# Place legend in graph
+ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point() +
+theme(legend.position = c(0.9, 0.8))
+
+# Remove chart details Useful for plotting graphs and networks
+ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point() +
+  theme(axis.line=element_blank(),
+      axis.text.x=element_blank(),
+      axis.text.y=element_blank(),
+      axis.ticks=element_blank(),
+      axis.title.x=element_blank(),
+      axis.title.y=element_blank(),
+      legend.position="none",
+      panel.background=element_blank(),
+      panel.border=element_blank(),
+      panel.grid.major=element_blank(),
+      panel.grid.minor=element_blank(),
+      plot.background=element_blank())
+  
+```
+
+
+### Ordering theme layers
+```{r}
+# Sets theme then adjusts legend
+ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point()+ 
+  theme_ipsum()+
+  theme(legend.position = c(.85, .8))
+
+# Adjusts legend, but the overrides with setting theme 
+ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point()+ 
+  theme(legend.position = c(.85, .8))+
+  theme_ipsum()
+
+
+## To set for all plots
+theme_set(theme_few())
+ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point()
+
+theme_set(theme_gray()) # Returns to default theme
+
+```
+
+
+### Pre-set theme options
+```{r, echo=FALSE}
+gt1.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + 
+  geom_point() +
+  theme(legend.position = "none") +
+  labs(title = "Default: theme_gray()")
+
+gt2.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + 
+  geom_point() +
+  theme_bw()+
+  theme(legend.position = "none") +
+  labs(title = "theme_bw()")
+
+gt3.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + 
+  geom_point() +
+  theme_base() +
+  theme(legend.position = "none") +
+  labs(title = "theme_base()")
+
+gt4.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + 
+  geom_point() +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  labs(title = "theme_minimal()")
+
+gt5.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point() +
+  theme_classic2() +
+  theme(legend.position = "none") +
+  labs(title = "theme_classic2")
+
+gt6.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + 
+  geom_point() +
+  theme_void() +
+  theme(legend.position = "none") +
+  labs(title = "theme_void()")
+
+gtheme.plot = ggarrange(gt1.plot, gt2.plot, gt3.plot, 
+                        gt4.plot, gt5.plot, gt6.plot,
+                        nrow=3, ncol = 2, align = "hv")
+gtheme.plot
+```
+
+
+### Themes form other packages
+```{r, echo=FALSE}
+## hbrtthemes
+t1.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point()+ 
+  scale_colour_ipsum() +
+  theme_ipsum() +
+  labs(title = "hbrthemes: theme_ipsum()")
+
+## ggthemes
+t2.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point()+
+  scale_color_fivethirtyeight() +
+  theme_fivethirtyeight() +
+  labs(title = "ggthemes: theme_fivethirtyeight()")
+
+t3.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point()+
+  #scale_color_few() +
+  theme_few() +
+  labs(title = "ggthemes: theme_few()")
+
+t4.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point()+
+  #geom_rangeframe() +
+  theme_tufte() +
+  labs(title = "ggthemes: theme_tufte()")
+
+t5.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point()+
+  theme_economist_white() +
+  labs(title = "ggthemes: theme_economist_white()")
+
+t6.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point()+
+  theme_excel() +
+  labs(title = "ggthemes: theme_excel()")
+
+theme.plot = ggarrange(t1.plot, t2.plot, t3.plot, 
+                       t4.plot, t5.plot, t6.plot,
+                       nrow=3, ncol = 2, align = "hv")
+theme.plot
+```
+
+
+
+
+## Saving and printing plots to include in documents
+```{r}
+library(svglite)
+ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point()
+
+mpg.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point()
+
+## Possible formats:
+#  "eps", "ps", "tex" (pictex), "pdf", "jpeg", "tiff", "png", "bmp", "svg" or "wmf" (windows only)
+
+## PNG--raster format that looks blurry at low resolution  
+ggsave(filename = "mpg.png", device = "png",
+       plot = mpg.plot, height = 4, width = 5, units = "in", dpi = 300)
+
+## PDF--vector format that remains sharp even when zoomed in
+ggsave(filename = "mpg.pdf", device = "pdf",
+       plot = mpg.plot, height = 4, width = 5, units = "in")
+
+## SVG--vector format that remains sharp even when zoomed in
+ggsave(filename = "mpg.svg", device = "svg",
+       plot = mpg.plot, height = 4, width = 5, units = "in")
+
+
+## Saving many plots into a single file
+# Calculate the number of pages with 9 panels per page
+n_pages <- ceiling(
+  length(levels(diamonds$color)) * length(levels(diamonds$cut:diamonds$clarity)) / 9
+)
+
+pdf("multipage.pdf")
+  for (i in seq_len(n_pages)) {
+    p=  ggplot(diamonds, aes(carat, price)) +
+          geom_point(alpha = 0.1) +
+          facet_grid_paginate(color~cut:clarity, ncol = 3, nrow = 3, page = i)+
+        labs(title = "ggforce: facet pagination")
+    print(p)
+}
+dev.off()
+
+
+### Combining multiple graphs for publication
+library(ggpubr)
+
+displ.plot = ggplot(mtcars, aes(disp, mpg)) + geom_point()
+hp.plot = ggplot(mtcars, aes(hp, mpg)) + geom_point()
+
+combined.plot = ggarrange(displ.plot, hp.plot, nrow=1, ncol = 2, align = "hv")
+combined.plot
+
+```
+
+
+## Faceted pagination
+```{r}
+library(ggforce)
+## Examples from: https://cran.r-project.org/web/packages/ggforce/vignettes/Visual_Guide.html
+
+
+ggplot(diamonds, aes(carat, price)) +
+  geom_point(alpha = 0.1) +
+  facet_grid_paginate(color~cut:clarity, ncol = 3, nrow = 3, page = 1)+
+  labs(title = "ggforce: facet pagination")
+
+```
+

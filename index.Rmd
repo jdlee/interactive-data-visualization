@@ -1,0 +1,82 @@
+--- 
+title: "Interactive data visualization"
+author: "John D. Lee"
+date: "`r Sys.Date()`"
+output: pdf_document
+cover-image: images/Minard_timeline_map.png
+bibliography:
+- vis.bib
+- book.bib
+- packages.bib
+description: A book of ggplot examples
+documentclass: krantz
+github-repo: jdlee/ggplot-examples
+graphics: yes
+link-citations: yes
+lof: yes
+lot: yes
+colorlinks: yes
+site: bookdown::bookdown_site
+biblio-style: apalike
+---
+
+```{r setup, include=FALSE}
+knitr::include_graphics('images/Minard_timeline_map.png', dpi = NA)
+options(
+  htmltools.dir.version = FALSE, formatR.indent = 2, width = 55, digits = 4
+)
+
+# install the packages needed by this book; you fill out c(), e.g. c('ggplot2', 'dplyr')
+lapply(c("tidyverse", "lme4"), function(pkg) {
+  if (system.file(package = pkg) == '') install.packages(pkg)
+})
+library(tidyverse)
+library(ggpubr)
+library(knitr)
+library(svglite)
+library(lme4)
+library(ggforce)
+library(ggthemes)
+```
+
+# Preface {-}
+
+
+This book provides an introduction to ggplot2 for interactive data visualization. Its intent is to provide examples of common graphs and basic visualization principles. 
+
+Minard's plot shows the deaths of almost 300,000 troups as they march to Moscow demonstrates the horror of war, and is considered one of the best visualizations ever producced [@Tufte1983]. Reasons why this graph is so effect is that it has a clear purpose, it answers important questions with a comples array of data that are presented in an understandable and aesthetically pleasing manner.
+
+
+```{r minard, echo = FALSE, fig.cap = "Minards visualization of Napoleon's disasterous march to Moscow"}
+include_graphics("images/Minard_timeline_map.png")
+```
+
+
+## Why read this book {-}
+
+The aim of this book is help people make more graphs like Figure \@ref(fig:minard)). It links principles of graph design to examples that are implemented in R, particularly the popular graphic package ggplot2. The book provides a catalog of graphs and their design rationale organized around general questions that graphs are typically used to answer. 
+
+
+## Structure of the book {-}
+
+Chapter \@ref(Introduction) introduces R and the tidyverse functions and provides links for learning more about the basic capabilties of R. Chapters \@ref(Association) - \@ref(Connection) each describe different types of graphs that answer questions regarding association, distribution, comparison, proportion, fluctionation, and connection. Chapter \@ref(Tables) briefly considers graphical elements in tables and Chapters  \@ref(Polishing) - \@ref(Interaction) discuss interactive graphs and adjustments neeed for publication.
+
+## Software information and conventions {-}
+
+I used the **knitr**\index{knitr} package [@xie2015] and the **bookdown**\index{bookdown} package [@R-bookdown] to compile the book. Most graphs have been created with **ggplot2** [@{Wickham2016a] and data manipulation is done with *dplyr*.
+
+<!--
+```{r}
+#My R session information is shown below:
+# sessionInfo()
+```
+-->
+
+## Acknowledgments {-}
+
+
+
+```{block2, type='flushright', html.tag='p'}
+
+```
+

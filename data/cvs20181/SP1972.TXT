@@ -1,0 +1,243 @@
+<R><MA>ALFA ROMEO</MA><MO>2000 Beruna</MO><DA>0  0  0  0  0  0  0  439156143257      1108       </DA></R>
+<R><MA>ALFA ROMEO</MA><MO>2000 GT Veloce</MO><DA>0  0  0  0  0  0  0  410158132235      1040       </DA></R>
+<R><MA>ALFA ROMEO</MA><MO>2000 Spider Veloce</MO><DA>0  0  0  0  0  0  0  426163129225      1040       </DA></R>
+<R><MA>AMC</MA><MO>Gremlin 2d 6</MO><DA>14030 36 71 12284 5  410179132244      1167       </DA></R>
+<R><MA>ASTON MARTIN</MA><MO>DBS N-8</MO><DA>0  0  0  0  0  0  0  458183133261      1724       </DA></R>
+<R><MA>BMW</MA><MO>2002 Sed</MO><DA>0  0  0  0  0  0  0  423159140250      940        </DA></R>
+<R><MA>BMW</MA><MO>2002 Tii</MO><DA>0  0  0  0  0  0  0  423159140250      940        </DA></R>
+<R><MA>BMW</MA><MO>3.0 Bavaria</MO><DA>0  0  0  0  0  0  0  470175145269      1300       </DA></R>
+<R><MA>BMW</MA><MO>30 CS Cpe</MO><DA>0  0  0  0  0  0  0  466167137262      1382       </DA></R>
+<R><MA>BRITISH LEYLAND</MA><MO>GT 6 Mk III</MO><DA>0  0  0  0  0  0  0  378145122211      864        </DA></R>
+<R><MA>BRITISH LEYLAND</MA><MO>GT Mk II Cpe</MO><DA>0  0  0  0  0  0  0  389152126231      993        </DA></R>
+<R><MA>BRITISH LEYLAND</MA><MO>Midget Mk III</MO><DA>0  0  0  0  0  0  0  350139123203      686        </DA></R>
+<R><MA>BRITISH LEYLAND</MA><MO>Mk II Roadster</MO><DA>14087 24 57 11269 91 389152125231      871        </DA></R>
+<R><MA>BRITISH LEYLAND</MA><MO>Spitfire Mk III</MO><DA>0  0  0  0  0  0  0  378145122211      775        </DA></R>
+<R><MA>BRITISH LEYLAND</MA><MO>TR 6</MO><DA>15290 34 63 10561 94 394147127224      978        </DA></R>
+<R><MA>BUICK</MA><MO>Electra 225 Cus.</MO><DA>0  0  0  0  0  104150579203137323      2118       </DA></R>
+<R><MA>BUICK</MA><MO>Estate Wgn</MO><DA>0  0  0  0  0  104152580203146323      2320       </DA></R>
+<R><MA>BUICK</MA><MO>LeSabre Cen.</MO><DA>0  0  0  0  0  104142564203138315      1984       </DA></R>
+<R><MA>BUICK</MA><MO>Riviera</MO><DA>0  0  0  0  0  104132554203137310      2040       </DA></R>
+<R><MA>BUICK</MA><MO>Skylark 2d</MO><DA>0  0  0  0  0  104127516195105310      1631       </DA></R>
+<R><MA>BUICK</MA><MO>Skylark 4d 8</MO><DA>17310436 71 132102130525194138295      1637       </DA></R>
+<R><MA>CHECKER</MA><MO>TAXI 6</MO><DA>0  0  0  0  0  89 123518193160305      1666       </DA></R>
+<R><MA>CHEVROLET</MA><MO>Belain</MO><DA>17411643 80 138105141550199135304      1862       </DA></R>
+<R><MA>CHEVROLET</MA><MO>Belair</MO><DA>17411643 80 138105141550199135304      1862       </DA></R>
+<R><MA>CHEVROLET</MA><MO>Biscayne</MO><DA>17411643 80 138105141550199135304      1862       </DA></R>
+<R><MA>CHEVROLET</MA><MO>Camaro</MO><DA>17977 31 69 12595 105470186123270      1491       </DA></R>
+<R><MA>CHEVROLET</MA><MO>Caprice 2d</MO><DA>17413643 80 138106143552199134304      1778       </DA></R>
+<R><MA>CHEVROLET</MA><MO>Caprice 4d</MO><DA>17411643 80 138106143552199134304      1862       </DA></R>
+<R><MA>CHEVROLET</MA><MO>Chev Full Size Wgn</MO><DA>17429043 80 138105146563199143313      2146       </DA></R>
+<R><MA>CHEVROLET</MA><MO>Chev Wgn</MO><DA>16525740 77 13494 132517188136290      1769       </DA></R>
+<R><MA>CHEVROLET</MA><MO>Chevelle 2d</MO><DA>1650  40 77 13494 119494188132280      1459       </DA></R>
+<R><MA>CHEVROLET</MA><MO>Chevelle 4d</MO><DA>16594 40 77 13494 119504188133290      1531       </DA></R>
+<R><MA>CHEVROLET</MA><MO>Corvette</MO><DA>0  0  0  0  0  101110456172119245      1475       </DA></R>
+<R><MA>CHEVROLET</MA><MO>Corvette Con.</MO><DA>0  0  0  0  0  101110456172119245      0          </DA></R>
+<R><MA>CHEVROLET</MA><MO>CS10704 6</MO><DA>0  0  0  0  0  84 102479201175292      N/A        </DA></R>
+<R><MA>CHEVROLET</MA><MO>CS10734 F/S-6</MO><DA>0  0  0  0  0  84 102479201175292      N/A        </DA></R>
+<R><MA>CHEVROLET</MA><MO>CS10904 6</MO><DA>0  0  0  0  0  84 121528201175323      N/A        </DA></R>
+<R><MA>CHEVROLET</MA><MO>CS10934 6</MO><DA>0  0  0  0  0  84 121528201175323      N/A        </DA></R>
+<R><MA>CHEVROLET</MA><MO>CS20904 6</MO><DA>0  0  0  0  0  84 121528201175323      N/A        </DA></R>
+<R><MA>CHEVROLET</MA><MO>CS20934 6</MO><DA>0  0  0  0  0  84 121528201175323      N/A        </DA></R>
+<R><MA>CHEVROLET</MA><MO>CS21034 6</MO><DA>0  0  0  0  0  84 121543201176338      N/A        </DA></R>
+<R><MA>CHEVROLET</MA><MO>CS31004 6</MO><DA>0  0  0  0  0  84 131553201177338      N/A        </DA></R>
+<R><MA>CHEVROLET</MA><MO>CS31034 6</MO><DA>0  0  0  0  0  84 121543201177338      N/A        </DA></R>
+<R><MA>CHEVROLET</MA><MO>ElCamino</MO><DA>0  0  0  0  0  92 132517188136290      0          </DA></R>
+<R><MA>CHEVROLET</MA><MO>Impala 2d</MO><DA>17413643 80 138105141550199134304      1778       </DA></R>
+<R><MA>CHEVROLET</MA><MO>Impala Con.</MO><DA>17413643 80 138105141550199133304      1778       </DA></R>
+<R><MA>CHEVROLET</MA><MO>Impala Sed 4d</MO><DA>17411643 80 138105141550199135304      1862       </DA></R>
+<R><MA>CHEVROLET</MA><MO>Impala Spt 2d</MO><DA>17413643 80 138105141550199133304      1778       </DA></R>
+<R><MA>CHEVROLET</MA><MO>Impala Spt 4d</MO><DA>17411643 80 138105141550199134304      1862       </DA></R>
+<R><MA>CHEVROLET</MA><MO>KS10704 6</MO><DA>0  0  0  0  0  84 103479201181292      N/A        </DA></R>
+<R><MA>CHEVROLET</MA><MO>KS10734 6</MO><DA>0  0  0  0  0  84 103479201181292      N/A        </DA></R>
+<R><MA>CHEVROLET</MA><MO>KS10904 6</MO><DA>0  0  0  0  0  84 121528201181323      N/A        </DA></R>
+<R><MA>CHEVROLET</MA><MO>KS10934 6</MO><DA>0  0  0  0  0  84 121528201180323      N/A        </DA></R>
+<R><MA>CHEVROLET</MA><MO>KS20904 6</MO><DA>0  0  0  0  0  84 121528201184323      N/A        </DA></R>
+<R><MA>CHEVROLET</MA><MO>KS20934 6</MO><DA>0  0  0  0  0  84 121528201184323      N/A        </DA></R>
+<R><MA>CHEVROLET</MA><MO>Malibu 2d</MO><DA>1650  40 77 13494 119494188132280      1778       </DA></R>
+<R><MA>CHEVROLET</MA><MO>Malibu 4d</MO><DA>16594 40 77 13494 119504188133290      1862       </DA></R>
+<R><MA>CHEVROLET</MA><MO>Malibu Con.</MO><DA>1650  40 77 13494 119494188132280      1778       </DA></R>
+<R><MA>CHEVROLET</MA><MO>Malibu Spt 4d</MO><DA>16594 40 77 13494 119504188133290      1862       </DA></R>
+<R><MA>CHEVROLET</MA><MO>Monte Carlo</MO><DA>18394 37 75 138104122516189132290      1608       </DA></R>
+<R><MA>CHEVROLET</MA><MO>Nova 2d</MO><DA>15081 38 66 13574 121473181131277      1299       </DA></R>
+<R><MA>CHEVROLET</MA><MO>Nova 4d</MO><DA>15096 38 66 13574 121473181135277      1428       </DA></R>
+<R><MA>CHEVROLET</MA><MO>Vega H 2d</MO><DA>14765 40 66 11479 103424163125242      947        </DA></R>
+<R><MA>CHEVROLET</MA><MO>Vega N 2d</MO><DA>14760 40 66 11479 103424163130242      975        </DA></R>
+<R><MA>CHEVROLET</MA><MO>Vega Panel</MO><DA>14716340 66 11479 103424163130242      0          </DA></R>
+<R><MA>CHEVROLET</MA><MO>Vega SW</MO><DA>14716340 66 11479 103424163130242      1066       </DA></R>
+<R><MA>CHRYSLER</MA><MO>Imperial</MO><DA>0  0  0  0  0  105155583202142323      2307       </DA></R>
+<R><MA>CHRYSLER</MA><MO>New Yorker</MO><DA>0  0  0  0  0  103153569202141315      2025       </DA></R>
+<R><MA>CHRYSLER</MA><MO>Newport Royal</MO><DA>16811938 76 142103151569202140315      1912       </DA></R>
+<R><MA>CHRYSLER</MA><MO>Town and Country</MO><DA>0  0  0  0  0  103158571202146310      2173       </DA></R>
+<R><MA>DATSUN</MA><MO>1200 Cpe</MO><DA>0  0  0  0  0  0  0  382135151230      730        </DA></R>
+<R><MA>DATSUN</MA><MO>1200 Sed</MO><DA>0  0  0  0  0  61 91 383139150230      720        </DA></R>
+<R><MA>DATSUN</MA><MO>240 Z Cpe</MO><DA>0  0  0  0  0  69 102414128163230      1066       </DA></R>
+<R><MA>DATSUN</MA><MO>510 2d Sed</MO><DA>0  0  0  0  0  0  0  407142156242      925        </DA></R>
+<R><MA>DATSUN</MA><MO>510 Sed 4d</MO><DA>0  0  0  0  0  0  0  412142156242      926        </DA></R>
+<R><MA>DATSUN</MA><MO>510 SW</MO><DA>0  0  0  0  0  0  0  415144156242      965        </DA></R>
+<R><MA>DODGE</MA><MO>Challenger</MO><DA>0  0  0  0  0  98 109486194129279      1436       </DA></R>
+<R><MA>DODGE</MA><MO>Challenger 8</MO><DA>0  0  0  0  0  98 109486194129279      1461       </DA></R>
+<R><MA>DODGE</MA><MO>Charger 2d</MO><DA>0  0  0  0  0  106123522195132292      1522       </DA></R>
+<R><MA>DODGE</MA><MO>Charger 8</MO><DA>0  0  0  0  0  95 131526197137300      1551       </DA></R>
+<R><MA>DODGE</MA><MO>Colt HT</MO><DA>0  0  0  0  0  0  0  408157137241      941        </DA></R>
+<R><MA>DODGE</MA><MO>Colt Sed 4d</MO><DA>0  0  0  0  0  0  0  408156140241      926        </DA></R>
+<R><MA>DODGE</MA><MO>Colt Wgn</MO><DA>0  0  0  0  0  0  0  409156144241      966        </DA></R>
+<R><MA>DODGE</MA><MO>Coronet 4d</MO><DA>0  0  0  0  0  95 131526197136300      1569       </DA></R>
+<R><MA>DODGE</MA><MO>Coronet 8</MO><DA>0  0  0  0  0  95 131526197137300      1551       </DA></R>
+<R><MA>DODGE</MA><MO>Coronet Wgn</MO><DA>0  0  0  0  0  95 148542200143300      1778       </DA></R>
+<R><MA>DODGE</MA><MO>Dart 6</MO><DA>15211636 76 13389 127498177137282      1334       </DA></R>
+<R><MA>DODGE</MA><MO>Dart 8</MO><DA>15210738 76 13189 127498177137282      1377       </DA></R>
+<R><MA>DODGE</MA><MO>Dart Demon</MO><DA>0  0  0  0  0  89 125489182135274      1309       </DA></R>
+<R><MA>DODGE</MA><MO>Monaco 8</MO><DA>16512736 76 145105149564202140310      1864       </DA></R>
+<R><MA>DODGE</MA><MO>Monaco Wgn</MO><DA>0  0  0  0  0  105158573201145310      2073       </DA></R>
+<R><MA>DODGE</MA><MO>Polara 8</MO><DA>16311741 76 13798 149557202140310      1799       </DA></R>
+<R><MA>DODGE</MA><MO>Polara Wgn</MO><DA>0  0  0  0  0  98 158566201145310      2016       </DA></R>
+<R><MA>FIAT</MA><MO>124 Cpe</MO><DA>0  0  0  0  0  0  0  415167134242      983        </DA></R>
+<R><MA>FIAT</MA><MO>124 Sed</MO><DA>0  0  0  0  0  0  0  404161142242      899        </DA></R>
+<R><MA>FIAT</MA><MO>124 Spider</MO><DA>0  0  0  0  0  0  0  397161125228      929        </DA></R>
+<R><MA>FIAT</MA><MO>124 SW</MO><DA>0  0  0  0  0  0  0  405163144242      928        </DA></R>
+<R><MA>FIAT</MA><MO>128 Sed 2d</MO><DA>0  0  0  0  0  0  0  386158143245      787        </DA></R>
+<R><MA>FIAT</MA><MO>128 Wgn</MO><DA>0  0  0  0  0  0  0  386159143245      819        </DA></R>
+<R><MA>FIAT</MA><MO>850 Spider</MO><DA>0  0  0  0  0  0  0  382150122203      717        </DA></R>
+<R><MA>FORD</MA><MO>Bronco</MO><DA>14713050 76 14974 86 391175180234      N/A        </DA></R>
+<R><MA>FORD</MA><MO>Capri 2d</MO><DA>15063 32 61 12176 94 427160133257      0          </DA></R>
+<R><MA>FORD</MA><MO>Chassis & Cab</MO><DA>0  0  0  0  0  0  0  0  0  0  333      N/A        </DA></R>
+<R><MA>FORD</MA><MO>Chassis & Cab</MO><DA>0  0  0  0  0  0  0  0  0  0  292      N/A        </DA></R>
+<R><MA>FORD</MA><MO>Chassis & Cab</MO><DA>0  0  0  0  0  0  0  0  0  0  343      N/A        </DA></R>
+<R><MA>FORD</MA><MO>Chassis & Cab</MO><DA>0  0  0  0  0  0  0  0  0  0  333      N/A        </DA></R>
+<R><MA>FORD</MA><MO>Chassis & Cab</MO><DA>0  0  0  0  0  0  0  0  0  0  297      N/A        </DA></R>
+<R><MA>FORD</MA><MO>Courier</MO><DA>0  0  0  0  0  0  0  0  0  0  264      N/A        </DA></R>
+<R><MA>FORD</MA><MO>Cus. 500 2d</MO><DA>0  0  0  0  0  0  0  5540  0  307      0          </DA></R>
+<R><MA>FORD</MA><MO>Cus. 500 4d</MO><DA>17311938 71 135109137554201140307      0          </DA></R>
+<R><MA>FORD</MA><MO>Cus. 500 Wgn</MO><DA>0  0  0  0  0  0  0  5610  0  307      0          </DA></R>
+<R><MA>FORD</MA><MO>E-100 Club Wgn</MO><DA>30 30542 10017356 103472201190315      N/A        </DA></R>
+<R><MA>FORD</MA><MO>Econoline</MO><DA>0  0  0  0  0  0  0  0  0  0  315      N/A        </DA></R>
+<R><MA>FORD</MA><MO>Econoline</MO><DA>0  0  0  0  0  0  0  0  0  0  269      N/A        </DA></R>
+<R><MA>FORD</MA><MO>Galaxie 500 2d</MO><DA>0  0  0  0  0  0  0  5540  0  307      0          </DA></R>
+<R><MA>FORD</MA><MO>Galaxie 500 4d</MO><DA>17313038 71 140109137554201140307      0          </DA></R>
+<R><MA>FORD</MA><MO>Galaxie 500 Wgn</MO><DA>0  0  0  0  0  0  0  5610  0  307      0          </DA></R>
+<R><MA>FORD</MA><MO>LTD 2d</MO><DA>0  0  0  0  0  0  0  5560  0  307      0          </DA></R>
+<R><MA>FORD</MA><MO>LTD 4d</MO><DA>0  0  0  0  0  0  0  5560  0  307      0          </DA></R>
+<R><MA>FORD</MA><MO>LTD Wgn</MO><DA>17526938 69 137107147561196140307      0          </DA></R>
+<R><MA>FORD</MA><MO>Maverick 2d</MO><DA>15162 33 71 13086 107455175135262      0          </DA></R>
+<R><MA>FORD</MA><MO>Maverick 4d</MO><DA>0  0  0  0  0  0  0  4720  0  279      0          </DA></R>
+<R><MA>FORD</MA><MO>Mustang Con.</MO><DA>0  0  0  0  0  0  0  4830  0  277      0          </DA></R>
+<R><MA>FORD</MA><MO>Mustang HT 2d</MO><DA>0  0  0  0  0  0  0  4830  0  277      0          </DA></R>
+<R><MA>FORD</MA><MO>Mustang Spt 2d</MO><DA>0  0  0  0  0  0  0  4830  0  277      0          </DA></R>
+<R><MA>FORD</MA><MO>Pick-Up F</MO><DA>0  0  0  0  0  0  0  0  0  0  333      N/A        </DA></R>
+<R><MA>FORD</MA><MO>Pick-Up F</MO><DA>0  0  0  0  0  0  0  0  0  0  292      N/A        </DA></R>
+<R><MA>FORD</MA><MO>Pick-Up F</MO><DA>0  0  0  0  0  0  0  0  0  0  333      N/A        </DA></R>
+<R><MA>FORD</MA><MO>Pick-Up F/L</MO><DA>0  0  0  0  0  0  0  0  0  0  297      N/A        </DA></R>
+<R><MA>FORD</MA><MO>Pick-Up F/L</MO><DA>0  0  0  0  0  0  0  0  0  0  333      N/A        </DA></R>
+<R><MA>FORD</MA><MO>Pick-Up F/L</MO><DA>0  0  0  0  0  0  0  0  0  0  297      N/A        </DA></R>
+<R><MA>FORD</MA><MO>Pick-Up F/L</MO><DA>0  0  0  0  0  0  0  0  0  0  333      N/A        </DA></R>
+<R><MA>FORD</MA><MO>Pinto 2d</MO><DA>0  0  0  0  0  0  0  4140  0  239      0          </DA></R>
+<R><MA>FORD</MA><MO>Pinto 3d</MO><DA>0  0  0  0  0  0  0  4140  0  239      0          </DA></R>
+<R><MA>FORD</MA><MO>Pinto Wgn</MO><DA>0  0  0  0  0  0  0  0  0  0  239      0          </DA></R>
+<R><MA>FORD</MA><MO>Ranchero</MO><DA>0  0  0  0  0  0  0  0  0  0  290      0          </DA></R>
+<R><MA>FORD</MA><MO>Step Van</MO><DA>0  0  0  0  0  0  0  0  0  0  264      N/A        </DA></R>
+<R><MA>FORD</MA><MO>Step Van</MO><DA>0  0  0  0  0  0  0  0  0  0  348      N/A        </DA></R>
+<R><MA>FORD</MA><MO>Step Van</MO><DA>0  0  0  0  0  0  0  0  0  0  310      N/A        </DA></R>
+<R><MA>FORD</MA><MO>Thunderbird</MO><DA>0  0  0  0  0  0  0  5490  0  306      0          </DA></R>
+<R><MA>FORD</MA><MO>Torino 2d</MO><DA>0  0  0  0  0  0  0  5180  0  290      0          </DA></R>
+<R><MA>FORD</MA><MO>Torino Spt</MO><DA>0  0  0  0  0  0  0  5180  0  290      0          </DA></R>
+<R><MA>FORD</MA><MO>Torino Wgn</MO><DA>0  0  0  0  0  0  0  5380  0  300      0          </DA></R>
+<R><MA>FORD</MA><MO>Tprino 4d</MO><DA>17599 38 69 127104124528196135300      0          </DA></R>
+<R><MA>HONDA</MA><MO>600 Cpe</MO><DA>0  0  0  0  0  0  0  314130128200      N/A        </DA></R>
+<R><MA>HONDA</MA><MO>600 Sed</MO><DA>0  0  0  0  0  0  0  319133133200      N/A        </DA></R>
+<R><MA>JAGUAR</MA><MO>V-12 Roadster</MO><DA>0  0  0  0  0  0  0  468168130267      1505       </DA></R>
+<R><MA>JAGUAR</MA><MO>XJ Sed</MO><DA>0  0  0  0  0  0  0  482177134277      1540       </DA></R>
+<R><MA>LINCOLN-MERCURY</MA><MO>Capri HT 2d</MO><DA>14661 0  74 12377 93 427164131256      0          </DA></R>
+<R><MA>LINCOLN-MERCURY</MA><MO>Comet Sed 54 4d</MO><DA>0  0  0  0  0  93 107479179135279      0          </DA></R>
+<R><MA>LINCOLN-MERCURY</MA><MO>Comet Sed 62 2d</MO><DA>0  0  0  0  0  93 107462179135262      0          </DA></R>
+<R><MA>LINCOLN-MERCURY</MA><MO>Cougar Con. 2d+XR7</MO><DA>1630  0  0  0  95 119500190128284      0          </DA></R>
+<R><MA>LINCOLN-MERCURY</MA><MO>Cougar HT 2d+XR7</MO><DA>16311334 67 12795 119500183130284      0          </DA></R>
+<R><MA>LINCOLN-MERCURY</MA><MO>Lincoln HT 65 2d</MO><DA>0  0  0  0  0  103145571202138323      0          </DA></R>
+<R><MA>LINCOLN-MERCURY</MA><MO>Lincoln Sed 4d</MO><DA>0  0  0  0  0  103145571202141323      0          </DA></R>
+<R><MA>LINCOLN-MERCURY</MA><MO>Mark IV HT 65 2d</MO><DA>0  0  0  0  0  118135559202135306      0          </DA></R>
+<R><MA>LINCOLN-MERCURY</MA><MO>Mercury HT 57 4d</MO><DA>0  0  0  0  0  107149571201137315      0          </DA></R>
+<R><MA>LINCOLN-MERCURY</MA><MO>Mercury HT 65 2d</MO><DA>0  0  0  0  0  107149571201135315      0          </DA></R>
+<R><MA>LINCOLN-MERCURY</MA><MO>Mercury Sed 4d</MO><DA>16411836 74 143107149571201138315      0          </DA></R>
+<R><MA>LINCOLN-MERCURY</MA><MO>Mercury SW 71 4d</MO><DA>0  0  0  0  0  107146560202144307      0          </DA></R>
+<R><MA>LINCOLN-MERCURY</MA><MO>Montego HT 65 2d</MO><DA>16999 35 73 133111128528192132290      0          </DA></R>
+<R><MA>LINCOLN-MERCURY</MA><MO>Montego HT FB 63 2d</MO><DA>0  0  0  0  0  111128528192132290      0          </DA></R>
+<R><MA>LINCOLN-MERCURY</MA><MO>Montego Sed 53 4d</MO><DA>17299 35 73 130111128538192133300      0          </DA></R>
+<R><MA>LINCOLN-MERCURY</MA><MO>Montego SW 71 4d</MO><DA>17320134 73 130111136547194140300      0          </DA></R>
+<R><MA>LOTUS</MA><MO>+ 2</MO><DA>0  0  0  0  0  0  0  427161119244      907        </DA></R>
+<R><MA>LOTUS</MA><MO>Elan Drophead</MO><DA>0  0  0  0  0  0  0  369142114213      608        </DA></R>
+<R><MA>LOTUS</MA><MO>Europa</MO><DA>0  0  0  0  0  0  0  401164109231      567        </DA></R>
+<R><MA>LOTUS</MA><MO>Europa Twin-Cam</MO><DA>0  0  0  0  0  0  0  401164109231      590        </DA></R>
+<R><MA>MAZDA</MA><MO>618 2d</MO><DA>11263 38 66 11966 102414157142246      987        </DA></R>
+<R><MA>MAZDA</MA><MO>808</MO><DA>0  0  0  0  0  79 97 406160135231      885        </DA></R>
+<R><MA>MAZDA</MA><MO>808 SW</MO><DA>0  0  0  0  0  79 99 409160140231      925        </DA></R>
+<R><MA>MAZDA</MA><MO>RX-2</MO><DA>0  0  0  0  0  66 102414157142246      1043       </DA></R>
+<R><MA>MERCEDES-BENZ</MA><MO>220</MO><DA>13281 39 71 13176 117469177144275      1403       </DA></R>
+<R><MA>MERCEDES-BENZ</MA><MO>220-D</MO><DA>0  0  0  0  0  0  0  469177144275      1436       </DA></R>
+<R><MA>MERCEDES-BENZ</MA><MO>250</MO><DA>13292 36 71 13179 123469177144275      1483       </DA></R>
+<R><MA>MERCEDES-BENZ</MA><MO>250 Cpe</MO><DA>13393 36 71 13179 123469179139275      1483       </DA></R>
+<R><MA>MERCEDES-BENZ</MA><MO>280 SE</MO><DA>0  0  0  0  0  0  0  490181144275      1600       </DA></R>
+<R><MA>MERCEDES-BENZ</MA><MO>280 SE 4.5</MO><DA>0  0  0  0  0  0  0  490181144275      1674       </DA></R>
+<R><MA>MERCEDES-BENZ</MA><MO>280 SEL 4.5</MO><DA>0  0  0  0  0  0  0  500181144285      1708       </DA></R>
+<R><MA>MERCEDES-BENZ</MA><MO>300 SEL 4.5</MO><DA>0  0  0  0  0  0  0  500181141285      1759       </DA></R>
+<R><MA>MERCEDES-BENZ</MA><MO>350 SL</MO><DA>16710436 69 11489 116437179130246      1682       </DA></R>
+<R><MA>MERCEDES-BENZ</MA><MO>600 7 Psg.</MO><DA>0  0  0  0  0  0  0  624195150390      2779       </DA></R>
+<R><MA>OLDSMOBILE</MA><MO>98 4d</MO><DA>0  12441 74 145107147577201140323      0          </DA></R>
+<R><MA>OLDSMOBILE</MA><MO>Cutlass 4d</MO><DA>17599 36 74 140107127526193142293      0          </DA></R>
+<R><MA>OLDSMOBILE</MA><MO>Cutlass Con. 2d</MO><DA>17510236 71 140104124513193140286      0          </DA></R>
+<R><MA>OLDSMOBILE</MA><MO>Cutlass S. 2d</MO><DA>17884 36 71 155104127511193136282      0          </DA></R>
+<R><MA>OLDSMOBILE</MA><MO>Delta 88 Roy.</MO><DA>17594 38 76 142104152564202137309      0          </DA></R>
+<R><MA>PEUGEOT</MA><MO>304</MO><DA>0  0  0  0  0  0  0  0  0  0  0        0          </DA></R>
+<R><MA>PEUGEOT</MA><MO>304 Wgn</MO><DA>0  0  0  0  0  0  0  0  0  0  0        0          </DA></R>
+<R><MA>PEUGEOT</MA><MO>504</MO><DA>14677 37 69 12471 104451160147276      0          </DA></R>
+<R><MA>PEUGEOT</MA><MO>504 Wgn</MO><DA>0  0  0  0  0  0  0  0  0  0  0        0          </DA></R>
+<R><MA>PLYMOUTH</MA><MO>Barracuda</MO><DA>0  0  0  0  0  0  0  474190129274      1408       </DA></R>
+<R><MA>PLYMOUTH</MA><MO>Barracuda 8</MO><DA>0  0  0  0  0  0  0  474190129274      1436       </DA></R>
+<R><MA>PLYMOUTH</MA><MO>Cuda 8</MO><DA>0  0  0  0  0  0  0  474190130274      1472       </DA></R>
+<R><MA>PLYMOUTH</MA><MO>Fury 8</MO><DA>0  0  0  0  0  97 150552203140305      1796       </DA></R>
+<R><MA>PLYMOUTH</MA><MO>Fury Wgn</MO><DA>0  0  0  0  0  97 150564203146310      2034       </DA></R>
+<R><MA>PLYMOUTH</MA><MO>Road Runner 8</MO><DA>0  0  0  0  0  0  0  516201134292      1669       </DA></R>
+<R><MA>PLYMOUTH</MA><MO>Satellite 2d</MO><DA>0  0  0  0  0  89 132520200136297      1520       </DA></R>
+<R><MA>PLYMOUTH</MA><MO>Satellite 4d 8</MO><DA>0  0  0  0  0  0  0  520200137297      1556       </DA></R>
+<R><MA>PLYMOUTH</MA><MO>Satellite SW</MO><DA>0  0  0  0  0  89 150536201143297      1751       </DA></R>
+<R><MA>PLYMOUTH</MA><MO>Valiant 2d 6</MO><DA>0  0  0  0  0  0  0  479180138274      1313       </DA></R>
+<R><MA>PLYMOUTH</MA><MO>Valiant 4d 8</MO><DA>14299 38 71 13284 127479180138274      1354       </DA></R>
+<R><MA>PLYMOUTH</MA><MO>Valiant Scamp</MO><DA>0  0  0  0  0  0  0  488180134282      1359       </DA></R>
+<R><MA>PONTIAC</MA><MO>Laurentian 2d</MO><DA>17910536 73 135106142562201138314      1955       </DA></R>
+<R><MA>PONTIAC</MA><MO>Laurentian 4d SW</MO><DA>17322 34 73 136102149577201138323      2239       </DA></R>
+<R><MA>PONTIAC</MA><MO>LeMans 4d</MO><DA>17598 34 70 133107125526195134295      1623       </DA></R>
+<R><MA>PONTIAC</MA><MO>Parisienne 4d</MO><DA>17987 32 73 136106142537201138314      1955       </DA></R>
+<R><MA>PORSCHE</MA><MO>911 E</MO><DA>0  0  0  0  0  0  0  416161132227      1021       </DA></R>
+<R><MA>PORSCHE</MA><MO>911 S</MO><DA>0  0  0  0  0  0  0  416161132227      1021       </DA></R>
+<R><MA>PORSCHE</MA><MO>911 T</MO><DA>0  0  0  0  0  0  0  416161132227      1021       </DA></R>
+<R><MA>PORSCHE</MA><MO>914</MO><DA>12814236 67 12180 83 399165122245      862        </DA></R>
+<R><MA>RENAULT</MA><MO>10</MO><DA>0  0  0  0  0  0  0  0  0  0  0        0          </DA></R>
+<R><MA>RENAULT</MA><MO>12</MO><DA>13172 39 69 12486 104434145164244      0          </DA></R>
+<R><MA>RENAULT</MA><MO>12 Wgn</MO><DA>13115739 69 12486 104434145164244      0          </DA></R>
+<R><MA>RENAULT</MA><MO>15</MO><DA>13771 36 69 11297 97 437157132244      0          </DA></R>
+<R><MA>RENAULT</MA><MO>16</MO><DA>0  0  0  0  0  0  0  0  0  0  0        0          </DA></R>
+<R><MA>ROLLS-ROYCE</MA><MO>Corniche Con.</MO><DA>0  0  0  0  0  0  0  517183149304      2132       </DA></R>
+<R><MA>ROLLS-ROYCE</MA><MO>Corniche Cpe</MO><DA>0  0  0  0  0  0  0  517183149304      2159       </DA></R>
+<R><MA>ROLLS-ROYCE</MA><MO>Silver Shadow</MO><DA>0  0  0  0  0  0  0  517180152304      2103       </DA></R>
+<R><MA>ROLLS-ROYCE</MA><MO>Silver Shadow Lg WB</MO><DA>0  0  0  0  0  0  0  527180152314      2208       </DA></R>
+<R><MA>SAAB</MA><MO>96 Sed</MO><DA>0  0  0  0  0  0  0  419157147249      905        </DA></R>
+<R><MA>SAAB</MA><MO>99 E Sed</MO><DA>0  0  0  0  0  0  0  435168145247      1070       </DA></R>
+<R><MA>SAAB</MA><MO>99 Sed</MO><DA>0  0  0  0  0  0  0  435168145247      1070       </DA></R>
+<R><MA>SAAB</MA><MO>Sonnet III</MO><DA>0  0  0  0  0  0  0  390150119215      758        </DA></R>
+<R><MA>SAAB</MA><MO>SW</MO><DA>0  0  0  0  0  0  0  429157147249      975        </DA></R>
+<R><MA>SUBARU</MA><MO>G SW</MO><DA>0  0  0  0  0  0  0  388148141242      798        </DA></R>
+<R><MA>SUBARU</MA><MO>G-2d Sed</MO><DA>0  0  0  0  0  0  0  390148139242      739        </DA></R>
+<R><MA>SUBARU</MA><MO>G-4d Sed</MO><DA>0  0  0  0  0  0  0  390148139242      748        </DA></R>
+<R><MA>TOYOTA</MA><MO>Celica 2d</MO><DA>12763 33 69 11476 69 414160131269      0          </DA></R>
+<R><MA>TOYOTA</MA><MO>Corolla 2d</MO><DA>11243 36 69 11971 91 391151135231      0          </DA></R>
+<R><MA>TOYOTA</MA><MO>Corolla 4d</MO><DA>11243 38 69 11969 89 389149133232      0          </DA></R>
+<R><MA>TOYOTA</MA><MO>Corona 4d Mark II</MO><DA>12466 36 71 12274 102427160137253      0          </DA></R>
+<R><MA>TOYOTA</MA><MO>Crown Mk IV Del</MO><DA>13786 36 71 12781 117467169137271      0          </DA></R>
+<R><MA>VOLKSWAGEN</MA><MO>411 4d</MO><DA>0  0  0  0  0  0  0  455165150250      1134       </DA></R>
+<R><MA>VOLKSWAGEN</MA><MO>Beetle</MO><DA>0  0  0  0  0  0  0  404155150240      839        </DA></R>
+<R><MA>VOLKSWAGEN</MA><MO>Karman Ghia</MO><DA>0  0  0  0  0  0  0  417163132240      885        </DA></R>
+<R><MA>VOLKSWAGEN</MA><MO>Super Beetle</MO><DA>0  0  0  0  0  0  0  411157150242      885        </DA></R>
+<R><MA>VOLVO</MA><MO>142 E Sed 2d</MO><DA>0  0  0  0  0  0  0  464173144262      1155       </DA></R>
+<R><MA>VOLVO</MA><MO>144 Sed 4d</MO><DA>0  0  0  0  0  0  0  464173144262      1175       </DA></R>
+<R><MA>VOLVO</MA><MO>145 EW 4d</MO><DA>0  0  0  0  0  0  0  464173142262      1224       </DA></R>
+<R><MA>VOLVO</MA><MO>164 Sed 4d</MO><DA>0  0  0  0  0  0  0  471173144272      1319       </DA></R>
+<R><MA>VOLVO</MA><MO>1800 E Cpe</MO><DA>0  0  0  0  0  0  0  435170128245      1124       </DA></R>
+<R><MA>VOLVO</MA><MO>1800 ES Cpe</MO><DA>0  0  0  0  0  0  0  438170128245      1186       </DA></R>

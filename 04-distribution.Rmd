@@ -1,0 +1,82 @@
+\cleardoublepage 
+
+# Distribution--histograms and density plots{#Distribution}
+
+
+
+
+```{r, message=FALSE}
+library(tidyverse)
+library(HistData)
+
+```
+
+
+## Histogram with density and median reference line
+
+```{r}
+diamonds.df = diamonds
+
+sum.diamonds.df = diamonds.df %>% group_by(cut) %>% 
+  summarise(q85 = quantile(price, 0.85))
+
+ggplot(data = diamonds.df, aes(price)) + 
+  geom_histogram(aes(y = ..density..), bins = 40) + 
+  geom_density(colour = "darkblue") +
+  geom_vline(data = sum.diamonds.df, aes(xintercept = q85)) +
+  facet_grid(cut ~ .)
+
+```  
+
+## Bin choice with histograms
+```{r}
+
+```
+
+## Histogram, density overlay, and normal overlay
+
+## Cummulative density
+
+## Distribution: 2-D distribution and overplotting revisited
+```{r}
+ggplot(diamonds, aes(log(carat), log(price)))+
+  geom_point(alpha = .01)+ 
+  theme_bw()
+
+ggplot(diamonds, aes(log(carat), log(price)))+
+  geom_point(size = .5)+ 
+  geom_density2d(size=1.2)+
+  theme_bw()
+
+ggplot(diamonds, aes(log(carat), log(price)))+
+  geom_point(size = .5)+ 
+  geom_density2d(size=1.2)+
+  geom_hex(alpha = .6) +
+  theme_bw()
+
+ggplot(diamonds, aes(log(carat), log(price)))+
+  #geom_point( )+
+  #geom_point(size = .5)+ 
+  #geom_density2d(size=1.2)+
+  geom_hex(bins = 50) +
+  theme_bw()
+```
+
+
+## Ridge plot
+https://cran.r-project.org/web/packages/ggridges/vignettes/gallery.html
+```{r}
+
+## Ridge plot
+library(ggridges)
+library(ggplot2movies)
+
+movies %>% filter(year>1912, length<250) %>% 
+ggplot(aes(x = length, y = year, group = year)) +
+  geom_density_ridges(scale = 10, size = 0.25, rel_min_height = 0.03, alpha=.75) +
+  scale_x_continuous(limits=c(0, 250), expand = c(0.01, 0)) +
+  scale_y_reverse(breaks=c(2000, 1980, 1960, 1940, 1920, 1900), expand = c(0.01, 0)) +
+  theme_ridges()
+```
+
+  

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Interactive data visualization</title>
+  <meta name="description" content="A book of ggplot examples">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Interactive data visualization" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="images/Minard_timeline_map.png" />
+  <meta property="og:description" content="A book of ggplot examples" />
+  <meta name="github-repo" content="jdlee/ggplot-examples" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Interactive data visualization" />
+  
+  <meta name="twitter:description" content="A book of ggplot examples" />
+  <meta name="twitter:image" content="images/Minard_timeline_map.png" />
+
+<meta name="author" content="John D. Lee">
+
+
+<meta name="date" content="2018-05-17">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="Introduction.html">
+<link rel="next" href="Association.html">
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets/htmlwidgets.js"></script>
+<link href="libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding/datatables.js"></script>
+<link href="libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk/js/crosstalk.min.js"></script>
+<link href="libs/nouislider/jquery.nouislider.min.css" rel="stylesheet" />
+<script src="libs/nouislider/jquery.nouislider.min.js"></script>
+<link href="libs/selectize/selectize.bootstrap3.css" rel="stylesheet" />
+<script src="libs/selectize/selectize.min.js"></script>
+<script src="libs/d3/d3.min.js"></script>
+<script src="libs/d3-lasso/d3-lasso.min.js"></script>
+<link href="libs/ggiraph/styles.css" rel="stylesheet" />
+<script src="libs/ggiraph/ggiraph_utils.js"></script>
+<script src="libs/ggiraph/ggiraph_over_effect.js"></script>
+<script src="libs/ggiraph/ggiraph_zoom.js"></script>
+<script src="libs/ggiraph/ggiraph_tooltip.js"></script>
+<script src="libs/ggiraph/ggiraph_selector.js"></script>
+<script src="libs/ggiraph-binding/ggiraph.js"></script>
+<script src="libs/svg_1/scripts_svg_1.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Interactive Data Visualization in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-read-this-book"><i class="fa fa-check"></i>Why read this book</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#structure-of-the-book"><i class="fa fa-check"></i>Structure of the book</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#software-information-and-conventions"><i class="fa fa-check"></i>Software information and conventions</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i>Acknowledgments</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="about-the-author.html"><a href="about-the-author.html"><i class="fa fa-check"></i>About the Author</a></li>
+<li class="chapter" data-level="1" data-path="Introduction.html"><a href="Introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction: Purposes, questions, and audiences</a><ul>
+<li class="chapter" data-level="1.1" data-path="Introduction.html"><a href="Introduction.html#seeing-meaning-rather-than-numbers"><i class="fa fa-check"></i><b>1.1</b> Seeing meaning rather than numbers</a></li>
+<li class="chapter" data-level="1.2" data-path="Introduction.html"><a href="Introduction.html#seeing-more-than-summary-statistics"><i class="fa fa-check"></i><b>1.2</b> Seeing more than summary statistics</a></li>
+<li class="chapter" data-level="1.3" data-path="Introduction.html"><a href="Introduction.html#purpose-and-audience-of-visualizations"><i class="fa fa-check"></i><b>1.3</b> Purpose and audience of visualizations</a></li>
+<li class="chapter" data-level="1.4" data-path="Introduction.html"><a href="Introduction.html#what-question-to-answer"><i class="fa fa-check"></i><b>1.4</b> What question to answer?</a></li>
+<li class="chapter" data-level="1.5" data-path="Introduction.html"><a href="Introduction.html#storytelling-with-graphics"><i class="fa fa-check"></i><b>1.5</b> Storytelling with graphics</a></li>
+<li class="chapter" data-level="1.6" data-path="Introduction.html"><a href="Introduction.html#data"><i class="fa fa-check"></i><b>1.6</b> Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="Principles.html"><a href="Principles.html"><i class="fa fa-check"></i><b>2</b> Visualization types and principles</a><ul>
+<li class="chapter" data-level="2.1" data-path="Principles.html"><a href="Principles.html#pairing-questions-and-graph-types"><i class="fa fa-check"></i><b>2.1</b> Pairing questions and graph types</a></li>
+<li class="chapter" data-level="2.2" data-path="Principles.html"><a href="Principles.html#visual-perception-for-visualization"><i class="fa fa-check"></i><b>2.2</b> Visual perception for visualization</a></li>
+<li class="chapter" data-level="2.3" data-path="Principles.html"><a href="Principles.html#mapping-typese-of-variables-to-graph-features"><i class="fa fa-check"></i><b>2.3</b> Mapping typese of variables to graph features</a></li>
+<li class="chapter" data-level="2.4" data-path="Principles.html"><a href="Principles.html#principles"><i class="fa fa-check"></i><b>2.4</b> Principles</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="Principles.html"><a href="Principles.html#proximity"><i class="fa fa-check"></i><b>2.4.1</b> Proximity</a></li>
+<li class="chapter" data-level="2.4.2" data-path="Principles.html"><a href="Principles.html#legibility"><i class="fa fa-check"></i><b>2.4.2</b> Legibility</a></li>
+<li class="chapter" data-level="2.4.3" data-path="Principles.html"><a href="Principles.html#clutter"><i class="fa fa-check"></i><b>2.4.3</b> Clutter</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="Association.html"><a href="Association.html"><i class="fa fa-check"></i><b>3</b> Association–scatterplots</a><ul>
+<li class="chapter" data-level="3.1" data-path="Association.html"><a href="Association.html#basic-elements-of-the-grammar-of-graphics"><i class="fa fa-check"></i><b>3.1</b> Basic elements of the grammar of graphics</a></li>
+<li class="chapter" data-level="3.2" data-path="Association.html"><a href="Association.html#simple-scatterplot"><i class="fa fa-check"></i><b>3.2</b> Simple scatterplot</a></li>
+<li class="chapter" data-level="3.3" data-path="Association.html"><a href="Association.html#scatterplot-with-additional-mappings"><i class="fa fa-check"></i><b>3.3</b> Scatterplot with additional mappings</a></li>
+<li class="chapter" data-level="3.4" data-path="Association.html"><a href="Association.html#scatterplot-with-linear-and-loess-fit"><i class="fa fa-check"></i><b>3.4</b> Scatterplot with linear and loess fit</a></li>
+<li class="chapter" data-level="3.5" data-path="Association.html"><a href="Association.html#global-and-local-regression"><i class="fa fa-check"></i><b>3.5</b> Global and local regression</a></li>
+<li class="chapter" data-level="3.6" data-path="Association.html"><a href="Association.html#quantile-regression-and-other-functional-relationships"><i class="fa fa-check"></i><b>3.6</b> Quantile regression and other functional relationships</a></li>
+<li class="chapter" data-level="3.7" data-path="Association.html"><a href="Association.html#scatterplot-with-overplotting-mitigation"><i class="fa fa-check"></i><b>3.7</b> Scatterplot with overplotting mitigation</a></li>
+<li class="chapter" data-level="3.8" data-path="Association.html"><a href="Association.html#scatterplot-matrix"><i class="fa fa-check"></i><b>3.8</b> Scatterplot matrix</a></li>
+<li class="chapter" data-level="3.9" data-path="Association.html"><a href="Association.html#categorical-scatterplot"><i class="fa fa-check"></i><b>3.9</b> Categorical scatterplot</a></li>
+<li class="chapter" data-level="3.10" data-path="Association.html"><a href="Association.html#scatterplot-with-regression-equation-and-marginal-distributions"><i class="fa fa-check"></i><b>3.10</b> Scatterplot with regression equation and marginal distributions</a></li>
+<li class="chapter" data-level="3.11" data-path="Association.html"><a href="Association.html#table-lens"><i class="fa fa-check"></i><b>3.11</b> Table lens</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="Distribution.html"><a href="Distribution.html"><i class="fa fa-check"></i><b>4</b> Distribution–histograms and density plots</a><ul>
+<li class="chapter" data-level="4.1" data-path="Distribution.html"><a href="Distribution.html#histogram-with-density-and-median-reference-line"><i class="fa fa-check"></i><b>4.1</b> Histogram with density and median reference line</a></li>
+<li class="chapter" data-level="4.2" data-path="Distribution.html"><a href="Distribution.html#bin-choice-with-histograms"><i class="fa fa-check"></i><b>4.2</b> Bin choice with histograms</a></li>
+<li class="chapter" data-level="4.3" data-path="Distribution.html"><a href="Distribution.html#histogram-density-overlay-and-normal-overlay"><i class="fa fa-check"></i><b>4.3</b> Histogram, density overlay, and normal overlay</a></li>
+<li class="chapter" data-level="4.4" data-path="Distribution.html"><a href="Distribution.html#cummulative-density"><i class="fa fa-check"></i><b>4.4</b> Cummulative density</a></li>
+<li class="chapter" data-level="4.5" data-path="Distribution.html"><a href="Distribution.html#distribution-2-d-distribution-and-overplotting-revisited"><i class="fa fa-check"></i><b>4.5</b> Distribution: 2-D distribution and overplotting revisited</a></li>
+<li class="chapter" data-level="4.6" data-path="Distribution.html"><a href="Distribution.html#ridge-plot"><i class="fa fa-check"></i><b>4.6</b> Ridge plot</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="Comparison.html"><a href="Comparison.html"><i class="fa fa-check"></i><b>5</b> Comparison–barchart and boxplots</a><ul>
+<li class="chapter" data-level="5.1" data-path="Comparison.html"><a href="Comparison.html#deviation-chart-bar-above-and-below-zero-or-average"><i class="fa fa-check"></i><b>5.1</b> Deviation chart: Bar above and below zero or average</a></li>
+<li class="chapter" data-level="5.2" data-path="Comparison.html"><a href="Comparison.html#graph-considerations-for-communication-aggregation-abstraction-complexity"><i class="fa fa-check"></i><b>5.2</b> Graph considerations for communication: aggregation, abstraction, complexity</a></li>
+<li class="chapter" data-level="5.3" data-path="Comparison.html"><a href="Comparison.html#dotplot-and-offset-range-plot"><i class="fa fa-check"></i><b>5.3</b> dotplot and offset range plot</a></li>
+<li class="chapter" data-level="5.4" data-path="Comparison.html"><a href="Comparison.html#compares-the-empirical-and-theoretical-distribution-summary"><i class="fa fa-check"></i><b>5.4</b> Compares the empirical and theoretical distribution summary</a></li>
+<li class="chapter" data-level="5.5" data-path="Comparison.html"><a href="Comparison.html#statistical-significance-in-context"><i class="fa fa-check"></i><b>5.5</b> Statistical significance in context</a></li>
+<li class="chapter" data-level="5.6" data-path="Comparison.html"><a href="Comparison.html#tufte-boxplot"><i class="fa fa-check"></i><b>5.6</b> Tufte boxplot</a></li>
+<li class="chapter" data-level="5.7" data-path="Comparison.html"><a href="Comparison.html#dot-plots-and-reordering"><i class="fa fa-check"></i><b>5.7</b> Dot plots and reordering</a></li>
+<li class="chapter" data-level="5.8" data-path="Comparison.html"><a href="Comparison.html#gliphs-chernof-face-and-radar-plots"><i class="fa fa-check"></i><b>5.8</b> Gliphs: Chernof face and radar plots</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="Proportion.html"><a href="Proportion.html"><i class="fa fa-check"></i><b>6</b> Proportion–Pie charts and pareto plots</a><ul>
+<li class="chapter" data-level="6.1" data-path="Proportion.html"><a href="Proportion.html#pie-and-bar-chart"><i class="fa fa-check"></i><b>6.1</b> Pie and bar chart</a></li>
+<li class="chapter" data-level="6.2" data-path="Proportion.html"><a href="Proportion.html#pareto-plot-whole-part-and-and-ranking"><i class="fa fa-check"></i><b>6.2</b> Pareto plot: Whole part and and ranking</a></li>
+<li class="chapter" data-level="6.3" data-path="Proportion.html"><a href="Proportion.html#stacked-bar-chart"><i class="fa fa-check"></i><b>6.3</b> Stacked bar chart</a></li>
+<li class="chapter" data-level="6.4" data-path="Proportion.html"><a href="Proportion.html#rose-or-coxcomb-plots"><i class="fa fa-check"></i><b>6.4</b> Rose or Coxcomb plots</a></li>
+<li class="chapter" data-level="6.5" data-path="Proportion.html"><a href="Proportion.html#stacked-dodged-and-opposed-bar-chart"><i class="fa fa-check"></i><b>6.5</b> Stacked, dodged and opposed bar chart</a></li>
+<li class="chapter" data-level="6.6" data-path="Proportion.html"><a href="Proportion.html#treemaps-for-whole-part-of-hierarchy"><i class="fa fa-check"></i><b>6.6</b> Treemaps for whole-part of hierarchy</a></li>
+<li class="chapter" data-level="6.7" data-path="Proportion.html"><a href="Proportion.html#circle-packing"><i class="fa fa-check"></i><b>6.7</b> Circle packing</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="Fluctuation.html"><a href="Fluctuation.html"><i class="fa fa-check"></i><b>7</b> Fluctuation–timelines</a><ul>
+<li class="chapter" data-level="7.1" data-path="Fluctuation.html"><a href="Fluctuation.html#time-series-with-reference-line"><i class="fa fa-check"></i><b>7.1</b> Time series with reference line</a></li>
+<li class="chapter" data-level="7.2" data-path="Fluctuation.html"><a href="Fluctuation.html#cycle-plot"><i class="fa fa-check"></i><b>7.2</b> Cycle plot</a></li>
+<li class="chapter" data-level="7.3" data-path="Fluctuation.html"><a href="Fluctuation.html#time-series-with-lines-labeled"><i class="fa fa-check"></i><b>7.3</b> Time series with lines labeled</a></li>
+<li class="chapter" data-level="7.4" data-path="Fluctuation.html"><a href="Fluctuation.html#faceted-zoom"><i class="fa fa-check"></i><b>7.4</b> Faceted zoom</a></li>
+<li class="chapter" data-level="7.5" data-path="Fluctuation.html"><a href="Fluctuation.html#ridge-plot-1"><i class="fa fa-check"></i><b>7.5</b> Ridge plot</a></li>
+<li class="chapter" data-level="7.6" data-path="Fluctuation.html"><a href="Fluctuation.html#stacked-area-and-line-graphs"><i class="fa fa-check"></i><b>7.6</b> Stacked area and line graphs</a></li>
+<li class="chapter" data-level="7.7" data-path="Fluctuation.html"><a href="Fluctuation.html#temporal-heatmap"><i class="fa fa-check"></i><b>7.7</b> Temporal heatmap</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="Connection.html"><a href="Connection.html"><i class="fa fa-check"></i><b>8</b> Connection–maps and network plots</a><ul>
+<li class="chapter" data-level="8.1" data-path="Connection.html"><a href="Connection.html#maps"><i class="fa fa-check"></i><b>8.1</b> Maps</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="Connection.html"><a href="Connection.html#choropleth"><i class="fa fa-check"></i><b>8.1.1</b> Choropleth</a></li>
+<li class="chapter" data-level="8.1.2" data-path="Connection.html"><a href="Connection.html#county-map"><i class="fa fa-check"></i><b>8.1.2</b> County map</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="Connection.html"><a href="Connection.html#us-county-small-multiples"><i class="fa fa-check"></i><b>8.2</b> US county small multiples</a></li>
+<li class="chapter" data-level="8.3" data-path="Connection.html"><a href="Connection.html#world-migration"><i class="fa fa-check"></i><b>8.3</b> World migration</a></li>
+<li class="chapter" data-level="8.4" data-path="Connection.html"><a href="Connection.html#networks"><i class="fa fa-check"></i><b>8.4</b> Networks</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="Connection.html"><a href="Connection.html#world-migration-network"><i class="fa fa-check"></i><b>8.4.1</b> World migration network</a></li>
+<li class="chapter" data-level="8.4.2" data-path="Connection.html"><a href="Connection.html#hierarchy"><i class="fa fa-check"></i><b>8.4.2</b> Hierarchy</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="Tables.html"><a href="Tables.html"><i class="fa fa-check"></i><b>9</b> Graphical tables–interactive tables, highlights, and sparklines</a><ul>
+<li class="chapter" data-level="9.1" data-path="Tables.html"><a href="Tables.html#heatmap-table"><i class="fa fa-check"></i><b>9.1</b> Heatmap table</a></li>
+<li class="chapter" data-level="9.2" data-path="Tables.html"><a href="Tables.html#table-lens-with-a-integrated-bar"><i class="fa fa-check"></i><b>9.2</b> Table lens with a integrated bar</a></li>
+<li class="chapter" data-level="9.3" data-path="Tables.html"><a href="Tables.html#sparkline"><i class="fa fa-check"></i><b>9.3</b> Sparkline</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="Polishing.html"><a href="Polishing.html"><i class="fa fa-check"></i><b>10</b> Polishing graph for publication</a><ul>
+<li class="chapter" data-level="10.1" data-path="Polishing.html"><a href="Polishing.html#colour"><i class="fa fa-check"></i><b>10.1</b> Colour</a></li>
+<li class="chapter" data-level="10.2" data-path="Polishing.html"><a href="Polishing.html#scales-beyond-color"><i class="fa fa-check"></i><b>10.2</b> Scales beyond color</a></li>
+<li class="chapter" data-level="10.3" data-path="Polishing.html"><a href="Polishing.html#themes-and-formatting"><i class="fa fa-check"></i><b>10.3</b> Themes and formatting</a></li>
+<li class="chapter" data-level="10.4" data-path="Polishing.html"><a href="Polishing.html#saving-plots"><i class="fa fa-check"></i><b>10.4</b> Saving plots</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="Polishing.html"><a href="Polishing.html#titles-labels"><i class="fa fa-check"></i><b>10.4.1</b> Titles labels</a></li>
+<li class="chapter" data-level="10.4.2" data-path="Polishing.html"><a href="Polishing.html#annotations-of-data"><i class="fa fa-check"></i><b>10.4.2</b> Annotations of data</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="Polishing.html"><a href="Polishing.html#color"><i class="fa fa-check"></i><b>10.5</b> Color</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="Polishing.html"><a href="Polishing.html#resources-to-explain-the-basis-form-color-choice"><i class="fa fa-check"></i><b>10.5.1</b> Resources to explain the basis form color choice</a></li>
+<li class="chapter" data-level="10.5.2" data-path="Polishing.html"><a href="Polishing.html#large-and-small-area-colors"><i class="fa fa-check"></i><b>10.5.2</b> Large and small area colors</a></li>
+<li class="chapter" data-level="10.5.3" data-path="Polishing.html"><a href="Polishing.html#color-for-large-and-small-areas"><i class="fa fa-check"></i><b>10.5.3</b> Color for large and small areas</a></li>
+<li class="chapter" data-level="10.5.4" data-path="Polishing.html"><a href="Polishing.html#continuous-color-scales"><i class="fa fa-check"></i><b>10.5.4</b> Continuous color scales</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="Polishing.html"><a href="Polishing.html#themes-and-theme-options"><i class="fa fa-check"></i><b>10.6</b> Themes and theme options</a><ul>
+<li class="chapter" data-level="10.6.1" data-path="Polishing.html"><a href="Polishing.html#ordering-theme-layers"><i class="fa fa-check"></i><b>10.6.1</b> Ordering theme layers</a></li>
+<li class="chapter" data-level="10.6.2" data-path="Polishing.html"><a href="Polishing.html#pre-set-theme-options"><i class="fa fa-check"></i><b>10.6.2</b> Pre-set theme options</a></li>
+<li class="chapter" data-level="10.6.3" data-path="Polishing.html"><a href="Polishing.html#themes-form-other-packages"><i class="fa fa-check"></i><b>10.6.3</b> Themes form other packages</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="Polishing.html"><a href="Polishing.html#saving-and-printing-plots-to-include-in-documents"><i class="fa fa-check"></i><b>10.7</b> Saving and printing plots to include in documents</a></li>
+<li class="chapter" data-level="10.8" data-path="Polishing.html"><a href="Polishing.html#faceted-pagination"><i class="fa fa-check"></i><b>10.8</b> Faceted pagination</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="Interaction.html"><a href="Interaction.html"><i class="fa fa-check"></i><b>11</b> Interaction–zoom, annotate, highlight</a></li>
+<li class="chapter" data-level="12" data-path="shinyadvanced-interactive-graphics.html"><a href="shinyadvanced-interactive-graphics.html"><i class="fa fa-check"></i><b>12</b> Shiny–Advanced interactive graphics</a></li>
+<li class="appendix"><span><b>Appendix</b></span><ul>
+<li class="chapter" data-level="A.1" data-path="02-principles.html"><a href="#data-sources"><i class="fa fa-check"></i><b>A.1</b> Data sources</a></li>
+<li class="chapter" data-level="A.2" data-path="shinyadvanced-interactive-graphics.html"><a href="shinyadvanced-interactive-graphics.html#visualization-resources"><i class="fa fa-check"></i><b>A.2</b> Visualization resources</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Interactive data visualization</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="Principles" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Visualization types and principles</h1>
+<pre><code>## Warning: package &#39;igraph&#39; was built under R version
+## 3.4.4</code></pre>
+<p><img src="visualizationwithggplot_files/figure-html/graphtypes-1.png" width="672" /></p>
+<div id="pairing-questions-and-graph-types" class="section level2">
+<h2><span class="header-section-number">2.1</span> Pairing questions and graph types</h2>
+<p>Graphs answer questions about data by showing relationships and making comparisons easier. Before creating a graph it is critical to specify the questions and comparisons of interest. Figure <a href="#fig:graphtypes"><strong>??</strong></a> shows common graphs and general questions they might answer. For example, in the upper left is a graph that shows the association between variables. This type of graph answers questions such as “how does X influence Y?”, as in “does increasing the prices of gas reduce the amount of driving?”. A scatter plot shows the strength and nature of this association. Each graph in Figure <a href="#fig:graphtypes"><strong>??</strong></a> is suited to a different question:</p>
+<p>Graphs answer questions about data by showing relationships and making comparisons easier. Before creating a graph it is critical to specify the questions and comparisons of interest. Table  shows common graphs and general questions they might answer. For example, in the upper left is a graph that shows the association between variables. This type of graph answers questions such as how does X influence Y, as in ``does increasing the prices of gas reduce the amount of driving?’’. A scatter plot shows the strength and nature of this association.</p>
+<ul>
+<li>Association: What influences an outcome?</li>
+<li>Distribution: What is the spread of the observations?</li>
+<li>Comparision: How does one condition differ from another?</li>
+<li>Proportion: What is the size of the components that make up the whole?</li>
+<li>Fluctuation: How does the do observations vary over time?</li>
+<li>Connection: How are the observations connnected over a map or network?</li>
+</ul>
+<p>Combinations of questions, such as changes in distribution or proportion over time</p>
+<p>Questions in terms of patterns vs precision</p>
+<p>Graph type and familiarity, pie charts Scatter plot to 2-density, comparison to ranking, dotplot to violin or boxplot.</p>
+<p>Graph types and volume of data.<br />
+More data requires abstraction. Some plots scale well others do not, overplotting one example of scaling challenges with increasingly large data.</p>
+<p>More data points and more variables (e.g., time sequences, categories), organize chapters to move from few points and few variables to many (e.g., histogram to small multiple, to heatmap)</p>
+<p>Types of data sets: Number of observations (independent, sequential) Number variables (nominal, ordinal, interval)</p>
+<p>~50 observations and 5 nominal and 7 interval variables (mtcars, IIHS vehicle fatalities) ~50 observations and 1 nominal and 4 interval variables (iris) ~200 observations and 2 nominal and interval variables (10) (belts) ~50,000 observations an 10 nominal and interval variables (diamonds)</p>
+<p>The examples for each type of graphs represent one of many possible representations. For example, the stacked bar chart addresses questions of proportion, but so can pie charts and 3-D pie charts. How do you choose between these alternatives? One consideration is to select display dimensions that make it easy for people to make comparisons needed to answer the questions—identify effective mapping between data and display dimensions—which we turn to in the following section.</p>
+</div>
+<div id="visual-perception-for-visualization" class="section level2">
+<h2><span class="header-section-number">2.2</span> Visual perception for visualization</h2>
+<p>Preattentive processing: Pop-out and visual search</p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Mapping data to graph features <span class="citation">(Cleveland and McGill <a href="#ref-Cleveland1985">1985</a>)</span> Size of circle: map to radius or the area TODO create plot to show map to radius and area</p>
+<p>TODO show good and bad mappings</p>
+<p><span class="citation">(Tufte <a href="#ref-Tufte1983">1983</a>)</span>, <span class="citation">(Munzner <a href="#ref-Munzner2014">2014</a>, <span class="citation">Gelman and Unwin (<a href="#ref-Gelman2013a">2013</a><a href="#ref-Gelman2013a">b</a>)</span>)</span></p>
+<p>Quantitities</p>
+<p>TODO Create figure to show relative benefit of shape, intensity color for grouping</p>
+<p>Grouping and gestalt Similarity Continuity Connection Proximity Enclosure Closure</p>
+<p>TODO Create figure to show cost of conjunctive search and benefit of redundant coding</p>
+<p>TODO Figure ground showing data and summary vs summary and data</p>
+</div>
+<div id="mapping-typese-of-variables-to-graph-features" class="section level2">
+<h2><span class="header-section-number">2.3</span> Mapping typese of variables to graph features</h2>
+<p>For the purposes of display design, three different data types guide the choice of display dimensions: interval, ordinal, and nominal <span class="citation">(Cleveland and McGill <a href="#ref-Cleveland1985">1985</a>)</span>. Interval data include real or integer numbers (e.g., height and weight), ordinal data are categories that have a meaningful order (e.g., compact, mid-size, and full-size cars), and nominal data are categories that have no order (e.g., male, female). Each data type can be represented with one of several graph dimensions, such as color or position, but certain mapping support more accurate judgments.</p>
+<p>%TODO figure for mapping types of data and graph dimensions <span class="citation">(Cleveland and McGill <a href="#ref-Cleveland1985">1985</a>)</span></p>
+<p>Figure XX shows seven ways to code these data <span class="citation">(Cleveland and McGill <a href="#ref-Cleveland1985">1985</a>)</span>. For all three types of data, position, such as the horizontal or vertical placement of a point in a graph, support the most precise judgments. The other ways of coding information depend on the type of data: hue is a poor choice for interval data, but a good choice for nominal data, as is shape. Because shape and color have no natural mapping to magnitude, they are a poor choice for interval and ordinal data. Magnitude is best represented by position on a common scale, followed by position on an unaligned scale, length and then angle, followed by size <span class="citation">(Munzner <a href="#ref-Munzner2014">2014</a>, <span class="citation">Cleveland and McGill (<a href="#ref-Cleveland1985">1985</a>)</span>)</span>. Because size and angles are relatively hard to judge, pie charts are not a good way to represent proportions.</p>
+<p>Limits of absolute judgment underlie the effectiveness of coding data with various display dimensions. Coding nominal data with more than seven hues will exceed people’s ability and so they would not be able to reliably link lines on a graph to categories. Data presented on aligned scales, such as the bottom category in a stacked bar chart, can be judged very precisely, but the limits of absolute judgment make interpreting the upper categories more difficult. This means that the bottom category of a stacked bar chart should be chosen carefully. Generally, avoid placing data on unaligned scales. Instead, support relative judgments based on a common scale. The circular format of pie charts means that there are no aligned scales and is another reason why they are not as effective as stacked bar charts.</p>
+<p>Because visualization involves multiple conceptual dimensions, a natural choice is to use three-dimensional Euclidian space. However, three-dimensional figures make accurate comparisons difficult due the ambiguity of rendering three dimensions on a two dimensional plane. Of all the ways to represent a quantity, the volume of a three-dimensional object leads to the most inaccurate judgments <span class="citation">(Munzner <a href="#ref-Munzner2014">2014</a>)</span>.</p>
+<p>Another important conceptual dimension is time. Time, like space, is compatibly mapped to display dimension of position, often advancing from left (past) to right (future). Time can also be directly mapped to display time via animation. Animated graphs can be compelling, but they require working memory to track objects across the display and so severely limit the number of data points that can be compared. Interactive visualization described in Chapter 10 can give control with a slider and avoids this limit to some degree.</p>
+</div>
+<div id="principles" class="section level2">
+<h2><span class="header-section-number">2.4</span> Principles</h2>
+<p>Enable comparisons Show cause, explain why Annotate to integrate interpretation and data Simplify to amplify content Simplify content to amplify point</p>
+<p>Focus attention Organize reading Group Prioritize Provide context Sequence</p>
+<p>Be consistent, every difference should tell</p>
+<p>Connect to the world</p>
+<p>Explain why</p>
+<p>Show movement</p>
+<div id="proximity" class="section level3">
+<h3><span class="header-section-number">2.4.1</span> Proximity</h3>
+<p>Proximity compatibility and legend: link to line, orientate to match orientation in graph, sequence to match sequence in graph</p>
+<p>Visual attention must sometimes do a lot of work, traveling from place to place on the graph, and this effort can hinder graph interpretation. Hence, it is important to construct graphs so things that need to be compared (or integrated) are either close together in space or can be easily linked perceptually by a common visual code. This, of course, is a feature for the proximity compatibility principle (A3) and can apply to keeping legends close to the lines that they identify, rather than in remote captions or boxes. Similarly, when the slopes and intercepts of two lines need to be compared, keep them on the same panel of a graph rather than on separate panels. The problems of low proximity will be magnified as the graphs contain more information—more lines. Similarly, in a box plot with many categories people will be able to compare categories that are close to each other more precisely than those that are separated. You should order categories so that those to be compared are closest.</p>
+<p>Proximity goes beyond physical distance. A line linking points on a timeline can enhance proximity as can color and shape. Lines and color can be effective ways of making groups of points in a network diagram ``closer’’, and easier to interpret as a group. Objects with identical colors tend to be associated together, even when they are spatially separated. Furthermore a unique color tends to stand out. It is also the case that space is compatibly mapped to space, so that visualization of geographic areas is best accomplished when the dimensions of rendered space correspond to the dimensions of displayed space–a map.</p>
+<p>As with its application to other display designs, the proximity compatibility principle means that the visual proximity of elements of the graph need to correspond to the mental proximity needed to interpret this information. For graphs, this means the questions and comparisons the graph is intended to address should specify what is ``close’’ in the graph.</p>
+<p>%color <span class="citation">(<span class="citeproc-not-found" data-reference-id="Silva2011"><strong>???</strong></span>)</span> %ten guidelines <span class="citation">(<span class="citeproc-not-found" data-reference-id="Kelleher2011"><strong>???</strong></span>)</span></p>
+</div>
+<div id="legibility" class="section level3">
+<h3><span class="header-section-number">2.4.2</span> Legibility</h3>
+<p>As with other types of displays, issues of legibility are again relevant. However, in addition to making lines and labels large enough to be readable, a second critical point relates to discriminability (P9). Too often, lines that have very different meanings are distinguished only by points that are highly confusable, as in the graph on the left of Figure XX. Here incorporating redundant coding of differences can be quite helpful. In modern graphics packages, color is often used to discriminate lines, but it is essential to use color coding redundantly with another salient cue. Why? As we noted in Chapter 4, not all viewers have good color vision, and a non-redundant colored graph printed from a black and white printer or photocopied may be useless.</p>
+</div>
+<div id="clutter" class="section level3">
+<h3><span class="header-section-number">2.4.3</span> Clutter</h3>
+<p>Graphs can easily become cluttered by presenting more lines and marks than the actual information they convey. As we know, clutter can be counterproductive , and this has led some to argue that the data-ink ratio should always be maximized <span class="citation">(Tufte <a href="#ref-Tufte1983">1983</a>)</span>; that is, the greatest amount of data should be presented with the smallest amount of ink. While adhering to this guideline is a valuable safeguard against the excessive ink of <code>chart junk'' graphs, such as those that unnecessarily put a 2-D graph into 3-D perspective, the guideline of minimizing ink can however be counterproductive if carried too far. Thus, for example, the</code>minimalist’’ graph in center of Figure X, which maximizes data-ink ratio, gains little by its decluttering and loses a lot in its representation of the trend, compared to the line graph on the right Figure XX. The line graph contains an emergent feature—slope—which is not visible in the dot graph. The latter is also much more vulnerable to the conditions of poor viewing (or the misinterpretation caused by the dead bug on the page!).</p>
+<p>%Figure 21. Space shuttle launches, temperature and O-ring damage. %TODO I love the example, but A more elaborated caption is needed to direct reader’s attention to the problem.</p>
+<p>In some cases, the poor data to ink ratio and prevalence of chart junk might create engaging graphics, other times it can be annoying, but in presenting engineering data it can undermine the quality of life and death decisions. Figure 20 shows the graphic used to support the launch decision associated with the disastrous flight of the Space Shuttle Challenger the data presented in this way makes it difficult to assess the effect of temperature on O-ring damage, which may have encouraged the managers to launch in cold weather <span class="citation">(Tufte <a href="#ref-Tufte1997">1997</a>)</span>.</p>
+<p>Figure X shows that you can increase the data-to-ink ratio by reducing the ``ink’’ devoted to non-data elements. Another way to increase the data-to-ink ratio is to include more data. More data can take the form of reference lines and multiple small graphs, as in Figure XX. More data can also take the form of directly plotting the raw data rather than summary data.</p>
+<p>Figure <a href="Principles.html#fig:trip-dur">2.1</a> shows an extreme version, in which each data point represents one of approximately 693,000 trips reported in the 2009 travel survey XXcite FHWA2011. The horizontal axis indicates the duration and the vertical axis shows distance of each trip. The diagonal lines of constant speed place these data in context by showing very slow trips—those under the 3mph line—and very fast trips—those over the 90mph line. Histograms at the top and side show the distribution of trip duration and distance. The faint vertical and horizontal lines show the mean duration and distance. Like other visualizations that include the raw data, this visualization shows what is behind the summary statistics, such as mean trip distance and duration.</p>
+<p>Showing the underlying data has the benefit of providing a more complete representation, but it can also overwhelm people. Data can create clutter. One way to minimize clutter is by grouping and layering the data. In the case of Figure <a href="Principles.html#fig:trip-dur">2.1</a> this means making the individual data points small and faint.</p>
+<div class="figure"><span id="fig:trip-dur"></span>
+<img src="images/Trip_Dist_Dur.png" alt="An example of extreme data-to-ink with over 693,000 data points" width="2400" />
+<p class="caption">
+FIGURE 2.1: An example of extreme data-to-ink with over 693,000 data points
+</p>
+</div>
+
+
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Cleveland1985">
+<p>Cleveland, W. S., and R. McGill. 1985. “Graphical perception and graphical methods for analyzing scientific data.” <em>Science</em> 229 (4716): 828–33.</p>
+</div>
+<div id="ref-Tufte1983">
+<p>Tufte, E. R. 1983. <em>The Visual Display of Quantitative Information</em>. Cheshire, CT: Graphics Press.</p>
+</div>
+<div id="ref-Munzner2014">
+<p>Munzner, T. 2014. <em>Visualization Analysis and Design</em>. Boca Raton, FL: CRC Press.</p>
+</div>
+<div id="ref-Gelman2013a">
+<p>Gelman, Andrew, and Antony Unwin. 2013b. “Tradeoffs in Information Graphics.” <em>Journal of Computational and Graphical Statistics</em> 22 (1): 45–49. doi:<a href="https://doi.org/10.1080/10618600.2012.761141">10.1080/10618600.2012.761141</a>.</p>
+</div>
+<div id="ref-Tufte1997">
+<p>Tufte, E. 1997. <em>Visual Explanations: Images and Quantities, Evidence and Narrative</em>. Cheshire, CT: Graphics Press.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="Introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="Association.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/jdlee/ggplot-examples/blob/master/02-principles.Rmd",
+"text": "Edit"
+},
+"download": ["visualizationwithggplot.pdf", "visualizationwithggplot.epub"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

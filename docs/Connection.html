@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Interactive data visualization</title>
+  <meta name="description" content="A book of ggplot examples">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Interactive data visualization" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="images/Minard_timeline_map.png" />
+  <meta property="og:description" content="A book of ggplot examples" />
+  <meta name="github-repo" content="jdlee/ggplot-examples" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Interactive data visualization" />
+  
+  <meta name="twitter:description" content="A book of ggplot examples" />
+  <meta name="twitter:image" content="images/Minard_timeline_map.png" />
+
+<meta name="author" content="John D. Lee">
+
+
+<meta name="date" content="2018-05-17">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="Fluctuation.html">
+<link rel="next" href="Tables.html">
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets/htmlwidgets.js"></script>
+<link href="libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding/datatables.js"></script>
+<link href="libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk/js/crosstalk.min.js"></script>
+<link href="libs/nouislider/jquery.nouislider.min.css" rel="stylesheet" />
+<script src="libs/nouislider/jquery.nouislider.min.js"></script>
+<link href="libs/selectize/selectize.bootstrap3.css" rel="stylesheet" />
+<script src="libs/selectize/selectize.min.js"></script>
+<script src="libs/d3/d3.min.js"></script>
+<script src="libs/d3-lasso/d3-lasso.min.js"></script>
+<link href="libs/ggiraph/styles.css" rel="stylesheet" />
+<script src="libs/ggiraph/ggiraph_utils.js"></script>
+<script src="libs/ggiraph/ggiraph_over_effect.js"></script>
+<script src="libs/ggiraph/ggiraph_zoom.js"></script>
+<script src="libs/ggiraph/ggiraph_tooltip.js"></script>
+<script src="libs/ggiraph/ggiraph_selector.js"></script>
+<script src="libs/ggiraph-binding/ggiraph.js"></script>
+<script src="libs/svg_1/scripts_svg_1.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Interactive Data Visualization in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-read-this-book"><i class="fa fa-check"></i>Why read this book</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#structure-of-the-book"><i class="fa fa-check"></i>Structure of the book</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#software-information-and-conventions"><i class="fa fa-check"></i>Software information and conventions</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i>Acknowledgments</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="about-the-author.html"><a href="about-the-author.html"><i class="fa fa-check"></i>About the Author</a></li>
+<li class="chapter" data-level="1" data-path="Introduction.html"><a href="Introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction: Purposes, questions, and audiences</a><ul>
+<li class="chapter" data-level="1.1" data-path="Introduction.html"><a href="Introduction.html#seeing-meaning-rather-than-numbers"><i class="fa fa-check"></i><b>1.1</b> Seeing meaning rather than numbers</a></li>
+<li class="chapter" data-level="1.2" data-path="Introduction.html"><a href="Introduction.html#seeing-more-than-summary-statistics"><i class="fa fa-check"></i><b>1.2</b> Seeing more than summary statistics</a></li>
+<li class="chapter" data-level="1.3" data-path="Introduction.html"><a href="Introduction.html#purpose-and-audience-of-visualizations"><i class="fa fa-check"></i><b>1.3</b> Purpose and audience of visualizations</a></li>
+<li class="chapter" data-level="1.4" data-path="Introduction.html"><a href="Introduction.html#what-question-to-answer"><i class="fa fa-check"></i><b>1.4</b> What question to answer?</a></li>
+<li class="chapter" data-level="1.5" data-path="Introduction.html"><a href="Introduction.html#storytelling-with-graphics"><i class="fa fa-check"></i><b>1.5</b> Storytelling with graphics</a></li>
+<li class="chapter" data-level="1.6" data-path="Introduction.html"><a href="Introduction.html#data"><i class="fa fa-check"></i><b>1.6</b> Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="Principles.html"><a href="Principles.html"><i class="fa fa-check"></i><b>2</b> Visualization types and principles</a><ul>
+<li class="chapter" data-level="2.1" data-path="Principles.html"><a href="Principles.html#pairing-questions-and-graph-types"><i class="fa fa-check"></i><b>2.1</b> Pairing questions and graph types</a></li>
+<li class="chapter" data-level="2.2" data-path="Principles.html"><a href="Principles.html#visual-perception-for-visualization"><i class="fa fa-check"></i><b>2.2</b> Visual perception for visualization</a></li>
+<li class="chapter" data-level="2.3" data-path="Principles.html"><a href="Principles.html#mapping-typese-of-variables-to-graph-features"><i class="fa fa-check"></i><b>2.3</b> Mapping typese of variables to graph features</a></li>
+<li class="chapter" data-level="2.4" data-path="Principles.html"><a href="Principles.html#principles"><i class="fa fa-check"></i><b>2.4</b> Principles</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="Principles.html"><a href="Principles.html#proximity"><i class="fa fa-check"></i><b>2.4.1</b> Proximity</a></li>
+<li class="chapter" data-level="2.4.2" data-path="Principles.html"><a href="Principles.html#legibility"><i class="fa fa-check"></i><b>2.4.2</b> Legibility</a></li>
+<li class="chapter" data-level="2.4.3" data-path="Principles.html"><a href="Principles.html#clutter"><i class="fa fa-check"></i><b>2.4.3</b> Clutter</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="Association.html"><a href="Association.html"><i class="fa fa-check"></i><b>3</b> Association–scatterplots</a><ul>
+<li class="chapter" data-level="3.1" data-path="Association.html"><a href="Association.html#basic-elements-of-the-grammar-of-graphics"><i class="fa fa-check"></i><b>3.1</b> Basic elements of the grammar of graphics</a></li>
+<li class="chapter" data-level="3.2" data-path="Association.html"><a href="Association.html#simple-scatterplot"><i class="fa fa-check"></i><b>3.2</b> Simple scatterplot</a></li>
+<li class="chapter" data-level="3.3" data-path="Association.html"><a href="Association.html#scatterplot-with-additional-mappings"><i class="fa fa-check"></i><b>3.3</b> Scatterplot with additional mappings</a></li>
+<li class="chapter" data-level="3.4" data-path="Association.html"><a href="Association.html#scatterplot-with-linear-and-loess-fit"><i class="fa fa-check"></i><b>3.4</b> Scatterplot with linear and loess fit</a></li>
+<li class="chapter" data-level="3.5" data-path="Association.html"><a href="Association.html#global-and-local-regression"><i class="fa fa-check"></i><b>3.5</b> Global and local regression</a></li>
+<li class="chapter" data-level="3.6" data-path="Association.html"><a href="Association.html#quantile-regression-and-other-functional-relationships"><i class="fa fa-check"></i><b>3.6</b> Quantile regression and other functional relationships</a></li>
+<li class="chapter" data-level="3.7" data-path="Association.html"><a href="Association.html#scatterplot-with-overplotting-mitigation"><i class="fa fa-check"></i><b>3.7</b> Scatterplot with overplotting mitigation</a></li>
+<li class="chapter" data-level="3.8" data-path="Association.html"><a href="Association.html#scatterplot-matrix"><i class="fa fa-check"></i><b>3.8</b> Scatterplot matrix</a></li>
+<li class="chapter" data-level="3.9" data-path="Association.html"><a href="Association.html#categorical-scatterplot"><i class="fa fa-check"></i><b>3.9</b> Categorical scatterplot</a></li>
+<li class="chapter" data-level="3.10" data-path="Association.html"><a href="Association.html#scatterplot-with-regression-equation-and-marginal-distributions"><i class="fa fa-check"></i><b>3.10</b> Scatterplot with regression equation and marginal distributions</a></li>
+<li class="chapter" data-level="3.11" data-path="Association.html"><a href="Association.html#table-lens"><i class="fa fa-check"></i><b>3.11</b> Table lens</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="Distribution.html"><a href="Distribution.html"><i class="fa fa-check"></i><b>4</b> Distribution–histograms and density plots</a><ul>
+<li class="chapter" data-level="4.1" data-path="Distribution.html"><a href="Distribution.html#histogram-with-density-and-median-reference-line"><i class="fa fa-check"></i><b>4.1</b> Histogram with density and median reference line</a></li>
+<li class="chapter" data-level="4.2" data-path="Distribution.html"><a href="Distribution.html#bin-choice-with-histograms"><i class="fa fa-check"></i><b>4.2</b> Bin choice with histograms</a></li>
+<li class="chapter" data-level="4.3" data-path="Distribution.html"><a href="Distribution.html#histogram-density-overlay-and-normal-overlay"><i class="fa fa-check"></i><b>4.3</b> Histogram, density overlay, and normal overlay</a></li>
+<li class="chapter" data-level="4.4" data-path="Distribution.html"><a href="Distribution.html#cummulative-density"><i class="fa fa-check"></i><b>4.4</b> Cummulative density</a></li>
+<li class="chapter" data-level="4.5" data-path="Distribution.html"><a href="Distribution.html#distribution-2-d-distribution-and-overplotting-revisited"><i class="fa fa-check"></i><b>4.5</b> Distribution: 2-D distribution and overplotting revisited</a></li>
+<li class="chapter" data-level="4.6" data-path="Distribution.html"><a href="Distribution.html#ridge-plot"><i class="fa fa-check"></i><b>4.6</b> Ridge plot</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="Comparison.html"><a href="Comparison.html"><i class="fa fa-check"></i><b>5</b> Comparison–barchart and boxplots</a><ul>
+<li class="chapter" data-level="5.1" data-path="Comparison.html"><a href="Comparison.html#deviation-chart-bar-above-and-below-zero-or-average"><i class="fa fa-check"></i><b>5.1</b> Deviation chart: Bar above and below zero or average</a></li>
+<li class="chapter" data-level="5.2" data-path="Comparison.html"><a href="Comparison.html#graph-considerations-for-communication-aggregation-abstraction-complexity"><i class="fa fa-check"></i><b>5.2</b> Graph considerations for communication: aggregation, abstraction, complexity</a></li>
+<li class="chapter" data-level="5.3" data-path="Comparison.html"><a href="Comparison.html#dotplot-and-offset-range-plot"><i class="fa fa-check"></i><b>5.3</b> dotplot and offset range plot</a></li>
+<li class="chapter" data-level="5.4" data-path="Comparison.html"><a href="Comparison.html#compares-the-empirical-and-theoretical-distribution-summary"><i class="fa fa-check"></i><b>5.4</b> Compares the empirical and theoretical distribution summary</a></li>
+<li class="chapter" data-level="5.5" data-path="Comparison.html"><a href="Comparison.html#statistical-significance-in-context"><i class="fa fa-check"></i><b>5.5</b> Statistical significance in context</a></li>
+<li class="chapter" data-level="5.6" data-path="Comparison.html"><a href="Comparison.html#tufte-boxplot"><i class="fa fa-check"></i><b>5.6</b> Tufte boxplot</a></li>
+<li class="chapter" data-level="5.7" data-path="Comparison.html"><a href="Comparison.html#dot-plots-and-reordering"><i class="fa fa-check"></i><b>5.7</b> Dot plots and reordering</a></li>
+<li class="chapter" data-level="5.8" data-path="Comparison.html"><a href="Comparison.html#gliphs-chernof-face-and-radar-plots"><i class="fa fa-check"></i><b>5.8</b> Gliphs: Chernof face and radar plots</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="Proportion.html"><a href="Proportion.html"><i class="fa fa-check"></i><b>6</b> Proportion–Pie charts and pareto plots</a><ul>
+<li class="chapter" data-level="6.1" data-path="Proportion.html"><a href="Proportion.html#pie-and-bar-chart"><i class="fa fa-check"></i><b>6.1</b> Pie and bar chart</a></li>
+<li class="chapter" data-level="6.2" data-path="Proportion.html"><a href="Proportion.html#pareto-plot-whole-part-and-and-ranking"><i class="fa fa-check"></i><b>6.2</b> Pareto plot: Whole part and and ranking</a></li>
+<li class="chapter" data-level="6.3" data-path="Proportion.html"><a href="Proportion.html#stacked-bar-chart"><i class="fa fa-check"></i><b>6.3</b> Stacked bar chart</a></li>
+<li class="chapter" data-level="6.4" data-path="Proportion.html"><a href="Proportion.html#rose-or-coxcomb-plots"><i class="fa fa-check"></i><b>6.4</b> Rose or Coxcomb plots</a></li>
+<li class="chapter" data-level="6.5" data-path="Proportion.html"><a href="Proportion.html#stacked-dodged-and-opposed-bar-chart"><i class="fa fa-check"></i><b>6.5</b> Stacked, dodged and opposed bar chart</a></li>
+<li class="chapter" data-level="6.6" data-path="Proportion.html"><a href="Proportion.html#treemaps-for-whole-part-of-hierarchy"><i class="fa fa-check"></i><b>6.6</b> Treemaps for whole-part of hierarchy</a></li>
+<li class="chapter" data-level="6.7" data-path="Proportion.html"><a href="Proportion.html#circle-packing"><i class="fa fa-check"></i><b>6.7</b> Circle packing</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="Fluctuation.html"><a href="Fluctuation.html"><i class="fa fa-check"></i><b>7</b> Fluctuation–timelines</a><ul>
+<li class="chapter" data-level="7.1" data-path="Fluctuation.html"><a href="Fluctuation.html#time-series-with-reference-line"><i class="fa fa-check"></i><b>7.1</b> Time series with reference line</a></li>
+<li class="chapter" data-level="7.2" data-path="Fluctuation.html"><a href="Fluctuation.html#cycle-plot"><i class="fa fa-check"></i><b>7.2</b> Cycle plot</a></li>
+<li class="chapter" data-level="7.3" data-path="Fluctuation.html"><a href="Fluctuation.html#time-series-with-lines-labeled"><i class="fa fa-check"></i><b>7.3</b> Time series with lines labeled</a></li>
+<li class="chapter" data-level="7.4" data-path="Fluctuation.html"><a href="Fluctuation.html#faceted-zoom"><i class="fa fa-check"></i><b>7.4</b> Faceted zoom</a></li>
+<li class="chapter" data-level="7.5" data-path="Fluctuation.html"><a href="Fluctuation.html#ridge-plot-1"><i class="fa fa-check"></i><b>7.5</b> Ridge plot</a></li>
+<li class="chapter" data-level="7.6" data-path="Fluctuation.html"><a href="Fluctuation.html#stacked-area-and-line-graphs"><i class="fa fa-check"></i><b>7.6</b> Stacked area and line graphs</a></li>
+<li class="chapter" data-level="7.7" data-path="Fluctuation.html"><a href="Fluctuation.html#temporal-heatmap"><i class="fa fa-check"></i><b>7.7</b> Temporal heatmap</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="Connection.html"><a href="Connection.html"><i class="fa fa-check"></i><b>8</b> Connection–maps and network plots</a><ul>
+<li class="chapter" data-level="8.1" data-path="Connection.html"><a href="Connection.html#maps"><i class="fa fa-check"></i><b>8.1</b> Maps</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="Connection.html"><a href="Connection.html#choropleth"><i class="fa fa-check"></i><b>8.1.1</b> Choropleth</a></li>
+<li class="chapter" data-level="8.1.2" data-path="Connection.html"><a href="Connection.html#county-map"><i class="fa fa-check"></i><b>8.1.2</b> County map</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="Connection.html"><a href="Connection.html#us-county-small-multiples"><i class="fa fa-check"></i><b>8.2</b> US county small multiples</a></li>
+<li class="chapter" data-level="8.3" data-path="Connection.html"><a href="Connection.html#world-migration"><i class="fa fa-check"></i><b>8.3</b> World migration</a></li>
+<li class="chapter" data-level="8.4" data-path="Connection.html"><a href="Connection.html#networks"><i class="fa fa-check"></i><b>8.4</b> Networks</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="Connection.html"><a href="Connection.html#world-migration-network"><i class="fa fa-check"></i><b>8.4.1</b> World migration network</a></li>
+<li class="chapter" data-level="8.4.2" data-path="Connection.html"><a href="Connection.html#hierarchy"><i class="fa fa-check"></i><b>8.4.2</b> Hierarchy</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="Tables.html"><a href="Tables.html"><i class="fa fa-check"></i><b>9</b> Graphical tables–interactive tables, highlights, and sparklines</a><ul>
+<li class="chapter" data-level="9.1" data-path="Tables.html"><a href="Tables.html#heatmap-table"><i class="fa fa-check"></i><b>9.1</b> Heatmap table</a></li>
+<li class="chapter" data-level="9.2" data-path="Tables.html"><a href="Tables.html#table-lens-with-a-integrated-bar"><i class="fa fa-check"></i><b>9.2</b> Table lens with a integrated bar</a></li>
+<li class="chapter" data-level="9.3" data-path="Tables.html"><a href="Tables.html#sparkline"><i class="fa fa-check"></i><b>9.3</b> Sparkline</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="Polishing.html"><a href="Polishing.html"><i class="fa fa-check"></i><b>10</b> Polishing graph for publication</a><ul>
+<li class="chapter" data-level="10.1" data-path="Polishing.html"><a href="Polishing.html#colour"><i class="fa fa-check"></i><b>10.1</b> Colour</a></li>
+<li class="chapter" data-level="10.2" data-path="Polishing.html"><a href="Polishing.html#scales-beyond-color"><i class="fa fa-check"></i><b>10.2</b> Scales beyond color</a></li>
+<li class="chapter" data-level="10.3" data-path="Polishing.html"><a href="Polishing.html#themes-and-formatting"><i class="fa fa-check"></i><b>10.3</b> Themes and formatting</a></li>
+<li class="chapter" data-level="10.4" data-path="Polishing.html"><a href="Polishing.html#saving-plots"><i class="fa fa-check"></i><b>10.4</b> Saving plots</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="Polishing.html"><a href="Polishing.html#titles-labels"><i class="fa fa-check"></i><b>10.4.1</b> Titles labels</a></li>
+<li class="chapter" data-level="10.4.2" data-path="Polishing.html"><a href="Polishing.html#annotations-of-data"><i class="fa fa-check"></i><b>10.4.2</b> Annotations of data</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="Polishing.html"><a href="Polishing.html#color"><i class="fa fa-check"></i><b>10.5</b> Color</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="Polishing.html"><a href="Polishing.html#resources-to-explain-the-basis-form-color-choice"><i class="fa fa-check"></i><b>10.5.1</b> Resources to explain the basis form color choice</a></li>
+<li class="chapter" data-level="10.5.2" data-path="Polishing.html"><a href="Polishing.html#large-and-small-area-colors"><i class="fa fa-check"></i><b>10.5.2</b> Large and small area colors</a></li>
+<li class="chapter" data-level="10.5.3" data-path="Polishing.html"><a href="Polishing.html#color-for-large-and-small-areas"><i class="fa fa-check"></i><b>10.5.3</b> Color for large and small areas</a></li>
+<li class="chapter" data-level="10.5.4" data-path="Polishing.html"><a href="Polishing.html#continuous-color-scales"><i class="fa fa-check"></i><b>10.5.4</b> Continuous color scales</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="Polishing.html"><a href="Polishing.html#themes-and-theme-options"><i class="fa fa-check"></i><b>10.6</b> Themes and theme options</a><ul>
+<li class="chapter" data-level="10.6.1" data-path="Polishing.html"><a href="Polishing.html#ordering-theme-layers"><i class="fa fa-check"></i><b>10.6.1</b> Ordering theme layers</a></li>
+<li class="chapter" data-level="10.6.2" data-path="Polishing.html"><a href="Polishing.html#pre-set-theme-options"><i class="fa fa-check"></i><b>10.6.2</b> Pre-set theme options</a></li>
+<li class="chapter" data-level="10.6.3" data-path="Polishing.html"><a href="Polishing.html#themes-form-other-packages"><i class="fa fa-check"></i><b>10.6.3</b> Themes form other packages</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="Polishing.html"><a href="Polishing.html#saving-and-printing-plots-to-include-in-documents"><i class="fa fa-check"></i><b>10.7</b> Saving and printing plots to include in documents</a></li>
+<li class="chapter" data-level="10.8" data-path="Polishing.html"><a href="Polishing.html#faceted-pagination"><i class="fa fa-check"></i><b>10.8</b> Faceted pagination</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="Interaction.html"><a href="Interaction.html"><i class="fa fa-check"></i><b>11</b> Interaction–zoom, annotate, highlight</a></li>
+<li class="chapter" data-level="12" data-path="shinyadvanced-interactive-graphics.html"><a href="shinyadvanced-interactive-graphics.html"><i class="fa fa-check"></i><b>12</b> Shiny–Advanced interactive graphics</a></li>
+<li class="appendix"><span><b>Appendix</b></span><ul>
+<li class="chapter" data-level="A.1" data-path="08-connection.html"><a href="#data-sources"><i class="fa fa-check"></i><b>A.1</b> Data sources</a></li>
+<li class="chapter" data-level="A.2" data-path="shinyadvanced-interactive-graphics.html"><a href="shinyadvanced-interactive-graphics.html#visualization-resources"><i class="fa fa-check"></i><b>A.2</b> Visualization resources</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Interactive data visualization</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="Connection" class="section level1">
+<h1><span class="header-section-number">Chapter 8</span> Connection–maps and network plots</h1>
+<p>Test of examples</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre></div>
+<div class="figure">
+<img src="images/Minard_migration.jpg" alt="My picture" />
+<p class="caption">My picture</p>
+</div>
+<div id="maps" class="section level2">
+<h2><span class="header-section-number">8.1</span> Maps</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(ggalt)</code></pre></div>
+<div id="choropleth" class="section level3">
+<h3><span class="header-section-number">8.1.1</span> Choropleth</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">crimes.df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">state =</span> <span class="kw">tolower</span>(<span class="kw">rownames</span>(USArrests)), USArrests)
+
+crimes.l.df &lt;-<span class="st"> </span><span class="kw">gather</span>(crimes.df, <span class="dt">key =</span> type, <span class="dt">value =</span> rate, <span class="op">-</span>state)
+
+states_map &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;state&quot;</span>)
+
+<span class="kw">ggplot</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_cartogram</span>(<span class="dt">data=</span>states_map, <span class="kw">aes</span>(long, lat, <span class="dt">map_id =</span> region), <span class="dt">map=</span>states_map) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_cartogram</span>(<span class="dt">data=</span>crimes.df, <span class="kw">aes</span>(<span class="dt">fill =</span> Murder, <span class="dt">map_id =</span> state), <span class="dt">map=</span>states_map) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">coord_map</span>(<span class="st">&quot;polyconic&quot;</span>)<span class="op">+</span>
+<span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;ggalt: map coordinates&quot;</span>)</code></pre></div>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_cartogram</span>( <span class="dt">data=</span>states_map, <span class="kw">aes</span>(long, lat, <span class="dt">map_id=</span>region), <span class="dt">map =</span> states_map) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_cartogram</span>(<span class="dt">data=</span>crimes.l.df, <span class="kw">aes</span>(<span class="dt">fill =</span> rate, <span class="dt">map_id=</span>state), <span class="dt">map =</span> states_map) <span class="op">+</span>
+<span class="st">    </span><span class="kw">coord_map</span>(<span class="st">&quot;polyconic&quot;</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">facet_wrap</span>( <span class="op">~</span><span class="st"> </span>type) <span class="op">+</span>
+<span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;ggalt: map coordinates&quot;</span>)</code></pre></div>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-40-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_cartogram</span>( <span class="dt">data=</span>states_map, <span class="kw">aes</span>(long, lat, <span class="dt">map_id=</span>region), <span class="dt">map =</span> states_map) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_cartogram</span>(<span class="dt">data=</span>crimes.l.df, <span class="kw">aes</span>(<span class="dt">fill =</span> rate, <span class="dt">map_id=</span>state), <span class="dt">map =</span> states_map) <span class="op">+</span>
+<span class="st">    </span><span class="kw">coord_map</span>(<span class="st">&quot;polyconic&quot;</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">facet_wrap</span>( <span class="op">~</span><span class="st"> </span>type) <span class="op">+</span>
+<span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;ggalt: map coordinates&quot;</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">theme_void</span>()</code></pre></div>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-40-3.png" width="672" /></p>
+</div>
+<div id="county-map" class="section level3">
+<h3><span class="header-section-number">8.1.2</span> County map</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## devtools::install_github(&quot;hrbrmstr/ggalt&quot;, force=TRUE) # To install development version
+## Examples from https://github.com/hrbrmstr/ggalt
+<span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(stringr)
+<span class="kw">library</span>(viridis)
+
+
+<span class="co"># From https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html</span>
+
+## Read and clean data
+unemp.df =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://datasets.flowingdata.com/unemployment09.csv&quot;</span>)</code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   CN010010 = col_character(),
+##   `01` = col_character(),
+##   `001` = col_character(),
+##   `Autauga County, AL` = col_character(),
+##   `2009` = col_integer(),
+##   `23,288` = col_number(),
+##   `21,025` = col_number(),
+##   `2,263` = col_number(),
+##   `9.7` = col_double()
+## )</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(unemp.df, <span class="dt">file =</span> <span class="st">&quot;unemp&quot;</span>)
+
+<span class="kw">load</span>(<span class="st">&quot;unemp&quot;</span>)
+
+<span class="kw">names</span>(unemp.df) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;state_fips&quot;</span>, <span class="st">&quot;county_fips&quot;</span>, <span class="st">&quot;name&quot;</span>, <span class="st">&quot;year&quot;</span>,
+                  <span class="st">&quot;--&quot;</span>, <span class="st">&quot;---&quot;</span>, <span class="st">&quot;---&quot;</span>, <span class="st">&quot;rate&quot;</span>)
+unemp.df<span class="op">$</span>county =<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">str_replace</span>(unemp.df<span class="op">$</span>name, <span class="st">&quot; County, [A-Z]{2}&quot;</span>, <span class="st">&quot;&quot;</span>))
+
+<span class="co">#unemp.df$county &lt;- tolower(gsub(&quot; County, [A-Z]{2}&quot;, &quot;&quot;, unemp.df$name))</span>
+unemp.df<span class="op">$</span>county =<span class="st"> </span><span class="kw">str_replace</span>(unemp.df<span class="op">$</span>county,<span class="st">&quot;^(.*) parish, ..$&quot;</span>,<span class="st">&quot;</span><span class="ch">\\</span><span class="st">1&quot;</span>)
+unemp.df<span class="op">$</span>state =<span class="st"> </span><span class="kw">str_replace</span>(unemp.df<span class="op">$</span>name, <span class="st">&quot;^.*([A-Z]{2}).*$&quot;</span>, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">1&quot;</span>)
+
+## Use the maps package to convert maps data to a data frame
+<span class="co"># &quot;county&quot; is a county map of the US</span>
+county.df &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;county&quot;</span>, <span class="dt">projection =</span> <span class="st">&quot;albers&quot;</span>, <span class="dt">parameters =</span> <span class="kw">c</span>(<span class="dv">39</span>, <span class="dv">45</span>))
+
+<span class="kw">names</span>(county.df) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;long&quot;</span>, <span class="st">&quot;lat&quot;</span>, <span class="st">&quot;group&quot;</span>, <span class="st">&quot;order&quot;</span>, <span class="st">&quot;state_name&quot;</span>, <span class="st">&quot;county&quot;</span>)
+
+state.df &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;state&quot;</span>, <span class="dt">projection =</span> <span class="st">&quot;albers&quot;</span>, <span class="dt">parameters =</span> <span class="kw">c</span>(<span class="dv">39</span>, <span class="dv">45</span>))
+
+## Replace state name with state abbreviations
+county.df<span class="op">$</span>state &lt;-<span class="st"> </span>state.abb[<span class="kw">match</span>(county.df<span class="op">$</span>state_name, <span class="kw">tolower</span>(state.name))]
+county.df<span class="op">$</span>state_name &lt;-<span class="st"> </span><span class="ot">NULL</span>
+
+## Merge county and state shape information with unemployment data
+choropleth.df &lt;-<span class="st"> </span><span class="kw">merge</span>(county.df, unemp.df, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;state&quot;</span>, <span class="st">&quot;county&quot;</span>))
+<span class="co">#choropleth.df = county.df %&gt;% inner_join(unemp.df, by = c(&quot;state&quot;, &quot;county&quot;))</span>
+  
+
+choropleth.df =<span class="st"> </span>choropleth.df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(state<span class="op">:</span>rate)
+choropleth.df =<span class="st"> </span>choropleth.df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(order))
+
+<span class="kw">ggplot</span>(choropleth.df, <span class="kw">aes</span>(long, lat, <span class="dt">group =</span> group)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> rate), <span class="dt">colour =</span> <span class="kw">alpha</span>(<span class="st">&quot;white&quot;</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">2</span>), <span class="dt">size =</span> <span class="fl">0.05</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> state.df, <span class="dt">colour =</span> <span class="st">&quot;grey90&quot;</span>, <span class="dt">fill =</span> <span class="ot">NA</span>, <span class="dt">size =</span> <span class="fl">0.5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">coord_fixed</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;US unemployment rate by county&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">option=</span><span class="st">&quot;magma&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_void</span>()</code></pre></div>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+</div>
+</div>
+<div id="us-county-small-multiples" class="section level2">
+<h2><span class="header-section-number">8.2</span> US county small multiples</h2>
+</div>
+<div id="world-migration" class="section level2">
+<h2><span class="header-section-number">8.3</span> World migration</h2>
+<p>TODO Add plot with migration data from kaggle</p>
+</div>
+<div id="networks" class="section level2">
+<h2><span class="header-section-number">8.4</span> Networks</h2>
+<p><a href="https://www.data-imaginist.com/2017/ggraph-introduction-layouts/" class="uri">https://www.data-imaginist.com/2017/ggraph-introduction-layouts/</a></p>
+<div id="world-migration-network" class="section level3">
+<h3><span class="header-section-number">8.4.1</span> World migration network</h3>
+<p>Examples from: <a href="https://github.com/thomasp85/ggraph" class="uri">https://github.com/thomasp85/ggraph</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggraph) <span class="co"># ggplot extension</span>
+<span class="kw">library</span>(igraph) <span class="co"># For network calculations</span>
+
+
+<span class="co"># Graph of highschool friendships</span>
+graph &lt;-<span class="st"> </span><span class="kw">graph_from_data_frame</span>(highschool)
+<span class="kw">V</span>(graph)<span class="op">$</span>Popularity &lt;-<span class="st"> </span><span class="kw">degree</span>(graph, <span class="dt">mode =</span> <span class="st">&#39;in&#39;</span>)
+
+<span class="co"># Network faceted by year</span>
+<span class="kw">ggraph</span>(graph, <span class="dt">layout =</span> <span class="st">&#39;kk&#39;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_edge_fan</span>(<span class="kw">aes</span>(<span class="dt">alpha =</span> ..index..), <span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_node_point</span>(<span class="kw">aes</span>(<span class="dt">size =</span> Popularity)) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">facet_edges</span>(<span class="op">~</span>year) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">theme_graph</span>(<span class="dt">foreground =</span> <span class="st">&#39;steelblue&#39;</span>, <span class="dt">fg_text_colour =</span> <span class="st">&#39;white&#39;</span>)</code></pre></div>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+</div>
+<div id="hierarchy" class="section level3">
+<h3><span class="header-section-number">8.4.2</span> Hierarchy</h3>
+<p>link to treemap</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## <span class="al">TODO</span> Convert to migration data
+graph &lt;-<span class="st"> </span><span class="kw">graph_from_data_frame</span>(flare<span class="op">$</span>edges, <span class="dt">vertices =</span> flare<span class="op">$</span>vertices)
+<span class="kw">set.seed</span>(<span class="dv">1</span>)
+<span class="kw">ggraph</span>(graph, <span class="st">&#39;circlepack&#39;</span>, <span class="dt">weight =</span> <span class="st">&#39;size&#39;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_node_circle</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> depth), <span class="dt">size =</span> <span class="fl">0.25</span>, <span class="dt">n =</span> <span class="dv">50</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">coord_fixed</span>()<span class="op">+</span>
+<span class="st">    </span><span class="kw">theme_graph</span>()</code></pre></div>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Data describe the class hiearchy of the Flare visualization library
+<span class="kw">ggraph</span>(graph, <span class="dt">layout =</span> <span class="st">&#39;treemap&#39;</span>, <span class="dt">weight =</span> <span class="st">&#39;size&#39;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_node_tile</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> depth))<span class="op">+</span>
+<span class="st">    </span><span class="kw">theme_graph</span>()</code></pre></div>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-43-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Same basic data plotted as a circular tree
+<span class="kw">ggraph</span>(graph, <span class="dt">layout =</span> <span class="st">&#39;dendrogram&#39;</span>, <span class="dt">circular =</span> <span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_edge_diagonal</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_node_point</span>(<span class="kw">aes</span>(<span class="dt">filter =</span> leaf)) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">coord_fixed</span>()<span class="op">+</span>
+<span class="st">    </span><span class="kw">theme_graph</span>()</code></pre></div>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-43-3.png" width="672" /></p>
+
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="Fluctuation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="Tables.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/jdlee/ggplot-examples/blob/master/08-connection.Rmd",
+"text": "Edit"
+},
+"download": ["visualizationwithggplot.pdf", "visualizationwithggplot.epub"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

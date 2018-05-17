@@ -1,0 +1,73 @@
+2018.1 (Mar 26, 2017) - Initial 2018 Version
+
+2017.2 (Mar 30, 2017) - Minor updates to 2012-2017 data
+
+2017.1 (Mar 20, 2017) - Initial 2017 Version
+
+2016.2 (Apr 04, 2016) - Minor updates to 2013-2016 data
+
+2016.1 (Mar 01, 2016) - Initial 2016 Version
+
+2015.2 (Mar 26, 2015) - 2015 Version 2
+
+2015.1 (Mar 10, 2015) - Initial 2015 Version
+
+2014.2 (Mar 27, 2014) - Minor updates to 2007-2014 data
+
+2014.1 (Mar 10, 2014) - Initial 2014 Version
+
+2013.2 (June 10, 2013) - Vehicle Makes for all years were modified to remove the CARS, TRUCKS and SUV indicators.  A model dropdown box was added.
+
+2013.1 (Mar 24, 2013) - Initial 2013 Version.  Included is the new CVS Users Guide.pdf
+
+2012.2 (Apr 23, 2012) - Minor updates to 2002-2012 data.
+
+2012.1 (Mar 22, 2012) - Initial 2012 Version.
+
+2011.2 (May 30, 2011) - Track Width corrected for 2003-2005 Hyundai Accent 2DR Hatchback GS/GSi, 2003-2006 Honda Insight, 2006-2008 Porsche Cayman S, 2002 Rolls Royce Silver Seraph
+
+2011.1 (May 05, 2011) - Initial 2011 Version.  Changes were also made to the B-dimenson measurement for all 2002-2010 hatchbacks, wagons, vans, and SUV's.
+
+2010.1 (Mar 22, 2010) - Initial 2010 Version.
+
+2009.2 (May 06, 2009) - Minor updates to the 2008-2010 data.
+
+2009.1 (Mar 03, 2009) - Initial 2009 Version.
+
+2008.1 (Mar 18, 2008) - Initial 2008 Version.  The install now includes the dBase files.  It also includes a Microsoft operating system file msvbvm50.dll, which is required when running Vista.
+
+2007.1 (Mar 23, 2007) - Initial 2007 Version.  There were also changes to the overall width for some Chrysler Minivans (1985-2006) and Hyundai Elantras (2004-2006).
+
+2006.2 (Apr 12, 2006) - Minor changes were made to the 2003-2007 data.
+
+2006.1 (Mar 15, 2006) - Initial 2006 Version.  A new feature was added to allow searching for wheelbase and track width ranges.
+
+2005.6 (Jul 21, 2005) - The 2000-2002 Lincoln LS V6 and V8 curb weights were changed to 1621 and 1666Kg.
+
+2005.5 (Jun 22, 2005) - The 2006 Honda Ridgeline curb weight was changed from 2750 to 2043Kg.
+
+2005.4 (May 31, 2005) - The temporary file used for reports is now created in the folder C:\TEMP instead of directly on the C: drive.  Non Admin users in Windows XP could not create files directly on C:\.
+
+2005.3 (May 16, 2005) - Kia Sorento wheelbase changed from 263 to 271 for years 2003-2005.
+
+2005.2 (Apr 13, 2005) - Additional curb weights were included in the 2004 data.  Minor revisions were made to 2002-2003 data.
+
+2005.1 (Mar 07, 2005) - Initial 2005 version.  Also, minor changes were made to several 2002 Mitsubishi Diamante specifications.
+
+2004.2 (Apr 15, 2004) - 1980 Honda Prelude curb weight corrected.
+
+2004.1 (Mar 04, 2004) - Initial 2004 version.  Some vehicles had mid year model changes and are in the database twice.  The older model has the "Heritage" designation  (i.e. Ford F-150 Heritage)
+
+2003.3 (Jan 03, 2004) - The system was changed to display reports using a Web browser instead of Crystal Reports.  Also,  the data was converted to flat file text instead of MS Access.
+
+2003.2 (May 27, 2003) - The 2002 Mitsubishi curb weights were corrected.
+
+2003.1 (May 05, 2003) - Initial 2003 version.
+
+2002.2 (Apr 04, 2002) - The Volkswagen Jetta Wagon was moved from the 2003 model year to 2002.
+
+2002.1 (Mar 20, 2002) - Initial 2002 version.
+
+2001.2 (Oct 29, 2001) - All 2002 vehicles in the 2001.1 version had invalid curb weights that were truncated to 3 digits.
+
+2001.1 (Apr 01, 2001) - Initial 2001 version. 

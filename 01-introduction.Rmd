@@ -1,0 +1,248 @@
+\cleardoublepage 
+
+# Introduction: Purposes, questions, and audiences {#Introduction}
+
+Information technology has brought large volumes of data that the promise of deeper understanding the challenges most central to our individual and collective existance. 
+
+Often this promise is not kept and data overwhelms rather than informs.
+
+Well-crafted visualization can make data meaningful. 
+
+This book provides principles and examples for data visualization
+
+
+
+
+## Seeing meaning rather than numbers
+
+Figure \@ref(fig:blood-tab) shows a typical report of a medical diagnostic test. The numerical summary shows the patient's values and the range of standard values. The information is there to show if a patient is dangerously outside the range, but a quick glance at the table might miss these indications. Even a careful reading of the table might miss warning signs, particularly if the critical information is in the trend that requires looking at a second table on another tab. Figure \@ref(fig:blood-vis) shows the data relative to the high and low normal range and makes deviations much more apparent. The ghosted points show past results and roughly indicate trends.
+
+
+```{r blood-tab, echo = FALSE, fig.cap = "A typical report of a medical test makes finding deviations from the normal range difficult."}
+library(knitr)
+library(tidyverse)
+knitr::include_graphics("images/Blood_table.jpg")
+```
+
+
+```{r blood-vis, fig.cap= "A visualization of the same results makes the deviations pop out.", , out.extra='', echo=FALSE}
+#TODO move facet label to top left
+blood.df = data.frame(measure = c("WBC (10*3/uL)", "Neutriphils (%)", 
+                                  "Lymphocytes (%)", "Monocytes (%)",
+                                  "Eosinophils (%)", "Basophils (%)",
+                                  "RBC (10*6/uL)", "Hemoglobin (g/dL)",
+                                  "Hemotocrit (g/dL)", "MCV (fL)",
+                                  "MCH (pg)", "MCHC (g/dL)",
+                                  "RDW", "Platelets (10*3/uL)"),
+                      type = c("immune", "immune", "immune", "immune", "immune", "immune",
+                               "redcells", "redcells", "redcells", 
+                               "redcells",
+                               "redcells", "redcells", "redcells", "redcells"),
+                      order = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14),
+                      value = c(5.62, 64.9, 
+                                24.4, 9.3,
+                                .9, .5,
+                                4.1, 13.9,
+                                39.4, 95.2,
+                                33.6, 35,
+                                13.2, 272),
+                      lo = c(4, 42.2, 
+                             20.5, 1.7,
+                             0, 0,
+                             4.7, 13.6,
+                             42.0, 83,
+                             26.0, 32,
+                             11.5, 150),
+                      hi = c(10.5, 75.2, 
+                             51.1, 9.3,
+                             6.0, 2.0,
+                             6.0, 17.2,
+                             52.0, 98.0,
+                             33.0, 36,
+                             14, 450)
+                      )
+
+s.blood.df = blood.df %>% mutate(s.value = (value-lo)/(hi-lo)) %>% 
+  mutate(l1.s.value = (s.value-.5)/1.15 +.5) %>% # to show movement away from normal
+  mutate(l2.s.value = (s.value-.5)/1.33 +.5) %>% # to show movement away from normal
+  mutate(abnormal = ifelse(value<lo|value>=hi, TRUE, FALSE)) 
+
+
+ggplot(s.blood.df, aes(reorder(measure, -order), s.value)) +
+  geom_rect(xmin = -.5, xmax = 14.5,
+            ymin = -.75, ymax = 0, 
+            fill = "grey70", alpha = .05) +
+  geom_rect(xmin = -.5, xmax = 14.5,
+            ymin = 1.0, ymax = 1.75, 
+            fill = "grey70", alpha = .05) +
+  geom_text(aes(y = 0, label = lo), hjust = "inward", nudge_y = .005, alpha =.5, size = 3.3) +
+  geom_text(aes(y = 1, label = hi), hjust = "inward", nudge_y = -.005, alpha =.5, size = 3.3) +
+  #geom_line(aes(group = type), size = .33, alpha =.7) +
+  geom_hline(yintercept = .5, linetype = "dashed", colour = "grey80")+
+  geom_text(aes(label = value), nudge_x = .3) +
+  geom_point(aes(y= l2.s.value, fill = abnormal), shape = 21, size = 1.5, alpha = .25) +
+  geom_point(aes(y= l1.s.value, fill = abnormal), shape = 21, size = 2.5, alpha = .5) +
+  geom_point(aes(fill = abnormal), shape = 21, size = 3.) +
+  scale_fill_manual(values = c("white", "grey15"), guide = FALSE) +
+  scale_y_continuous(breaks = NULL, limits = c(-.5, 1.5)) +
+  coord_flip() +
+  facet_grid(type~.,scales = "free_y")+
+  labs(y = "", x = "") +
+  theme_minimal(base_size = 10)
+
+```
+
+
+## Seeing more than summary statistics 
+The easy availability of sophisticated machine learning and statistical models makes algorithmic interpretation of data tempting. However, such interpretations can mislead, with similar outcomes produced by very different underlying data.
+
+Figure \@ref(fig:anscombe-vis) shows four distinct sets of data.  The differences are obvious when graphed.  One might expect that the typical summary statistics--mean, standard deviation, and correlation--would show equally stark differences.  Table \@ref(tab:anscombe-tab) shows this is not the case. Each data set has the same summary statistics.  
+
+```{r anscombe-vis,  fig.cap = 'The Anscombe quartet and the limits of summary statistics.', echo = FALSE}
+
+anscombe.df = anscombe %>% 
+  gather(key = x, xvalue, x1:x4) %>% 
+  gather(key = y, yvalue, y1:y4) %>% 
+  mutate(x = substr(x, 2, 2), y = substr(y, 2, 2)) %>% 
+  filter(y==x) %>% select(-x) %>% rename(set = y)
+  
+anscombe.df$set = paste("Set", anscombe.df$set)
+
+  
+s.anscombe.df = anscombe.df %>% group_by(set) %>% 
+  summarize(mean.y = mean(yvalue), sd.y = sd(yvalue), cor = cor(xvalue, yvalue))
+
+ggplot(anscombe.df, aes(x = xvalue, y = yvalue)) + 
+  geom_point() + 
+  facet_wrap(~set) +
+  labs(x = "", y = "")
+
+```
+
+
+```{r anscombe-tab, echo=FALSE}
+
+kable(s.anscombe.df,  caption = 'Four seemingly identical datasets that illustrate the limits of algorithmic interpretation.',
+      digits = 2, 
+      col.names = c("Data set", "Mean", "Standard deviation", "Correlation"),
+      booktabs = TRUE
+      )
+
+```
+
+## Purpose and audience of visualizations
+Explore, inform, and engage [@Gelman2013]
+
+Target audience: yourself, peers, scientists and engineers, public  (NYTimes ref)
+
+Explore: the answer is unknown and audience is likely yourself and peers involved in the research
+
+Inform: the answer is known and the audience is likely a broader audience of scientists, engineers, or manager not direclty involved in the research.
+
+Engage: the answer is known and must be communicated in an entertaining way to those who may might neet to be drawn into readin the graph and may not be familiar with conventions of scientific visualization, such as box plots.
+
+
+## What question to answer?
+
+
+  
+## Storytelling with graphics
+
+* High-level principles for communication, such as "Show don't tell"
+* Role of annotation in going beyond the data: direct attention and explain, as in Table \@ref(tab:test).
+
+
+Based on https://www.rdocumentation.org/packages/HistData/versions/0.8-4/topics/Minard
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(HistData)
+library(scales)
+library(gridExtra)
+
+#' ## plot path of troops, and another layer for city names
+ plot_troops <- ggplot(Minard.troops, aes(long, lat)) +
+		geom_path(aes(size = survivors, colour = direction, group = group),
+                 lineend = "round", linejoin = "round")
+ plot_cities <- geom_text(aes(label = city), size = 4, data = Minard.cities)
+ 
+#' ## Combine these, and add scale information, labels, etc.
+#' Set the x-axis limits for longitude explicitly, to coincide with those for temperature
+
+breaks <- c(1, 2, 3) * 10^5 
+plot_minard <- plot_troops + plot_cities +
+ 	scale_size("Survivors", range = c(1, 10), 
+ 	            breaks = breaks, labels = scales::comma(breaks)) +
+  scale_color_manual("Direction", 
+                     values = c("grey80", "grey15"), 
+                     labels=c("Advance", "Retreat")) +
+  coord_cartesian(xlim = c(24, 38)) +
+  xlab(NULL) + 
+  ylab("Latitude") + 
+  ggtitle("Napoleon's March on Moscow") +
+  theme_bw() +
+  theme(
+      #legend.position=c(.8, .2), 
+    legend.position = "none",
+    legend.box="horizontal")
+ 
+#' ## plot temperature vs. longitude, with labels for dates
+plot_temp <- ggplot(Minard.temp, aes(long, temp)) +
+	geom_path(color="grey", size=1.5) +
+	geom_point(size=1) +
+	geom_text(aes(label=date)) +
+	xlab("Longitude") + ylab("Temperature") +
+	coord_cartesian(xlim = c(24, 38), ylim = c(-35, 5)) + 
+	theme_bw()
+	
+
+#' The plot works best if we  re-scale the plot window to an aspect ratio of ~ 2 x 1
+# windows(width=10, height=5)
+
+#' Combine the two plots into one
+grid.arrange(plot_minard, plot_temp, nrow=2, heights=c(3,1))
+
+
+## Read data from website
+sports <- read_tsv("https://github.com/halhen/viz-pub/raw/master/sports-time-of-day/activity.tsv")
+
+
+## Happiness
+# 
+happiness.df = read.csv("data/world-happiness-report/2017.csv")
+ggplot(happiness.df, aes(Freedom, Happiness.Score)) + geom_point()
+
+## Chocolate
+# chocolate.df = read.csv("flavors_of_cacao.csv")
+# chocolate.df$Cocoa.Percent = as.numeric(chocolate.df$Cocoa.Percent)
+# ggplot(chocolate.df, aes(Cocoa.Percent, Rating)) + geom_point()
+
+
+## Police
+## 2535 observations, Age, gender, how armed, state, threat, body cameraAll factors
+ police.df = read.csv("data/PoliceKillingsUS.csv") 
+
+# Canadian vehicle specifications: http://www.carsp.ca/research/resources/safety-sources/canadian-vehicle-specifications/
+
+```
+
+
+
+
+## Data
+This book is not about data reduction and data wrangling. The tidyverse provides an intrgrated set of tools for data wrangling http://r4ds.had.co.nz.  This book uses data from the following sources:
+
+https://www.kaggle.com
+
+https://www.data.gov Consumer complaint database, NTSB accident database
+
+https://flowingdata.com/category/projects/data-underload/
+
+http://www.wolframalpha.com
+
+R packages: HistData, babynames
+
+Yao about data and web scraping and the package 
+
+
+
+

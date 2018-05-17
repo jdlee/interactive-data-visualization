@@ -1,0 +1,43 @@
+\cleardoublepage 
+
+# Graphical tables--interactive tables, highlights, and sparklines{#Tables}
+
+
+```{r, message=FALSE}
+library(tidyverse)
+
+```
+
+```{r}
+library(DT)
+
+datatable(mpg, options = list(pageLength = 5), filter = 'top')
+
+```
+
+## Heatmap table
+From https://rstudio.github.io/DT/010-style.html
+```{r}
+
+df = as.data.frame(cbind(matrix(round(rnorm(50), 3), 10), sample(0:1, 10, TRUE)))
+
+brks <- quantile(df, probs = seq(.05, .95, .05), na.rm = TRUE)
+clrs <- round(seq(255, 40, length.out = length(brks) + 1), 0) %>%
+  {paste0("rgb(255,", ., ",", ., ")")}
+datatable(df) %>% formatStyle(names(df), backgroundColor = styleInterval(brks, clrs))
+
+```
+
+## Table lens with a integrated bar
+```{r}
+datatable(df) %>% formatStyle(names(df),
+  background = styleColorBar(range(df), 'lightblue'),
+  backgroundSize = '98% 88%',
+  backgroundRepeat = 'no-repeat',
+  backgroundPosition = 'center')
+
+```
+
+## Sparkline
+
+https://leonawicz.github.io/HtmlWidgetExamples/ex_dt_sparkline.html

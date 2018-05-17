@@ -1,2 +1,3 @@
-# interactive-data-visualization
-Draft book of data visualization principles illustrated with ggplot2 examples in R
+# Visualization principles and examples
+
+This is a very rough collection example graphs using ggplot2 to illustrate principles of data visualization.

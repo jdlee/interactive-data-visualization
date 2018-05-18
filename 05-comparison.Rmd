@@ -166,8 +166,8 @@ mtcars.df$name = row.names(mtcars.df)
 
 ## Scale variables and calculate distances between cases
 mtcars.df = mtcars.df %>% mutate(gpm = 1/mpg) %>% mutate(speed = 1/qsec) %>% 
-  select(-mpg, -qsec) %>% 
-  select(cyl:carb, gpm, speed, name)
+  dplyr::select(-mpg, -qsec) %>% 
+  dplyr::select(cyl:carb, gpm, speed, name)
 
 scaled_mtcars.df = mtcars.df %>% mutate_at(vars(cyl:speed), scale)
 

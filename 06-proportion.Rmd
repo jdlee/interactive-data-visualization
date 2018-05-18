@@ -234,15 +234,17 @@ ggplot(G20, ggplot2::aes(area = gdp_mil_usd, fill = hdi, label = country, subgro
 ```
 
 ## Circle packing
-```{r}
+```{r, circle-pack}
 library(packcircles)
 library(viridis)
 library(tidyverse)
 
-# show with radius vs area 
+# Show with radius vs area 
 packing <- circleProgressiveLayout(G20$gdp_mil_usd, sizetype='area')
 G20.df = cbind(G20, packing)
-layout = G20.df %>% select(country, x, y, radius)
+layout = G20.df %>% 
+  dplyr::select(country, x, y, radius)
+
 dat.pack <- circleLayoutVertices(layout, npoints=60, idcol = 1, xysizecols=2:4, sizetype = "radius")
 
 dat.pack = left_join(dat.pack, G20.df, by = c("id" = "country"))
@@ -255,7 +257,6 @@ ggplot() +
   theme_void() + 
   theme(legend.position="none") +
   coord_equal()
-
 
 ```
 

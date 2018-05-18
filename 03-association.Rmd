@@ -287,7 +287,8 @@ Table lens serves a similar purpose to the scatterplot but might be more familia
 
 ```{r, table_lens, echo=FALSE, message=FALSE}
 library(DT)
-sub.mtcars.df = mtcars.df %>% select(mpg, wt) %>% 
+sub.mtcars.df = mtcars.df %>% 
+  dplyr::select(mpg, wt) %>% 
   rownames_to_column("name") 
 
 datatable(sub.mtcars.df) %>% 

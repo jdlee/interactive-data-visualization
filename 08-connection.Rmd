@@ -20,7 +20,7 @@ library(ggalt)
 ```
 
 ### Choropleth
-```{r}
+```{r, country-choropleth}
 crimes.df <- data.frame(state = tolower(rownames(USArrests)), USArrests)
 
 crimes.l.df <- gather(crimes.df, key = type, value = rate, -state)
@@ -52,7 +52,7 @@ ggplot() +
 
 
 ### County map
-```{r}
+```{r, county-map}
 ## devtools::install_github("hrbrmstr/ggalt", force=TRUE) # To install development version
 ## Examples from https://github.com/hrbrmstr/ggalt
 
@@ -95,7 +95,7 @@ choropleth.df <- merge(county.df, unemp.df, by = c("state", "county"))
 #choropleth.df = county.df %>% inner_join(unemp.df, by = c("state", "county"))
   
 
-choropleth.df = choropleth.df %>% select(state:rate)
+choropleth.df = choropleth.df %>% dplyr::select(state:rate)
 choropleth.df = choropleth.df %>% arrange(desc(order))
 
 ggplot(choropleth.df, aes(long, lat, group = group)) +

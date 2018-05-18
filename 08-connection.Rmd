@@ -55,6 +55,8 @@ ggplot() +
 ```{r}
 ## devtools::install_github("hrbrmstr/ggalt", force=TRUE) # To install development version
 ## Examples from https://github.com/hrbrmstr/ggalt
+
+# TODO replace with poverty or health outcomes data
 library(tidyverse)
 library(stringr)
 library(viridis)

@@ -18,6 +18,8 @@ Small multiple for pie vs stacked bar likert ratings or time trends
 
 ```{r}
 library(HistData)
+library(tidyverse)
+
 night.df = Nightingale %>% 
   gather(key = cause, value = deaths, Disease:Other) %>%
   mutate(intervention = ordered( rep(c(rep('Before', 12), rep('After', 12)), 3), levels=c('Before', 'After'))) %>% 
@@ -135,6 +137,23 @@ ggplot(sum.night.df, aes(intervention, cause.percent, fill = cause))+
 
 ```
 
+## Faceted Bar chart with overall reference distribution
+The grey bars in the background represent the overall distribution and provide a referende for each of the marginal distributions.  
+
+```{r, Reference-bar}
+diamonds.df = diamonds
+
+count.diamonds.df = diamonds.df %>% group_by(cut, color) %>% summarise(count = n()) %>% 
+  ungroup() %>% group_by(color) %>% mutate(color.count = sum(count))
+
+ggplot(count.diamonds.df, aes(color, count)) +
+  geom_bar(aes(color, color.count), stat = "identity", alpha =.33) +
+  geom_bar(stat = "identity", alpha = .8) +
+  facet_grid(cut~.)
+```
+
+
+
 ## Rose or Coxcomb plots
 Nightingale produced a graph "Diagram of the Causes of Mortality in the Army in the East"  that showed that most soldiers during the Crimean war died of disease rather than wounds. Improving hygiene in March of 1855 led to fewer disease related deaths.
 
@@ -169,7 +188,7 @@ Comparison of many categories
 
 * Dodge makes comparison easy with common axis and relative judgment
 
-* Oposing makes gender more apparent
+* Opposing makes gender more apparent
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 ## Diversity in Silicon Valley

@@ -214,11 +214,11 @@ library(lattice)
 library(hexbin)
 library(ggplot2)
 library(dplyr)
-data = mtcars
+mtcars.df = mtcars
 
 names(mtcars)
 
-sub.data = select(data, -am)
+sub.data = dplyr::select(mtcars.df, -am)
 
 splom(sub.data,
       panel=panel.hexbinplot, #defines baseline features of all plots

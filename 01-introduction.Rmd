@@ -12,7 +12,6 @@ This book provides principles and examples for data visualization
 
 
 
-
 ## Seeing meaning rather than numbers
 
 Figure \@ref(fig:blood-tab) shows a typical report of a medical diagnostic test. The numerical summary shows the patient's values and the range of standard values. The information is there to show if a patient is dangerously outside the range, but a quick glance at the table might miss these indications. Even a careful reading of the table might miss warning signs, particularly if the critical information is in the trend that requires looking at a second table on another tab. Figure \@ref(fig:blood-vis) shows the data relative to the high and low normal range and makes deviations much more apparent. The ghosted points show past results and roughly indicate trends.
@@ -104,7 +103,9 @@ anscombe.df = anscombe %>%
   gather(key = x, xvalue, x1:x4) %>% 
   gather(key = y, yvalue, y1:y4) %>% 
   mutate(x = substr(x, 2, 2), y = substr(y, 2, 2)) %>% 
-  filter(y==x) %>% select(-x) %>% rename(set = y)
+  filter(y==x) %>% 
+ # select(-x) %>% 
+  rename(set = y)
   
 anscombe.df$set = paste("Set", anscombe.df$set)
 
@@ -203,7 +204,7 @@ grid.arrange(plot_minard, plot_temp, nrow=2, heights=c(3,1))
 
 
 ## Read data from website
-sports <- read_tsv("https://github.com/halhen/viz-pub/raw/master/sports-time-of-day/activity.tsv")
+# sports <- read_tsv("https://github.com/halhen/viz-pub/raw/master/sports-time-of-day/activity.tsv")
 
 
 ## Happiness

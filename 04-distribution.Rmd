@@ -12,24 +12,37 @@ library(HistData)
 ```
 
 
-## Histogram with density and median reference line
 
-```{r}
-diamonds.df = diamonds
 
-sum.diamonds.df = diamonds.df %>% group_by(cut) %>% 
-  summarise(q85 = quantile(price, 0.85))
+
+Seeing the smooth and rough of data
+bins or binwidth, default number of bins is 30
+## Histograms and bin choice
+```{r, cache=TRUE, warning=FALSE}
+ggplot(data = diamonds.df, aes(price)) + 
+  geom_histogram(bins = 10) 
 
 ggplot(data = diamonds.df, aes(price)) + 
-  geom_histogram(aes(y = ..density..), bins = 40) + 
-  geom_density(colour = "darkblue") +
-  geom_vline(data = sum.diamonds.df, aes(xintercept = q85)) +
-  facet_grid(cut ~ .)
+  geom_histogram(bins = 30) 
 
-```  
+ggplot(data = diamonds.df, aes(price)) + 
+  geom_histogram(bins = 80) 
 
-## Bin choice with histograms
-```{r}
+```
+
+Density as abstraction and model
+
+Adjust is a multiplier on the default kernel bandwidth and so 1 represents the default
+## Density and kernel adjustment 
+```{r, cache=TRUE}
+ggplot(data = diamonds.df, aes(price)) + 
+  geom_density(adjust = 10) 
+
+ggplot(data = diamonds.df, aes(price)) + 
+  geom_density(adjust = 1) 
+
+ggplot(data = diamonds.df, aes(price)) + 
+  geom_density(adjust  = .1) 
 
 ```
 
@@ -63,6 +76,22 @@ ggplot(diamonds, aes(log(carat), log(price)))+
 ```
 
 
+## Histogram with density and median reference line
+
+```{r}
+diamonds.df = diamonds
+
+sum.diamonds.df = diamonds.df %>% group_by(cut) %>% 
+  summarise(q85 = quantile(price, 0.85))
+
+ggplot(data = diamonds.df, aes(price)) + 
+  geom_histogram(aes(y = ..density..), bins = 40) + 
+  geom_density(colour = "darkblue") +
+  geom_vline(data = sum.diamonds.df, aes(xintercept = q85)) +
+  facet_grid(cut ~ .)
+
+```  
+
 ## Ridge plot
 https://cran.r-project.org/web/packages/ggridges/vignettes/gallery.html
 ```{r}
@@ -78,5 +107,6 @@ ggplot(aes(x = length, y = year, group = year)) +
   scale_y_reverse(breaks=c(2000, 1980, 1960, 1940, 1920, 1900), expand = c(0.01, 0)) +
   theme_ridges()
 ```
+
 
   

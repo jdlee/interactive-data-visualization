@@ -52,7 +52,7 @@ ggplot() +
 
 
 ### County map
-```{r, county-map}
+```{r, county-map, cache=TRUE}
 ## devtools::install_github("hrbrmstr/ggalt", force=TRUE) # To install development version
 ## Examples from https://github.com/hrbrmstr/ggalt
 
@@ -122,7 +122,7 @@ https://www.data-imaginist.com/2017/ggraph-introduction-layouts/
 ### World migration network
 
 Examples from: https://github.com/thomasp85/ggraph
-```{r, warning=FALSE}
+```{r, warning=FALSE, cache=TRUE}
 library(ggraph) # ggplot extension
 library(igraph) # For network calculations
 

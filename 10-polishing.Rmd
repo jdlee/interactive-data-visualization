@@ -1,10 +1,12 @@
 \cleardoublepage 
 
-# Polishing graph for publication{#Polishing}
+# Polishing and annotating graphs{#Polishing}
 
 
 ```{r, message=FALSE}
 library(tidyverse)
+library(ggrepel)
+mtcars.df = mtcars
 
 ```
 
@@ -24,6 +26,241 @@ Place the legend inside the graph
 Change the theme to increase the data to ink ratio
 Check that changing the theme did not undo your legend placement
 Save as a 5X5 inch image in a format to minimize blur
+
+
+
+## Labeling and annotation
+### Annotating data
+```{r}
+## Text and rectangle annotation 
+ggplot(mtcars.df, aes(disp,  mpg, color = as.factor(cyl))) + 
+  annotate(geom = "rect", ymin = 20, ymax = 35, xmin = 65, xmax = 155, fill = "grey65", alpha = .5) +
+  annotate(geom = "text", x = 115, y = 36, label = "High-power cars" ) +
+  geom_point()+
+  labs(x = "Displacement (cubic inches)", y = "Efficiency (mile per gallon)", 
+       title = "Efficiency and engine size", colour = "Number of cylinders")
+
+
+## Encircle pooints
+library(ggalt)
+
+ ggplot(mtcars, aes(disp, mpg))+
+    geom_point()+
+    geom_encircle(data=filter(mtcars, mpg>24),
+                   s_shape=0.75, expand=0.05) +
+   labs(title = "ggalt: encircle annotation")
+ 
+
+#
+
+library(ggpmisc) # For stat_poly_eq for equation annotation  
+# https://cran.r-project.org/web/packages/ggpmisc/vignettes/user-guide-1.html
+
+formula <- y ~ poly(x, 1, raw = TRUE)
+regression.plot =
+  ggplot(mtcars, aes(x=disp, y=mpg)) + 
+    geom_point() +
+  geom_smooth(method = "lm", formula = formula) +
+  stat_poly_eq(aes(label =  paste(..eq.label.., ..adj.rr.label.., sep = "~~~~")),
+                   formula = formula, parse = TRUE, coef.digits = 2, label.x = 200, label.y = 30)
+
+regression.plot 
+ggsave(file = "regression_annotation.pdf", plot = regression.plot)
+
+
+```
+
+### Annotating points and select points
+library(ggrepel)
+```{r }
+
+# Annotated points 
+## ggrepel package
+# Add names of cars to dataframe
+mtcars.df = mtcars
+mtcars.df$name = row.names(mtcars.df)
+
+ggplot(mtcars.df, aes(disp,  mpg, color = as.factor(cyl))) + 
+  geom_point()+
+  geom_text_repel(aes(label = name), size = 2, show.legend = FALSE)+
+  labs(x = "Displacement (cubic inches)", y = "Efficiency (mile per gallon)", 
+       title = "Efficiency and engine size", colour = "Number of cylinders")
+
+
+## Add annotations to lines rather than legend
+s.mpg.df = mpg %>% group_by(year, class) %>% summarise(h_mpg = mean(hwy, na.rm = TRUE)) %>% ungroup()
+ 
+       
+ggplot(s.mpg.df, aes(year, h_mpg, colour = class))+geom_line()+
+   coord_cartesian(xlim = c(min(s.mpg.df$year), max(s.mpg.df$year) + 1)) +
+   geom_text_repel(
+     data = filter(s.mpg.df, year == max(year)),
+     aes(label = class),
+     size = 3, nudge_x = .5) +
+  guides(color=FALSE)
+
+
+ggplot(mtcars.df, aes(disp,  mpg, color = as.factor(cyl))) +   
+  geom_point()+  
+  geom_text_repel(aes(label = name), size = 2, show.legend = FALSE)
+
+ggplot(mtcars.df, aes(disp,  mpg, color = as.factor(cyl))) +   
+  geom_point()+  
+  geom_text_repel(data = mtcars.df %>% filter(mpg>30), aes(label = name), size = 2, show.legend = FALSE)
+```
+
+### Labels on lines
+```{r}
+s.mpg.df = mpg %>% group_by(year, class) %>% 
+  summarise(h_mpg = mean(hwy, na.rm = TRUE)) %>% 
+  ungroup()
+
+ggplot(s.mpg.df, aes(year, h_mpg, colour = class))+
+	geom_line()+ 	
+	coord_cartesian(xlim = c(min(s.mpg.df$year), max(s.mpg.df$year) + 1)) + 	geom_text_repel( data = filter(s.mpg.df, year == max(year)), 
+		aes(label = class), size = 3, nudge_x = .5) + 
+	guides(color=FALSE)
+
+library(ggpmisc) # For stat_poly_eq for equation annotation  
+formula <- y ~ poly(x, 1, raw = TRUE)
+ggplot(mtcars, aes(x=disp, y=mpg)) + 
+	geom_point() +  
+	geom_smooth(method = "lm", formula = formula) +  	stat_poly_eq(aes(label =  paste(..eq.label.., ..adj.rr.label.., 
+		sep = "~~~~")), formula = formula, parse = TRUE, coef.digits = 2, label.x = 200, label.y = 30)
+
+```
+
+```{r}
+# Place legend at bottom
+ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point() +
+theme(legend.position = "bottom")
+
+# Place legend in graph
+ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point() +
+theme(legend.position = c(0.9, 0.8))
+
+```
+
+
+### Meaningful symbols
+```{r}
+ggplot(mtcars, 
+		aes(disp,  mpg, colour = as.factor(am), shape = as.factor(am))) +
+  geom_point(size = 8) +   
+	scale_color_manual(values = c("0" = "blue", "1" = "red")) +  
+  scale_shape_manual(values = c("0" = "\u2642", "1" = "\u2640")) +  
+  labs(title = "custom shape: Male/Female")
+
+```
+
+### Adding and removing labels: title, axis labels, facet labels, and legends
+```{r}
+library(tidyverse)
+library(ggalt)
+library(ggrepel)
+
+# Add names of cars to dataframe
+mtcars.df = mtcars
+mtcars.df$name = row.names(mtcars.df)
+
+## Axis labels, title, and legend
+ggplot(mtcars.df, aes(disp,  mpg, color = as.factor(cyl))) + 
+  geom_point()+
+  labs(x = "Displacement (cubic inches)", y = "Efficiency (mile per gallon)", 
+       title = "Efficiency and engine size", colour = "Number of cylinders")
+
+
+## Subtitle and caption
+ggplot(mtcars.df, aes(disp,  mpg, color = as.factor(cyl))) + 
+  geom_point()+
+  labs(x = "Displacement (cubic inches)", y = quote(alpha + beta + frac(delta, theta)), 
+       title = "Efficiency and engine size", subtitle = "mtcars data",
+       caption = "Caption if needed",
+       colour = "Number of cylinders")
+
+
+## Remove labels 
+ggplot(mtcars.df, aes(disp,  mpg, color = as.factor(cyl))) + 
+  geom_point()+
+  labs(x = "", y = "")
+
+
+## Facet labels 
+cyl_names <- as_labeller(c("4" = "Four", "6" = "Six", "8" = "Eight"))
+
+ ggplot(mtcars.df, aes(wt, mpg))+ 
+   geom_point() +
+   facet_grid(cyl ~ ., labeller = as_labeller(cyl_names))
+ 
+```
+
+
+```{r}
+
+count.mtcars.df = mtcars.df %>% 
+  mutate(cyl = as.factor(cyl), am = as.factor(am)) %>% 
+  group_by(am, cyl) %>% 
+  summarise(count = n()) %>% 
+  mutate(label.pos = cumsum(count) - (0.1 * count))
+
+ggplot(count.mtcars.df, aes(x = cyl, y = count, fill = am, label = count)) +
+  geom_bar(stat = "identity") +
+  geom_text(size = 3, position = position_stack(vjust = 0.5))
+```
+
+
+ 
+
+ 
+### Remove and position one or more legends
+
+```{r}
+
+ggplot(mtcars.df, aes(wt, mpg, colour = cyl, size = hp))+
+  geom_point()
+
+ggplot(mtcars.df, aes(wt, mpg, colour = cyl, size = hp))+
+  geom_point()+
+  guides(colour=FALSE)
+
+
+ggplot(mtcars.df, aes(wt, mpg, colour = cyl, size = hp))+
+  geom_point()+
+scale_colour_continuous(guide=FALSE) 
+
+ggplot(mtcars.df, aes(wt, mpg, colour = cyl, size = hp))+
+  geom_point(show.legend=FALSE)
+
+ggplot(mtcars.df, aes(wt, mpg, colour = cyl, size = hp))+
+theme(legend.position="none") # All legends
+```
+
+
+
+### Setting limits on axis and position of graph
+
+ ```{r, plot-margin}
+ 
+ ## Change axis limits to focus on part of data
+ ggplot(mtcars.df, aes(wt, mpg))+
+ geom_point()
+ 
+ ggplot(mtcars.df, aes(wt, mpg))+
+ geom_point()+
+ lims(x = c(3, 4))
+ 
+ggplot(mtcars.df, aes(wt, mpg))+
+ geom_point()+
+ scale_x_continuous(limits = c(3, 4))
+ ```
+
+### Adjust margin between points and edge of plot area
+```{r}
+ggplot(mtcars.df, aes(wt, mpg))+
+ geom_point() +
+  scale_x_continuous(expand = c(0, 0)) +
+  scale_y_continuous(expand = c(0, 0)) 
+```
 
 
 
@@ -52,35 +289,13 @@ ggplot(mtcars, aes(disp, mpg))+
 geom_point()+    
 geom_encircle(data=filter(mtcars, mpg>24), s_shape=0.75, expand=0.05) +   
 labs(title = "ggalt: encircle annotation")
-
-
-library(ggrepel)
-
-ggplot(mtcars.df, aes(disp,  mpg, color = as.factor(cyl))) +   geom_point()+  
-geom_text_repel(aes(label = name), size = 2, show.legend = FALSE)
-
-## Labels on lines
-s.mpg.df = mpg %>% group_by(year, class) %>% 
-  summarise(h_mpg = mean(hwy, na.rm = TRUE)) %>% 
-  ungroup()
-
-ggplot(s.mpg.df, aes(year, h_mpg, colour = class))+
-	geom_line()+ 	
-	coord_cartesian(xlim = c(min(s.mpg.df$year), max(s.mpg.df$year) + 1)) + 	geom_text_repel( data = filter(s.mpg.df, year == max(year)), 
-		aes(label = class), size = 3, nudge_x = .5) + 
-	guides(color=FALSE)
-
-library(ggpmisc) # For stat_poly_eq for equation annotation  
-formula <- y ~ poly(x, 1, raw = TRUE)
-ggplot(mtcars, aes(x=disp, y=mpg)) + 
-	geom_point() +  
-	geom_smooth(method = "lm", formula = formula) +  	stat_poly_eq(aes(label =  paste(..eq.label.., ..adj.rr.label.., 
-		sep = "~~~~")), formula = formula, parse = TRUE, coef.digits = 2, label.x = 200, label.y = 30)
-
-
 ```
 
-## Colour
+
+
+
+
+## Color
 The palette of colors that is scaled to the data is set separately for “fill” and for “colour”
 
 Color palettes that work for discrete variables (e.g., factors) may not work for continuous, numeric variables
@@ -92,237 +307,7 @@ Small areas, such as points, benefit from saturated color, and large areas, such
 
 Great resources to explain the basis of the Brewer, Viridis, and ptol palettes: http://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.htmlhttps://personal.sron.nl/~pault/
 
-
-```{r}
-ggplot(diamonds, aes(x = color, fill = cut)) + 
-	geom_bar() +
-  scale_fill_hue()+ 
-  labs(title = "ggplot: Default")
-
-ggplot(diamonds, aes(x = color, fill = cut)) + 	geom_bar() + 
-  scale_fill_brewer(palette = "Accent") + 
-  labs(title = "Brewer: Accent")
-
-```
-
-
-
-
-## Scales beyond color
-```{r}
-ggplot(mtcars, 
-		aes(disp,  mpg, colour = as.factor(am), shape = as.factor(am))) +
-  geom_point(size = 8) +   
-	scale_color_manual(values = c("0" = "blue", "1" = "red")) +  
-  scale_shape_manual(values = c("0" = "\u2642", "1" = "\u2640")) +  
-  labs(title = "custom shape: Male/Female")
-
-```
-
-## Themes and formatting
-```{r}
-ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + 	geom_point() + 	theme(legend.position = "bottom")
-
-ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + 	geom_point() + 	theme(legend.position = c(0.9, 0.8))
-
-```
-
-Turn off many theme elements
-```{r}
-ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + 
-geom_point() +
-	theme(axis.line=element_blank(), axis.text.x=element_blank(), 	axis.text.y=element_blank(), axis.ticks=element_blank(), 	axis.title.x=element_blank(), axis.title.y=element_blank(), 	legend.position="none", panel.background=element_blank(), 	panel.border=element_blank(), panel.grid.major=element_blank(), 	panel.grid.minor=element_blank(), plot.background=element_blank())
-
-```
-
-Predefined themes turn adjust many elements
-```{r}
-ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + 
-	geom_point() +
-	theme_void()
-```
-
-```{r}
-ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + 
-	geom_point() +
-  theme_minimal(base_size = 18, base_family = "Avenir")
-```
-
-
-```{r}
-#ipsum, latin for neat
-
-library(hrbrthemes)
-
-ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + 
-  geom_point() + 	
-  scale_colour_ipsum() + 
-	theme_ipsum()
-
-ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + 
-  geom_point() + 
-  scale_color_fivethirtyeight() +
-	theme_fivethirtyeight()
-
-ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + 
-  geom_point()+ 	
-  scale_color_few() +
-	theme_few()
-
-ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + 	
-  geom_point()+ 
-	geom_rangeframe()+ 
-	theme_tufte()
-
-```
-
-order of application matters
-```{r}
-ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + geom_point()+ 	scale_colour_ipsum() + 
-theme_ipsum() +
-theme(legend.position = c(.85, .8))
-
-ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + geom_point()+ 	scale_colour_ipsum() + 
-theme_ipsum() +
-theme(legend.position = c(.85, .8))+  
-theme_ipsum()
-
-```
-
-
-## Saving plots 
-For formal documents save graphs and import. Do not cut and paste from RStudio 
-Saving and importing provides consistent physical size, resolution, and aspect ratio: DO NOT re-scale in the document
-Vector formats (PDF, SVG) 	Provide crisp images even when zoomed in and raster
-File size scales with number of data points
-Raster formats (PNG, TIFF)	The dpi (dots per inch) defines the resolution of the image	File size scales with dimensions of graph and dpi
-
-```{r}
-mpg.plot = ggplot(mtcars, 
-	aes(disp,  mpg, color = as.factor(cyl))) + 
-	geom_point()
-
-ggsave(filename = "mpg.png", 
-	device = "png",
-	plot = mpg.plot, height = 4, width = 5, units = "in", 
-	dpi = 300)
-
-ggsave(filename = "mpg.pdf", device = "pdf", 
-      plot = mpg.plot, height = 4, width = 5, units = "in")
-```
-
-
-```{r}
-
-library(ggpubr)
-
-disp.plot = ggplot(mtcars, aes(mpg, disp))+geom_point()+  labs(title = "Combine plots with ggpubr")
-
-hp.plot = ggplot(mtcars, aes(mpg, hp))+geom_point()
-
-ggarrange(disp.plot, hp.plot, 
-	nrow=1, ncol = 2, align = "h")
-
-combined.plot = ggarrange(disp.plot, hp.plot, 
-	nrow=1, ncol = 2, align = "h")
-
-ggsave(filename = "combined_plot.png", plot = combined.plot,       	device = "png", 
-	dpi = 300, width = 6, height = 6, units = "in")
-
-```
-
-
-
-### Titles labels 
-```{r}
-library(tidyverse)
-library(ggalt)
-library(ggrepel)
-
-# Add names of cars to dataframe
-mtcars.df = mtcars
-mtcars.df$name = row.names(mtcars.df)
-
-## Axis labels, title, and legend
-ggplot(mtcars.df, aes(disp,  mpg, color = as.factor(cyl))) + 
-  geom_point()+
-  labs(x = "Displacement (cubic inches)", y = "Efficiency (mile per gallon)", 
-       title = "Efficiency and engine size", colour = "Number of cylinders")
-
-## Subtitle and caption
-ggplot(mtcars.df, aes(disp,  mpg, color = as.factor(cyl))) + 
-  geom_point()+
-  labs(x = "Displacement (cubic inches)", y = quote(alpha + beta + frac(delta, theta)), 
-       title = "Efficiency and engine size", subtitle = "mtcars data",
-       caption = "Caption if needed",
-       colour = "Number of cylinders")
-
-
-```
-
-
-### Annotations of data
-```{r}
-## Text and rectangle annotation 
-ggplot(mtcars.df, aes(disp,  mpg, color = as.factor(cyl))) + 
-  annotate(geom = "rect", ymin = 20, ymax = 35, xmin = 65, xmax = 155, fill = "grey65", alpha = .5) +
-  annotate(geom = "text", x = 115, y = 36, label = "High-power cars" ) +
-  geom_point()+
-  labs(x = "Displacement (cubic inches)", y = "Efficiency (mile per gallon)", 
-       title = "Efficiency and engine size", colour = "Number of cylinders")
-
-
-## Encircle pooints
-library(ggalt)
-
- ggplot(mtcars, aes(disp, mpg))+
-    geom_point()+
-    geom_encircle(data=filter(mtcars, mpg>24),
-                   s_shape=0.75, expand=0.05) +
-   labs(title = "ggalt: encircle annotation")
  
-
-## Annotated points 
-## ggrepel package
-ggplot(mtcars.df, aes(disp,  mpg, color = as.factor(cyl))) + 
-  geom_point()+
-  geom_text_repel(aes(label = name), size = 2, show.legend = FALSE)+
-  labs(x = "Displacement (cubic inches)", y = "Efficiency (mile per gallon)", 
-       title = "Efficiency and engine size", colour = "Number of cylinders")
-
-
-## Add annotations to lines rather than legend
-s.mpg.df = mpg %>% group_by(year, class) %>% summarise(h_mpg = mean(hwy, na.rm = TRUE)) %>% ungroup()
- 
-       
-ggplot(s.mpg.df, aes(year, h_mpg, colour = class))+geom_line()+
-   coord_cartesian(xlim = c(min(s.mpg.df$year), max(s.mpg.df$year) + 1)) +
-   geom_text_repel(
-     data = filter(s.mpg.df, year == max(year)),
-     aes(label = class),
-     size = 3, nudge_x = .5) +
-  guides(color=FALSE)
-
-
-library(ggpmisc) # For stat_poly_eq for equation annotation  
-# https://cran.r-project.org/web/packages/ggpmisc/vignettes/user-guide-1.html
-
-formula <- y ~ poly(x, 1, raw = TRUE)
-regression.plot =
-  ggplot(mtcars, aes(x=disp, y=mpg)) + 
-    geom_point() +
-  geom_smooth(method = "lm", formula = formula) +
-  stat_poly_eq(aes(label =  paste(..eq.label.., ..adj.rr.label.., sep = "~~~~")),
-                   formula = formula, parse = TRUE, coef.digits = 2, label.x = 200, label.y = 30)
-
-regression.plot 
-ggsave(file = "regression_annotation.pdf", plot = regression.plot)
-
-
-```
-
-## Color 
-
 
 ### Resources to explain the basis form color choice
 Brewer, Viridis, and ptol palettes
@@ -423,22 +408,39 @@ ggplot(mtcars, aes(disp,  mpg, color = mpg))+geom_point()+
 
 ```
 
+### Discrete color mappings
+```{r}
+ggplot(diamonds, aes(x = color, fill = cut)) + 
+	geom_bar() +
+  scale_fill_hue()+ 
+  labs(title = "ggplot: Default")
+
+ggplot(diamonds, aes(x = color, fill = cut)) + 	geom_bar() + 
+  scale_fill_brewer(palette = "Accent") + 
+  labs(title = "Brewer: Accent")
+
+```
+
+
+
+
+
+
+
 
 ## Themes and theme options
+
+Turn off many theme elements
 ```{r}
-library(hrbrthemes) # Precise font and minimal grid
-library(ggthemes) # Huge variety of themes including Tufte and Few
+ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + 
+geom_point() +
+	theme(axis.line=element_blank(), axis.text.x=element_blank(), 	axis.text.y=element_blank(), axis.ticks=element_blank(), 	axis.title.x=element_blank(), axis.title.y=element_blank(), 	legend.position="none", panel.background=element_blank(), 	panel.border=element_blank(), panel.grid.major=element_blank(), 	panel.grid.minor=element_blank(), plot.background=element_blank())
 
-## Theme elements
-# Place legend at bottom
-ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point() +
-theme(legend.position = "bottom")
+```
 
-# Place legend in graph
-ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point() +
-theme(legend.position = c(0.9, 0.8))
 
-# Remove chart details Useful for plotting graphs and networks
+### Remove chart details Useful for plotting graphs and networks
+```{r}
 ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point() +
   theme(axis.line=element_blank(),
       axis.text.x=element_blank(),
@@ -454,6 +456,135 @@ ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point() +
       plot.background=element_blank())
   
 ```
+
+
+### Predefined themes turn adjust many elements
+```{r}
+ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + 
+	geom_point() +
+	theme_void()
+```
+
+
+```{r}
+ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + 
+	geom_point() +
+  theme_minimal(base_size = 18, base_family = "Avenir")
+```
+
+
+```{r}
+#ipsum, latin for neat
+
+library(hrbrthemes)
+
+ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + 
+  geom_point() + 	
+  scale_colour_ipsum() + 
+	theme_ipsum()
+
+ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + 
+  geom_point() + 
+  scale_color_fivethirtyeight() +
+	theme_fivethirtyeight()
+
+ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + 
+  geom_point()+ 	
+  scale_color_few() +
+	theme_few()
+
+ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + 	
+  geom_point()+ 
+	geom_rangeframe()+ 
+	theme_tufte()
+
+```
+
+order of application matters
+```{r}
+ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + geom_point()+ 	scale_colour_ipsum() + 
+theme_ipsum() +
+theme(legend.position = c(.85, .8))
+
+ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + geom_point()+ 	scale_colour_ipsum() + 
+theme_ipsum() +
+theme(legend.position = c(.85, .8))+  
+theme_ipsum()
+
+```
+
+
+
+
+
+
+
+
+```{r}
+library(hrbrthemes) # Precise font and minimal grid
+library(ggthemes) # Huge variety of themes including Tufte and Few
+library(xkcd) # Plots in the xkcd comic style
+```
+
+ftp://200.236.31.7/CRAN/web/packages/xkcd/vignettes/xkcd-intro.pdf
+```{r, xkcd-plot, cache=TRUE, warning=FALSE, echo=FALSE}
+library(extrafont)
+
+xrange <- range(mtcars$wt)
+yrange <- range(mtcars$mpg)
+
+p =  ggplot(mtcars.df) + geom_point(aes(wt, mpg)) +
+     theme_xkcd()+
+     xkcdaxis(xrange, yrange)
+ 
+
+## Add man
+ ratioxy <- diff(xrange) / diff(yrange)
+
+mapping <- aes(x=x,
+               y=y,
+               scale=scale,
+               ratioxy=ratioxy,
+               angleofspine = angleofspine,
+               anglerighthumerus = anglerighthumerus,
+               anglelefthumerus = anglelefthumerus,
+               anglerightradius = anglerightradius,
+               angleleftradius = angleleftradius,
+               anglerightleg =  anglerightleg,
+               angleleftleg = angleleftleg,
+               angleofneck = angleofneck,
+               color = color )
+
+dataman <- data.frame( x= c(2), y=c(23),
+                  scale = c(5),
+                  ratioxy = ratioxy,
+                  angleofspine =  - pi / 2 ,
+                  anglerighthumerus = -pi/6,
+                  anglelefthumerus = pi + pi/6,
+                  anglerightradius = 0,
+                  angleleftradius = - pi/4,
+                  angleleftleg = 3*pi/2  + pi / 12 ,
+                  anglerightleg = 3*pi/2  - pi / 12,
+                  angleofneck = -pi / 2 - pi/10,
+                  color = "red")
+
+p + xkcdman(mapping, dataman)
+
+```
+
+
+
+
+
+```{r, adjust-text-postion}
+ggplot(mtcars.df, aes(wt, mpg)) + 
+  geom_point()+
+  theme(axis.title.y = element_text(margin = margin(t = 10, r = 10, b = 80, l = 20)))
+```
+
+
+
+
 
 
 ### Ordering theme layers
@@ -563,7 +694,29 @@ theme.plot
 
 
 ## Saving and printing plots to include in documents
+
+For formal documents save graphs and import. Do not cut and paste from RStudio 
+Saving and importing provides consistent physical size, resolution, and aspect ratio: DO NOT re-scale in the document
+Vector formats (PDF, SVG) 	Provide crisp images even when zoomed in and raster
+File size scales with number of data points
+Raster formats (PNG, TIFF)	The dpi (dots per inch) defines the resolution of the image	File size scales with dimensions of graph and dpi
+
+### PNG, JPEG, PDF, and SVG 
 ```{r}
+mpg.plot = ggplot(mtcars, 
+	aes(disp,  mpg, color = as.factor(cyl))) + 
+	geom_point()
+
+ggsave(filename = "mpg.png", 
+	device = "png",
+	plot = mpg.plot, height = 4, width = 5, units = "in", 
+	dpi = 300)
+
+ggsave(filename = "mpg.pdf", device = "pdf", 
+      plot = mpg.plot, height = 4, width = 5, units = "in")
+```
+
+```{r, cache = TRUE}
 library(svglite)
 ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point()
 
@@ -601,8 +754,11 @@ pdf("multipage.pdf")
 }
 dev.off()
 
+```
+
 
 ### Combining multiple graphs for publication
+```{r}
 library(ggpubr)
 
 displ.plot = ggplot(mtcars, aes(disp, mpg)) + geom_point()
@@ -614,8 +770,8 @@ combined.plot
 ```
 
 
-## Faceted pagination
-```{r}
+### Faceted pagination
+```{r, cache=TRUE}
 library(ggforce)
 ## Examples from: https://cran.r-project.org/web/packages/ggforce/vignettes/Visual_Guide.html
 

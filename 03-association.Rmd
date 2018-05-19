@@ -83,6 +83,9 @@ ggplot(data = data.frame(x = c(0: 25)), aes(x = x, y = x, shape = x)) +
 ```
 
 
+
+
+
 ## Scatterplot with linear and loess fit
 The layers can include geometric elements beyond geom_point. Perhapts the most useful geoms to add to a scatterplot is a curve fit. Figure \@ref(fig:scatterplot-smooth) shows a simple scatterplot with two cruve fits.  The loess fit shows a smooth fit that indicates non-linar trends, and the blue line shows a linear regeression. The loess line highligths areas in the data that deviate from a linear relationship shown by the blue line. All three layers inherit the same x and y mapping from the ggplot base layer. 
 
@@ -112,7 +115,7 @@ knitr::kable(ls(pattern = '^geom_', env = as.environment('package:ggplot2')))%>%
 
 ## Global and local regression 
 
-```{r}
+```{r,, scatterplot-globallocal}
 ggplot(data = mtcars.df, aes(x = wt, y = mpg)) +
     geom_smooth(method = lm, colour = "darkgrey", size = .5) +
   geom_point(aes(colour = as.factor(cyl))) +
@@ -123,7 +126,7 @@ ggplot(data = mtcars.df, aes(x = wt, y = mpg)) +
 
 ## Quantile regression and other functional relationships
 Often the question the graph is meant to answer is not about the central tendency, but about the likelihood of relatively extreme values, such as the 25th and 75th percentiles.
-```{r}
+```{r, scatterplot-quantile}
 ggplot(data = mtcars.df, aes(x = wt, y = mpg)) +
     geom_smooth(method = lm, colour = "darkgrey", size = .5) +
   geom_point() +
@@ -164,7 +167,7 @@ p
 
 ## Scatterplot with overplotting mitigation
 
-```{r, cache=TRUE}
+```{r, scatterplot-overplot, cache=TRUE}
 diamonds.df = diamonds
 
 ggplot(diamonds.df, aes(carat, price)) +

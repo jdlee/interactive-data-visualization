@@ -76,7 +76,16 @@ ggplot()+
 ```      
    
    
-   
+## Change order of bars
+```{r}
+
+mtcars.df$cyl = as.factor(mtcars.df$cyl)
+cyl.order <- c("8", "6", "4")
+ ggplot(mtcars.df, aes(x = cyl)) + 
+   geom_bar()+
+  scale_x_discrete(limits = cyl.order)
+```
+
 
 ## Compares the empirical and theoretical distribution summary
 

@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Interactive data visualization</title>
+  <meta name="description" content="A book of ggplot examples">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Interactive data visualization" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="images/Minard_timeline_map.png" />
+  <meta property="og:description" content="A book of ggplot examples" />
+  <meta name="github-repo" content="jdlee/ggplot-examples" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Interactive data visualization" />
+  
+  <meta name="twitter:description" content="A book of ggplot examples" />
+  <meta name="twitter:image" content="images/Minard_timeline_map.png" />
+
+<meta name="author" content="John D. Lee">
+
+
+<meta name="date" content="2018-05-19">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="Polishing.html">
+<link rel="next" href="Interaction.html">
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets/htmlwidgets.js"></script>
+<link href="libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding/datatables.js"></script>
+<link href="libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk/js/crosstalk.min.js"></script>
+<link href="libs/nouislider/jquery.nouislider.min.css" rel="stylesheet" />
+<script src="libs/nouislider/jquery.nouislider.min.js"></script>
+<link href="libs/selectize/selectize.bootstrap3.css" rel="stylesheet" />
+<script src="libs/selectize/selectize.min.js"></script>
+<script src="libs/d3/d3.min.js"></script>
+<script src="libs/d3-lasso/d3-lasso.min.js"></script>
+<link href="libs/ggiraph/styles.css" rel="stylesheet" />
+<script src="libs/ggiraph/ggiraph_utils.js"></script>
+<script src="libs/ggiraph/ggiraph_over_effect.js"></script>
+<script src="libs/ggiraph/ggiraph_zoom.js"></script>
+<script src="libs/ggiraph/ggiraph_tooltip.js"></script>
+<script src="libs/ggiraph/ggiraph_selector.js"></script>
+<script src="libs/ggiraph-binding/ggiraph.js"></script>
+<script src="libs/svg_3/scripts_svg_3.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Interactive Data Visualization in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-read-this-book"><i class="fa fa-check"></i>Why read this book</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#structure-of-the-book"><i class="fa fa-check"></i>Structure of the book</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#software-information-and-conventions"><i class="fa fa-check"></i>Software information and conventions</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i>Acknowledgments</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="about-the-author.html"><a href="about-the-author.html"><i class="fa fa-check"></i>About the Author</a></li>
+<li class="chapter" data-level="1" data-path="Introduction.html"><a href="Introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction: Purposes, questions, and audiences</a><ul>
+<li class="chapter" data-level="1.1" data-path="Introduction.html"><a href="Introduction.html#seeing-meaning-rather-than-numbers"><i class="fa fa-check"></i><b>1.1</b> Seeing meaning rather than numbers</a></li>
+<li class="chapter" data-level="1.2" data-path="Introduction.html"><a href="Introduction.html#seeing-more-than-summary-statistics"><i class="fa fa-check"></i><b>1.2</b> Seeing more than summary statistics</a></li>
+<li class="chapter" data-level="1.3" data-path="Introduction.html"><a href="Introduction.html#purpose-and-audience-of-visualizations"><i class="fa fa-check"></i><b>1.3</b> Purpose and audience of visualizations</a></li>
+<li class="chapter" data-level="1.4" data-path="Introduction.html"><a href="Introduction.html#what-question-to-answer"><i class="fa fa-check"></i><b>1.4</b> What question to answer?</a></li>
+<li class="chapter" data-level="1.5" data-path="Introduction.html"><a href="Introduction.html#storytelling-with-graphics"><i class="fa fa-check"></i><b>1.5</b> Storytelling with graphics</a></li>
+<li class="chapter" data-level="1.6" data-path="Introduction.html"><a href="Introduction.html#data"><i class="fa fa-check"></i><b>1.6</b> Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="Principles.html"><a href="Principles.html"><i class="fa fa-check"></i><b>2</b> Visualization types and principles</a><ul>
+<li class="chapter" data-level="2.1" data-path="Principles.html"><a href="Principles.html#pairing-questions-and-graph-types"><i class="fa fa-check"></i><b>2.1</b> Pairing questions and graph types</a></li>
+<li class="chapter" data-level="2.2" data-path="Principles.html"><a href="Principles.html#visual-perception-for-visualization"><i class="fa fa-check"></i><b>2.2</b> Visual perception for visualization</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="Principles.html"><a href="Principles.html#types-of-cognitive-processes-to-be-supported"><i class="fa fa-check"></i><b>2.2.1</b> Types of cognitive processes to be supported</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="Principles.html"><a href="Principles.html#principles-from-general-to-specific"><i class="fa fa-check"></i><b>2.3</b> Principles from general to specific</a></li>
+<li class="chapter" data-level="2.4" data-path="Principles.html"><a href="Principles.html#mapping-typese-of-variables-to-graph-features"><i class="fa fa-check"></i><b>2.4</b> Mapping typese of variables to graph features</a></li>
+<li class="chapter" data-level="2.5" data-path="Principles.html"><a href="Principles.html#principles"><i class="fa fa-check"></i><b>2.5</b> Principles</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="Principles.html"><a href="Principles.html#proximity"><i class="fa fa-check"></i><b>2.5.1</b> Proximity</a></li>
+<li class="chapter" data-level="2.5.2" data-path="Principles.html"><a href="Principles.html#legibility"><i class="fa fa-check"></i><b>2.5.2</b> Legibility</a></li>
+<li class="chapter" data-level="2.5.3" data-path="Principles.html"><a href="Principles.html#clutter"><i class="fa fa-check"></i><b>2.5.3</b> Clutter</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="Association.html"><a href="Association.html"><i class="fa fa-check"></i><b>3</b> Association–scatterplots</a><ul>
+<li class="chapter" data-level="3.1" data-path="Association.html"><a href="Association.html#basic-elements-of-the-grammar-of-graphics"><i class="fa fa-check"></i><b>3.1</b> Basic elements of the grammar of graphics</a></li>
+<li class="chapter" data-level="3.2" data-path="Association.html"><a href="Association.html#simple-scatterplot"><i class="fa fa-check"></i><b>3.2</b> Simple scatterplot</a></li>
+<li class="chapter" data-level="3.3" data-path="Association.html"><a href="Association.html#scatterplot-with-additional-mappings"><i class="fa fa-check"></i><b>3.3</b> Scatterplot with additional mappings</a></li>
+<li class="chapter" data-level="3.4" data-path="Association.html"><a href="Association.html#scatterplot-with-linear-and-loess-fit"><i class="fa fa-check"></i><b>3.4</b> Scatterplot with linear and loess fit</a></li>
+<li class="chapter" data-level="3.5" data-path="Association.html"><a href="Association.html#global-and-local-regression"><i class="fa fa-check"></i><b>3.5</b> Global and local regression</a></li>
+<li class="chapter" data-level="3.6" data-path="Association.html"><a href="Association.html#quantile-regression-and-other-functional-relationships"><i class="fa fa-check"></i><b>3.6</b> Quantile regression and other functional relationships</a></li>
+<li class="chapter" data-level="3.7" data-path="Association.html"><a href="Association.html#scatterplot-with-overplotting-mitigation"><i class="fa fa-check"></i><b>3.7</b> Scatterplot with overplotting mitigation</a></li>
+<li class="chapter" data-level="3.8" data-path="Association.html"><a href="Association.html#scatterplot-matrix"><i class="fa fa-check"></i><b>3.8</b> Scatterplot matrix</a></li>
+<li class="chapter" data-level="3.9" data-path="Association.html"><a href="Association.html#categorical-scatterplot"><i class="fa fa-check"></i><b>3.9</b> Categorical scatterplot</a></li>
+<li class="chapter" data-level="3.10" data-path="Association.html"><a href="Association.html#scatterplot-with-regression-equation-and-marginal-distributions"><i class="fa fa-check"></i><b>3.10</b> Scatterplot with regression equation and marginal distributions</a></li>
+<li class="chapter" data-level="3.11" data-path="Association.html"><a href="Association.html#table-lens"><i class="fa fa-check"></i><b>3.11</b> Table lens</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="Distribution.html"><a href="Distribution.html"><i class="fa fa-check"></i><b>4</b> Distribution–histograms and density plots</a><ul>
+<li class="chapter" data-level="4.1" data-path="Distribution.html"><a href="Distribution.html#histograms-and-bin-choice"><i class="fa fa-check"></i><b>4.1</b> Histograms and bin choice</a></li>
+<li class="chapter" data-level="4.2" data-path="Distribution.html"><a href="Distribution.html#histogram-percentage-rather-than-count"><i class="fa fa-check"></i><b>4.2</b> Histogram percentage rather than count</a></li>
+<li class="chapter" data-level="4.3" data-path="Distribution.html"><a href="Distribution.html#qq-plot"><i class="fa fa-check"></i><b>4.3</b> qq plot</a></li>
+<li class="chapter" data-level="4.4" data-path="Distribution.html"><a href="Distribution.html#cummulative-density"><i class="fa fa-check"></i><b>4.4</b> Cummulative density</a></li>
+<li class="chapter" data-level="4.5" data-path="Distribution.html"><a href="Distribution.html#histogram-density-overlay-and-normal-overlay"><i class="fa fa-check"></i><b>4.5</b> Histogram, density overlay, and normal overlay</a></li>
+<li class="chapter" data-level="4.6" data-path="Distribution.html"><a href="Distribution.html#distribution-2-d-distribution-and-overplotting-revisited"><i class="fa fa-check"></i><b>4.6</b> Distribution: 2-D distribution and overplotting revisited</a></li>
+<li class="chapter" data-level="4.7" data-path="Distribution.html"><a href="Distribution.html#histogram-with-density-and-median-reference-line"><i class="fa fa-check"></i><b>4.7</b> Histogram with density and median reference line</a></li>
+<li class="chapter" data-level="4.8" data-path="Distribution.html"><a href="Distribution.html#ridge-plot"><i class="fa fa-check"></i><b>4.8</b> Ridge plot</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="Comparison.html"><a href="Comparison.html"><i class="fa fa-check"></i><b>5</b> Comparison–barchart and boxplots</a><ul>
+<li class="chapter" data-level="5.1" data-path="Comparison.html"><a href="Comparison.html#deviation-chart-bar-above-and-below-zero-or-average"><i class="fa fa-check"></i><b>5.1</b> Deviation chart: Bar above and below zero or average</a></li>
+<li class="chapter" data-level="5.2" data-path="Comparison.html"><a href="Comparison.html#graph-considerations-for-communication-aggregation-abstraction-complexity"><i class="fa fa-check"></i><b>5.2</b> Graph considerations for communication: aggregation, abstraction, complexity</a></li>
+<li class="chapter" data-level="5.3" data-path="Comparison.html"><a href="Comparison.html#dotplot-and-offset-range-plot"><i class="fa fa-check"></i><b>5.3</b> dotplot and offset range plot</a></li>
+<li class="chapter" data-level="5.4" data-path="Comparison.html"><a href="Comparison.html#change-order-of-bars"><i class="fa fa-check"></i><b>5.4</b> Change order of bars</a></li>
+<li class="chapter" data-level="5.5" data-path="Comparison.html"><a href="Comparison.html#compares-the-empirical-and-theoretical-distribution-summary"><i class="fa fa-check"></i><b>5.5</b> Compares the empirical and theoretical distribution summary</a></li>
+<li class="chapter" data-level="5.6" data-path="Comparison.html"><a href="Comparison.html#statistical-significance-in-context"><i class="fa fa-check"></i><b>5.6</b> Statistical significance in context</a></li>
+<li class="chapter" data-level="5.7" data-path="Comparison.html"><a href="Comparison.html#tufte-boxplot"><i class="fa fa-check"></i><b>5.7</b> Tufte boxplot</a></li>
+<li class="chapter" data-level="5.8" data-path="Comparison.html"><a href="Comparison.html#dot-plots-and-reordering"><i class="fa fa-check"></i><b>5.8</b> Dot plots and reordering</a></li>
+<li class="chapter" data-level="5.9" data-path="Comparison.html"><a href="Comparison.html#gliphs-chernof-face-and-radar-plots"><i class="fa fa-check"></i><b>5.9</b> Gliphs: Chernof face and radar plots</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="Proportion.html"><a href="Proportion.html"><i class="fa fa-check"></i><b>6</b> Proportion–Pie charts and pareto plots</a><ul>
+<li class="chapter" data-level="6.1" data-path="Proportion.html"><a href="Proportion.html#pie-and-bar-chart"><i class="fa fa-check"></i><b>6.1</b> Pie and bar chart</a></li>
+<li class="chapter" data-level="6.2" data-path="Proportion.html"><a href="Proportion.html#pareto-plot-whole-part-and-and-ranking"><i class="fa fa-check"></i><b>6.2</b> Pareto plot: Whole part and and ranking</a></li>
+<li class="chapter" data-level="6.3" data-path="Proportion.html"><a href="Proportion.html#stacked-bar-chart"><i class="fa fa-check"></i><b>6.3</b> Stacked bar chart</a></li>
+<li class="chapter" data-level="6.4" data-path="Proportion.html"><a href="Proportion.html#faceted-bar-chart-with-overall-reference-distribution"><i class="fa fa-check"></i><b>6.4</b> Faceted Bar chart with overall reference distribution</a></li>
+<li class="chapter" data-level="6.5" data-path="Proportion.html"><a href="Proportion.html#rose-or-coxcomb-plots"><i class="fa fa-check"></i><b>6.5</b> Rose or Coxcomb plots</a></li>
+<li class="chapter" data-level="6.6" data-path="Proportion.html"><a href="Proportion.html#stacked-dodged-and-opposed-bar-chart"><i class="fa fa-check"></i><b>6.6</b> Stacked, dodged and opposed bar chart</a></li>
+<li class="chapter" data-level="6.7" data-path="Proportion.html"><a href="Proportion.html#treemaps-for-whole-part-of-hierarchy"><i class="fa fa-check"></i><b>6.7</b> Treemaps for whole-part of hierarchy</a></li>
+<li class="chapter" data-level="6.8" data-path="Proportion.html"><a href="Proportion.html#circle-packing"><i class="fa fa-check"></i><b>6.8</b> Circle packing</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="Fluctuation.html"><a href="Fluctuation.html"><i class="fa fa-check"></i><b>7</b> Fluctuation–timelines</a><ul>
+<li class="chapter" data-level="7.1" data-path="Fluctuation.html"><a href="Fluctuation.html#multiple-time-series"><i class="fa fa-check"></i><b>7.1</b> Multiple time series</a></li>
+<li class="chapter" data-level="7.2" data-path="Fluctuation.html"><a href="Fluctuation.html#time-series-with-reference-line"><i class="fa fa-check"></i><b>7.2</b> Time series with reference line</a></li>
+<li class="chapter" data-level="7.3" data-path="Fluctuation.html"><a href="Fluctuation.html#cycle-plot"><i class="fa fa-check"></i><b>7.3</b> Cycle plot</a></li>
+<li class="chapter" data-level="7.4" data-path="Fluctuation.html"><a href="Fluctuation.html#time-series-with-lines-labeled"><i class="fa fa-check"></i><b>7.4</b> Time series with lines labeled</a></li>
+<li class="chapter" data-level="7.5" data-path="Fluctuation.html"><a href="Fluctuation.html#faceted-zoom"><i class="fa fa-check"></i><b>7.5</b> Faceted zoom</a></li>
+<li class="chapter" data-level="7.6" data-path="Fluctuation.html"><a href="Fluctuation.html#ridge-plot-1"><i class="fa fa-check"></i><b>7.6</b> Ridge plot</a></li>
+<li class="chapter" data-level="7.7" data-path="Fluctuation.html"><a href="Fluctuation.html#stacked-area-and-line-graphs"><i class="fa fa-check"></i><b>7.7</b> Stacked area and line graphs</a></li>
+<li class="chapter" data-level="7.8" data-path="Fluctuation.html"><a href="Fluctuation.html#temporal-heatmap"><i class="fa fa-check"></i><b>7.8</b> Temporal heatmap</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="Connection.html"><a href="Connection.html"><i class="fa fa-check"></i><b>8</b> Connection–maps and network plots</a><ul>
+<li class="chapter" data-level="8.1" data-path="Connection.html"><a href="Connection.html#maps"><i class="fa fa-check"></i><b>8.1</b> Maps</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="Connection.html"><a href="Connection.html#choropleth"><i class="fa fa-check"></i><b>8.1.1</b> Choropleth</a></li>
+<li class="chapter" data-level="8.1.2" data-path="Connection.html"><a href="Connection.html#county-map"><i class="fa fa-check"></i><b>8.1.2</b> County map</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="Connection.html"><a href="Connection.html#us-county-small-multiples"><i class="fa fa-check"></i><b>8.2</b> US county small multiples</a></li>
+<li class="chapter" data-level="8.3" data-path="Connection.html"><a href="Connection.html#world-migration"><i class="fa fa-check"></i><b>8.3</b> World migration</a></li>
+<li class="chapter" data-level="8.4" data-path="Connection.html"><a href="Connection.html#networks"><i class="fa fa-check"></i><b>8.4</b> Networks</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="Connection.html"><a href="Connection.html#world-migration-network"><i class="fa fa-check"></i><b>8.4.1</b> World migration network</a></li>
+<li class="chapter" data-level="8.4.2" data-path="Connection.html"><a href="Connection.html#hierarchy"><i class="fa fa-check"></i><b>8.4.2</b> Hierarchy</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="Tables.html"><a href="Tables.html"><i class="fa fa-check"></i><b>9</b> Graphical tables–interactive tables, highlights, and sparklines</a><ul>
+<li class="chapter" data-level="9.1" data-path="Tables.html"><a href="Tables.html#heatmap-table"><i class="fa fa-check"></i><b>9.1</b> Heatmap table</a></li>
+<li class="chapter" data-level="9.2" data-path="Tables.html"><a href="Tables.html#table-lens-with-a-integrated-bar"><i class="fa fa-check"></i><b>9.2</b> Table lens with a integrated bar</a></li>
+<li class="chapter" data-level="9.3" data-path="Tables.html"><a href="Tables.html#sparkline"><i class="fa fa-check"></i><b>9.3</b> Sparkline</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="Polishing.html"><a href="Polishing.html"><i class="fa fa-check"></i><b>10</b> Polishing and annotating graphs</a><ul>
+<li class="chapter" data-level="10.1" data-path="Polishing.html"><a href="Polishing.html#labeling-and-annotation"><i class="fa fa-check"></i><b>10.1</b> Labeling and annotation</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="Polishing.html"><a href="Polishing.html#annotating-data"><i class="fa fa-check"></i><b>10.1.1</b> Annotating data</a></li>
+<li class="chapter" data-level="10.1.2" data-path="Polishing.html"><a href="Polishing.html#annotating-points-and-select-points"><i class="fa fa-check"></i><b>10.1.2</b> Annotating points and select points</a></li>
+<li class="chapter" data-level="10.1.3" data-path="Polishing.html"><a href="Polishing.html#labels-on-lines"><i class="fa fa-check"></i><b>10.1.3</b> Labels on lines</a></li>
+<li class="chapter" data-level="10.1.4" data-path="Polishing.html"><a href="Polishing.html#meaningful-symbols"><i class="fa fa-check"></i><b>10.1.4</b> Meaningful symbols</a></li>
+<li class="chapter" data-level="10.1.5" data-path="Polishing.html"><a href="Polishing.html#adding-and-removing-labels-title-axis-labels-facet-labels-and-legends"><i class="fa fa-check"></i><b>10.1.5</b> Adding and removing labels: title, axis labels, facet labels, and legends</a></li>
+<li class="chapter" data-level="10.1.6" data-path="Polishing.html"><a href="Polishing.html#remove-and-position-one-or-more-legends"><i class="fa fa-check"></i><b>10.1.6</b> Remove and position one or more legends</a></li>
+<li class="chapter" data-level="10.1.7" data-path="Polishing.html"><a href="Polishing.html#setting-limits-on-axis-and-position-of-graph"><i class="fa fa-check"></i><b>10.1.7</b> Setting limits on axis and position of graph</a></li>
+<li class="chapter" data-level="10.1.8" data-path="Polishing.html"><a href="Polishing.html#adjust-margin-between-points-and-edge-of-plot-area"><i class="fa fa-check"></i><b>10.1.8</b> Adjust margin between points and edge of plot area</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="Polishing.html"><a href="Polishing.html#color"><i class="fa fa-check"></i><b>10.2</b> Color</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="Polishing.html"><a href="Polishing.html#resources-to-explain-the-basis-form-color-choice"><i class="fa fa-check"></i><b>10.2.1</b> Resources to explain the basis form color choice</a></li>
+<li class="chapter" data-level="10.2.2" data-path="Polishing.html"><a href="Polishing.html#large-and-small-area-colors"><i class="fa fa-check"></i><b>10.2.2</b> Large and small area colors</a></li>
+<li class="chapter" data-level="10.2.3" data-path="Polishing.html"><a href="Polishing.html#color-for-large-and-small-areas"><i class="fa fa-check"></i><b>10.2.3</b> Color for large and small areas</a></li>
+<li class="chapter" data-level="10.2.4" data-path="Polishing.html"><a href="Polishing.html#continuous-color-scales"><i class="fa fa-check"></i><b>10.2.4</b> Continuous color scales</a></li>
+<li class="chapter" data-level="10.2.5" data-path="Polishing.html"><a href="Polishing.html#discrete-color-mappings"><i class="fa fa-check"></i><b>10.2.5</b> Discrete color mappings</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="Polishing.html"><a href="Polishing.html#themes-and-theme-options"><i class="fa fa-check"></i><b>10.3</b> Themes and theme options</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="remove-chart-details-useful-for-plotting-graphs-and-networks.html"><a href="remove-chart-details-useful-for-plotting-graphs-and-networks.html"><i class="fa fa-check"></i><b>11</b> Remove chart details Useful for plotting graphs and networks</a><ul>
+<li class="chapter" data-level="11.0.1" data-path="remove-chart-details-useful-for-plotting-graphs-and-networks.html"><a href="remove-chart-details-useful-for-plotting-graphs-and-networks.html#ordering-theme-layers"><i class="fa fa-check"></i><b>11.0.1</b> Ordering theme layers</a></li>
+<li class="chapter" data-level="11.0.2" data-path="remove-chart-details-useful-for-plotting-graphs-and-networks.html"><a href="remove-chart-details-useful-for-plotting-graphs-and-networks.html#pre-set-theme-options"><i class="fa fa-check"></i><b>11.0.2</b> Pre-set theme options</a></li>
+<li class="chapter" data-level="11.0.3" data-path="remove-chart-details-useful-for-plotting-graphs-and-networks.html"><a href="remove-chart-details-useful-for-plotting-graphs-and-networks.html#themes-form-other-packages"><i class="fa fa-check"></i><b>11.0.3</b> Themes form other packages</a></li>
+<li class="chapter" data-level="11.1" data-path="remove-chart-details-useful-for-plotting-graphs-and-networks.html"><a href="remove-chart-details-useful-for-plotting-graphs-and-networks.html#saving-and-printing-plots-to-include-in-documents"><i class="fa fa-check"></i><b>11.1</b> Saving and printing plots to include in documents</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="remove-chart-details-useful-for-plotting-graphs-and-networks.html"><a href="remove-chart-details-useful-for-plotting-graphs-and-networks.html#png-jpeg-pdf-and-svg"><i class="fa fa-check"></i><b>11.1.1</b> PNG, JPEG, PDF, and SVG</a></li>
+<li class="chapter" data-level="11.1.2" data-path="remove-chart-details-useful-for-plotting-graphs-and-networks.html"><a href="remove-chart-details-useful-for-plotting-graphs-and-networks.html#combining-multiple-graphs-for-publication"><i class="fa fa-check"></i><b>11.1.2</b> Combining multiple graphs for publication</a></li>
+<li class="chapter" data-level="11.1.3" data-path="remove-chart-details-useful-for-plotting-graphs-and-networks.html"><a href="remove-chart-details-useful-for-plotting-graphs-and-networks.html#faceted-pagination"><i class="fa fa-check"></i><b>11.1.3</b> Faceted pagination</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="Interaction.html"><a href="Interaction.html"><i class="fa fa-check"></i><b>12</b> Interaction–zoom, annotate, highlight</a></li>
+<li class="chapter" data-level="13" data-path="shinyadvanced-interactive-graphics.html"><a href="shinyadvanced-interactive-graphics.html"><i class="fa fa-check"></i><b>13</b> Shiny–Advanced interactive graphics</a></li>
+<li class="appendix"><span><b>Appendix</b></span><ul>
+<li class="chapter" data-level="A.1" data-path="10-polishing.html"><a href="#data-sources"><i class="fa fa-check"></i><b>A.1</b> Data sources</a></li>
+<li class="chapter" data-level="A.2" data-path="shinyadvanced-interactive-graphics.html"><a href="shinyadvanced-interactive-graphics.html#visualization-resources"><i class="fa fa-check"></i><b>A.2</b> Visualization resources</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Interactive data visualization</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="remove-chart-details-useful-for-plotting-graphs-and-networks" class="section level1">
+<h1><span class="header-section-number">Chapter 11</span> Remove chart details Useful for plotting graphs and networks</h1>
+<p>ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + geom_point() + theme(axis.line=element_blank(), axis.text.x=element_blank(), axis.text.y=element_blank(), axis.ticks=element_blank(), axis.title.x=element_blank(), axis.title.y=element_blank(), legend.position=“none”, panel.background=element_blank(), panel.border=element_blank(), panel.grid.major=element_blank(), panel.grid.minor=element_blank(), plot.background=element_blank())</p>
+<p>```</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(mtcars.df, <span class="kw">aes</span>(wt, mpg)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">margin =</span> <span class="kw">margin</span>(<span class="dt">t =</span> <span class="dv">10</span>, <span class="dt">r =</span> <span class="dv">10</span>, <span class="dt">b =</span> <span class="dv">80</span>, <span class="dt">l =</span> <span class="dv">20</span>)))</code></pre></div>
+<p><img src="visualizationwithggplot_files/figure-html/adjust-text-postion-1.png" width="672" /></p>
+<div id="ordering-theme-layers" class="section level3">
+<h3><span class="header-section-number">11.0.1</span> Ordering theme layers</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Sets theme then adjusts legend</span>
+<span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(disp,  mpg, <span class="dt">color =</span> <span class="kw">as.factor</span>(cyl))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()<span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_ipsum</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(.<span class="dv">85</span>, .<span class="dv">8</span>))</code></pre></div>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Adjusts legend, but the overrides with setting theme </span>
+<span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(disp,  mpg, <span class="dt">color =</span> <span class="kw">as.factor</span>(cyl))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()<span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(.<span class="dv">85</span>, .<span class="dv">8</span>))<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_ipsum</span>()</code></pre></div>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-68-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## To set for all plots
+<span class="kw">theme_set</span>(<span class="kw">theme_few</span>())
+<span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(disp,  mpg, <span class="dt">color =</span> <span class="kw">as.factor</span>(cyl))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-68-3.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">theme_set</span>(<span class="kw">theme_gray</span>()) <span class="co"># Returns to default theme</span></code></pre></div>
+</div>
+<div id="pre-set-theme-options" class="section level3">
+<h3><span class="header-section-number">11.0.2</span> Pre-set theme options</h3>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+</div>
+<div id="themes-form-other-packages" class="section level3">
+<h3><span class="header-section-number">11.0.3</span> Themes form other packages</h3>
+<pre><code>## Warning in grid.Call(C_textBounds,
+## as.graphicsAnnot(x$label), x$x, x$y, : font family
+## &#39;Arial Narrow&#39; not found in PostScript font database
+
+## Warning in grid.Call(C_textBounds,
+## as.graphicsAnnot(x$label), x$x, x$y, : font family
+## &#39;Arial Narrow&#39; not found in PostScript font database
+
+## Warning in grid.Call(C_textBounds,
+## as.graphicsAnnot(x$label), x$x, x$y, : font family
+## &#39;Arial Narrow&#39; not found in PostScript font database
+
+## Warning in grid.Call(C_textBounds,
+## as.graphicsAnnot(x$label), x$x, x$y, : font family
+## &#39;Arial Narrow&#39; not found in PostScript font database
+
+## Warning in grid.Call(C_textBounds,
+## as.graphicsAnnot(x$label), x$x, x$y, : font family
+## &#39;Arial Narrow&#39; not found in PostScript font database
+
+## Warning in grid.Call(C_textBounds,
+## as.graphicsAnnot(x$label), x$x, x$y, : font family
+## &#39;Arial Narrow&#39; not found in PostScript font database
+
+## Warning in grid.Call(C_textBounds,
+## as.graphicsAnnot(x$label), x$x, x$y, : font family
+## &#39;Arial Narrow&#39; not found in PostScript font database
+
+## Warning in grid.Call(C_textBounds,
+## as.graphicsAnnot(x$label), x$x, x$y, : font family
+## &#39;Arial Narrow&#39; not found in PostScript font database
+
+## Warning in grid.Call(C_textBounds,
+## as.graphicsAnnot(x$label), x$x, x$y, : font family
+## &#39;Arial Narrow&#39; not found in PostScript font database
+
+## Warning in grid.Call(C_textBounds,
+## as.graphicsAnnot(x$label), x$x, x$y, : font family
+## &#39;Arial Narrow&#39; not found in PostScript font database</code></pre>
+<pre><code>## Warning in align_plots(plotlist = plots, align = align,
+## axis = axis): Complex graphs cannot be vertically
+## aligned unless axis parameter is set properly. Placing
+## graphs unaligned.</code></pre>
+<pre><code>## Warning in align_plots(plotlist = plots, align = align,
+## axis = axis): Graphs cannot be horizontally aligned,
+## unless axis parameter set. Placing graphs unaligned.</code></pre>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+</div>
+<div id="saving-and-printing-plots-to-include-in-documents" class="section level2">
+<h2><span class="header-section-number">11.1</span> Saving and printing plots to include in documents</h2>
+<p>For formal documents save graphs and import. Do not cut and paste from RStudio Saving and importing provides consistent physical size, resolution, and aspect ratio: DO NOT re-scale in the document Vector formats (PDF, SVG)  Provide crisp images even when zoomed in and raster File size scales with number of data points Raster formats (PNG, TIFF) The dpi (dots per inch) defines the resolution of the image File size scales with dimensions of graph and dpi</p>
+<div id="png-jpeg-pdf-and-svg" class="section level3">
+<h3><span class="header-section-number">11.1.1</span> PNG, JPEG, PDF, and SVG</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mpg.plot =<span class="st"> </span><span class="kw">ggplot</span>(mtcars, 
+    <span class="kw">aes</span>(disp,  mpg, <span class="dt">color =</span> <span class="kw">as.factor</span>(cyl))) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_point</span>()
+
+<span class="kw">ggsave</span>(<span class="dt">filename =</span> <span class="st">&quot;mpg.png&quot;</span>, 
+    <span class="dt">device =</span> <span class="st">&quot;png&quot;</span>,
+    <span class="dt">plot =</span> mpg.plot, <span class="dt">height =</span> <span class="dv">4</span>, <span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">units =</span> <span class="st">&quot;in&quot;</span>, 
+    <span class="dt">dpi =</span> <span class="dv">300</span>)
+
+<span class="kw">ggsave</span>(<span class="dt">filename =</span> <span class="st">&quot;mpg.pdf&quot;</span>, <span class="dt">device =</span> <span class="st">&quot;pdf&quot;</span>, 
+      <span class="dt">plot =</span> mpg.plot, <span class="dt">height =</span> <span class="dv">4</span>, <span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">units =</span> <span class="st">&quot;in&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(svglite)
+<span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(disp,  mpg, <span class="dt">color =</span> <span class="kw">as.factor</span>(cyl))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mpg.plot =<span class="st"> </span><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(disp,  mpg, <span class="dt">color =</span> <span class="kw">as.factor</span>(cyl))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()
+
+## Possible formats:
+<span class="co">#  &quot;eps&quot;, &quot;ps&quot;, &quot;tex&quot; (pictex), &quot;pdf&quot;, &quot;jpeg&quot;, &quot;tiff&quot;, &quot;png&quot;, &quot;bmp&quot;, &quot;svg&quot; or &quot;wmf&quot; (windows only)</span>
+
+## PNG--raster format that looks blurry at low resolution  
+<span class="kw">ggsave</span>(<span class="dt">filename =</span> <span class="st">&quot;mpg.png&quot;</span>, <span class="dt">device =</span> <span class="st">&quot;png&quot;</span>,
+       <span class="dt">plot =</span> mpg.plot, <span class="dt">height =</span> <span class="dv">4</span>, <span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">units =</span> <span class="st">&quot;in&quot;</span>, <span class="dt">dpi =</span> <span class="dv">300</span>)
+
+## PDF--vector format that remains sharp even when zoomed in
+<span class="kw">ggsave</span>(<span class="dt">filename =</span> <span class="st">&quot;mpg.pdf&quot;</span>, <span class="dt">device =</span> <span class="st">&quot;pdf&quot;</span>,
+       <span class="dt">plot =</span> mpg.plot, <span class="dt">height =</span> <span class="dv">4</span>, <span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">units =</span> <span class="st">&quot;in&quot;</span>)
+
+## SVG--vector format that remains sharp even when zoomed in
+<span class="kw">ggsave</span>(<span class="dt">filename =</span> <span class="st">&quot;mpg.svg&quot;</span>, <span class="dt">device =</span> <span class="st">&quot;svg&quot;</span>,
+       <span class="dt">plot =</span> mpg.plot, <span class="dt">height =</span> <span class="dv">4</span>, <span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">units =</span> <span class="st">&quot;in&quot;</span>)
+
+
+## Saving many plots into a single file
+<span class="co"># Calculate the number of pages with 9 panels per page</span>
+n_pages &lt;-<span class="st"> </span><span class="kw">ceiling</span>(
+  <span class="kw">length</span>(<span class="kw">levels</span>(diamonds<span class="op">$</span>color)) <span class="op">*</span><span class="st"> </span><span class="kw">length</span>(<span class="kw">levels</span>(diamonds<span class="op">$</span>cut<span class="op">:</span>diamonds<span class="op">$</span>clarity)) <span class="op">/</span><span class="st"> </span><span class="dv">9</span>
+)
+
+<span class="kw">pdf</span>(<span class="st">&quot;multipage.pdf&quot;</span>)
+  <span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_len</span>(n_pages)) {
+    p=<span class="st">  </span><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(carat, price)) <span class="op">+</span>
+<span class="st">          </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>) <span class="op">+</span>
+<span class="st">          </span><span class="kw">facet_grid_paginate</span>(color<span class="op">~</span>cut<span class="op">:</span>clarity, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">page =</span> i)<span class="op">+</span>
+<span class="st">        </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;ggforce: facet pagination&quot;</span>)
+    <span class="kw">print</span>(p)
+}
+<span class="kw">dev.off</span>()</code></pre></div>
+<pre><code>## quartz_off_screen 
+##                 2</code></pre>
+</div>
+<div id="combining-multiple-graphs-for-publication" class="section level3">
+<h3><span class="header-section-number">11.1.2</span> Combining multiple graphs for publication</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggpubr)
+
+displ.plot =<span class="st"> </span><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(disp, mpg)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()
+hp.plot =<span class="st"> </span><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(hp, mpg)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()
+
+combined.plot =<span class="st"> </span><span class="kw">ggarrange</span>(displ.plot, hp.plot, <span class="dt">nrow=</span><span class="dv">1</span>, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">align =</span> <span class="st">&quot;hv&quot;</span>)
+combined.plot</code></pre></div>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+</div>
+<div id="faceted-pagination" class="section level3">
+<h3><span class="header-section-number">11.1.3</span> Faceted pagination</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggforce)
+## Examples from: https://cran.r-project.org/web/packages/ggforce/vignettes/Visual_Guide.html
+
+
+<span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(carat, price)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_grid_paginate</span>(color<span class="op">~</span>cut<span class="op">:</span>clarity, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">page =</span> <span class="dv">1</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;ggforce: facet pagination&quot;</span>)</code></pre></div>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
+
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="Polishing.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="Interaction.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/jdlee/interactive-data-visualization/blob/master/10-polishing.Rmd",
+"text": "Edit"
+},
+"download": ["visualizationwithggplot.pdf", "visualizationwithggplot.epub"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -19,16 +19,18 @@ Seeing the smooth and rough of data
 bins or binwidth, default number of bins is 30
 
 ## Histograms and bin choice
-```{r, cache=TRUE, warning=FALSE}
-## TODO combine into a 3-graph panel
-ggplot(data = diamonds.df, aes(price)) + 
+```{r, histogram-bin, cache=TRUE, warning=FALSE}
+h10.plot = ggplot(data = diamonds.df, aes(price)) + 
   geom_histogram(bins = 10) 
 
-ggplot(data = diamonds.df, aes(price)) + 
+h30.plot = ggplot(data = diamonds.df, aes(price)) + 
   geom_histogram(bins = 30) 
 
-ggplot(data = diamonds.df, aes(price)) + 
+h80.plot = ggplot(data = diamonds.df, aes(price)) + 
   geom_histogram(bins = 80) 
+
+ggarrange(h10.plot, h30.plot, h80.plot,
+	nrow=1, ncol = 3, align = "h")
 
 ```
 
@@ -36,21 +38,48 @@ Density as abstraction and model
 
 Adjust is a multiplier on the default kernel bandwidth and so 1 represents the default
 ## Density and kernel adjustment 
-```{r, cache=TRUE}
-ggplot(data = diamonds.df, aes(price)) + 
+```{r, density-adjust, cache=TRUE}
+a10.plot = ggplot(data = diamonds.df, aes(price)) + 
   geom_density(adjust = 10) 
 
-ggplot(data = diamonds.df, aes(price)) + 
+a1.plot = ggplot(data = diamonds.df, aes(price)) + 
   geom_density(adjust = 1) 
 
-ggplot(data = diamonds.df, aes(price)) + 
-  geom_density(adjust  = .1) 
+a01.plot = ggplot(data = diamonds.df, aes(price)) + 
+  geom_density(adjust  = 0.1) 
 
+ggarrange(a10.plot, a1.plot, a01.plot,
+	nrow=1, ncol = 3, align = "h")
+
+
+```
+
+## Histogram percentage rather than count
+ggplot(mtcars.df , aes(x = cyl)) + 
+    geom_bar(aes(y = (..count..)/sum(..count..))) + 
+    scale_y_continuous(labels = percent)
+
+## qq plot
+
+```{r, qqplot, cache=TRUE}
+
+diamonds.df = diamonds
+
+ggplot(diamonds.df, aes(sample = price)) + 
+  geom_qq(distribution = qlnorm) +
+  geom_abline(intercept = mean(diamonds.df$price), slope = sd(diamonds.df$price))
+
+```
+
+## Cummulative density
+```{r}
+ggplot(diamonds.df, aes(price, colour = cut)) + 
+  stat_ecdf(geom = "step")
 ```
 
 ## Histogram, density overlay, and normal overlay
 
-## Cummulative density
+
 
 ## Distribution: 2-D distribution and overplotting revisited
 ```{r}

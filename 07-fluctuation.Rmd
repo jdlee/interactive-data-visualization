@@ -12,8 +12,9 @@ library(tidyverse)
 
 
 
-
-    
+## Multiple time series
+two lines on one plot and problems
+faceting
         
 ## Time series with reference line
 

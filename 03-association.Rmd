@@ -135,6 +135,15 @@ ggplot(data = mtcars.df, aes(x = wt, y = mpg)) +
 ```
 
 
+## Scatterplot with regression equation and marginal distributions
+Scatterplot augmented with marginal distributions, regression equation, and Tufte-inspired range frame.
+
+Marginal distributions show that a 1-D scatterplot is a histogram and that a 2-d histogram is a scatterplot. Chapter \@ref(Distribution) describes such plots in detail.
+
+Chapter \@ref(Polishing) shows how to add annotations, such as the equation.
+
+Derived from: 
+http://t-redactyl.io/blog/2016/05/creating-plots-in-r-using-ggplot2-part-11-linear-regression-plots.html
 
 ```{r, scatterplot-marginal}
 library(ggthemes)
@@ -162,6 +171,47 @@ p = ggplot(mtcars.df, aes(x=wt, y=mpg)) +
 p = ggMarginal(p, type = "histogram")
 p
 
+```
+
+
+
+
+## Categorical scatterplot
+```{r, scatterplot-categorical, cache=TRUE}
+mtcars.df = mtcars
+mtcars.df$gear = as.factor(mtcars.df$gear)
+mtcars.df$am = as.factor(mtcars.df$am)
+
+ggplot(mtcars.df, aes(gear, am)) + 
+  geom_count()
+ 
+ ggplot(mtcars.df, aes(gear, am)) + 
+  geom_jitter(width = 0.075, height = 0.075) 
+  
+s.mtcars.df = mtcars.df %>% group_by(gear, am) %>% summarise(count = n())
+
+ggplot(s.mtcars.df, aes(gear, am)) + 
+  geom_tile(aes(fill = count))
+
+```
+
+
+## Table lens
+Table lens serves a similar purpose to the scatterplot but might be more familiar and focusses attention on individual variables and individual cases. Chapter \@ref(Tables) provides more detail on this technique.
+
+```{r, table_lens, echo=FALSE, message=FALSE}
+library(DT)
+sub.mtcars.df = mtcars.df %>% 
+  dplyr::select(mpg, wt) %>% 
+  rownames_to_column("name") 
+
+datatable(sub.mtcars.df) %>% 
+  formatStyle(names(sub.mtcars.df[, 2:3]),
+  background = styleColorBar(range(sub.mtcars.df[, 2:3]), 'lightblue'),
+  backgroundSize = '98% 88%',
+  backgroundRepeat = 'no-repeat',
+  backgroundPosition = 'center')
+  
 ```
 
 
@@ -205,8 +255,8 @@ ggplot(data = mtcars.df, aes( x = disp, y = hp)) +
 
 
 
-## Scatterplot matrix
-```{r, echo=FALSE, warning=FALSE, message=FALSE}
+## A matrix of scatterplots
+```{r, scatterplot-matrix, echo=FALSE, warning=FALSE, message=FALSE}
 library(lattice)
 library (car)
 library(hexbin)
@@ -253,53 +303,5 @@ splom(sub.data,
 ```
 
 
-## Categorical scatterplot
-```{r}
-mtcars.df = mtcars
-mtcars.df$gear = as.factor(mtcars.df$gear)
-mtcars.df$am = as.factor(mtcars.df$am)
 
-ggplot(mtcars.df, aes(gear, am)) + 
-  geom_count()
- 
- ggplot(mtcars.df, aes(gear, am)) + 
-  geom_jitter(width = 0.075, height = 0.075) 
-  
-s.mtcars.df = mtcars.df %>% group_by(gear, am) %>% summarise(count = n())
-
-ggplot(s.mtcars.df, aes(gear, am)) + 
-  geom_tile(aes(fill = count))
-
-```
-
-
-## Scatterplot with regression equation and marginal distributions
-Scatterplot augmented with marginal distributions, regression equation, and Tufte-inspired range frame.
-
-Marginal distributions show that a 1-D scatterplot is a histogram and that a 2-d histogram is a scatterplot. Chapter \@ref(Distribution) describes such plots in detail.
-
-Chapter \@ref(Polishing) shows how to add annotations, such as the equation.
-
-Derived from: 
-http://t-redactyl.io/blog/2016/05/creating-plots-in-r-using-ggplot2-part-11-linear-regression-plots.html
-
-
-
-## Table lens
-Table lens serves a similar purpose to the scatterplot but might be more familiar and focusses attention on individual variables and individual cases. Chapter \@ref(Tables) provides more detail on this technique.
-
-```{r, table_lens, echo=FALSE, message=FALSE}
-library(DT)
-sub.mtcars.df = mtcars.df %>% 
-  dplyr::select(mpg, wt) %>% 
-  rownames_to_column("name") 
-
-datatable(sub.mtcars.df) %>% 
-  formatStyle(names(sub.mtcars.df[, 2:3]),
-  background = styleColorBar(range(sub.mtcars.df[, 2:3]), 'lightblue'),
-  backgroundSize = '98% 88%',
-  backgroundRepeat = 'no-repeat',
-  backgroundPosition = 'center')
-  
-```
 

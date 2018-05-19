@@ -439,7 +439,8 @@ geom_point() +
 ```
 
 
-### Remove chart details Useful for plotting graphs and networks
+### Remove chart details 
+Useful for plotting graphs and networks and maps
 ```{r}
 ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point() +
   theme(axis.line=element_blank(),
@@ -458,7 +459,67 @@ ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point() +
 ```
 
 
-### Predefined themes turn adjust many elements
+### Predefined themes adjust many elements
+
+```{r}
+library(hrbrthemes) # Precise font and minimal grid
+library(ggthemes) # Huge variety of themes including Tufte and Few
+library(xkcd) # Plots in the xkcd comic style
+```
+
+
+An engaging and fun theme
+ftp://200.236.31.7/CRAN/web/packages/xkcd/vignettes/xkcd-intro.pdf
+
+
+```{r, xkcd-plot, cache=TRUE, warning=FALSE, echo=FALSE}
+library(extrafont)
+
+xrange <- range(mtcars$wt)
+yrange <- range(mtcars$mpg)
+
+p =  ggplot(mtcars.df) + geom_point(aes(wt, mpg)) +
+     theme_xkcd()+
+     xkcdaxis(xrange, yrange)
+ 
+
+## Add man
+ ratioxy <- diff(xrange) / diff(yrange)
+
+mapping <- aes(x=x,
+               y=y,
+               scale=scale,
+               ratioxy=ratioxy,
+               angleofspine = angleofspine,
+               anglerighthumerus = anglerighthumerus,
+               anglelefthumerus = anglelefthumerus,
+               anglerightradius = anglerightradius,
+               angleleftradius = angleleftradius,
+               anglerightleg =  anglerightleg,
+               angleleftleg = angleleftleg,
+               angleofneck = angleofneck,
+               color = color )
+
+dataman <- data.frame( x= c(2), y=c(23),
+                  scale = c(5),
+                  ratioxy = ratioxy,
+                  angleofspine =  - pi / 2 ,
+                  anglerighthumerus = -pi/6,
+                  anglelefthumerus = pi + pi/6,
+                  anglerightradius = 0,
+                  angleleftradius = - pi/4,
+                  angleleftleg = 3*pi/2  + pi / 12 ,
+                  anglerightleg = 3*pi/2  - pi / 12,
+                  angleofneck = -pi / 2 - pi/10,
+                  color = "red")
+
+p + xkcdman(mapping, dataman)
+
+```
+
+
+
+
 ```{r}
 ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + 
 	geom_point() +
@@ -515,62 +576,6 @@ theme_ipsum()
 
 
 
-
-
-
-
-
-```{r}
-library(hrbrthemes) # Precise font and minimal grid
-library(ggthemes) # Huge variety of themes including Tufte and Few
-library(xkcd) # Plots in the xkcd comic style
-```
-
-ftp://200.236.31.7/CRAN/web/packages/xkcd/vignettes/xkcd-intro.pdf
-```{r, xkcd-plot, cache=TRUE, warning=FALSE, echo=FALSE}
-library(extrafont)
-
-xrange <- range(mtcars$wt)
-yrange <- range(mtcars$mpg)
-
-p =  ggplot(mtcars.df) + geom_point(aes(wt, mpg)) +
-     theme_xkcd()+
-     xkcdaxis(xrange, yrange)
- 
-
-## Add man
- ratioxy <- diff(xrange) / diff(yrange)
-
-mapping <- aes(x=x,
-               y=y,
-               scale=scale,
-               ratioxy=ratioxy,
-               angleofspine = angleofspine,
-               anglerighthumerus = anglerighthumerus,
-               anglelefthumerus = anglelefthumerus,
-               anglerightradius = anglerightradius,
-               angleleftradius = angleleftradius,
-               anglerightleg =  anglerightleg,
-               angleleftleg = angleleftleg,
-               angleofneck = angleofneck,
-               color = color )
-
-dataman <- data.frame( x= c(2), y=c(23),
-                  scale = c(5),
-                  ratioxy = ratioxy,
-                  angleofspine =  - pi / 2 ,
-                  anglerighthumerus = -pi/6,
-                  anglelefthumerus = pi + pi/6,
-                  anglerightradius = 0,
-                  angleleftradius = - pi/4,
-                  angleleftleg = 3*pi/2  + pi / 12 ,
-                  anglerightleg = 3*pi/2  - pi / 12,
-                  angleofneck = -pi / 2 - pi/10,
-                  color = "red")
-
-p + xkcdman(mapping, dataman)
-
-```
 
 
 

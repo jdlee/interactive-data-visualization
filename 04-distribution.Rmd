@@ -55,12 +55,25 @@ ggarrange(a10.plot, a1.plot, a01.plot,
 ```
 
 ## Histogram percentage rather than count
+
+```{r, histogram-percentage}
 ggplot(mtcars.df , aes(x = cyl)) + 
     geom_bar(aes(y = (..count..)/sum(..count..))) + 
     scale_y_continuous(labels = percent)
+```
+    
+## Histogram, density overlay, and normal overlay
 
-## qq plot
+    
+## Cummulative density
+```{r}
+ggplot(diamonds.df, aes(price, colour = cut)) + 
+  stat_ecdf(geom = "step")
+```
 
+
+## Quantile-quantle plot
+Plots quantiles of sample as a function of the quantiles of the theoretical distribution. 
 ```{r, qqplot, cache=TRUE}
 
 diamonds.df = diamonds
@@ -76,9 +89,6 @@ ggplot(diamonds.df, aes(sample = price)) +
 ggplot(diamonds.df, aes(price, colour = cut)) + 
   stat_ecdf(geom = "step")
 ```
-
-## Histogram, density overlay, and normal overlay
-
 
 
 ## Distribution: 2-D distribution and overplotting revisited
@@ -123,7 +133,7 @@ ggplot(data = diamonds.df, aes(price)) +
 
 ```  
 
-## Ridge plot
+## Ridge plot--An array of density plots
 https://cran.r-project.org/web/packages/ggridges/vignettes/gallery.html
 ```{r}
 

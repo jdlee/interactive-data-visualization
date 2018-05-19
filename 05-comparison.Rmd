@@ -3,17 +3,16 @@
 # Comparison--barchart and boxplots{#Comparison}
 
 
-## Deviation chart: Bar above and below zero or average
-
-
 
 
 ## Graph considerations for communication: aggregation, abstraction, complexity 
+### Simple bar chart
 ```{r message=FALSE}
 library(tidyr)
- 
-## Abstraction
-# Complexity
+library(ggforce)
+library(ggthemes)
+library(ggstance)
+
 mtcars.df = mtcars
 mtcars.df = mtcars.df %>% mutate(cyl = as.factor(cyl))
 
@@ -24,6 +23,20 @@ ggplot(data = s.mtcars.df, aes(x = cyl, y = m.hp)) +
   geom_bar(stat="identity")
 
 ggplot(data = s.mtcars.df, aes(x = cyl, y = m.hp)) +
+  geom_col()
+
+## Change order of bars
+cyl.order <- c("8", "6", "4")
+ggplot(data = s.mtcars.df, aes(x = cyl, y = m.hp)) +
+  geom_col() +
+  scale_x_discrete(limits = cyl.order)
+```
+
+
+### Bar chart with error bars
+```{r}
+
+ggplot(data = s.mtcars.df, aes(x = cyl, y = m.hp)) +
   geom_bar(stat="identity")+
   geom_linerange(aes(ymin=m.hp-2*se.hp, ymax=m.hp+2*se.hp))
 
@@ -31,24 +44,11 @@ ggplot(data = s.mtcars.df, aes(x = cyl, y = m.hp)) +
   geom_bar(stat="identity")+
   geom_linerange(aes(ymin=m.hp-2*se.hp, ymax=m.hp+2*se.hp))+
   geom_point(data = mtcars.df, aes(cyl, hp), position = position_jitter(width = .2, height = 0))
-
-ggplot(data = s.mtcars.df, aes(x = cyl, y = m.hp)) +
-  geom_point(stat="identity", size = 3)+
-  geom_linerange(aes(ymin=m.hp-2*se.hp, ymax=m.hp+2*se.hp))+
-  geom_point(data = mtcars.df, aes(cyl, hp), position = position_jitter(width = .2, height = 0))
-
-
-ggplot(data = s.mtcars.df, aes(x = cyl, y = m.hp)) +
-  geom_violin(data= mtcars.df, aes(cyl, hp))+
-  geom_point(stat="identity", size = 3)+
-  geom_linerange(aes(ymin=m.hp-2*se.hp, ymax=m.hp+2*se.hp))+
-  geom_point(data = mtcars.df, aes(cyl, hp), 
-             position = position_jitter(width = .2, height = 0), alpha =.6)
 ```
 
 
 
-## dotplot and offset range plot
+### dotplot and offset range plot
 ```{r, cache=TRUE}
 ## Set seed and create data
 set.seed(999)
@@ -74,20 +74,65 @@ ggplot()+
   labs(x="", y="") +
   ylim(2, 15)
 ```      
-   
-   
-## Change order of bars
-```{r}
 
-mtcars.df$cyl = as.factor(mtcars.df$cyl)
-cyl.order <- c("8", "6", "4")
- ggplot(mtcars.df, aes(x = cyl)) + 
-   geom_bar()+
-  scale_x_discrete(limits = cyl.order)
+### Statistical significance in context
+
+```{r}
+ggplot(data = mtcars.df, aes(x = as.factor(cyl), y = hp)) + 
+  geom_boxplot(colour = "darkgrey") + 
+  geom_point(stat="summary", fun.y = "mean", size = 6, shape = 1) +
+  geom_pointrange(stat="summary", fun.data = "mean_cl_boot") +
+  geom_dotplot(binaxis = "y", stackdir = "center", binwidth = 1, 
+               dotsize = 6,alpha = .3, color = "black", fill = "red") +
+  geom_hline(aes(yintercept = mean(hp)), size = 1.2) 
+```
+  
+
+
+## Comparing distributions, box, violyn, and sina plot
+```{r message=FALSE}
+library(tidyr)
+
+ggplot(data = s.mtcars.df, aes(x = cyl, y = m.hp)) +
+  geom_col()+
+  geom_linerange(aes(ymin=m.hp-2*se.hp, ymax=m.hp+2*se.hp))
+
+ggplot(data = s.mtcars.df, aes(x = cyl, y = m.hp)) +
+  geom_col()+
+  geom_linerange(aes(ymin=m.hp-2*se.hp, ymax=m.hp+2*se.hp))+
+  geom_point(data = mtcars.df, aes(cyl, hp), position = position_jitter(width = .2, height = 0))
+
+ggplot(data = s.mtcars.df, aes(x = cyl, y = m.hp)) +
+  geom_point(stat="identity", size = 3)+
+  geom_linerange(aes(ymin=m.hp-2*se.hp, ymax=m.hp+2*se.hp))+
+  geom_point(data = mtcars.df, aes(cyl, hp), position = position_jitter(width = .2, height = 0))
+
+
+## Sina plot
+ggplot(mpg, aes(as.factor(cyl), hwy))+
+ geom_sina(aes(color = as.factor(cyl)),size = 1, alpha =.5) +
+ geom_tufteboxplot()+
+  labs(title = "ggforce: sina plot with Tufte boxplot")
+
+
+# ggplot(s.mtcars.df, aes(m.hp, m.mpg, colour =as.factor(cyl)))+
+# geom_pointrangeh(aes(xmin= m.hp-se.hp, xmax = m.hp+se.hp))+
+#   geom_pointrange(aes(ymin= m.mpg-se.mpg, ymax = m.mpg+se.mpg))+
+#   labs(title = "ggstance: horizontal point range")
+
+
+ggplot(data = s.mtcars.df, aes(x = cyl, y = m.hp)) +
+  geom_violin(data= mtcars.df, aes(cyl, hp))+
+  geom_point(stat="identity", size = 3)+
+  geom_linerange(aes(ymin=m.hp-2*se.hp, ymax=m.hp+2*se.hp))+
+  geom_point(data = mtcars.df, aes(cyl, hp), 
+             position = position_jitter(width = .2, height = 0), alpha =.6)
 ```
 
 
-## Compares the empirical and theoretical distribution summary
+  
+
+### Compare  empirical and theoretical distribution
 
 ```{r}
 sum.mtcars.df = mtcars.df%>% group_by(cyl) %>% 
@@ -106,24 +151,39 @@ ggplot(mtcars.df) +
    
    
 
-## Statistical significance in context
-
+## Comparing across many variables
+### Dot plots and reordering
+Comparing many mean values
 ```{r}
-ggplot(data = mtcars.df, aes(x = as.factor(cyl), y = hp)) + 
-  geom_boxplot(colour = "darkgrey") + 
-  geom_point(stat="summary", fun.y = "mean", size = 6, shape = 1) +
-  geom_pointrange(stat="summary", fun.data = "mean_cl_boot") +
-  geom_dotplot(binaxis = "y", stackdir = "center", binwidth = 1, 
-               dotsize = 6,alpha = .3, color = "black", fill = "red") +
-  geom_hline(aes(yintercept = mean(hp)), size = 1.2) 
+#TODO Change to mean sd catepilar plot
+mtcars.df = mtcars
+mtcars.df$name = rownames(mtcars.df)
+ggplot(data = mtcars.df, aes(reorder(name, hp), y = hp, colour = as.factor(cyl))) +
+  geom_point(size = 3) +
+  geom_hline(aes(yintercept = mean(hp)), colour = "darkgrey") +
+  #geom_linerange(aes(ymin= -Inf, ymax= hp)) +
+  coord_flip() +
+  labs(x = "Cylinders", y = "Power (hp)") +
+  scale_colour_brewer(name = "Number of \nCylinders", palette="Set2") + # http://colorbrewer2.org
+  theme(legend.position = c(.75, .25)) 
 ```
-  
+
+
+
+### Point range on x and y
+```{r, xycomparison}
+## Point range on x and y
+library(ggstance)
+s.mtcars.df = mtcars %>% group_by(cyl) %>% 
+  summarise(m.hp = mean(hp), se.hp = sd(hp)/n()^.5,
+            m.mpg = mean(mpg), se.mpg = sd(mpg)/n()^.5)
+```
 
     
-## Tufte boxplot
-
+### Tufte boxplot for many variables
 ```{r, cache=TRUE}
 library(ggthemes)
+
 ggplot(mtcars, aes(factor(cyl), mpg)) +
   geom_tufteboxplot(median.type = "line", whisker.type = 'line', hoffset = 0, width = 4) +
   geom_rangeframe() 
@@ -138,33 +198,13 @@ geom_point()+
   geom_rangeframe(size = 2, colour = "grey35")+
   labs(title = "ggthemes: Tufte range frame")
 
-
-## Sina plot
-ggplot(mpg, aes(as.factor(cyl), hwy))+
- geom_sina(aes(color = as.factor(cyl)),size = 1, alpha =.5) +
- geom_tufteboxplot()+
-  labs(title = "ggforce: sina plot with Tufte boxplot")
-
-  
-## Point range on x and y
-library(ggstance)
-s.mtcars.df = mtcars %>% group_by(cyl) %>% 
-  summarise(m.hp = mean(hp), se.hp = sd(hp)/n()^.5,
-            m.mpg = mean(mpg), se.mpg = sd(mpg)/n()^.5)
-
-ggplot(s.mtcars.df, aes(m.hp, m.mpg, colour =as.factor(cyl)))+
-geom_pointrangeh(aes(xmin= m.hp-se.hp, xmax = m.hp+se.hp))+
-  geom_pointrange(aes(ymin= m.mpg-se.mpg, ymax = m.mpg+se.mpg))+
-  labs(title = "ggstance: horizontal point range")
-
 ```
 
-## Dot plots and reordering
 
 
+### Parallel coordinate plot with similar items highlighted
+Link to network for showing links in multivariate data
 
-Link to network for same data
-## Parallel coordinate plot with similar items highlighted
 ```{r, cache=TRUE, echo=FALSE, warning=FALSE}
 ## Highlight closest pair of items multidimensional space ##
 library(tidyr)
@@ -206,6 +246,6 @@ ggplot(l.scaled_mtcars.df, aes(reorder(var, -value, sd), value, group = name))+
 
 
 ## Gliphs: Chernof face and radar plots 
-Show pattern not precision
+Show patterns and outliers not precise comparisons
 
 

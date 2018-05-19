@@ -251,59 +251,27 @@ Number variables (nominal, ordinal, interval)
 The examples for each type of graphs represent one of many possible representations. For example, the stacked bar chart addresses questions of proportion, but so can pie charts and 3-D pie charts. How do you choose between these alternatives? One consideration is to select display dimensions that make it easy for people to make comparisons needed to answer the questions---identify effective mapping between data and display dimensions---which we turn to in the following section.
 
   
-## Visual perception for visualization
-### Types of cognitive processes to be supported
-Comparison
+## Percpetual processes to be supported: Comparison, Detection, Pattern identification
+
+Attentional span 
+Visual WM limits
+Preattentive cues
+Compatability 
+Conventions and familiarity
+
+
+### Comparison
 Differences between conditions, Compare to zero?
 Perceptual sensitivity
 Proximity compatibility principle (enable relative rather than absolute comparisons with reference lines and data ordering)
 
-Detection
+### Detection
 Outliers, deviations from assumptions
-Popout effects and perceptual sensitivity
-
-Pattern identification
-Associations, interactions, and changes over time
-Gestalt principles 
-
-## Principles from general to specific
-* Identify audience, story, and key relationships (Few)
-
-* Put data in context (Tufte)
-  Scatter plot: Data points with linear and loess models 
-  Category plot: Boxplot with individual data points
-  Time series: Small multiples with grand mean 
-
-* Maximize data/ink ratio (Tufte)
-* Maximize data to create rich representation, minimize extraneous non-data elements
-
-* Minimize non-data elements: bar charts rather than 3-D pie
-
-* Manage clutter with grouping and layering 
-* Match data type to appropriate aesthetics (Cleveland)
-  Only position good for all data types: Focus on 2d-plane and relative judgments
-  Consider data type: size better than color for interval data
+Popout effects 
+TODO Create figure to show cost of conjunctive search and benefit of redundant coding
 
 
-Estimation errors and effort proportional to the absolute difference from common baseline: reference lines provide a local baseline. TODO Show tall bars with mean reference line
-
-```{r}
-data = read.csv('data/DataAestheticMapping.csv')
-
-data$Type = factor(data$Type, levels=c("Interval", "Ordinal", "Nominal"))
-
-ggplot(data, aes(Type, reorder(Rank, -Rank), group = Aesthetic)) +
-  geom_line(alpha = .4, size = 2.5) +
-  geom_text(aes(label = Aesthetic), size = 5) +
-  ylab("Rank") + xlab("Data type") +
-  theme_bw()
-```
-
-Preattentive processing:
-Pop-out and visual search
-
-
-```{r, echo=FALSE }
+```{r, scatterplot-popout, echo=FALSE, echo=FALSE}
 happiness.df = read.csv("data/world-happiness-report/2017.csv")
 
 serial.plot = ggplot(happiness.df, aes(Freedom, Happiness.Score)) + 
@@ -326,17 +294,11 @@ ggarrange(serial.plot, popout.plot,
 
 
 
-Mapping data to graph features [@Cleveland1985]
-Size of circle: map to radius or the area 
-TODO create plot to show map to radius and area
+### Pattern identification
+Associations, interactions, and changes over time
+Gestalt principles 
 
-TODO show good and bad mappings
-
-
-[@Tufte1983], [@Munzner2014, @Gelman2013a]
-
-
-Quantitities
+Preattentive processing
 
 TODO Create figure to show relative benefit of shape, intensity color for grouping 
 
@@ -348,13 +310,67 @@ Grouping and gestalt
   Enclosure
   Closure
   
-TODO Create figure to show cost of conjunctive search and benefit of redundant coding
 
 TODO Figure ground showing data and summary vs summary and data
 
 
-## Mapping typese of variables to graph features
+## Principles from general to specific
+[@Tufte1983], [@Munzner2014, @Gelman2013a] 
+
+%ten guidelines [@Kelleher2011]
+
+### Identify audience, story, and key relationships (Few)
+
+### Focus attention and organize reading
+  Group
+  Prioritize
+  Provide context
+  Sequence
+  
+Be consistent, every difference should tell
+
+
+### Annotate to show cause and explain why
+
+### Concrete details engage and are memorable
+Connect to the world
+
+
+
+### Enable comparisons and put data in context 
+(Tufte)
+  Scatter plot: Data points with linear and loess models 
+  Category plot: Boxplot with individual data points
+  Time series: Small multiples with grand mean 
+
+Estimation errors and effort proportional to the absolute difference from common baseline: reference lines provide a local baseline. TODO Show tall bars with mean reference line
+
+
+
+### Map types of variables to graph features
+Mapping data to graph features [@Cleveland1985]
+
 For the purposes of display design, three different data types guide the choice of display dimensions: interval, ordinal, and nominal [@Cleveland1985]. Interval data include real or integer numbers (e.g., height and weight), ordinal data are categories that have a meaningful order (e.g., compact, mid-size, and full-size cars), and nominal data are categories that have no order (e.g., male, female). Each data type can be represented with one of several graph dimensions, such as color or position, but certain mapping support more accurate judgments.  
+
+Size of circle: map to radius or the area 
+TODO create plot to show map to radius and area
+
+TODO show good and bad mappings
+
+color  [@Silva2011]
+
+
+```{r, perceptual-sensitivity, fig.cap = "Aesthetic mapping."}
+data = read.csv('data/DataAestheticMapping.csv')
+
+data$Type = factor(data$Type, levels=c("Interval", "Ordinal", "Nominal"))
+
+ggplot(data, aes(Type, reorder(Rank, -Rank), group = Aesthetic)) +
+  geom_line(alpha = .4, size = 2.5) +
+  geom_text(aes(label = Aesthetic), size = 5) +
+  ylab("Rank") + xlab("Data type") +
+  theme_bw()
+```
 
 %TODO figure for mapping types of data and graph dimensions  [@Cleveland1985]
 
@@ -366,35 +382,10 @@ Because visualization involves multiple conceptual dimensions, a natural choice 
 
 Another important conceptual dimension is time. Time, like space, is compatibly mapped to display dimension of position, often advancing from left (past) to right (future). Time can also be directly mapped to display time via animation. Animated graphs can be compelling, but they require working memory to track objects across the display and so severely limit the number of data points that can be compared. Interactive visualization described in Chapter 10 can give control with a slider and avoids this limit to some degree.
 
-## Principles
-Enable comparisons
-Show cause, explain why
-Annotate to integrate interpretation and data
-Simplify to amplify content
-Simplify content to amplify point
-
-Focus attention
-Organize reading
-  Group
-  Prioritize
-  Provide context
-  Sequence
-  
-Be consistent, every difference should tell
-
-Connect to the world
-
-Explain why
-
-Show movement 
-
-  
 
 
-
-
-###Proximity
-  Proximity compatibility and legend: link to line, orientate to match orientation in graph, sequence to match sequence in graph
+### Ensure proximity compatibility
+Proximity compatibility and legend: link to line, orientate to match orientation in graph, sequence to match sequence in graph
 
 Visual attention must sometimes do a lot of work, traveling from place to place on the graph, and this effort can hinder graph interpretation. Hence, it is important to construct graphs so things that need to be compared (or integrated) are either close together in space or can be easily linked perceptually by a common visual code. This, of course, is a feature for the proximity compatibility principle (A3) and can apply to keeping legends close to the lines that they identify, rather than in remote captions or boxes. Similarly, when the slopes and intercepts of two lines need to be compared, keep them on the same panel of a graph rather than on separate panels. The problems of low proximity will be magnified as the graphs contain more information---more lines. Similarly, in a box plot  with many categories people will be able to compare categories that are close to each other more precisely than those that are separated.  You should order categories so that those to be compared are closest.
 
@@ -404,15 +395,32 @@ Proximity goes beyond physical distance. A line linking points on a timeline can
 As with its application to other display designs, the  proximity compatibility principle means that the visual proximity of elements of the graph need to correspond to the mental proximity needed to interpret this information.  For graphs, this means the questions and comparisons the graph is intended to address should specify  what is ``close'' in the graph.
 
 
-%color  [@Silva2011]
-%ten guidelines [@Kelleher2011]
 
-###Legibility
+### Legibility and consistency
 As with other types of displays, issues of legibility are again relevant. However, in addition to making lines and labels large enough to be readable, a second critical point relates to discriminability (P9). Too often, lines that have very different meanings are distinguished only by points that are highly confusable, as in the graph on the left of Figure XX. Here incorporating redundant coding of differences can be quite helpful. In modern graphics packages, color is often used to discriminate lines, but it is essential to use color coding redundantly with another salient cue. Why? As we noted in Chapter 4, not all viewers have good color vision, and a non-redundant colored graph printed from a black and white printer or photocopied may be useless.
 
 
-###Clutter
-Graphs can easily become cluttered by presenting more lines and marks than the actual information they convey. As we know,  clutter can be counterproductive , and this has led some to argue that the data-ink ratio should always be maximized [@Tufte1983]; that is, the greatest amount of data should be presented with the smallest amount of ink. While adhering to this guideline is a valuable safeguard against the excessive ink of ``chart junk'' graphs, such as those that unnecessarily put a 2-D graph into 3-D perspective, the guideline of minimizing ink can however be counterproductive if carried too far. Thus, for example, the ``minimalist'' graph in center of Figure X, which maximizes data-ink ratio, gains little by its decluttering and loses a lot in its representation of the trend, compared to the line graph on the right Figure XX. The line graph contains an emergent feature---slope---which is not visible in the dot graph. The latter is also much more vulnerable to the conditions of poor viewing (or the misinterpretation caused by the dead bug on the page!).
+### Maximize data/ink ratio 
+(Tufte)
+* Maximize data to create rich representation, minimize extraneous non-data elements
+
+* Minimize non-data elements: bar charts rather than 3-D pie
+
+Annotate to integrate interpretation and data
+
+Simplify to amplify content
+
+Simplify content to amplify point
+
+
+
+### Manage clutter with grouping and layering 
+* Match data type to appropriate aesthetics (Cleveland)
+  Only position good for all data types: Focus on 2d-plane and relative judgments
+  Consider data type: size better than color for interval data
+
+
+Graphs can easily become cluttered by presenting more lines and marks than the actual information they convey. As we know,  clutter can be counterproductive , and this has led some to argue that the data-ink ratio should always be maximized [@Tufte1983]; that is, the greatest amount of data should be presented with the smallest amount of ink. While adhering to this guideline is a valuable safeguard against the excessive ink of "chart junk" graphs, such as those that unnecessarily put a 2-D graph into 3-D perspective, the guideline of minimizing ink can however be counterproductive if carried too far. Thus, for example, the ``minimalist'' graph in center of Figure X, which maximizes data-ink ratio, gains little by its decluttering and loses a lot in its representation of the trend, compared to the line graph on the right Figure XX. The line graph contains an emergent feature---slope---which is not visible in the dot graph. The latter is also much more vulnerable to the conditions of poor viewing (or the misinterpretation caused by the dead bug on the page!).
 
 
 
@@ -431,3 +439,6 @@ Showing the underlying data has the benefit of providing a more complete represe
 ```{r trip-dur, fig.cap="An example of extreme data-to-ink with over 693,000 data points", echo = FALSE}
 include_graphics("images/Trip_Dist_Dur.png")
 ```
+
+## Overview of examples
+Simple, few variables, few observations and single graphical element to and complex, many observations to combitions of graphical elements

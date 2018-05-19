@@ -17,8 +17,10 @@ library(HistData)
 
 Seeing the smooth and rough of data
 bins or binwidth, default number of bins is 30
+
 ## Histograms and bin choice
 ```{r, cache=TRUE, warning=FALSE}
+## TODO combine into a 3-graph panel
 ggplot(data = diamonds.df, aes(price)) + 
   geom_histogram(bins = 10) 
 
@@ -77,7 +79,7 @@ ggplot(diamonds, aes(log(carat), log(price)))+
 
 
 ## Histogram with density and median reference line
-
+TODO change to diversity data gender across job types
 ```{r}
 diamonds.df = diamonds
 

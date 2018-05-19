@@ -233,7 +233,9 @@ ggplot(G20, ggplot2::aes(area = gdp_mil_usd, fill = hdi, label = country, subgro
   geom_treemap_text(colour = "white", place = "topleft", reflow = T)
 ```
 
+
 ## Circle packing
+The most valuable graphical dimensions of x and y position are wasted in this plot becaue they have no meaning, but it can be engaging
 ```{r, circle-pack}
 library(packcircles)
 library(viridis)

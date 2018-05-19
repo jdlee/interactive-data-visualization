@@ -252,6 +252,53 @@ The examples for each type of graphs represent one of many possible representati
 
   
 ## Visual perception for visualization
+### Types of cognitive processes to be supported
+Comparison
+Differences between conditions, Compare to zero?
+Perceptual sensitivity
+Proximity compatibility principle (enable relative rather than absolute comparisons with reference lines and data ordering)
+
+Detection
+Outliers, deviations from assumptions
+Popout effects and perceptual sensitivity
+
+Pattern identification
+Associations, interactions, and changes over time
+Gestalt principles 
+
+## Principles from general to specific
+* Identify audience, story, and key relationships (Few)
+
+* Put data in context (Tufte)
+  Scatter plot: Data points with linear and loess models 
+  Category plot: Boxplot with individual data points
+  Time series: Small multiples with grand mean 
+
+* Maximize data/ink ratio (Tufte)
+* Maximize data to create rich representation, minimize extraneous non-data elements
+
+* Minimize non-data elements: bar charts rather than 3-D pie
+
+* Manage clutter with grouping and layering 
+* Match data type to appropriate aesthetics (Cleveland)
+  Only position good for all data types: Focus on 2d-plane and relative judgments
+  Consider data type: size better than color for interval data
+
+
+Estimation errors and effort proportional to the absolute difference from common baseline: reference lines provide a local baseline. TODO Show tall bars with mean reference line
+
+```{r}
+data = read.csv('data/DataAestheticMapping.csv')
+
+data$Type = factor(data$Type, levels=c("Interval", "Ordinal", "Nominal"))
+
+ggplot(data, aes(Type, reorder(Rank, -Rank), group = Aesthetic)) +
+  geom_line(alpha = .4, size = 2.5) +
+  geom_text(aes(label = Aesthetic), size = 5) +
+  ylab("Rank") + xlab("Data type") +
+  theme_bw()
+```
+
 Preattentive processing:
 Pop-out and visual search
 

@@ -163,7 +163,7 @@ library(gridExtra)
 #' ## plot path of troops, and another layer for city names
  plot_troops <- ggplot(Minard.troops, aes(long, lat)) +
 		geom_path(aes(size = survivors, colour = direction, group = group),
-                 lineend = "round", linejoin = "round")
+                 lineend = "square", linejoin = "mitre")
  plot_cities <- geom_text(aes(label = city), size = 4, data = Minard.cities)
  
 #' ## Combine these, and add scale information, labels, etc.
@@ -171,10 +171,10 @@ library(gridExtra)
 
 breaks <- c(1, 2, 3) * 10^5 
 plot_minard <- plot_troops + plot_cities +
- 	scale_size("Survivors", range = c(1, 10), 
+ 	scale_size("Survivors", range = c(1, 15), 
  	            breaks = breaks, labels = scales::comma(breaks)) +
   scale_color_manual("Direction", 
-                     values = c("grey80", "grey15"), 
+                     values = c("grey85", "grey25"), 
                      labels=c("Advance", "Retreat")) +
   coord_cartesian(xlim = c(24, 38)) +
   xlab(NULL) + 
@@ -200,8 +200,27 @@ plot_temp <- ggplot(Minard.temp, aes(long, temp)) +
 # windows(width=10, height=5)
 
 #' Combine the two plots into one
-grid.arrange(plot_minard, plot_temp, nrow=2, heights=c(3,1))
+grid.arrange(plot_minard, plot_temp, nrow=2, heights=c(3, 1.5))
 
+```
+
+
+
+## Data
+This book is not about data reduction and data wrangling. The tidyverse provides an intrgrated set of tools for data wrangling http://r4ds.had.co.nz.  This book uses data from the following sources:
+
+https://www.kaggle.com
+
+https://www.data.gov Consumer complaint database, NTSB accident database
+
+https://flowingdata.com/category/projects/data-underload/
+
+http://www.wolframalpha.com
+
+R packages: HistData, babynames
+
+Yao about data and web scraping and the package 
+```{r, happiness-plot}
 
 ## Read data from website
 # sports <- read_tsv("https://github.com/halhen/viz-pub/raw/master/sports-time-of-day/activity.tsv")
@@ -223,26 +242,10 @@ ggplot(happiness.df, aes(Freedom, Happiness.Score)) + geom_point()
  police.df = read.csv("data/PoliceKillingsUS.csv") 
 
 # Canadian vehicle specifications: http://www.carsp.ca/research/resources/safety-sources/canadian-vehicle-specifications/
-
 ```
 
 
 
-
-## Data
-This book is not about data reduction and data wrangling. The tidyverse provides an intrgrated set of tools for data wrangling http://r4ds.had.co.nz.  This book uses data from the following sources:
-
-https://www.kaggle.com
-
-https://www.data.gov Consumer complaint database, NTSB accident database
-
-https://flowingdata.com/category/projects/data-underload/
-
-http://www.wolframalpha.com
-
-R packages: HistData, babynames
-
-Yao about data and web scraping and the package 
 
 
 

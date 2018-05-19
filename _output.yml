@@ -8,7 +8,7 @@ bookdown::gitbook:
       after: |
         <li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
     download: [pdf, epub]
-    edit: https://github.com/jdlee/ggplot-examples/blob/master/%s
+    edit: https://github.com/jdlee/interactive-data-visualization/blob/master/%s
     sharing:
       github: yes
       facebook: no

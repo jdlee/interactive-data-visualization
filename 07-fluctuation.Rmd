@@ -148,7 +148,7 @@ Stream plot
 
 "A steamgraph is a more aesthetically appealing version of a stacked area chart. It tries to highlight the changes in the data by placing the groups with the most variance on the edges, and the groups with the least variance towards the centre. This feature in conjunction with the centred alignment of each of the contributing areas makes it easier for the viewer to compare the contribution of any of the components across time."
 
-```{r}
+```{r, cache=TRUE}
 #devtools::install_github('Ather-Energy/ggTimeSeries')
 library(babynames)
 library(ggTimeSeries)
@@ -159,12 +159,16 @@ names.df = babynames %>%
   tally(wt=n)
 ##TODO smooth sequence
 
-ggplot(names.df, aes(x = year, y = nn, group = name, fill = name)) +
-  stat_steamgraph()+
-  xlab(NULL) + 
-  ylab(NULL) + 
-  theme(legend.position = "none")
+ggplot(names.df, aes(year, y = nn, group = name, fill = name)) +
+  stat_steamgraph() +
+  labs(x="", y = "") +
+  scale_x_continuous(expand = c(0, 0)) +
+  theme_minimal() +
+  theme(legend.position = "none", 
+        axis.text.y=element_blank())
+
 ```
+
 
 ## Temporal heatmap 
 TODO replace with rain data for SEA

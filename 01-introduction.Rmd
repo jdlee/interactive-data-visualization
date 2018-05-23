@@ -10,6 +10,10 @@ Well-crafted visualization can make data meaningful.
 
 This book provides principles and examples for data visualization
 
+Provides ways of addressing common challenges:
+remove legend (Section \@ref(AddingRemovingLabels))
+reorder categories of a bar chart or facets 
+Creating Tufte inspired styles (Section \@ref(tufte-slopegraph))  
 
 
 ## Seeing meaning rather than numbers
@@ -78,7 +82,7 @@ ggplot(s.blood.df, aes(reorder(measure, -order), s.value)) +
   geom_text(aes(y = 1, label = hi), hjust = "inward", nudge_y = -.005, alpha =.5, size = 3.3) +
   #geom_line(aes(group = type), size = .33, alpha =.7) +
   geom_hline(yintercept = .5, linetype = "dashed", colour = "grey80")+
-  geom_text(aes(label = value), nudge_x = .3) +
+  geom_text(aes(label = value), nudge_x = .4) +
   geom_point(aes(y= l2.s.value, fill = abnormal), shape = 21, size = 1.5, alpha = .25) +
   geom_point(aes(y= l1.s.value, fill = abnormal), shape = 21, size = 2.5, alpha = .5) +
   geom_point(aes(fill = abnormal), shape = 21, size = 3.) +

@@ -153,7 +153,7 @@ ggplot(mtcars,
 
 ```
 
-### Adding and removing labels: title, axis labels, facet labels, and legends
+### Adding and removing labels: title, axis labels, facet labels, and legends{#AddingRemovingLabels}
 ```{r}
 library(tidyverse)
 library(ggalt)

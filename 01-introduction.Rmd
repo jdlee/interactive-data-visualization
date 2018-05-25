@@ -91,7 +91,8 @@ ggplot(s.blood.df, aes(reorder(measure, -order), s.value)) +
   coord_flip() +
   facet_grid(type~.,scales = "free_y")+
   labs(y = "", x = "") +
-  theme_minimal(base_size = 10)
+  theme_minimal(base_size = 10) +
+  theme(strip.text = element_blank())
 
 ```
 

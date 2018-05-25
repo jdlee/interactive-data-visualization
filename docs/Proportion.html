@@ -25,7 +25,7 @@
 <meta name="author" content="John D. Lee">
 
 
-<meta name="date" content="2018-05-22">
+<meta name="date" content="2018-05-25">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -68,7 +68,7 @@
 <script src="libs/ggiraph/ggiraph_tooltip.js"></script>
 <script src="libs/ggiraph/ggiraph_selector.js"></script>
 <script src="libs/ggiraph-binding/ggiraph.js"></script>
-<script src="libs/svg_1/scripts_svg_1.js"></script>
+<script src="libs/svg_3/scripts_svg_3.js"></script>
 
 
 <style type="text/css">
@@ -359,7 +359,7 @@ deaths.plot =<span class="st"> </span><span class="kw">ggarrange</span>(pie.plot
                        <span class="dt">nrow=</span><span class="dv">1</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">align =</span> <span class="st">&quot;hv&quot;</span>, <span class="dt">common.legend =</span> <span class="ot">TRUE</span>)
 
 deaths.plot</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 </div>
 <div id="pareto-plot-whole-part-and-and-ranking" class="section level2">
 <h2><span class="header-section-number">6.2</span> Pareto plot: Whole part and and ranking</h2>
@@ -377,7 +377,7 @@ sum.night.df =<span class="st"> </span>night.df <span class="op">%&gt;%</span><s
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="kw">reorder</span>(cause, <span class="op">-</span>cause.percent), cause.percent), <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="kw">reorder</span>(cause, <span class="op">-</span>cause.percent), cum.cause.percent), <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="dv">3</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="kw">reorder</span>(cause, <span class="op">-</span>cause.percent), cum.cause.percent, <span class="dt">group =</span> <span class="dv">1</span>), <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> sum.night.df) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">80</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="kw">reorder</span>(cause, <span class="op">-</span>cause.percent), 
@@ -385,7 +385,7 @@ sum.night.df =<span class="st"> </span>night.df <span class="op">%&gt;%</span><s
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="kw">reorder</span>(cause, <span class="op">-</span>cause.percent), cause.percent), <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">width =</span> .<span class="dv">8</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="kw">reorder</span>(cause, <span class="op">-</span>cause.percent), cum.cause.percent), <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-37-2.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-22-2.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ## Pareto plot</span>
 <span class="co"># mtcars.df = mtcars</span>
 <span class="co"># sum.mtcars.df = mtcars.df %&gt;% ungroup() %&gt;%</span>
@@ -413,18 +413,18 @@ sum.night.df =<span class="st"> </span>night.df <span class="op">%&gt;%</span><s
 <span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;stack&quot;</span>, <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span>
 <span class="st">   </span><span class="kw">fill_palette</span>(<span class="dt">palette =</span> <span class="st">&quot;grey&quot;</span>) <span class="op">+</span>
 <span class="st">   </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Stacked bar with proportion: Abstracts to proportion
 <span class="kw">ggplot</span>(sum.night.df, <span class="kw">aes</span>(intervention, cause.percent, <span class="dt">fill =</span> cause))<span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;fill&quot;</span>, <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span>
 <span class="st">   </span><span class="kw">fill_palette</span>(<span class="dt">palette =</span> <span class="st">&quot;grey&quot;</span>) <span class="op">+</span>
 <span class="st">   </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-38-2.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-23-2.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(sum.night.df, <span class="kw">aes</span>(intervention, cause.percent, <span class="dt">fill =</span> cause))<span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span>
 <span class="st">   </span><span class="kw">fill_palette</span>(<span class="dt">palette =</span> <span class="st">&quot;grey&quot;</span>) <span class="op">+</span>
 <span class="st">   </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;&quot;</span>)<span class="op">+</span><span class="kw">theme_bw</span>()</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-38-3.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-23-3.png" width="672" /></p>
 </div>
 <div id="faceted-bar-chart-with-overall-reference-distribution" class="section level2">
 <h2><span class="header-section-number">6.4</span> Faceted Bar chart with overall reference distribution</h2>
@@ -455,14 +455,14 @@ count.diamonds.df =<span class="st"> </span>diamonds.df <span class="op">%&gt;%<
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
 <pre><code>## Warning: Transformation introduced infinite values in
 ## continuous y-axis</code></pre>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(night.df, <span class="kw">aes</span>(Month, deaths, <span class="dt">fill =</span> cause)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_grid</span>(intervention<span class="op">~</span>.) <span class="op">+</span>
 <span class="st">   </span><span class="kw">fill_palette</span>(<span class="dt">palette =</span> <span class="st">&quot;grey&quot;</span>) <span class="op">+</span>
 <span class="st">   </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;&quot;</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-39-2.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-24-2.png" width="672" /></p>
 </div>
 <div id="stacked-dodged-and-opposed-bar-chart" class="section level2">
 <h2><span class="header-section-number">6.6</span> Stacked, dodged and opposed bar chart</h2>
@@ -472,7 +472,7 @@ count.diamonds.df =<span class="st"> </span>diamonds.df <span class="op">%&gt;%<
 <li><p>Dodge makes comparison easy with common axis and relative judgment</p></li>
 <li><p>Opposing makes gender more apparent</p></li>
 </ul>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 </div>
 <div id="treemaps-for-whole-part-of-hierarchy" class="section level2">
 <h2><span class="header-section-number">6.7</span> Treemaps for whole-part of hierarchy</h2>
@@ -485,7 +485,7 @@ count.diamonds.df =<span class="st"> </span>diamonds.df <span class="op">%&gt;%<
 <span class="st">  </span><span class="kw">geom_treemap_subgroup_text</span>(<span class="dt">place =</span> <span class="st">&quot;centre&quot;</span>, <span class="dt">grow =</span> T, <span class="dt">alpha =</span> <span class="fl">0.5</span>, <span class="dt">colour =</span>
                              <span class="st">&quot;black&quot;</span>, <span class="dt">fontface =</span> <span class="st">&quot;italic&quot;</span>, <span class="dt">min.size =</span> <span class="dv">0</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_treemap_text</span>(<span class="dt">colour =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">place =</span> <span class="st">&quot;topleft&quot;</span>, <span class="dt">reflow =</span> T)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 </div>
 <div id="circle-packing" class="section level2">
 <h2><span class="header-section-number">6.8</span> Circle packing</h2>

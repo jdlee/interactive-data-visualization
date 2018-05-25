@@ -144,24 +144,36 @@ link to treemap
 
 ```{r}
 ## TODO Convert to migration data
-graph <- graph_from_data_frame(flare$edges, vertices = flare$vertices)
-set.seed(1)
-ggraph(graph, 'circlepack', weight = 'size') + 
+library(ggraph)
+flare.df = ggraph::flare
+
+graph <- graph_from_data_frame(flare.df$edges, vertices = flare.df$vertices)
+
+
+circle.plot = ggraph(graph, 'circlepack', weight = 'size') + 
     geom_node_circle(aes(fill = depth), size = 0.25, n = 50) + 
-    coord_fixed()+
-    theme_graph()
+    coord_fixed() +
+    theme_graph() +
+    theme(legend.position = "none", plot.margin=unit(c(0,0,0,0), "cm"))
 
 ## Data describe the class hiearchy of the Flare visualization library
-ggraph(graph, layout = 'treemap', weight = 'size') + 
-    geom_node_tile(aes(fill = depth))+
-    theme_graph()
+tree.plot = ggraph(graph, layout = 'treemap', weight = 'size') + 
+    geom_node_tile(aes(fill = depth)) +
+    theme_graph() +
+    theme(legend.position = "none", plot.margin=unit(c(0,0,0,0), "cm"))
+
 
 
 ## Same basic data plotted as a circular tree
-ggraph(graph, layout = 'dendrogram', circular = TRUE) + 
+round_dendro.plot = ggraph(graph, layout = 'dendrogram', circular = TRUE) + 
     geom_edge_diagonal() + 
     geom_node_point(aes(filter = leaf)) + 
-    coord_fixed()+
-    theme_graph()
+    coord_fixed() +
+    theme_graph() + 
+  theme(legend.position = "none", plot.margin=unit(c(0,0,0,0), "cm"))
+
+
+ggarrange(circle.plot, tree.plot, round_dendro.plot,
+nrow=1, ncol = 3, align = "hv")
 
 ```

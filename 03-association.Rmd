@@ -75,11 +75,22 @@ ggplot(data = mtcars, mapping = aes(x = wt, y = mpg, fill = hp, size = 1/qsec)) 
 
 ```{r, symbols, echo=FALSE, cache=TRUE}
 
-ggplot(data = data.frame(x = c(0: 25)), aes(x = x, y = x, shape = x)) + 
+symbol.plot = ggplot(data = data.frame(x = c(0: 25)), aes(x = x, y = x, shape = x)) + 
   geom_point(size = 8) +
   scale_shape_identity() +
   facet_wrap(~ x, scales = 'free') + 
   theme_void()
+
+line.plot = ggplot(data=data.frame(x=c(1:6))) + 
+  geom_hline(size=2, aes(yintercept=x, linetype=x)) +
+  scale_linetype_identity() +
+  xlim(c(0,100)) +
+  facet_wrap(~ x, ncol = 2, scales = 'free')+
+  theme_void()
+
+ggarrange(symbol.plot, line.plot, 
+nrow=1, ncol = 2)
+
 ```
 
 
@@ -93,7 +104,7 @@ When building a plot each layer is placed on top of the preceding layer, such th
 
 Table \@ref(tab:geoms) shows the full set of possible geometric elements that can be used to create graphs, the following chapters describe many of these.
 
-Note the smooth fit geoms include additional settings for the method and whether the line should include a standard error.
+Note  the smooth fit geoms include additional settings for the method and whether the line should include a standard error.
 
 ```{r, scatterplot-smooth}
 
@@ -106,8 +117,7 @@ ggplot(data = mtcars.df, aes(x = wt, y = mpg)) +
 
 ```{r, geoms, echo=FALSE}
 library(kableExtra)
-knitr::kable(ls(pattern = '^geom_', env = as.environment('package:ggplot2')))%>%
-  column_spec(1, width = "10em")
+knitr::kable(ls(pattern = '^geom_', env = as.environment('package:ggplot2')))
 # TODO indicate what chapter will cover each with link and icon
 # ggplot2:::.all_aesthetics
 ```

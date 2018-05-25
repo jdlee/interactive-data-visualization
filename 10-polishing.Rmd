@@ -296,16 +296,26 @@ labs(title = "ggalt: encircle annotation")
 
 
 ## Color
-The palette of colors that is scaled to the data is set separately for “fill” and for “colour”
+The palette of colors that is scaled to the data is set separately for "fill" and for "colour"
 
 Color palettes that work for discrete variables (e.g., factors) may not work for continuous, numeric variables
 
-Color palette design is complex and choice depends onNumber of categories in the data
-Ability to support black and white printingAbility to support color-deficient visionSize of the space being colored
+Color palette design is complex and choice depends on
+
+Number of categories in the data
+Ability to support black and white printing
+
+Ability to support color-deficient vision
+
+Size of the space being colored
 
 Small areas, such as points, benefit from saturated color, and large areas, such a bars are better with less intense color.
 
-Great resources to explain the basis of the Brewer, Viridis, and ptol palettes: http://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.htmlhttps://personal.sron.nl/~pault/
+Great resources to explain the basis of the Brewer, Viridis, and ptol palettes: http://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3
+
+https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html
+
+https://personal.sron.nl/~pault/
 
  
 
@@ -317,7 +327,7 @@ https://personal.sron.nl/~pault/
 
 
 ### Large and small area colors
-```{r, cache=TRUE, , echo=FALSE}
+```{r, cache=TRUE, echo=FALSE}
 library(hrbrthemes) # Themes tuned for font 
 library(ggthemes) # Many themes including tufte an ptol colors
 library(viridis)
@@ -702,9 +712,13 @@ theme.plot
 
 For formal documents save graphs and import. Do not cut and paste from RStudio 
 Saving and importing provides consistent physical size, resolution, and aspect ratio: DO NOT re-scale in the document
-Vector formats (PDF, SVG) 	Provide crisp images even when zoomed in and raster
+Vector formats (PDF, SVG) 
+
+Provide crisp images even when zoomed in and raster
 File size scales with number of data points
-Raster formats (PNG, TIFF)	The dpi (dots per inch) defines the resolution of the image	File size scales with dimensions of graph and dpi
+Raster formats (PNG, TIFF)
+
+The dpi (dots per inch) defines the resolution of the image	File size scales with dimensions of graph and dpi
 
 ### PNG, JPEG, PDF, and SVG 
 ```{r}

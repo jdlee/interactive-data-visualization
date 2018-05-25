@@ -10,6 +10,7 @@ bibliography:
 - packages.bib
 description: A book of ggplot examples
 documentclass: krantz
+always_allow_html: yes
 github-repo: jdlee/ggplot-examples
 graphics: yes
 link-citations: yes

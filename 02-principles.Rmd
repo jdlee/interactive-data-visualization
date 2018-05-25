@@ -317,7 +317,7 @@ TODO Figure ground showing data and summary vs summary and data
 ## Principles from general to specific
 [@Tufte1983], [@Munzner2014, @Gelman2013a] 
 
-%ten guidelines [@Kelleher2011]
+%ten guidelines [@Kelleher2011a]
 
 ### Identify audience, story, and key relationships (Few)
 

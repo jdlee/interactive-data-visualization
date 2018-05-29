@@ -25,7 +25,7 @@
 <meta name="author" content="John D. Lee">
 
 
-<meta name="date" content="2018-05-25">
+<meta name="date" content="2018-05-29">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -68,7 +68,7 @@
 <script src="libs/ggiraph/ggiraph_tooltip.js"></script>
 <script src="libs/ggiraph/ggiraph_selector.js"></script>
 <script src="libs/ggiraph-binding/ggiraph.js"></script>
-<script src="libs/svg_5/scripts_svg_5.js"></script>
+<script src="libs/svg_1/scripts_svg_1.js"></script>
 
 
 <style type="text/css">
@@ -212,8 +212,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.4" data-path="Proportion.html"><a href="Proportion.html#faceted-bar-chart-with-overall-reference-distribution"><i class="fa fa-check"></i><b>6.4</b> Faceted Bar chart with overall reference distribution</a></li>
 <li class="chapter" data-level="6.5" data-path="Proportion.html"><a href="Proportion.html#rose-or-coxcomb-plots"><i class="fa fa-check"></i><b>6.5</b> Rose or Coxcomb plots</a></li>
 <li class="chapter" data-level="6.6" data-path="Proportion.html"><a href="Proportion.html#stacked-dodged-and-opposed-bar-chart"><i class="fa fa-check"></i><b>6.6</b> Stacked, dodged and opposed bar chart</a></li>
-<li class="chapter" data-level="6.7" data-path="Proportion.html"><a href="Proportion.html#treemaps-for-whole-part-of-hierarchy"><i class="fa fa-check"></i><b>6.7</b> Treemaps for whole-part of hierarchy</a></li>
-<li class="chapter" data-level="6.8" data-path="Proportion.html"><a href="Proportion.html#circle-packing"><i class="fa fa-check"></i><b>6.8</b> Circle packing</a></li>
+<li class="chapter" data-level="6.7" data-path="Proportion.html"><a href="Proportion.html#likert-scale-plot"><i class="fa fa-check"></i><b>6.7</b> Likert scale plot</a></li>
+<li class="chapter" data-level="6.8" data-path="Proportion.html"><a href="Proportion.html#treemaps-for-whole-part-of-hierarchy"><i class="fa fa-check"></i><b>6.8</b> Treemaps for whole-part of hierarchy</a></li>
+<li class="chapter" data-level="6.9" data-path="Proportion.html"><a href="Proportion.html#circle-packing"><i class="fa fa-check"></i><b>6.9</b> Circle packing</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="Fluctuation.html"><a href="Fluctuation.html"><i class="fa fa-check"></i><b>7</b> Fluctuation–timelines</a><ul>
 <li class="chapter" data-level="7.1" data-path="Fluctuation.html"><a href="Fluctuation.html#multiple-time-series"><i class="fa fa-check"></i><b>7.1</b> Multiple time series</a></li>
@@ -242,35 +243,36 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.2" data-path="Tables.html"><a href="Tables.html#table-lens-with-a-integrated-bar"><i class="fa fa-check"></i><b>9.2</b> Table lens with a integrated bar</a></li>
 <li class="chapter" data-level="9.3" data-path="Tables.html"><a href="Tables.html#sparkline"><i class="fa fa-check"></i><b>9.3</b> Sparkline</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="Polishing.html"><a href="Polishing.html"><i class="fa fa-check"></i><b>10</b> Polishing and annotating graphs</a><ul>
-<li class="chapter" data-level="10.1" data-path="Polishing.html"><a href="Polishing.html#labeling-and-annotation"><i class="fa fa-check"></i><b>10.1</b> Labeling and annotation</a><ul>
-<li class="chapter" data-level="10.1.1" data-path="Polishing.html"><a href="Polishing.html#annotating-data"><i class="fa fa-check"></i><b>10.1.1</b> Annotating data</a></li>
-<li class="chapter" data-level="10.1.2" data-path="Polishing.html"><a href="Polishing.html#annotating-points-and-select-points"><i class="fa fa-check"></i><b>10.1.2</b> Annotating points and select points</a></li>
-<li class="chapter" data-level="10.1.3" data-path="Polishing.html"><a href="Polishing.html#labels-on-lines"><i class="fa fa-check"></i><b>10.1.3</b> Labels on lines</a></li>
-<li class="chapter" data-level="10.1.4" data-path="Polishing.html"><a href="Polishing.html#meaningful-symbols"><i class="fa fa-check"></i><b>10.1.4</b> Meaningful symbols</a></li>
-<li class="chapter" data-level="10.1.5" data-path="Polishing.html"><a href="Polishing.html#AddingRemovingLabels"><i class="fa fa-check"></i><b>10.1.5</b> Adding and removing labels: title, axis labels, facet labels, and legends</a></li>
-<li class="chapter" data-level="10.1.6" data-path="Polishing.html"><a href="Polishing.html#remove-and-position-one-or-more-legends"><i class="fa fa-check"></i><b>10.1.6</b> Remove and position one or more legends</a></li>
-<li class="chapter" data-level="10.1.7" data-path="Polishing.html"><a href="Polishing.html#setting-limits-on-axis-and-position-of-graph"><i class="fa fa-check"></i><b>10.1.7</b> Setting limits on axis and position of graph</a></li>
-<li class="chapter" data-level="10.1.8" data-path="Polishing.html"><a href="Polishing.html#adjust-margin-between-points-and-edge-of-plot-area"><i class="fa fa-check"></i><b>10.1.8</b> Adjust margin between points and edge of plot area</a></li>
+<li class="chapter" data-level="10" data-path="Polishing.html"><a href="Polishing.html"><i class="fa fa-check"></i><b>10</b> Highlighting, annotating, and polishing graphs</a><ul>
+<li class="chapter" data-level="10.1" data-path="Polishing.html"><a href="Polishing.html#highlighting-datapoints-to-make-a-point"><i class="fa fa-check"></i><b>10.1</b> Highlighting datapoints to make a point</a></li>
+<li class="chapter" data-level="10.2" data-path="Polishing.html"><a href="Polishing.html#labeling-and-annotation"><i class="fa fa-check"></i><b>10.2</b> Labeling and annotation</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="Polishing.html"><a href="Polishing.html#annotating-data"><i class="fa fa-check"></i><b>10.2.1</b> Annotating data</a></li>
+<li class="chapter" data-level="10.2.2" data-path="Polishing.html"><a href="Polishing.html#annotating-points-and-select-points"><i class="fa fa-check"></i><b>10.2.2</b> Annotating points and select points</a></li>
+<li class="chapter" data-level="10.2.3" data-path="Polishing.html"><a href="Polishing.html#labels-on-lines"><i class="fa fa-check"></i><b>10.2.3</b> Labels on lines</a></li>
+<li class="chapter" data-level="10.2.4" data-path="Polishing.html"><a href="Polishing.html#meaningful-symbols"><i class="fa fa-check"></i><b>10.2.4</b> Meaningful symbols</a></li>
+<li class="chapter" data-level="10.2.5" data-path="Polishing.html"><a href="Polishing.html#AddingRemovingLabels"><i class="fa fa-check"></i><b>10.2.5</b> Adding and removing labels: title, axis labels, facet labels, and legends</a></li>
+<li class="chapter" data-level="10.2.6" data-path="Polishing.html"><a href="Polishing.html#remove-and-position-one-or-more-legends"><i class="fa fa-check"></i><b>10.2.6</b> Remove and position one or more legends</a></li>
+<li class="chapter" data-level="10.2.7" data-path="Polishing.html"><a href="Polishing.html#setting-limits-on-axis-and-position-of-graph"><i class="fa fa-check"></i><b>10.2.7</b> Setting limits on axis and position of graph</a></li>
+<li class="chapter" data-level="10.2.8" data-path="Polishing.html"><a href="Polishing.html#adjust-margin-between-points-and-edge-of-plot-area"><i class="fa fa-check"></i><b>10.2.8</b> Adjust margin between points and edge of plot area</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="Polishing.html"><a href="Polishing.html#color"><i class="fa fa-check"></i><b>10.2</b> Color</a><ul>
-<li class="chapter" data-level="10.2.1" data-path="Polishing.html"><a href="Polishing.html#resources-to-explain-the-basis-form-color-choice"><i class="fa fa-check"></i><b>10.2.1</b> Resources to explain the basis form color choice</a></li>
-<li class="chapter" data-level="10.2.2" data-path="Polishing.html"><a href="Polishing.html#large-and-small-area-colors"><i class="fa fa-check"></i><b>10.2.2</b> Large and small area colors</a></li>
-<li class="chapter" data-level="10.2.3" data-path="Polishing.html"><a href="Polishing.html#color-for-large-and-small-areas"><i class="fa fa-check"></i><b>10.2.3</b> Color for large and small areas</a></li>
-<li class="chapter" data-level="10.2.4" data-path="Polishing.html"><a href="Polishing.html#continuous-color-scales"><i class="fa fa-check"></i><b>10.2.4</b> Continuous color scales</a></li>
-<li class="chapter" data-level="10.2.5" data-path="Polishing.html"><a href="Polishing.html#discrete-color-mappings"><i class="fa fa-check"></i><b>10.2.5</b> Discrete color mappings</a></li>
+<li class="chapter" data-level="10.3" data-path="Polishing.html"><a href="Polishing.html#color"><i class="fa fa-check"></i><b>10.3</b> Color</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="Polishing.html"><a href="Polishing.html#resources-to-explain-the-basis-form-color-choice"><i class="fa fa-check"></i><b>10.3.1</b> Resources to explain the basis form color choice</a></li>
+<li class="chapter" data-level="10.3.2" data-path="Polishing.html"><a href="Polishing.html#large-and-small-area-colors"><i class="fa fa-check"></i><b>10.3.2</b> Large and small area colors</a></li>
+<li class="chapter" data-level="10.3.3" data-path="Polishing.html"><a href="Polishing.html#color-for-large-and-small-areas"><i class="fa fa-check"></i><b>10.3.3</b> Color for large and small areas</a></li>
+<li class="chapter" data-level="10.3.4" data-path="Polishing.html"><a href="Polishing.html#continuous-color-scales"><i class="fa fa-check"></i><b>10.3.4</b> Continuous color scales</a></li>
+<li class="chapter" data-level="10.3.5" data-path="Polishing.html"><a href="Polishing.html#discrete-color-mappings"><i class="fa fa-check"></i><b>10.3.5</b> Discrete color mappings</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="Polishing.html"><a href="Polishing.html#themes-and-theme-options"><i class="fa fa-check"></i><b>10.3</b> Themes and theme options</a><ul>
-<li class="chapter" data-level="10.3.1" data-path="Polishing.html"><a href="Polishing.html#remove-chart-details"><i class="fa fa-check"></i><b>10.3.1</b> Remove chart details</a></li>
-<li class="chapter" data-level="10.3.2" data-path="Polishing.html"><a href="Polishing.html#predefined-themes-adjust-many-elements"><i class="fa fa-check"></i><b>10.3.2</b> Predefined themes adjust many elements</a></li>
-<li class="chapter" data-level="10.3.3" data-path="Polishing.html"><a href="Polishing.html#ordering-theme-layers"><i class="fa fa-check"></i><b>10.3.3</b> Ordering theme layers</a></li>
-<li class="chapter" data-level="10.3.4" data-path="Polishing.html"><a href="Polishing.html#pre-set-theme-options"><i class="fa fa-check"></i><b>10.3.4</b> Pre-set theme options</a></li>
-<li class="chapter" data-level="10.3.5" data-path="Polishing.html"><a href="Polishing.html#themes-form-other-packages"><i class="fa fa-check"></i><b>10.3.5</b> Themes form other packages</a></li>
+<li class="chapter" data-level="10.4" data-path="Polishing.html"><a href="Polishing.html#themes-and-theme-options"><i class="fa fa-check"></i><b>10.4</b> Themes and theme options</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="Polishing.html"><a href="Polishing.html#remove-chart-details"><i class="fa fa-check"></i><b>10.4.1</b> Remove chart details</a></li>
+<li class="chapter" data-level="10.4.2" data-path="Polishing.html"><a href="Polishing.html#predefined-themes-adjust-many-elements"><i class="fa fa-check"></i><b>10.4.2</b> Predefined themes adjust many elements</a></li>
+<li class="chapter" data-level="10.4.3" data-path="Polishing.html"><a href="Polishing.html#ordering-theme-layers"><i class="fa fa-check"></i><b>10.4.3</b> Ordering theme layers</a></li>
+<li class="chapter" data-level="10.4.4" data-path="Polishing.html"><a href="Polishing.html#pre-set-theme-options"><i class="fa fa-check"></i><b>10.4.4</b> Pre-set theme options</a></li>
+<li class="chapter" data-level="10.4.5" data-path="Polishing.html"><a href="Polishing.html#themes-form-other-packages"><i class="fa fa-check"></i><b>10.4.5</b> Themes form other packages</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="Polishing.html"><a href="Polishing.html#saving-and-printing-plots-to-include-in-documents"><i class="fa fa-check"></i><b>10.4</b> Saving and printing plots to include in documents</a><ul>
-<li class="chapter" data-level="10.4.1" data-path="Polishing.html"><a href="Polishing.html#png-jpeg-pdf-and-svg"><i class="fa fa-check"></i><b>10.4.1</b> PNG, JPEG, PDF, and SVG</a></li>
-<li class="chapter" data-level="10.4.2" data-path="Polishing.html"><a href="Polishing.html#combining-multiple-graphs-for-publication"><i class="fa fa-check"></i><b>10.4.2</b> Combining multiple graphs for publication</a></li>
-<li class="chapter" data-level="10.4.3" data-path="Polishing.html"><a href="Polishing.html#faceted-pagination"><i class="fa fa-check"></i><b>10.4.3</b> Faceted pagination</a></li>
+<li class="chapter" data-level="10.5" data-path="Polishing.html"><a href="Polishing.html#saving-and-printing-plots-to-include-in-documents"><i class="fa fa-check"></i><b>10.5</b> Saving and printing plots to include in documents</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="Polishing.html"><a href="Polishing.html#png-jpeg-pdf-and-svg"><i class="fa fa-check"></i><b>10.5.1</b> PNG, JPEG, PDF, and SVG</a></li>
+<li class="chapter" data-level="10.5.2" data-path="Polishing.html"><a href="Polishing.html#combining-multiple-graphs-for-publication"><i class="fa fa-check"></i><b>10.5.2</b> Combining multiple graphs for publication</a></li>
+<li class="chapter" data-level="10.5.3" data-path="Polishing.html"><a href="Polishing.html#faceted-pagination"><i class="fa fa-check"></i><b>10.5.3</b> Faceted pagination</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="Interaction.html"><a href="Interaction.html"><i class="fa fa-check"></i><b>11</b> Interaction–zoom, annotate, highlight</a></li>
@@ -318,9 +320,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 crimes.l.df &lt;-<span class="st"> </span><span class="kw">gather</span>(crimes.df, <span class="dt">key =</span> type, <span class="dt">value =</span> rate, <span class="op">-</span>state)
 
-states_map &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;state&quot;</span>)
-
-<span class="kw">ggplot</span>() <span class="op">+</span>
+states_map &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;state&quot;</span>)</code></pre></div>
+<pre><code>## Warning: package &#39;maps&#39; was built under R version 3.4.4</code></pre>
+<pre><code>## 
+## Attaching package: &#39;maps&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     map</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>() <span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_cartogram</span>(<span class="dt">data=</span>states_map, <span class="kw">aes</span>(long, lat, <span class="dt">map_id =</span> region), <span class="dt">map=</span>states_map) <span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_cartogram</span>(<span class="dt">data=</span>crimes.df, <span class="kw">aes</span>(<span class="dt">fill =</span> Murder, <span class="dt">map_id =</span> state), <span class="dt">map=</span>states_map) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">coord_map</span>(<span class="st">&quot;polyconic&quot;</span>)<span class="op">+</span>
@@ -425,8 +432,13 @@ choropleth.df =<span class="st"> </span>choropleth.df <span class="op">%&gt;%</s
 <div id="world-migration-network" class="section level3">
 <h3><span class="header-section-number">8.4.1</span> World migration network</h3>
 <p>Examples from: <a href="https://github.com/thomasp85/ggraph" class="uri">https://github.com/thomasp85/ggraph</a></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggraph) <span class="co"># ggplot extension</span>
-<span class="kw">library</span>(igraph) <span class="co"># For network calculations</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggraph) <span class="co"># ggplot extension</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;ggraph&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:treemapify&#39;:
+## 
+##     geom_treemap</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(igraph) <span class="co"># For network calculations</span>
 
 
 <span class="co"># Graph of highschool friendships</span>
@@ -439,7 +451,7 @@ graph &lt;-<span class="st"> </span><span class="kw">graph_from_data_frame</span
 <span class="st">    </span><span class="kw">geom_node_point</span>(<span class="kw">aes</span>(<span class="dt">size =</span> Popularity)) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">facet_edges</span>(<span class="op">~</span>year) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">theme_graph</span>(<span class="dt">foreground =</span> <span class="st">&#39;steelblue&#39;</span>, <span class="dt">fg_text_colour =</span> <span class="st">&#39;white&#39;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
 </div>
 <div id="hierarchy" class="section level3">
 <h3><span class="header-section-number">8.4.2</span> Hierarchy</h3>
@@ -476,7 +488,7 @@ round_dendro.plot =<span class="st"> </span><span class="kw">ggraph</span>(graph
 
 <span class="kw">ggarrange</span>(circle.plot, tree.plot, round_dendro.plot,
 <span class="dt">nrow=</span><span class="dv">1</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">align =</span> <span class="st">&quot;hv&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
 
 
 </div>

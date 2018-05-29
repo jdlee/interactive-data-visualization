@@ -94,6 +94,16 @@ nrow=1, ncol = 2)
 ```
 
 
+```{r}
+library(RColorBrewer)
+# display.brewer.all(type="qual")
+# 
+# display.brewer.all(type="div")
+
+display.brewer.all(n=NULL, type="all", select=NULL, exact.n=TRUE, 
+colorblindFriendly=FALSE)
+```
+
 
 
 

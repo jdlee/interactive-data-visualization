@@ -8,17 +8,16 @@
 ```{r, message=FALSE}
 library(tidyverse)
 library(HistData)
+library(ggpubr)
 
 ```
 
 
 
 
-
+## Histograms and bin choice
 Seeing the smooth and rough of data
 bins or binwidth, default number of bins is 30
-
-## Histograms and bin choice
 ```{r, histogram-bin, cache=TRUE, warning=FALSE}
 h10.plot = ggplot(data = diamonds.df, aes(price)) + 
   geom_histogram(bins = 10) 

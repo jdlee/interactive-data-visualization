@@ -1,6 +1,6 @@
 \cleardoublepage 
 
-# Polishing and annotating graphs{#Polishing}
+# Highlighting, annotating, and polishing graphs{#Polishing}
 
 
 ```{r, message=FALSE}
@@ -28,6 +28,14 @@ Check that changing the theme did not undo your legend placement
 Save as a 5X5 inch image in a format to minimize blur
 
 
+## Highlighting datapoints to make a point
+h.mtcars.df = mtcars.df %>% mutate(highlight = if_else(cyl==8, "yes", "no"))
+
+ggplot(h.mtcars.df, aes(x = as.factor(cyl), fill = highlight)) +
+    geom_bar() +
+    scale_fill_manual(values = c("yes"="darkred", "no"="gray75"), guide = FALSE)
+    
+    
 
 ## Labeling and annotation
 ### Annotating data

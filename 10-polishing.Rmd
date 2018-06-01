@@ -29,12 +29,23 @@ Save as a 5X5 inch image in a format to minimize blur
 
 
 ## Highlighting datapoints to make a point
-h.mtcars.df = mtcars.df %>% mutate(highlight = if_else(cyl==8, "yes", "no"))
 
+```{r}
+h.mtcars.df = mtcars.df %>% mutate(highlight = if_else(cyl==8, "yes", "no"))
 ggplot(h.mtcars.df, aes(x = as.factor(cyl), fill = highlight)) +
-    geom_bar() +
-    scale_fill_manual(values = c("yes"="darkred", "no"="gray75"), guide = FALSE)
+    geom_bar(alpha = .6) +
+    scale_fill_manual(values = c("yes"="darkred", "no"="gray15"), guide = FALSE)
+
+
+h.mtcars.df = mtcars.df %>% mutate(highlight = if_else(mpg>24 &wt>3, "yes", "no"))
+ggplot(h.mtcars.df, aes(x = wt, y = mpg, colour = highlight)) +
+    geom_point() +
+    scale_color_manual(values = c("yes"="darkred", "no"="gray60"), guide = FALSE)
     
+    
+```
+
+
     
 
 ## Labeling and annotation

@@ -251,6 +251,11 @@ ggplot(test.m, aes(x=question, fill=category)) +
 position = position_stack(reverse = TRUE)
 ```
 
+## ternary (triangular) graph
+Shows proportion of three variables that sum to 100 percent. Unfamiliar to most and so can be hard to interpret
+ggtern
+
+
 ## Treemaps for whole-part of hierarchy
 Schneiderman
 

@@ -25,7 +25,7 @@
 <meta name="author" content="John D. Lee">
 
 
-<meta name="date" content="2018-05-29">
+<meta name="date" content="2018-06-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -68,7 +68,7 @@
 <script src="libs/ggiraph/ggiraph_tooltip.js"></script>
 <script src="libs/ggiraph/ggiraph_selector.js"></script>
 <script src="libs/ggiraph-binding/ggiraph.js"></script>
-<script src="libs/svg_1/scripts_svg_1.js"></script>
+<script src="libs/svg_2/scripts_svg_2.js"></script>
 
 
 <style type="text/css">
@@ -213,8 +213,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.5" data-path="Proportion.html"><a href="Proportion.html#rose-or-coxcomb-plots"><i class="fa fa-check"></i><b>6.5</b> Rose or Coxcomb plots</a></li>
 <li class="chapter" data-level="6.6" data-path="Proportion.html"><a href="Proportion.html#stacked-dodged-and-opposed-bar-chart"><i class="fa fa-check"></i><b>6.6</b> Stacked, dodged and opposed bar chart</a></li>
 <li class="chapter" data-level="6.7" data-path="Proportion.html"><a href="Proportion.html#likert-scale-plot"><i class="fa fa-check"></i><b>6.7</b> Likert scale plot</a></li>
-<li class="chapter" data-level="6.8" data-path="Proportion.html"><a href="Proportion.html#treemaps-for-whole-part-of-hierarchy"><i class="fa fa-check"></i><b>6.8</b> Treemaps for whole-part of hierarchy</a></li>
-<li class="chapter" data-level="6.9" data-path="Proportion.html"><a href="Proportion.html#circle-packing"><i class="fa fa-check"></i><b>6.9</b> Circle packing</a></li>
+<li class="chapter" data-level="6.8" data-path="Proportion.html"><a href="Proportion.html#ternary-triangular-graph"><i class="fa fa-check"></i><b>6.8</b> ternary (triangular) graph</a></li>
+<li class="chapter" data-level="6.9" data-path="Proportion.html"><a href="Proportion.html#treemaps-for-whole-part-of-hierarchy"><i class="fa fa-check"></i><b>6.9</b> Treemaps for whole-part of hierarchy</a></li>
+<li class="chapter" data-level="6.10" data-path="Proportion.html"><a href="Proportion.html#circle-packing"><i class="fa fa-check"></i><b>6.10</b> Circle packing</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="Fluctuation.html"><a href="Fluctuation.html"><i class="fa fa-check"></i><b>7</b> Fluctuation–timelines</a><ul>
 <li class="chapter" data-level="7.1" data-path="Fluctuation.html"><a href="Fluctuation.html#multiple-time-series"><i class="fa fa-check"></i><b>7.1</b> Multiple time series</a></li>
@@ -312,8 +313,16 @@ mtcars.df =<span class="st"> </span>mtcars</code></pre></div>
 <p>Create a plot Add axis labels, with units Annotate to tell a story Select and appropriate color palette Place the legend inside the graph Change the theme to increase the data to ink ratio Check that changing the theme did not undo your legend placement Save as a 5X5 inch image in a format to minimize blur</p>
 <div id="highlighting-datapoints-to-make-a-point" class="section level2">
 <h2><span class="header-section-number">10.1</span> Highlighting datapoints to make a point</h2>
-<p>h.mtcars.df = mtcars.df %&gt;% mutate(highlight = if_else(cyl==8, “yes”, “no”))</p>
-<p>ggplot(h.mtcars.df, aes(x = as.factor(cyl), fill = highlight)) + geom_bar() + scale_fill_manual(values = c(“yes”=“darkred”, “no”=“gray75”), guide = FALSE)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">h.mtcars.df =<span class="st"> </span>mtcars.df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">highlight =</span> <span class="kw">if_else</span>(cyl<span class="op">==</span><span class="dv">8</span>, <span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>))
+<span class="kw">ggplot</span>(h.mtcars.df, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.factor</span>(cyl), <span class="dt">fill =</span> highlight)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">alpha =</span> .<span class="dv">6</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;yes&quot;</span>=<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;no&quot;</span>=<span class="st">&quot;gray15&quot;</span>), <span class="dt">guide =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">h.mtcars.df =<span class="st"> </span>mtcars.df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">highlight =</span> <span class="kw">if_else</span>(mpg<span class="op">&gt;</span><span class="dv">24</span> <span class="op">&amp;</span>wt<span class="op">&gt;</span><span class="dv">3</span>, <span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>))
+<span class="kw">ggplot</span>(h.mtcars.df, <span class="kw">aes</span>(<span class="dt">x =</span> wt, <span class="dt">y =</span> mpg, <span class="dt">colour =</span> highlight)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;yes&quot;</span>=<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;no&quot;</span>=<span class="st">&quot;gray60&quot;</span>), <span class="dt">guide =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-49-2.png" width="672" /></p>
 </div>
 <div id="labeling-and-annotation" class="section level2">
 <h2><span class="header-section-number">10.2</span> Labeling and annotation</h2>
@@ -338,10 +347,8 @@ mtcars.df =<span class="st"> </span>mtcars</code></pre></div>
 <p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-50-2.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#</span>
 
-<span class="kw">library</span>(ggpmisc) <span class="co"># For stat_poly_eq for equation annotation  </span></code></pre></div>
-<pre><code>## For news about &#39;ggpmisc&#39;, please, see http://www.r4photobiology.info/</code></pre>
-<pre><code>## For on-line documentation see http://docs.r4photobiology.info/ggpmisc/</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># https://cran.r-project.org/web/packages/ggpmisc/vignettes/user-guide-1.html</span>
+<span class="kw">library</span>(ggpmisc) <span class="co"># For stat_poly_eq for equation annotation  </span>
+<span class="co"># https://cran.r-project.org/web/packages/ggpmisc/vignettes/user-guide-1.html</span>
 
 formula &lt;-<span class="st"> </span>y <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(x, <span class="dv">1</span>, <span class="dt">raw =</span> <span class="ot">TRUE</span>)
 regression.plot =
@@ -355,7 +362,6 @@ regression.plot </code></pre></div>
 <p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-50-3.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggsave</span>(<span class="dt">file =</span> <span class="st">&quot;regression_annotation.pdf&quot;</span>, <span class="dt">plot =</span> regression.plot)</code></pre></div>
 <pre><code>## Saving 7 x 5 in image</code></pre>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-50-4.png" width="672" /></p>
 </div>
 <div id="annotating-points-and-select-points" class="section level3">
 <h3><span class="header-section-number">10.2.2</span> Annotating points and select points</h3>
@@ -549,9 +555,6 @@ cyl_names &lt;-<span class="st"> </span><span class="kw">as_labeller</span>(<spa
 </div>
 <div id="large-and-small-area-colors" class="section level3">
 <h3><span class="header-section-number">10.3.2</span> Large and small area colors</h3>
-<pre><code>## NOTE: Either Arial Narrow or Roboto Condensed fonts are *required* to use these themes.</code></pre>
-<pre><code>##       Please use hrbrthemes::import_roboto_condensed() to install Roboto Condensed and</code></pre>
-<pre><code>##       if Arial Narrow is not on your system, please see http://bit.ly/arialnarrow</code></pre>
 <p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
 </div>
 <div id="color-for-large-and-small-areas" class="section level3">
@@ -613,8 +616,6 @@ cyl_names &lt;-<span class="st"> </span><span class="kw">as_labeller</span>(<spa
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(hrbrthemes) <span class="co"># Precise font and minimal grid</span>
 <span class="kw">library</span>(ggthemes) <span class="co"># Huge variety of themes including Tufte and Few</span>
 <span class="kw">library</span>(xkcd) <span class="co"># Plots in the xkcd comic style</span></code></pre></div>
-<pre><code>## Loading required package: extrafont</code></pre>
-<pre><code>## Registering fonts with R</code></pre>
 <p>An engaging and fun theme <a href="ftp://200.236.31.7/CRAN/web/packages/xkcd/vignettes/xkcd-intro.pdf" class="uri">ftp://200.236.31.7/CRAN/web/packages/xkcd/vignettes/xkcd-intro.pdf</a></p>
 <p><img src="visualizationwithggplot_files/figure-html/xkcd-plot-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(disp, mpg, <span class="dt">color =</span> <span class="kw">as.factor</span>(cyl))) <span class="op">+</span><span class="st"> </span>
@@ -755,7 +756,6 @@ cyl_names &lt;-<span class="st"> </span><span class="kw">as_labeller</span>(<spa
 
 <span class="kw">ggsave</span>(<span class="dt">filename =</span> <span class="st">&quot;mpg.pdf&quot;</span>, <span class="dt">device =</span> <span class="st">&quot;pdf&quot;</span>, 
       <span class="dt">plot =</span> mpg.plot, <span class="dt">height =</span> <span class="dv">4</span>, <span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">units =</span> <span class="st">&quot;in&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(svglite)
 <span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(disp,  mpg, <span class="dt">color =</span> <span class="kw">as.factor</span>(cyl))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
 <p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
@@ -770,9 +770,9 @@ cyl_names &lt;-<span class="st"> </span><span class="kw">as_labeller</span>(<spa
 
 ## PDF--vector format that remains sharp even when zoomed in
 <span class="kw">ggsave</span>(<span class="dt">filename =</span> <span class="st">&quot;mpg.pdf&quot;</span>, <span class="dt">device =</span> <span class="st">&quot;pdf&quot;</span>,
-       <span class="dt">plot =</span> mpg.plot, <span class="dt">height =</span> <span class="dv">4</span>, <span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">units =</span> <span class="st">&quot;in&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-76-2.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## SVG--vector format that remains sharp even when zoomed in
+       <span class="dt">plot =</span> mpg.plot, <span class="dt">height =</span> <span class="dv">4</span>, <span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">units =</span> <span class="st">&quot;in&quot;</span>)
+
+## SVG--vector format that remains sharp even when zoomed in
 <span class="kw">ggsave</span>(<span class="dt">filename =</span> <span class="st">&quot;mpg.svg&quot;</span>, <span class="dt">device =</span> <span class="st">&quot;svg&quot;</span>,
        <span class="dt">plot =</span> mpg.plot, <span class="dt">height =</span> <span class="dv">4</span>, <span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">units =</span> <span class="st">&quot;in&quot;</span>)
 
@@ -792,8 +792,8 @@ n_pages &lt;-<span class="st"> </span><span class="kw">ceiling</span>(
     <span class="kw">print</span>(p)
 }
 <span class="kw">dev.off</span>()</code></pre></div>
-<pre><code>## RStudioGD 
-##         2</code></pre>
+<pre><code>## quartz_off_screen 
+##                 2</code></pre>
 </div>
 <div id="combining-multiple-graphs-for-publication" class="section level3">
 <h3><span class="header-section-number">10.5.2</span> Combining multiple graphs for publication</h3>

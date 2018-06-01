@@ -224,6 +224,11 @@ http://www.wolframalpha.com
 
 R packages: HistData, babynames
 
+Time use survey
+https://cran.r-project.org/web/packages/atus/atus.pdf
+
+O*NET occupational information: knowledge, skills, abilties, task composition
+
 Yao about data and web scraping and the package 
 ```{r, happiness-plot}
 

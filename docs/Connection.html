@@ -25,7 +25,7 @@
 <meta name="author" content="John D. Lee">
 
 
-<meta name="date" content="2018-05-29">
+<meta name="date" content="2018-06-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -68,7 +68,7 @@
 <script src="libs/ggiraph/ggiraph_tooltip.js"></script>
 <script src="libs/ggiraph/ggiraph_selector.js"></script>
 <script src="libs/ggiraph-binding/ggiraph.js"></script>
-<script src="libs/svg_1/scripts_svg_1.js"></script>
+<script src="libs/svg_2/scripts_svg_2.js"></script>
 
 
 <style type="text/css">
@@ -213,8 +213,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.5" data-path="Proportion.html"><a href="Proportion.html#rose-or-coxcomb-plots"><i class="fa fa-check"></i><b>6.5</b> Rose or Coxcomb plots</a></li>
 <li class="chapter" data-level="6.6" data-path="Proportion.html"><a href="Proportion.html#stacked-dodged-and-opposed-bar-chart"><i class="fa fa-check"></i><b>6.6</b> Stacked, dodged and opposed bar chart</a></li>
 <li class="chapter" data-level="6.7" data-path="Proportion.html"><a href="Proportion.html#likert-scale-plot"><i class="fa fa-check"></i><b>6.7</b> Likert scale plot</a></li>
-<li class="chapter" data-level="6.8" data-path="Proportion.html"><a href="Proportion.html#treemaps-for-whole-part-of-hierarchy"><i class="fa fa-check"></i><b>6.8</b> Treemaps for whole-part of hierarchy</a></li>
-<li class="chapter" data-level="6.9" data-path="Proportion.html"><a href="Proportion.html#circle-packing"><i class="fa fa-check"></i><b>6.9</b> Circle packing</a></li>
+<li class="chapter" data-level="6.8" data-path="Proportion.html"><a href="Proportion.html#ternary-triangular-graph"><i class="fa fa-check"></i><b>6.8</b> ternary (triangular) graph</a></li>
+<li class="chapter" data-level="6.9" data-path="Proportion.html"><a href="Proportion.html#treemaps-for-whole-part-of-hierarchy"><i class="fa fa-check"></i><b>6.9</b> Treemaps for whole-part of hierarchy</a></li>
+<li class="chapter" data-level="6.10" data-path="Proportion.html"><a href="Proportion.html#circle-packing"><i class="fa fa-check"></i><b>6.10</b> Circle packing</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="Fluctuation.html"><a href="Fluctuation.html"><i class="fa fa-check"></i><b>7</b> Fluctuation–timelines</a><ul>
 <li class="chapter" data-level="7.1" data-path="Fluctuation.html"><a href="Fluctuation.html#multiple-time-series"><i class="fa fa-check"></i><b>7.1</b> Multiple time series</a></li>
@@ -320,14 +321,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 crimes.l.df &lt;-<span class="st"> </span><span class="kw">gather</span>(crimes.df, <span class="dt">key =</span> type, <span class="dt">value =</span> rate, <span class="op">-</span>state)
 
-states_map &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;state&quot;</span>)</code></pre></div>
-<pre><code>## Warning: package &#39;maps&#39; was built under R version 3.4.4</code></pre>
-<pre><code>## 
-## Attaching package: &#39;maps&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:purrr&#39;:
-## 
-##     map</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>() <span class="op">+</span>
+states_map &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;state&quot;</span>)
+
+<span class="kw">ggplot</span>() <span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_cartogram</span>(<span class="dt">data=</span>states_map, <span class="kw">aes</span>(long, lat, <span class="dt">map_id =</span> region), <span class="dt">map=</span>states_map) <span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_cartogram</span>(<span class="dt">data=</span>crimes.df, <span class="kw">aes</span>(<span class="dt">fill =</span> Murder, <span class="dt">map_id =</span> state), <span class="dt">map=</span>states_map) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">coord_map</span>(<span class="st">&quot;polyconic&quot;</span>)<span class="op">+</span>
@@ -431,14 +427,13 @@ choropleth.df =<span class="st"> </span>choropleth.df <span class="op">%&gt;%</s
 <p><a href="https://www.data-imaginist.com/2017/ggraph-introduction-layouts/" class="uri">https://www.data-imaginist.com/2017/ggraph-introduction-layouts/</a></p>
 <div id="world-migration-network" class="section level3">
 <h3><span class="header-section-number">8.4.1</span> World migration network</h3>
+<p>TODO adjust to reflect migration data Based on <a href="https://datascience.blog.wzb.eu/2018/05/31/three-ways-of-visualizing-a-graph-on-a-map/" class="uri">https://datascience.blog.wzb.eu/2018/05/31/three-ways-of-visualizing-a-graph-on-a-map/</a></p>
+<pre><code>## [1] TRUE</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
 <p>Examples from: <a href="https://github.com/thomasp85/ggraph" class="uri">https://github.com/thomasp85/ggraph</a></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggraph) <span class="co"># ggplot extension</span></code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;ggraph&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:treemapify&#39;:
-## 
-##     geom_treemap</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(igraph) <span class="co"># For network calculations</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggraph) <span class="co"># ggplot extension</span>
+<span class="kw">library</span>(igraph) <span class="co"># For network calculations</span>
 
 
 <span class="co"># Graph of highschool friendships</span>
@@ -451,7 +446,7 @@ graph &lt;-<span class="st"> </span><span class="kw">graph_from_data_frame</span
 <span class="st">    </span><span class="kw">geom_node_point</span>(<span class="kw">aes</span>(<span class="dt">size =</span> Popularity)) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">facet_edges</span>(<span class="op">~</span>year) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">theme_graph</span>(<span class="dt">foreground =</span> <span class="st">&#39;steelblue&#39;</span>, <span class="dt">fg_text_colour =</span> <span class="st">&#39;white&#39;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
 </div>
 <div id="hierarchy" class="section level3">
 <h3><span class="header-section-number">8.4.2</span> Hierarchy</h3>
@@ -488,7 +483,7 @@ round_dendro.plot =<span class="st"> </span><span class="kw">ggraph</span>(graph
 
 <span class="kw">ggarrange</span>(circle.plot, tree.plot, round_dendro.plot,
 <span class="dt">nrow=</span><span class="dv">1</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">align =</span> <span class="st">&quot;hv&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
 
 
 </div>

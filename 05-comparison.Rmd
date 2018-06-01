@@ -120,6 +120,13 @@ ggplot(mpg, aes(as.factor(cyl), hwy))+
 #   geom_pointrange(aes(ymin= m.mpg-se.mpg, ymax = m.mpg+se.mpg))+
 #   labs(title = "ggstance: horizontal point range")
 
+ggplot(mtcars.df, aes(as.factor(cyl), hp))+
+geom_boxplot()
+
+
+ggplot(mtcars.df, aes(as.factor(cyl), hp))+
+geom_violin(draw_quantiles = c(0.25, 0.5, 0.75))
+
 
 ggplot(data = s.mtcars.df, aes(x = cyl, y = m.hp)) +
   geom_violin(data= mtcars.df, aes(cyl, hp))+

@@ -8,6 +8,7 @@ purrr
 dplyr
 stringr
 forcats
+bindrcpp
 magrittr
 ggpubr
 knitr
@@ -16,7 +17,6 @@ Matrix
 lme4
 ggforce
 ggthemes
-bindrcpp
 HistData
 scales
 gridExtra
@@ -42,6 +42,8 @@ treemapify
 packcircles
 viridisLite
 viridis
+babynames
+ggTimeSeries
 zoo
 xts
 TTR
@@ -51,20 +53,7 @@ maps
 ggraph
 ggpmisc
 hrbrthemes
-ggiraph
-gdtools
-mapproj
-nycflights13
-lubridate
-ggmap
-gapminder
-rlang
-shiny
-babynames
-streamgraph
-ggTimeSeries
-skimr
-MindOnStats
-MASS
 extrafont
 xkcd
+gdtools
+ggiraph

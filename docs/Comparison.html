@@ -25,7 +25,7 @@
 <meta name="author" content="John D. Lee">
 
 
-<meta name="date" content="2018-06-01">
+<meta name="date" content="2018-06-03">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -68,7 +68,7 @@
 <script src="libs/ggiraph/ggiraph_tooltip.js"></script>
 <script src="libs/ggiraph/ggiraph_selector.js"></script>
 <script src="libs/ggiraph-binding/ggiraph.js"></script>
-<script src="libs/svg_2/scripts_svg_2.js"></script>
+<script src="libs/svg_19/scripts_svg_19.js"></script>
 
 
 <style type="text/css">
@@ -322,28 +322,28 @@ s.mtcars.df =<span class="st"> </span>mtcars.df <span class="op">%&gt;%</span><s
 
 <span class="kw">ggplot</span>(<span class="dt">data =</span> s.mtcars.df, <span class="kw">aes</span>(<span class="dt">x =</span> cyl, <span class="dt">y =</span> m.hp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> s.mtcars.df, <span class="kw">aes</span>(<span class="dt">x =</span> cyl, <span class="dt">y =</span> m.hp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_col</span>()</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-11-2.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-31-2.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Change order of bars
 cyl.order &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;8&quot;</span>, <span class="st">&quot;6&quot;</span>, <span class="st">&quot;4&quot;</span>)
 <span class="kw">ggplot</span>(<span class="dt">data =</span> s.mtcars.df, <span class="kw">aes</span>(<span class="dt">x =</span> cyl, <span class="dt">y =</span> m.hp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">limits =</span> cyl.order)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-11-3.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-31-3.png" width="672" /></p>
 </div>
 <div id="bar-chart-with-error-bars" class="section level3">
 <h3><span class="header-section-number">5.1.2</span> Bar chart with error bars</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> s.mtcars.df, <span class="kw">aes</span>(<span class="dt">x =</span> cyl, <span class="dt">y =</span> m.hp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymin=</span>m.hp<span class="op">-</span><span class="dv">2</span><span class="op">*</span>se.hp, <span class="dt">ymax=</span>m.hp<span class="op">+</span><span class="dv">2</span><span class="op">*</span>se.hp))</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> s.mtcars.df, <span class="kw">aes</span>(<span class="dt">x =</span> cyl, <span class="dt">y =</span> m.hp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymin=</span>m.hp<span class="op">-</span><span class="dv">2</span><span class="op">*</span>se.hp, <span class="dt">ymax=</span>m.hp<span class="op">+</span><span class="dv">2</span><span class="op">*</span>se.hp))<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> mtcars.df, <span class="kw">aes</span>(cyl, hp), <span class="dt">position =</span> <span class="kw">position_jitter</span>(<span class="dt">width =</span> .<span class="dv">2</span>, <span class="dt">height =</span> <span class="dv">0</span>))</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-12-2.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-32-2.png" width="672" /></p>
 </div>
 <div id="dotplot-and-offset-range-plot" class="section level3">
 <h3><span class="header-section-number">5.1.3</span> dotplot and offset range plot</h3>
@@ -371,7 +371,7 @@ m.l.df<span class="op">$</span>n.condition =<span class="st"> </span><span class
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;&quot;</span>, <span class="dt">y=</span><span class="st">&quot;&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">ylim</span>(<span class="dv">2</span>, <span class="dv">15</span>)</code></pre></div>
 <pre><code>## `stat_bindot()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
 </div>
 <div id="statistical-significance-in-context" class="section level3">
 <h3><span class="header-section-number">5.1.4</span> Statistical significance in context</h3>
@@ -382,7 +382,7 @@ m.l.df<span class="op">$</span>n.condition =<span class="st"> </span><span class
 <span class="st">  </span><span class="kw">geom_dotplot</span>(<span class="dt">binaxis =</span> <span class="st">&quot;y&quot;</span>, <span class="dt">stackdir =</span> <span class="st">&quot;center&quot;</span>, <span class="dt">binwidth =</span> <span class="dv">1</span>, 
                <span class="dt">dotsize =</span> <span class="dv">6</span>,<span class="dt">alpha =</span> .<span class="dv">3</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="kw">mean</span>(hp)), <span class="dt">size =</span> <span class="fl">1.2</span>) </code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
 </div>
 </div>
 <div id="comparing-distributions-box-violyn-and-sina-plot" class="section level2">
@@ -392,23 +392,23 @@ m.l.df<span class="op">$</span>n.condition =<span class="st"> </span><span class
 <span class="kw">ggplot</span>(<span class="dt">data =</span> s.mtcars.df, <span class="kw">aes</span>(<span class="dt">x =</span> cyl, <span class="dt">y =</span> m.hp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_col</span>()<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymin=</span>m.hp<span class="op">-</span><span class="dv">2</span><span class="op">*</span>se.hp, <span class="dt">ymax=</span>m.hp<span class="op">+</span><span class="dv">2</span><span class="op">*</span>se.hp))</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> s.mtcars.df, <span class="kw">aes</span>(<span class="dt">x =</span> cyl, <span class="dt">y =</span> m.hp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_col</span>()<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymin=</span>m.hp<span class="op">-</span><span class="dv">2</span><span class="op">*</span>se.hp, <span class="dt">ymax=</span>m.hp<span class="op">+</span><span class="dv">2</span><span class="op">*</span>se.hp))<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> mtcars.df, <span class="kw">aes</span>(cyl, hp), <span class="dt">position =</span> <span class="kw">position_jitter</span>(<span class="dt">width =</span> .<span class="dv">2</span>, <span class="dt">height =</span> <span class="dv">0</span>))</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-15-2.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-35-2.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> s.mtcars.df, <span class="kw">aes</span>(<span class="dt">x =</span> cyl, <span class="dt">y =</span> m.hp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">size =</span> <span class="dv">3</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymin=</span>m.hp<span class="op">-</span><span class="dv">2</span><span class="op">*</span>se.hp, <span class="dt">ymax=</span>m.hp<span class="op">+</span><span class="dv">2</span><span class="op">*</span>se.hp))<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> mtcars.df, <span class="kw">aes</span>(cyl, hp), <span class="dt">position =</span> <span class="kw">position_jitter</span>(<span class="dt">width =</span> .<span class="dv">2</span>, <span class="dt">height =</span> <span class="dv">0</span>))</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-15-3.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-35-3.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Sina plot
 <span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="kw">as.factor</span>(cyl), hwy))<span class="op">+</span>
 <span class="st"> </span><span class="kw">geom_sina</span>(<span class="kw">aes</span>(<span class="dt">color =</span> <span class="kw">as.factor</span>(cyl)),<span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">alpha =</span>.<span class="dv">5</span>) <span class="op">+</span>
 <span class="st"> </span><span class="kw">geom_tufteboxplot</span>()<span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;ggforce: sina plot with Tufte boxplot&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-15-4.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-35-4.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ggplot(s.mtcars.df, aes(m.hp, m.mpg, colour =as.factor(cyl)))+</span>
 <span class="co"># geom_pointrangeh(aes(xmin= m.hp-se.hp, xmax = m.hp+se.hp))+</span>
 <span class="co">#   geom_pointrange(aes(ymin= m.mpg-se.mpg, ymax = m.mpg+se.mpg))+</span>
@@ -416,17 +416,17 @@ m.l.df<span class="op">$</span>n.condition =<span class="st"> </span><span class
 
 <span class="kw">ggplot</span>(mtcars.df, <span class="kw">aes</span>(<span class="kw">as.factor</span>(cyl), hp))<span class="op">+</span>
 <span class="kw">geom_boxplot</span>()</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-15-5.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-35-5.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(mtcars.df, <span class="kw">aes</span>(<span class="kw">as.factor</span>(cyl), hp))<span class="op">+</span>
 <span class="kw">geom_violin</span>(<span class="dt">draw_quantiles =</span> <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>))</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-15-6.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-35-6.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> s.mtcars.df, <span class="kw">aes</span>(<span class="dt">x =</span> cyl, <span class="dt">y =</span> m.hp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">data=</span> mtcars.df, <span class="kw">aes</span>(cyl, hp))<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">size =</span> <span class="dv">3</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymin=</span>m.hp<span class="op">-</span><span class="dv">2</span><span class="op">*</span>se.hp, <span class="dt">ymax=</span>m.hp<span class="op">+</span><span class="dv">2</span><span class="op">*</span>se.hp))<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> mtcars.df, <span class="kw">aes</span>(cyl, hp), 
              <span class="dt">position =</span> <span class="kw">position_jitter</span>(<span class="dt">width =</span> .<span class="dv">2</span>, <span class="dt">height =</span> <span class="dv">0</span>), <span class="dt">alpha =</span>.<span class="dv">6</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-15-7.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-35-7.png" width="672" /></p>
 <div id="compare-empirical-and-theoretical-distribution" class="section level3">
 <h3><span class="header-section-number">5.2.1</span> Compare empirical and theoretical distribution</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sum.mtcars.df =<span class="st"> </span>mtcars.df<span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(cyl) <span class="op">%&gt;%</span><span class="st"> </span>
@@ -440,7 +440,7 @@ m.l.df<span class="op">$</span>n.condition =<span class="st"> </span><span class
                  <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">alpha =</span> .<span class="dv">25</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> sum.mtcars.df,
          <span class="kw">aes</span>(<span class="kw">as.factor</span>(cyl), <span class="dt">y=</span> m.hp),<span class="dt">size =</span> <span class="dv">6</span>, <span class="dt">alpha =</span> .<span class="dv">33</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
 </div>
 <div id="tufte-inspired-minimal-bar-chart" class="section level3">
 <h3><span class="header-section-number">5.2.2</span> Tufte-inspired minimal bar chart</h3>
@@ -452,7 +452,7 @@ m.l.df<span class="op">$</span>n.condition =<span class="st"> </span><span class
 <span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="dv">2</span>, <span class="dv">12</span>, <span class="dv">2</span>)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept=</span><span class="kw">seq</span>(<span class="dv">2</span>, <span class="dv">12</span>, <span class="dv">2</span>), <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>, <span class="dt">lwd=</span><span class="dv">1</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_tufte</span>(<span class="dt">base_size=</span><span class="dv">12</span>, <span class="dt">ticks=</span>F, <span class="dt">base_family =</span> <span class="st">&quot;Arial&quot;</span>) </code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
 </div>
 </div>
 <div id="comparing-across-many-variables" class="section level2">
@@ -472,7 +472,7 @@ mtcars.df<span class="op">$</span>name =<span class="st"> </span><span class="kw
 <span class="st">  </span><span class="kw">scale_colour_brewer</span>(<span class="dt">name =</span> <span class="st">&quot;Number of </span><span class="ch">\n</span><span class="st">Cylinders&quot;</span>, <span class="dt">palette=</span><span class="st">&quot;Dark2&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># http://colorbrewer2.org</span>
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(.<span class="dv">75</span>, .<span class="dv">25</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
 </div>
 <div id="point-range-on-x-and-y" class="section level3">
 <h3><span class="header-section-number">5.3.2</span> Point range on x and y</h3>
@@ -491,17 +491,17 @@ s.mtcars.df =<span class="st"> </span>mtcars <span class="op">%&gt;%</span><span
 <span class="st">  </span><span class="kw">geom_rangeframe</span>() </code></pre></div>
 <pre><code>## Warning: position_dodge requires non-overlapping x
 ## intervals</code></pre>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Tufte boxplot
 <span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="kw">as.factor</span>(cyl), mpg))<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_tufteboxplot</span>()<span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;ggthemes: Tufte boxplot&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-19-2.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-39-2.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(disp, mpg, <span class="dt">color =</span> <span class="kw">as.factor</span>(cyl)))<span class="op">+</span>
 <span class="kw">geom_point</span>()<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_rangeframe</span>(<span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">colour =</span> <span class="st">&quot;grey35&quot;</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;ggthemes: Tufte range frame&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-19-3.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-39-3.png" width="672" /></p>
 </div>
 <div id="tufte-slopegraph" class="section level3">
 <h3><span class="header-section-number">5.3.4</span> Tufte-inspired slope graphs</h3>
@@ -535,14 +535,14 @@ l.cancer.df<span class="op">$</span>year =<span class="st"> </span><span class="
 <span class="st">  </span><span class="kw">theme_void</span>()<span class="op">+</span>
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="kw">rel</span>(.<span class="dv">85</span>)),
         <span class="dt">axis.text.y=</span><span class="kw">element_blank</span>())</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
 </div>
 <div id="parallel-coordinate-plot-with-similar-items-highlighted" class="section level3">
 <h3><span class="header-section-number">5.3.5</span> Parallel coordinate plot with similar items highlighted</h3>
 <p>Link to network for showing links in multivariate data</p>
 <pre><code>## [1] &quot;Fiat 128&quot;</code></pre>
 <pre><code>## [1] &quot;Toyota Corolla&quot;</code></pre>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
 </div>
 </div>
 <div id="gliphs-chernof-face-and-radar-plots" class="section level2">

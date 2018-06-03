@@ -171,6 +171,7 @@ library(gtable)
 
 ## Match troop data to temperature data
 # Small difference in position require reconciliation
+Minard.troops$survivors[Minard.troops$survivors==340000] = 422000 # Data don't match annotation on original plot
 Minard.troop.temp = Minard.troops %>% filter(direction == "R") %>% 
   filter(round(long, 0) %in% round(Minard.temp$long, 0)) %>% 
   mutate(long = round(long, 0)) %>% distinct(long, .keep_all = TRUE)
@@ -254,7 +255,7 @@ https://cran.r-project.org/web/packages/atus/atus.pdf
 O*NET occupational information: knowledge, skills, abilties, task composition
 
 Yao about data and web scraping and the package 
-```{r, happiness-plot}
+```{r, happiness-plot, cache=TRUE}
 
 ## Read data from website
 # sports <- read_tsv("https://github.com/halhen/viz-pub/raw/master/sports-time-of-day/activity.tsv")
@@ -263,7 +264,19 @@ Yao about data and web scraping and the package
 ## Happiness
 
 happiness.df = read.csv("data/world-happiness-report/2017.csv")
-ggplot(happiness.df, aes(Economy..GDP.per.Capita., Happiness.Score)) + geom_point()
+
+highlight.df = happiness.df %>% filter(
+  Economy..GDP.per.Capita.>1.75|
+  Happiness.Score>7.1|
+  (Happiness.Score>5&Economy..GDP.per.Capita.<.5)|
+  (Happiness.Score>6&Economy..GDP.per.Capita.<1)|
+    Country=="United States")
+
+ggplot(happiness.df, aes(Economy..GDP.per.Capita., Happiness.Score)) + 
+  geom_point(colour = "grey25") +
+  geom_point(data = highlight.df, color = "orange")+
+  geom_text_repel(data = highlight.df, aes(label = Country))+
+  labs(title = "Money doesn't buy happiness, but it helps", y = "Happiness", x = "Per capita GDP")
 
 ## Chocolate
 # chocolate.df = read.csv("flavors_of_cacao.csv")

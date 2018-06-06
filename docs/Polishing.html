@@ -25,7 +25,7 @@
 <meta name="author" content="John D. Lee">
 
 
-<meta name="date" content="2018-06-03">
+<meta name="date" content="2018-06-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -68,7 +68,7 @@
 <script src="libs/ggiraph/ggiraph_tooltip.js"></script>
 <script src="libs/ggiraph/ggiraph_selector.js"></script>
 <script src="libs/ggiraph-binding/ggiraph.js"></script>
-<script src="libs/svg_36/scripts_svg_36.js"></script>
+<script src="libs/svg_1/scripts_svg_1.js"></script>
 
 
 <style type="text/css">
@@ -249,12 +249,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.2" data-path="Polishing.html"><a href="Polishing.html#labeling-and-annotation"><i class="fa fa-check"></i><b>10.2</b> Labeling and annotation</a><ul>
 <li class="chapter" data-level="10.2.1" data-path="Polishing.html"><a href="Polishing.html#annotating-data"><i class="fa fa-check"></i><b>10.2.1</b> Annotating data</a></li>
 <li class="chapter" data-level="10.2.2" data-path="Polishing.html"><a href="Polishing.html#annotating-points-and-select-points"><i class="fa fa-check"></i><b>10.2.2</b> Annotating points and select points</a></li>
-<li class="chapter" data-level="10.2.3" data-path="Polishing.html"><a href="Polishing.html#labels-on-lines"><i class="fa fa-check"></i><b>10.2.3</b> Labels on lines</a></li>
-<li class="chapter" data-level="10.2.4" data-path="Polishing.html"><a href="Polishing.html#meaningful-symbols"><i class="fa fa-check"></i><b>10.2.4</b> Meaningful symbols</a></li>
-<li class="chapter" data-level="10.2.5" data-path="Polishing.html"><a href="Polishing.html#AddingRemovingLabels"><i class="fa fa-check"></i><b>10.2.5</b> Adding and removing labels: title, axis labels, facet labels, and legends</a></li>
-<li class="chapter" data-level="10.2.6" data-path="Polishing.html"><a href="Polishing.html#remove-and-position-one-or-more-legends"><i class="fa fa-check"></i><b>10.2.6</b> Remove and position one or more legends</a></li>
-<li class="chapter" data-level="10.2.7" data-path="Polishing.html"><a href="Polishing.html#setting-limits-on-axis-and-position-of-graph"><i class="fa fa-check"></i><b>10.2.7</b> Setting limits on axis and position of graph</a></li>
-<li class="chapter" data-level="10.2.8" data-path="Polishing.html"><a href="Polishing.html#adjust-margin-between-points-and-edge-of-plot-area"><i class="fa fa-check"></i><b>10.2.8</b> Adjust margin between points and edge of plot area</a></li>
+<li class="chapter" data-level="10.2.3" data-path="Polishing.html"><a href="Polishing.html#annotating-with-an-inset-plot"><i class="fa fa-check"></i><b>10.2.3</b> Annotating with an inset plot</a></li>
+<li class="chapter" data-level="10.2.4" data-path="Polishing.html"><a href="Polishing.html#labels-on-lines"><i class="fa fa-check"></i><b>10.2.4</b> Labels on lines</a></li>
+<li class="chapter" data-level="10.2.5" data-path="Polishing.html"><a href="Polishing.html#meaningful-symbols"><i class="fa fa-check"></i><b>10.2.5</b> Meaningful symbols</a></li>
+<li class="chapter" data-level="10.2.6" data-path="Polishing.html"><a href="Polishing.html#AddingRemovingLabels"><i class="fa fa-check"></i><b>10.2.6</b> Adding and removing labels: title, axis labels, facet labels, and legends</a></li>
+<li class="chapter" data-level="10.2.7" data-path="Polishing.html"><a href="Polishing.html#remove-and-position-one-or-more-legends"><i class="fa fa-check"></i><b>10.2.7</b> Remove and position one or more legends</a></li>
+<li class="chapter" data-level="10.2.8" data-path="Polishing.html"><a href="Polishing.html#setting-limits-on-axis-and-position-of-graph"><i class="fa fa-check"></i><b>10.2.8</b> Setting limits on axis and position of graph</a></li>
+<li class="chapter" data-level="10.2.9" data-path="Polishing.html"><a href="Polishing.html#adjust-margin-between-points-and-edge-of-plot-area"><i class="fa fa-check"></i><b>10.2.9</b> Adjust margin between points and edge of plot area</a></li>
 </ul></li>
 <li class="chapter" data-level="10.3" data-path="Polishing.html"><a href="Polishing.html#color"><i class="fa fa-check"></i><b>10.3</b> Color</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="Polishing.html"><a href="Polishing.html#resources-to-explain-the-basis-form-color-choice"><i class="fa fa-check"></i><b>10.3.1</b> Resources to explain the basis form color choice</a></li>
@@ -317,12 +318,12 @@ mtcars.df =<span class="st"> </span>mtcars</code></pre></div>
 <span class="kw">ggplot</span>(h.mtcars.df, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.factor</span>(cyl), <span class="dt">fill =</span> highlight)) <span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">alpha =</span> .<span class="dv">6</span>) <span class="op">+</span>
 <span class="st">    </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;yes&quot;</span>=<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;no&quot;</span>=<span class="st">&quot;gray15&quot;</span>), <span class="dt">guide =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">h.mtcars.df =<span class="st"> </span>mtcars.df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">highlight =</span> <span class="kw">if_else</span>(mpg<span class="op">&gt;</span><span class="dv">24</span> <span class="op">&amp;</span>wt<span class="op">&gt;</span><span class="dv">3</span>, <span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>))
 <span class="kw">ggplot</span>(h.mtcars.df, <span class="kw">aes</span>(<span class="dt">x =</span> wt, <span class="dt">y =</span> mpg, <span class="dt">colour =</span> highlight)) <span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">    </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;yes&quot;</span>=<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;no&quot;</span>=<span class="st">&quot;gray60&quot;</span>), <span class="dt">guide =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-51-2.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-50-2.png" width="672" /></p>
 </div>
 <div id="labeling-and-annotation" class="section level2">
 <h2><span class="header-section-number">10.2</span> Labeling and annotation</h2>
@@ -335,7 +336,7 @@ mtcars.df =<span class="st"> </span>mtcars</code></pre></div>
 <span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Displacement (cubic inches)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Efficiency (mile per gallon)&quot;</span>, 
        <span class="dt">title =</span> <span class="st">&quot;Efficiency and engine size&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Number of cylinders&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Encircle pooints
 <span class="kw">library</span>(ggalt)
 
@@ -344,7 +345,7 @@ mtcars.df =<span class="st"> </span>mtcars</code></pre></div>
 <span class="st">    </span><span class="kw">geom_encircle</span>(<span class="dt">data=</span><span class="kw">filter</span>(mtcars, mpg<span class="op">&gt;</span><span class="dv">24</span>),
                    <span class="dt">s_shape=</span><span class="fl">0.75</span>, <span class="dt">expand=</span><span class="fl">0.05</span>) <span class="op">+</span>
 <span class="st">   </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;ggalt: encircle annotation&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-52-2.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-51-2.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#</span>
 
 <span class="kw">library</span>(ggpmisc) <span class="co"># For stat_poly_eq for equation annotation  </span>
@@ -359,7 +360,7 @@ regression.plot =
                    <span class="dt">formula =</span> formula, <span class="dt">parse =</span> <span class="ot">TRUE</span>, <span class="dt">coef.digits =</span> <span class="dv">2</span>, <span class="dt">label.x =</span> <span class="dv">200</span>, <span class="dt">label.y =</span> <span class="dv">30</span>)
 
 regression.plot </code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-52-3.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-51-3.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggsave</span>(<span class="dt">file =</span> <span class="st">&quot;regression_annotation.pdf&quot;</span>, <span class="dt">plot =</span> regression.plot)</code></pre></div>
 <pre><code>## Saving 7 x 5 in image</code></pre>
 </div>
@@ -377,7 +378,7 @@ mtcars.df<span class="op">$</span>name =<span class="st"> </span><span class="kw
 <span class="st">  </span><span class="kw">geom_text_repel</span>(<span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">show.legend =</span> <span class="ot">FALSE</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Displacement (cubic inches)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Efficiency (mile per gallon)&quot;</span>, 
        <span class="dt">title =</span> <span class="st">&quot;Efficiency and engine size&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Number of cylinders&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Add annotations to lines rather than legend
 s.mpg.df =<span class="st"> </span>mpg <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(year, class) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">h_mpg =</span> <span class="kw">mean</span>(hwy, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ungroup</span>()
  
@@ -389,18 +390,46 @@ s.mpg.df =<span class="st"> </span>mpg <span class="op">%&gt;%</span><span class
      <span class="kw">aes</span>(<span class="dt">label =</span> class),
      <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">nudge_x =</span> .<span class="dv">5</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">guides</span>(<span class="dt">color=</span><span class="ot">FALSE</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-53-2.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-52-2.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(mtcars.df, <span class="kw">aes</span>(disp,  mpg, <span class="dt">color =</span> <span class="kw">as.factor</span>(cyl))) <span class="op">+</span><span class="st">   </span>
 <span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span><span class="st">  </span>
 <span class="st">  </span><span class="kw">geom_text_repel</span>(<span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">show.legend =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-53-3.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-52-3.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(mtcars.df, <span class="kw">aes</span>(disp,  mpg, <span class="dt">color =</span> <span class="kw">as.factor</span>(cyl))) <span class="op">+</span><span class="st">   </span>
 <span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span><span class="st">  </span>
 <span class="st">  </span><span class="kw">geom_text_repel</span>(<span class="dt">data =</span> mtcars.df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(mpg<span class="op">&gt;</span><span class="dv">30</span>), <span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">show.legend =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-53-4.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-52-4.png" width="672" /></p>
+</div>
+<div id="annotating-with-an-inset-plot" class="section level3">
+<h3><span class="header-section-number">10.2.3</span> Annotating with an inset plot</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+diamonds.df =<span class="st"> </span>diamonds
+
+## Specify area of the plot to highlight
+xmin =<span class="st"> </span>.<span class="dv">8</span>; xmax =<span class="st"> </span><span class="fl">1.2</span>; ymin =<span class="st"> </span><span class="dv">2000</span>; ymax =<span class="st"> </span><span class="dv">7500</span>
+
+higlight.df =<span class="st"> </span>diamonds.df <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(carat<span class="op">&gt;</span>xmin<span class="op">&amp;</span>carat<span class="op">&lt;</span>xmax, price<span class="op">&gt;</span>ymin<span class="op">&amp;</span>price<span class="op">&lt;</span>ymax)
+
+overall.plot =<span class="st"> </span><span class="kw">ggplot</span>(diamonds.df, <span class="kw">aes</span>(carat, price))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> .<span class="dv">3</span>, <span class="dt">size =</span> .<span class="dv">3</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_rect</span>(<span class="dt">xmin =</span> xmin, <span class="dt">xmax =</span> xmax, <span class="dt">ymin =</span> ymin, <span class="dt">ymax =</span> ymax,
+            <span class="dt">fill =</span> <span class="st">&quot;transparent&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;grey60&quot;</span>)
+
+inset.plot =<span class="st"> </span><span class="kw">ggplot</span>(higlight.df, <span class="kw">aes</span>(carat, price))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> .<span class="dv">3</span>, <span class="dt">size =</span> .<span class="dv">2</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>()
+
+## Create custom annotation and add to 
+inset.grob &lt;-<span class="st"> </span><span class="kw">ggplotGrob</span>(inset.plot )
+
+overall.plot <span class="op">+</span><span class="st"> </span><span class="kw">annotation_custom</span>(<span class="dt">grob =</span> inset.grob, 
+                       <span class="dt">xmin =</span> <span class="fl">3.5</span>, <span class="dt">xmax =</span> <span class="fl">5.2</span>, <span class="dt">ymin =</span> <span class="dv">250</span>, <span class="dt">ymax =</span> <span class="dv">16500</span>)</code></pre></div>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
 </div>
 <div id="labels-on-lines" class="section level3">
-<h3><span class="header-section-number">10.2.3</span> Labels on lines</h3>
+<h3><span class="header-section-number">10.2.4</span> Labels on lines</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">s.mpg.df =<span class="st"> </span>mpg <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(year, class) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">h_mpg =</span> <span class="kw">mean</span>(hwy, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ungroup</span>()
@@ -428,7 +457,7 @@ formula &lt;-<span class="st"> </span>y <span class="op">~</span><span class="st
 <p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-55-2.png" width="672" /></p>
 </div>
 <div id="meaningful-symbols" class="section level3">
-<h3><span class="header-section-number">10.2.4</span> Meaningful symbols</h3>
+<h3><span class="header-section-number">10.2.5</span> Meaningful symbols</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(mtcars, 
         <span class="kw">aes</span>(disp,  mpg, <span class="dt">colour =</span> <span class="kw">as.factor</span>(am), <span class="dt">shape =</span> <span class="kw">as.factor</span>(am))) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">8</span>) <span class="op">+</span><span class="st">   </span>
@@ -438,7 +467,7 @@ formula &lt;-<span class="st"> </span>y <span class="op">~</span><span class="st
 <p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
 </div>
 <div id="AddingRemovingLabels" class="section level3">
-<h3><span class="header-section-number">10.2.5</span> Adding and removing labels: title, axis labels, facet labels, and legends</h3>
+<h3><span class="header-section-number">10.2.6</span> Adding and removing labels: title, axis labels, facet labels, and legends</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
 <span class="kw">library</span>(ggalt)
 <span class="kw">library</span>(ggrepel)
@@ -485,7 +514,7 @@ cyl_names &lt;-<span class="st"> </span><span class="kw">as_labeller</span>(<spa
 <p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
 </div>
 <div id="remove-and-position-one-or-more-legends" class="section level3">
-<h3><span class="header-section-number">10.2.6</span> Remove and position one or more legends</h3>
+<h3><span class="header-section-number">10.2.7</span> Remove and position one or more legends</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(mtcars.df, <span class="kw">aes</span>(wt, mpg, <span class="dt">colour =</span> cyl, <span class="dt">size =</span> hp))<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
 <p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
@@ -505,7 +534,7 @@ cyl_names &lt;-<span class="st"> </span><span class="kw">as_labeller</span>(<spa
 <p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-59-5.png" width="672" /></p>
 </div>
 <div id="setting-limits-on-axis-and-position-of-graph" class="section level3">
-<h3><span class="header-section-number">10.2.7</span> Setting limits on axis and position of graph</h3>
+<h3><span class="header-section-number">10.2.8</span> Setting limits on axis and position of graph</h3>
 <p><code>r  ## Change axis limits to focus on part of data  ggplot(mtcars.df, aes(wt, mpg))+  geom_point()</code></p>
 <p><img src="visualizationwithggplot_files/figure-html/plot-margin-1.png" width="672" /></p>
 <p><code>r  ggplot(mtcars.df, aes(wt, mpg))+  geom_point()+  lims(x = c(3, 4))</code></p>
@@ -516,7 +545,7 @@ cyl_names &lt;-<span class="st"> </span><span class="kw">as_labeller</span>(<spa
 <p><img src="visualizationwithggplot_files/figure-html/plot-margin-3.png" width="672" /></p>
 </div>
 <div id="adjust-margin-between-points-and-edge-of-plot-area" class="section level3">
-<h3><span class="header-section-number">10.2.8</span> Adjust margin between points and edge of plot area</h3>
+<h3><span class="header-section-number">10.2.9</span> Adjust margin between points and edge of plot area</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(mtcars.df, <span class="kw">aes</span>(wt, mpg))<span class="op">+</span>
 <span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span>

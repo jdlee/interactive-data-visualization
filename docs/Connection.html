@@ -25,7 +25,7 @@
 <meta name="author" content="John D. Lee">
 
 
-<meta name="date" content="2018-06-03">
+<meta name="date" content="2018-06-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -68,7 +68,7 @@
 <script src="libs/ggiraph/ggiraph_tooltip.js"></script>
 <script src="libs/ggiraph/ggiraph_selector.js"></script>
 <script src="libs/ggiraph-binding/ggiraph.js"></script>
-<script src="libs/svg_36/scripts_svg_36.js"></script>
+<script src="libs/svg_1/scripts_svg_1.js"></script>
 
 
 <style type="text/css">
@@ -249,12 +249,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.2" data-path="Polishing.html"><a href="Polishing.html#labeling-and-annotation"><i class="fa fa-check"></i><b>10.2</b> Labeling and annotation</a><ul>
 <li class="chapter" data-level="10.2.1" data-path="Polishing.html"><a href="Polishing.html#annotating-data"><i class="fa fa-check"></i><b>10.2.1</b> Annotating data</a></li>
 <li class="chapter" data-level="10.2.2" data-path="Polishing.html"><a href="Polishing.html#annotating-points-and-select-points"><i class="fa fa-check"></i><b>10.2.2</b> Annotating points and select points</a></li>
-<li class="chapter" data-level="10.2.3" data-path="Polishing.html"><a href="Polishing.html#labels-on-lines"><i class="fa fa-check"></i><b>10.2.3</b> Labels on lines</a></li>
-<li class="chapter" data-level="10.2.4" data-path="Polishing.html"><a href="Polishing.html#meaningful-symbols"><i class="fa fa-check"></i><b>10.2.4</b> Meaningful symbols</a></li>
-<li class="chapter" data-level="10.2.5" data-path="Polishing.html"><a href="Polishing.html#AddingRemovingLabels"><i class="fa fa-check"></i><b>10.2.5</b> Adding and removing labels: title, axis labels, facet labels, and legends</a></li>
-<li class="chapter" data-level="10.2.6" data-path="Polishing.html"><a href="Polishing.html#remove-and-position-one-or-more-legends"><i class="fa fa-check"></i><b>10.2.6</b> Remove and position one or more legends</a></li>
-<li class="chapter" data-level="10.2.7" data-path="Polishing.html"><a href="Polishing.html#setting-limits-on-axis-and-position-of-graph"><i class="fa fa-check"></i><b>10.2.7</b> Setting limits on axis and position of graph</a></li>
-<li class="chapter" data-level="10.2.8" data-path="Polishing.html"><a href="Polishing.html#adjust-margin-between-points-and-edge-of-plot-area"><i class="fa fa-check"></i><b>10.2.8</b> Adjust margin between points and edge of plot area</a></li>
+<li class="chapter" data-level="10.2.3" data-path="Polishing.html"><a href="Polishing.html#annotating-with-an-inset-plot"><i class="fa fa-check"></i><b>10.2.3</b> Annotating with an inset plot</a></li>
+<li class="chapter" data-level="10.2.4" data-path="Polishing.html"><a href="Polishing.html#labels-on-lines"><i class="fa fa-check"></i><b>10.2.4</b> Labels on lines</a></li>
+<li class="chapter" data-level="10.2.5" data-path="Polishing.html"><a href="Polishing.html#meaningful-symbols"><i class="fa fa-check"></i><b>10.2.5</b> Meaningful symbols</a></li>
+<li class="chapter" data-level="10.2.6" data-path="Polishing.html"><a href="Polishing.html#AddingRemovingLabels"><i class="fa fa-check"></i><b>10.2.6</b> Adding and removing labels: title, axis labels, facet labels, and legends</a></li>
+<li class="chapter" data-level="10.2.7" data-path="Polishing.html"><a href="Polishing.html#remove-and-position-one-or-more-legends"><i class="fa fa-check"></i><b>10.2.7</b> Remove and position one or more legends</a></li>
+<li class="chapter" data-level="10.2.8" data-path="Polishing.html"><a href="Polishing.html#setting-limits-on-axis-and-position-of-graph"><i class="fa fa-check"></i><b>10.2.8</b> Setting limits on axis and position of graph</a></li>
+<li class="chapter" data-level="10.2.9" data-path="Polishing.html"><a href="Polishing.html#adjust-margin-between-points-and-edge-of-plot-area"><i class="fa fa-check"></i><b>10.2.9</b> Adjust margin between points and edge of plot area</a></li>
 </ul></li>
 <li class="chapter" data-level="10.3" data-path="Polishing.html"><a href="Polishing.html#color"><i class="fa fa-check"></i><b>10.3</b> Color</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="Polishing.html"><a href="Polishing.html#resources-to-explain-the-basis-form-color-choice"><i class="fa fa-check"></i><b>10.3.1</b> Resources to explain the basis form color choice</a></li>
@@ -306,7 +307,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="Connection" class="section level1">
 <h1><span class="header-section-number">Chapter 8</span> Connection–maps and network plots</h1>
 <p>Test of examples</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())</code></pre></div>
 <div class="figure">
 <img src="images/Minard_migration.jpg" alt="My picture" />
 <p class="caption">My picture</p>
@@ -347,8 +349,7 @@ states_map &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span 
 </div>
 <div id="county-map" class="section level3">
 <h3><span class="header-section-number">8.1.2</span> County map</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## devtools::install_github(&quot;hrbrmstr/ggalt&quot;, force=TRUE) # To install development version
-## Examples from https://github.com/hrbrmstr/ggalt
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Based on example: https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html</span>
 
 <span class="co"># </span><span class="al">TODO</span><span class="co"> replace with poverty or health outcomes data</span>
 <span class="kw">library</span>(tidyverse)
@@ -356,40 +357,33 @@ states_map &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span 
 <span class="kw">library</span>(viridis)
 
 
-<span class="co"># From https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html</span>
 
-## Read and clean data
-unemp.df =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://datasets.flowingdata.com/unemployment09.csv&quot;</span>)</code></pre></div>
-<pre><code>## Parsed with column specification:
-## cols(
-##   CN010010 = col_character(),
-##   `01` = col_character(),
-##   `001` = col_character(),
-##   `Autauga County, AL` = col_character(),
-##   `2009` = col_integer(),
-##   `23,288` = col_number(),
-##   `21,025` = col_number(),
-##   `2,263` = col_number(),
-##   `9.7` = col_double()
-## )</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(unemp.df, <span class="dt">file =</span> <span class="st">&quot;unemp&quot;</span>)
+## Read and clean data 
+<span class="co"># https://www.ers.usda.gov/data-products/county-level-data-sets/download-data/</span>
+poverty.df =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/CountyPoverty/Poverty.csv&quot;</span>)
 
-<span class="kw">load</span>(<span class="st">&quot;unemp&quot;</span>)
+<span class="kw">names</span>(poverty.df)[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>] =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;state&quot;</span>, <span class="st">&quot;name&quot;</span>)
+<span class="kw">names</span>(poverty.df)[<span class="dv">11</span>] =<span class="st"> &quot;rate&quot;</span>
 
+poverty.df<span class="op">$</span>county =<span class="st"> </span><span class="kw">str_replace</span>(poverty.df<span class="op">$</span>name, <span class="st">&quot; County&quot;</span>, <span class="st">&quot;&quot;</span>)
+poverty.df<span class="op">$</span>county =<span class="st"> </span><span class="kw">str_replace</span>(poverty.df<span class="op">$</span>county, <span class="st">&quot; Parish&quot;</span>, <span class="st">&quot;&quot;</span>)
+poverty.df<span class="op">$</span>county =<span class="st"> </span><span class="kw">tolower</span>(poverty.df<span class="op">$</span>county)
+
+
+
+unemp.df =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://datasets.flowingdata.com/unemployment09.csv&quot;</span>)
 <span class="kw">names</span>(unemp.df) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;state_fips&quot;</span>, <span class="st">&quot;county_fips&quot;</span>, <span class="st">&quot;name&quot;</span>, <span class="st">&quot;year&quot;</span>,
                   <span class="st">&quot;--&quot;</span>, <span class="st">&quot;---&quot;</span>, <span class="st">&quot;---&quot;</span>, <span class="st">&quot;rate&quot;</span>)
 unemp.df<span class="op">$</span>county =<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">str_replace</span>(unemp.df<span class="op">$</span>name, <span class="st">&quot; County, [A-Z]{2}&quot;</span>, <span class="st">&quot;&quot;</span>))
-
-<span class="co">#unemp.df$county &lt;- tolower(gsub(&quot; County, [A-Z]{2}&quot;, &quot;&quot;, unemp.df$name))</span>
+unemp.df<span class="op">$</span>county =<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">gsub</span>(<span class="st">&quot; County, [A-Z]{2}&quot;</span>, <span class="st">&quot;&quot;</span>, unemp.df<span class="op">$</span>name))
 unemp.df<span class="op">$</span>county =<span class="st"> </span><span class="kw">str_replace</span>(unemp.df<span class="op">$</span>county,<span class="st">&quot;^(.*) parish, ..$&quot;</span>,<span class="st">&quot;</span><span class="ch">\\</span><span class="st">1&quot;</span>)
 unemp.df<span class="op">$</span>state =<span class="st"> </span><span class="kw">str_replace</span>(unemp.df<span class="op">$</span>name, <span class="st">&quot;^.*([A-Z]{2}).*$&quot;</span>, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">1&quot;</span>)
+
 
 ## Use the maps package to convert maps data to a data frame
 <span class="co"># &quot;county&quot; is a county map of the US</span>
 county.df &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;county&quot;</span>, <span class="dt">projection =</span> <span class="st">&quot;albers&quot;</span>, <span class="dt">parameters =</span> <span class="kw">c</span>(<span class="dv">39</span>, <span class="dv">45</span>))
-
 <span class="kw">names</span>(county.df) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;long&quot;</span>, <span class="st">&quot;lat&quot;</span>, <span class="st">&quot;group&quot;</span>, <span class="st">&quot;order&quot;</span>, <span class="st">&quot;state_name&quot;</span>, <span class="st">&quot;county&quot;</span>)
-
 state.df &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;state&quot;</span>, <span class="dt">projection =</span> <span class="st">&quot;albers&quot;</span>, <span class="dt">parameters =</span> <span class="kw">c</span>(<span class="dv">39</span>, <span class="dv">45</span>))
 
 ## Replace state name with state abbreviations
@@ -397,22 +391,28 @@ county.df<span class="op">$</span>state &lt;-<span class="st"> </span>state.abb[
 county.df<span class="op">$</span>state_name &lt;-<span class="st"> </span><span class="ot">NULL</span>
 
 ## Merge county and state shape information with unemployment data
-choropleth.df &lt;-<span class="st"> </span><span class="kw">merge</span>(county.df, unemp.df, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;state&quot;</span>, <span class="st">&quot;county&quot;</span>))
-<span class="co">#choropleth.df = county.df %&gt;% inner_join(unemp.df, by = c(&quot;state&quot;, &quot;county&quot;))</span>
-  
+unemployment_choropleth.df =<span class="st"> </span>county.df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">inner_join</span>(unemp.df, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;state&quot;</span>, <span class="st">&quot;county&quot;</span>))
+poverty_choropleth.df =<span class="st"> </span>county.df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">inner_join</span>(poverty.df, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;state&quot;</span>, <span class="st">&quot;county&quot;</span>))
 
-choropleth.df =<span class="st"> </span>choropleth.df <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(state<span class="op">:</span>rate)
-choropleth.df =<span class="st"> </span>choropleth.df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(order))
 
-<span class="kw">ggplot</span>(choropleth.df, <span class="kw">aes</span>(long, lat, <span class="dt">group =</span> group)) <span class="op">+</span>
+<span class="kw">ggplot</span>(unemployment_choropleth.df, <span class="kw">aes</span>(long, lat, <span class="dt">group =</span> group)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> rate), <span class="dt">colour =</span> <span class="kw">alpha</span>(<span class="st">&quot;white&quot;</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">2</span>), <span class="dt">size =</span> <span class="fl">0.05</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> state.df, <span class="dt">colour =</span> <span class="st">&quot;grey90&quot;</span>, <span class="dt">fill =</span> <span class="ot">NA</span>, <span class="dt">size =</span> <span class="fl">0.5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> state.df, <span class="dt">colour =</span> <span class="st">&quot;grey80&quot;</span>, <span class="dt">fill =</span> <span class="ot">NA</span>, <span class="dt">size =</span> <span class="fl">0.33</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">coord_fixed</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;US unemployment rate by county&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">option=</span><span class="st">&quot;magma&quot;</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_void</span>()</code></pre></div>
 <p><img src="visualizationwithggplot_files/figure-html/county-map-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(poverty_choropleth.df, <span class="kw">aes</span>(long, lat, <span class="dt">group =</span> group)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> rate), <span class="dt">colour =</span> <span class="kw">alpha</span>(<span class="st">&quot;white&quot;</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">2</span>), <span class="dt">size =</span> <span class="fl">0.05</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> state.df, <span class="dt">colour =</span> <span class="st">&quot;grey80&quot;</span>, <span class="dt">fill =</span> <span class="ot">NA</span>, <span class="dt">size =</span> <span class="fl">0.33</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">coord_fixed</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;US poverty rate by county&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">option=</span><span class="st">&quot;magma&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_void</span>()</code></pre></div>
+<p><img src="visualizationwithggplot_files/figure-html/county-map-2.png" width="672" /></p>
 </div>
 </div>
 <div id="us-county-small-multiples" class="section level2">
@@ -430,7 +430,7 @@ choropleth.df =<span class="st"> </span>choropleth.df <span class="op">%&gt;%</s
 <p>TODO adjust to reflect migration data Based on <a href="https://datascience.blog.wzb.eu/2018/05/31/three-ways-of-visualizing-a-graph-on-a-map/" class="uri">https://datascience.blog.wzb.eu/2018/05/31/three-ways-of-visualizing-a-graph-on-a-map/</a></p>
 <pre><code>## [1] TRUE</code></pre>
 <pre><code>## [1] TRUE</code></pre>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
 <p>Examples from: <a href="https://github.com/thomasp85/ggraph" class="uri">https://github.com/thomasp85/ggraph</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggraph) <span class="co"># ggplot extension</span>
 <span class="kw">library</span>(igraph) <span class="co"># For network calculations</span>
@@ -446,7 +446,7 @@ graph &lt;-<span class="st"> </span><span class="kw">graph_from_data_frame</span
 <span class="st">    </span><span class="kw">geom_node_point</span>(<span class="kw">aes</span>(<span class="dt">size =</span> Popularity)) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">facet_edges</span>(<span class="op">~</span>year) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">theme_graph</span>(<span class="dt">foreground =</span> <span class="st">&#39;steelblue&#39;</span>, <span class="dt">fg_text_colour =</span> <span class="st">&#39;white&#39;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
 </div>
 <div id="hierarchy" class="section level3">
 <h3><span class="header-section-number">8.4.2</span> Hierarchy</h3>
@@ -483,7 +483,7 @@ round_dendro.plot =<span class="st"> </span><span class="kw">ggraph</span>(graph
 
 <span class="kw">ggarrange</span>(circle.plot, tree.plot, round_dendro.plot,
 <span class="dt">nrow=</span><span class="dv">1</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">align =</span> <span class="st">&quot;hv&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
 
 
 </div>

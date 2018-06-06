@@ -25,7 +25,7 @@
 <meta name="author" content="John D. Lee">
 
 
-<meta name="date" content="2018-06-03">
+<meta name="date" content="2018-06-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -68,7 +68,7 @@
 <script src="libs/ggiraph/ggiraph_tooltip.js"></script>
 <script src="libs/ggiraph/ggiraph_selector.js"></script>
 <script src="libs/ggiraph-binding/ggiraph.js"></script>
-<script src="libs/svg_36/scripts_svg_36.js"></script>
+<script src="libs/svg_1/scripts_svg_1.js"></script>
 
 
 <style type="text/css">
@@ -249,12 +249,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.2" data-path="Polishing.html"><a href="Polishing.html#labeling-and-annotation"><i class="fa fa-check"></i><b>10.2</b> Labeling and annotation</a><ul>
 <li class="chapter" data-level="10.2.1" data-path="Polishing.html"><a href="Polishing.html#annotating-data"><i class="fa fa-check"></i><b>10.2.1</b> Annotating data</a></li>
 <li class="chapter" data-level="10.2.2" data-path="Polishing.html"><a href="Polishing.html#annotating-points-and-select-points"><i class="fa fa-check"></i><b>10.2.2</b> Annotating points and select points</a></li>
-<li class="chapter" data-level="10.2.3" data-path="Polishing.html"><a href="Polishing.html#labels-on-lines"><i class="fa fa-check"></i><b>10.2.3</b> Labels on lines</a></li>
-<li class="chapter" data-level="10.2.4" data-path="Polishing.html"><a href="Polishing.html#meaningful-symbols"><i class="fa fa-check"></i><b>10.2.4</b> Meaningful symbols</a></li>
-<li class="chapter" data-level="10.2.5" data-path="Polishing.html"><a href="Polishing.html#AddingRemovingLabels"><i class="fa fa-check"></i><b>10.2.5</b> Adding and removing labels: title, axis labels, facet labels, and legends</a></li>
-<li class="chapter" data-level="10.2.6" data-path="Polishing.html"><a href="Polishing.html#remove-and-position-one-or-more-legends"><i class="fa fa-check"></i><b>10.2.6</b> Remove and position one or more legends</a></li>
-<li class="chapter" data-level="10.2.7" data-path="Polishing.html"><a href="Polishing.html#setting-limits-on-axis-and-position-of-graph"><i class="fa fa-check"></i><b>10.2.7</b> Setting limits on axis and position of graph</a></li>
-<li class="chapter" data-level="10.2.8" data-path="Polishing.html"><a href="Polishing.html#adjust-margin-between-points-and-edge-of-plot-area"><i class="fa fa-check"></i><b>10.2.8</b> Adjust margin between points and edge of plot area</a></li>
+<li class="chapter" data-level="10.2.3" data-path="Polishing.html"><a href="Polishing.html#annotating-with-an-inset-plot"><i class="fa fa-check"></i><b>10.2.3</b> Annotating with an inset plot</a></li>
+<li class="chapter" data-level="10.2.4" data-path="Polishing.html"><a href="Polishing.html#labels-on-lines"><i class="fa fa-check"></i><b>10.2.4</b> Labels on lines</a></li>
+<li class="chapter" data-level="10.2.5" data-path="Polishing.html"><a href="Polishing.html#meaningful-symbols"><i class="fa fa-check"></i><b>10.2.5</b> Meaningful symbols</a></li>
+<li class="chapter" data-level="10.2.6" data-path="Polishing.html"><a href="Polishing.html#AddingRemovingLabels"><i class="fa fa-check"></i><b>10.2.6</b> Adding and removing labels: title, axis labels, facet labels, and legends</a></li>
+<li class="chapter" data-level="10.2.7" data-path="Polishing.html"><a href="Polishing.html#remove-and-position-one-or-more-legends"><i class="fa fa-check"></i><b>10.2.7</b> Remove and position one or more legends</a></li>
+<li class="chapter" data-level="10.2.8" data-path="Polishing.html"><a href="Polishing.html#setting-limits-on-axis-and-position-of-graph"><i class="fa fa-check"></i><b>10.2.8</b> Setting limits on axis and position of graph</a></li>
+<li class="chapter" data-level="10.2.9" data-path="Polishing.html"><a href="Polishing.html#adjust-margin-between-points-and-edge-of-plot-area"><i class="fa fa-check"></i><b>10.2.9</b> Adjust margin between points and edge of plot area</a></li>
 </ul></li>
 <li class="chapter" data-level="10.3" data-path="Polishing.html"><a href="Polishing.html#color"><i class="fa fa-check"></i><b>10.3</b> Color</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="Polishing.html"><a href="Polishing.html#resources-to-explain-the-basis-form-color-choice"><i class="fa fa-check"></i><b>10.3.1</b> Resources to explain the basis form color choice</a></li>
@@ -332,12 +333,12 @@ belts.DriversKilled.bymonth =<span class="st"> </span>belts.df <span class="op">
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_blank</span>(),
         <span class="dt">axis.ticks.x =</span> <span class="kw">element_blank</span>(),
         <span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(belts.df, <span class="kw">aes</span>(Month, belts.DriversKilled)) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">geom_path</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> belts.law, <span class="dt">size =</span> belts.PetrolPrice, <span class="dt">group =</span> Year), <span class="dt">lineend =</span> <span class="st">&quot;round&quot;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">data =</span> belts.DriversKilled.bymonth,  <span class="kw">aes</span>(<span class="dt">x =</span> Month, <span class="dt">y =</span> mean.DriversKilled)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Year, <span class="dt">nrow=</span> <span class="dv">4</span>, <span class="dt">ncol=</span> <span class="dv">4</span>) <span class="co"># Creates a matrix of graphs</span></code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">belts.df =<span class="st"> </span>belts.df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Year) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">summer.s=</span>Month[Month<span class="op">==</span><span class="dv">5</span>], <span class="dt">summer.e=</span>Month[Month<span class="op">==</span><span class="dv">9</span>])
 
 <span class="kw">ggplot</span>(belts.df, <span class="kw">aes</span>(Month, belts.DriversKilled)) <span class="op">+</span><span class="st"> </span>
@@ -346,7 +347,7 @@ belts.DriversKilled.bymonth =<span class="st"> </span>belts.df <span class="op">
 <span class="st">  </span><span class="kw">geom_path</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> belts.law, <span class="dt">size =</span> belts.PetrolPrice, <span class="dt">group =</span> Year), <span class="dt">lineend =</span> <span class="st">&quot;round&quot;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">data =</span> belts.DriversKilled.bymonth,  <span class="kw">aes</span>(<span class="dt">x =</span> Month, <span class="dt">y =</span> mean.DriversKilled)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Year, <span class="dt">nrow=</span> <span class="dv">4</span>, <span class="dt">ncol=</span> <span class="dv">4</span>) </code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
 </div>
 <div id="cycle-plot" class="section level2">
 <h2><span class="header-section-number">7.3</span> Cycle plot</h2>
@@ -359,14 +360,14 @@ belts.DriversKilled.bymonth =<span class="st"> </span>belts.df <span class="op">
 <span class="st">  </span><span class="kw">geom_hline</span>( <span class="dt">data =</span> hline.df, <span class="kw">aes</span>(<span class="dt">yintercept =</span> m.killed), <span class="dt">colour =</span> <span class="st">&quot;grey15&quot;</span>, <span class="dt">size =</span> <span class="fl">1.5</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_grid</span>(<span class="op">~</span>Month) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_blank</span>())</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">data =</span> belts.df, <span class="kw">aes</span>(<span class="dt">x =</span> Year, <span class="dt">y =</span> belts.DriversKilled, <span class="dt">group =</span> Month, <span class="dt">fill =</span> belts.law), <span class="dt">alpha =</span> .<span class="dv">6</span>, 
     <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_hline</span>( <span class="dt">data =</span> hline.df, <span class="kw">aes</span>(<span class="dt">yintercept =</span> m.killed), <span class="dt">colour =</span> <span class="st">&quot;grey15&quot;</span>, <span class="dt">size =</span> <span class="fl">1.5</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_grid</span>(<span class="op">~</span>Month) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_blank</span>())</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-35-2.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-34-2.png" width="672" /></p>
 </div>
 <div id="time-series-with-lines-labeled" class="section level2">
 <h2><span class="header-section-number">7.4</span> Time series with lines labeled</h2>
@@ -387,7 +388,7 @@ belts.DriversKilled.bymonth =<span class="st"> </span>belts.df <span class="op">
 <span class="st">  </span><span class="kw">theme_classic</span>(<span class="dt">base_size =</span> <span class="dv">16</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Age (days)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Circumference (mm)&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
 </div>
 <div id="faceted-zoom" class="section level2">
 <h2><span class="header-section-number">7.5</span> Faceted zoom</h2>
@@ -398,7 +399,7 @@ belts.DriversKilled.bymonth =<span class="st"> </span>belts.df <span class="op">
 <span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">    </span><span class="kw">facet_zoom</span>(<span class="dt">x =</span> Species <span class="op">==</span><span class="st"> &quot;versicolor&quot;</span>)<span class="op">+</span>
 <span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;ggforce: facet zoom&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
 <p>TODO Step graph</p>
 </div>
 <div id="ridge-plot" class="section level2">
@@ -415,7 +416,7 @@ movies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">f
 <span class="st">  </span><span class="kw">scale_y_reverse</span>(<span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">2000</span>, <span class="dv">1980</span>, <span class="dv">1960</span>, <span class="dv">1940</span>, <span class="dv">1920</span>, <span class="dv">1900</span>), <span class="dt">expand =</span> <span class="kw">c</span>(<span class="fl">0.01</span>, <span class="dv">0</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_ridges</span>()</code></pre></div>
 <pre><code>## Picking joint bandwidth of 6.89</code></pre>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
 </div>
 <div id="stacked-area-and-line-graphs" class="section level2">
 <h2><span class="header-section-number">7.7</span> Stacked area and line graphs</h2>
@@ -439,7 +440,7 @@ names.df =<span class="st"> </span>babynames <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>, 
         <span class="dt">axis.text.y=</span><span class="kw">element_blank</span>())</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
 </div>
 <div id="temporal-heatmap" class="section level2">
 <h2><span class="header-section-number">7.8</span> Temporal heatmap</h2>
@@ -479,10 +480,24 @@ xts_heatmap &lt;-<span class="st"> </span><span class="cf">function</span>(x){
 <span class="kw">require</span>(quantmod)
 <span class="co"># Download some Data, e.g. the CBOE VIX </span>
 quantmod<span class="op">::</span><span class="kw">getSymbols</span>(<span class="st">&quot;^VIX&quot;</span>,<span class="dt">src=</span><span class="st">&quot;yahoo&quot;</span>)</code></pre></div>
+<pre><code>## &#39;getSymbols&#39; currently uses auto.assign=TRUE by default, but will
+## use auto.assign=FALSE in 0.5-0. You will still be able to use
+## &#39;loadSymbols&#39; to automatically load data. getOption(&quot;getSymbols.env&quot;)
+## and getOption(&quot;getSymbols.auto.assign&quot;) will still be checked for
+## alternate defaults.
+## 
+## This message is shown once per session and may be disabled by setting 
+## options(&quot;getSymbols.warning4.0&quot;=FALSE). See ?getSymbols for details.</code></pre>
+<pre><code>## 
+## WARNING: There have been significant changes to Yahoo Finance data.
+## Please see the Warning section of &#39;?getSymbols.yahoo&#39; for details.
+## 
+## This message is shown once per session and may be disabled by setting
+## options(&quot;getSymbols.yahoo.warning&quot;=FALSE).</code></pre>
 <pre><code>## [1] &quot;VIX&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lets see</span>
 <span class="kw">xts_heatmap</span>(<span class="kw">Cl</span>(VIX)) <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;Heatmap of VIX&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ok</span></code></pre></div>
 
 

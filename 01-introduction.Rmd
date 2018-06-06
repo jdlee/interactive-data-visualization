@@ -222,7 +222,7 @@ temp.plot = ggplot(Minard.temp, aes(long, temp)) +
         axis.text.x=element_blank(),
         axis.ticks.x=element_blank())
 
-
+#
 ## Combine the plots
 p1 = ggplot_gtable(ggplot_build(troop.plot))
 p2 = ggplot_gtable(ggplot_build(temp.plot))
@@ -232,6 +232,15 @@ p1$widths[2:3] <- maxWidth
 p2$widths[2:3] <- maxWidth
 
 grid.arrange(p1, p2, heights = c(4, 1.5))
+
+# library(cowplot)
+# plot_grid(troop.plot, temp.plot, 
+#           nrow = 2, 
+#           rel_heights = c(4, 1.5), axis = "l")
+# library(ggpubr)
+# ggarrange(troop.plot, temp.plot, 
+#           nrow = 2, 
+#           heights = c(4, 1.5), align = "v")
 ```
 
 

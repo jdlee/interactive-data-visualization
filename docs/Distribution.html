@@ -25,7 +25,7 @@
 <meta name="author" content="John D. Lee">
 
 
-<meta name="date" content="2018-06-03">
+<meta name="date" content="2018-06-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -68,7 +68,7 @@
 <script src="libs/ggiraph/ggiraph_tooltip.js"></script>
 <script src="libs/ggiraph/ggiraph_selector.js"></script>
 <script src="libs/ggiraph-binding/ggiraph.js"></script>
-<script src="libs/svg_36/scripts_svg_36.js"></script>
+<script src="libs/svg_1/scripts_svg_1.js"></script>
 
 
 <style type="text/css">
@@ -249,12 +249,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.2" data-path="Polishing.html"><a href="Polishing.html#labeling-and-annotation"><i class="fa fa-check"></i><b>10.2</b> Labeling and annotation</a><ul>
 <li class="chapter" data-level="10.2.1" data-path="Polishing.html"><a href="Polishing.html#annotating-data"><i class="fa fa-check"></i><b>10.2.1</b> Annotating data</a></li>
 <li class="chapter" data-level="10.2.2" data-path="Polishing.html"><a href="Polishing.html#annotating-points-and-select-points"><i class="fa fa-check"></i><b>10.2.2</b> Annotating points and select points</a></li>
-<li class="chapter" data-level="10.2.3" data-path="Polishing.html"><a href="Polishing.html#labels-on-lines"><i class="fa fa-check"></i><b>10.2.3</b> Labels on lines</a></li>
-<li class="chapter" data-level="10.2.4" data-path="Polishing.html"><a href="Polishing.html#meaningful-symbols"><i class="fa fa-check"></i><b>10.2.4</b> Meaningful symbols</a></li>
-<li class="chapter" data-level="10.2.5" data-path="Polishing.html"><a href="Polishing.html#AddingRemovingLabels"><i class="fa fa-check"></i><b>10.2.5</b> Adding and removing labels: title, axis labels, facet labels, and legends</a></li>
-<li class="chapter" data-level="10.2.6" data-path="Polishing.html"><a href="Polishing.html#remove-and-position-one-or-more-legends"><i class="fa fa-check"></i><b>10.2.6</b> Remove and position one or more legends</a></li>
-<li class="chapter" data-level="10.2.7" data-path="Polishing.html"><a href="Polishing.html#setting-limits-on-axis-and-position-of-graph"><i class="fa fa-check"></i><b>10.2.7</b> Setting limits on axis and position of graph</a></li>
-<li class="chapter" data-level="10.2.8" data-path="Polishing.html"><a href="Polishing.html#adjust-margin-between-points-and-edge-of-plot-area"><i class="fa fa-check"></i><b>10.2.8</b> Adjust margin between points and edge of plot area</a></li>
+<li class="chapter" data-level="10.2.3" data-path="Polishing.html"><a href="Polishing.html#annotating-with-an-inset-plot"><i class="fa fa-check"></i><b>10.2.3</b> Annotating with an inset plot</a></li>
+<li class="chapter" data-level="10.2.4" data-path="Polishing.html"><a href="Polishing.html#labels-on-lines"><i class="fa fa-check"></i><b>10.2.4</b> Labels on lines</a></li>
+<li class="chapter" data-level="10.2.5" data-path="Polishing.html"><a href="Polishing.html#meaningful-symbols"><i class="fa fa-check"></i><b>10.2.5</b> Meaningful symbols</a></li>
+<li class="chapter" data-level="10.2.6" data-path="Polishing.html"><a href="Polishing.html#AddingRemovingLabels"><i class="fa fa-check"></i><b>10.2.6</b> Adding and removing labels: title, axis labels, facet labels, and legends</a></li>
+<li class="chapter" data-level="10.2.7" data-path="Polishing.html"><a href="Polishing.html#remove-and-position-one-or-more-legends"><i class="fa fa-check"></i><b>10.2.7</b> Remove and position one or more legends</a></li>
+<li class="chapter" data-level="10.2.8" data-path="Polishing.html"><a href="Polishing.html#setting-limits-on-axis-and-position-of-graph"><i class="fa fa-check"></i><b>10.2.8</b> Setting limits on axis and position of graph</a></li>
+<li class="chapter" data-level="10.2.9" data-path="Polishing.html"><a href="Polishing.html#adjust-margin-between-points-and-edge-of-plot-area"><i class="fa fa-check"></i><b>10.2.9</b> Adjust margin between points and edge of plot area</a></li>
 </ul></li>
 <li class="chapter" data-level="10.3" data-path="Polishing.html"><a href="Polishing.html#color"><i class="fa fa-check"></i><b>10.3</b> Color</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="Polishing.html"><a href="Polishing.html#resources-to-explain-the-basis-form-color-choice"><i class="fa fa-check"></i><b>10.3.1</b> Resources to explain the basis form color choice</a></li>
@@ -352,7 +353,7 @@ a01.plot =<span class="st"> </span><span class="kw">ggplot</span>(<span class="d
 <h2><span class="header-section-number">4.4</span> Cummulative density</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds.df, <span class="kw">aes</span>(price, <span class="dt">colour =</span> cut)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">stat_ecdf</span>(<span class="dt">geom =</span> <span class="st">&quot;step&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </div>
 <div id="quantile-quantle-plot" class="section level2">
 <h2><span class="header-section-number">4.5</span> Quantile-quantle plot</h2>
@@ -368,32 +369,32 @@ a01.plot =<span class="st"> </span><span class="kw">ggplot</span>(<span class="d
 <h2><span class="header-section-number">4.6</span> Cummulative density</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds.df, <span class="kw">aes</span>(price, <span class="dt">colour =</span> cut)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">stat_ecdf</span>(<span class="dt">geom =</span> <span class="st">&quot;step&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
 <div id="distribution-2-d-distribution-and-overplotting-revisited" class="section level2">
 <h2><span class="header-section-number">4.7</span> Distribution: 2-D distribution and overplotting revisited</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(<span class="kw">log</span>(carat), <span class="kw">log</span>(price)))<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> .<span class="dv">01</span>)<span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(<span class="kw">log</span>(carat), <span class="kw">log</span>(price)))<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> .<span class="dv">5</span>)<span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_density2d</span>(<span class="dt">size=</span><span class="fl">1.2</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-10-2.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(<span class="kw">log</span>(carat), <span class="kw">log</span>(price)))<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> .<span class="dv">5</span>)<span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_density2d</span>(<span class="dt">size=</span><span class="fl">1.2</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_hex</span>(<span class="dt">alpha =</span> .<span class="dv">6</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-10-3.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-9-3.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(<span class="kw">log</span>(carat), <span class="kw">log</span>(price)))<span class="op">+</span>
 <span class="st">  </span><span class="co">#geom_point( )+</span>
 <span class="st">  </span><span class="co">#geom_point(size = .5)+ </span>
 <span class="st">  </span><span class="co">#geom_density2d(size=1.2)+</span>
 <span class="st">  </span><span class="kw">geom_hex</span>(<span class="dt">bins =</span> <span class="dv">50</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-10-4.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-9-4.png" width="672" /></p>
 </div>
 <div id="histogram-with-density-and-median-reference-line" class="section level2">
 <h2><span class="header-section-number">4.8</span> Histogram with density and median reference line</h2>
@@ -408,7 +409,7 @@ sum.diamonds.df =<span class="st"> </span>diamonds.df <span class="op">%&gt;%</s
 <span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">colour =</span> <span class="st">&quot;darkblue&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> sum.diamonds.df, <span class="kw">aes</span>(<span class="dt">xintercept =</span> q85)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_grid</span>(cut <span class="op">~</span><span class="st"> </span>.)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 </div>
 <div id="ridge-plotan-array-of-density-plots" class="section level2">
 <h2><span class="header-section-number">4.9</span> Ridge plot–An array of density plots</h2>
@@ -424,7 +425,7 @@ movies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">f
 <span class="st">  </span><span class="kw">scale_y_reverse</span>(<span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">2000</span>, <span class="dv">1980</span>, <span class="dv">1960</span>, <span class="dv">1940</span>, <span class="dv">1920</span>, <span class="dv">1900</span>), <span class="dt">expand =</span> <span class="kw">c</span>(<span class="fl">0.01</span>, <span class="dv">0</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_ridges</span>()</code></pre></div>
 <pre><code>## Picking joint bandwidth of 6.89</code></pre>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 
 
 </div>

@@ -128,6 +128,36 @@ ggplot(mtcars.df, aes(disp,  mpg, color = as.factor(cyl))) +
   geom_text_repel(data = mtcars.df %>% filter(mpg>30), aes(label = name), size = 2, show.legend = FALSE)
 ```
 
+### Annotating with an inset plot
+
+```{r}
+library(tidyverse)
+diamonds.df = diamonds
+
+## Specify area of the plot to highlight
+xmin = .8; xmax = 1.2; ymin = 2000; ymax = 7500
+
+higlight.df = diamonds.df %>% 
+  filter(carat>xmin&carat<xmax, price>ymin&price<ymax)
+
+overall.plot = ggplot(diamonds.df, aes(carat, price))+
+  geom_point(alpha = .3, size = .3)+
+  geom_rect(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax,
+            fill = "transparent", color = "grey60")
+
+inset.plot = ggplot(higlight.df, aes(carat, price))+
+  geom_point(alpha = .3, size = .2) + 
+  labs(x = "", y = "") +
+  theme_minimal()
+
+## Create custom annotation and add to 
+inset.grob <- ggplotGrob(inset.plot )
+
+overall.plot + annotation_custom(grob = inset.grob, 
+                       xmin = 3.5, xmax = 5.2, ymin = 250, ymax = 16500)
+```
+
+
 ### Labels on lines
 ```{r}
 s.mpg.df = mpg %>% group_by(year, class) %>% 

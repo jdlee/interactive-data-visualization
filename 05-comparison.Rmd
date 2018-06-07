@@ -160,7 +160,7 @@ ggplot(mtcars.df) +
 ### Tufte-inspired minimal bar chart
 http://motioninsocial.com/tufte/
 
-```{r}
+```{r, tufte-barchart}
 #TODO replace with better dataset with for more columns
 library(ggthemes)
 ggplot(mtcars.df, aes(x=as.factor(cyl))) + 
@@ -174,7 +174,8 @@ ggplot(mtcars.df, aes(x=as.factor(cyl))) +
 ## Comparing across many variables
 ### Dot plots and reordering
 Comparing many mean values
-```{r}
+```{r, dotplot}
+
 #TODO Change to mean sd catepilar plot
 mtcars.df = mtcars
 mtcars.df$name = rownames(mtcars.df)
@@ -202,7 +203,7 @@ s.mtcars.df = mtcars %>% group_by(cyl) %>%
 
     
 ### Tufte boxplot for many variables
-```{r, cache=TRUE}
+```{r, tufte-boxplot, cache=TRUE}
 library(ggthemes)
 
 ggplot(mtcars, aes(factor(cyl), mpg)) +
@@ -221,8 +222,9 @@ geom_point()+
 
 ```
 
+
 ### Tufte-inspired slope graphs {#tufte-slopegraph}
-```{r, fig.asp = 1.3, fig.height = 5}
+```{r, tufte-slopegraph, fig.asp = 1.3, fig.height = 5}
 library(tidyverse)
 library(ggrepel)
 
@@ -249,10 +251,11 @@ ggplot(l.cancer.df, aes(year, rate, group = Type))+
   
 ```
 
+
 ### Parallel coordinate plot with similar items highlighted
 Link to network for showing links in multivariate data
 
-```{r, cache=TRUE, echo=FALSE, warning=FALSE}
+```{r, parallel-coordinate, cache=TRUE, echo=FALSE, warning=FALSE}
 ## Highlight closest pair of items multidimensional space ##
 library(tidyr)
 

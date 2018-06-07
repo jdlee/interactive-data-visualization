@@ -160,7 +160,7 @@ Engage: the answer is known and must be communicated in an entertaining way to t
 
 Based on https://www.rdocumentation.org/packages/HistData/versions/0.8-4/topics/Minard
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.asp = 8.5/20.25}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE, fig.asp = 8.5/20.25}
 library(HistData)
 library(scales)
 library(ggmap)
@@ -168,31 +168,33 @@ library(tidyverse)
 library(gridExtra)
 library(grid)
 library(gtable)
-
-## Match troop data to temperature data
-# Small difference in position require reconciliation
+#
+# ## Match troop data to temperature data
+# # Small difference in position require reconciliation
 Minard.troops$survivors[Minard.troops$survivors==340000] = 422000 # Data don't match annotation on original plot
-Minard.troop.temp = Minard.troops %>% filter(direction == "R") %>% 
-  filter(round(long, 0) %in% round(Minard.temp$long, 0)) %>% 
+Minard.troop.temp = Minard.troops %>% filter(direction == "R") %>%
+  filter(round(long, 0) %in% round(Minard.temp$long, 0)) %>%
   mutate(long = round(long, 0)) %>% distinct(long, .keep_all = TRUE)
 
 Minard.temp = Minard.temp %>% mutate(long = round(long, 0))
 
 
 ## Create map
-campaign_map = get_map( 
-  location = c(min(Minard.troops$long)-1, min(Minard.troops$lat)-.5,
-               max(Minard.troops$long)+1, max(Minard.troops$lat)+.75),  
-  maptype = "toner-lines", source = "stamen")
+# campaign_map = get_map(
+#   location = c(min(Minard.troops$long)-1, min(Minard.troops$lat)-.5,
+#                max(Minard.troops$long)+1, max(Minard.troops$lat)+.75),
+#   maptype = "toner-lines", source = "stamen")
+# save(file = "minard_map", campaign_map)
 
-test=Minard.troops
+load(file = "minard_map")
 
-## Plot troop path
-troop.plot = ggmap(campaign_map) + 
+
+# ## Plot troop path
+troop.plot = ggmap(campaign_map) +
   geom_path(data = Minard.troops,
             aes(long, lat, size = (survivors)^1.33, colour = direction, group = group),
             lineend = "round", linejoin = "bevel") +
-  geom_text(data = Minard.cities, 
+  geom_text(data = Minard.cities,
             aes(long, lat, label = city), size = 2.75) +
   geom_segment(data = Minard.troop.temp,
             aes(x = long, xend = long, y = lat, yend = -Inf), alpha = .33) +
@@ -205,8 +207,8 @@ troop.plot = ggmap(campaign_map) +
     legend.box="horizontal",
     plot.margin = unit(c(0, 1.5, 0, 0), "cm"))
 
-
-## Plot temperature vs. longitude, with labels for dates
+#
+# ## Plot temperature vs. longitude, with labels for dates
 temp.plot = ggplot(Minard.temp, aes(long, temp)) +
   geom_path(color = "grey75", size=1) +
   geom_point(size=1) +
@@ -214,7 +216,7 @@ temp.plot = ggplot(Minard.temp, aes(long, temp)) +
   geom_text(aes(label=paste(temp, "°", " ", date, sep = "")), nudge_y = -4, size = 3) +
   labs(x= "", y = "Temp. (C°)") +
   scale_y_continuous(position = "right") +
-  coord_cartesian(xlim = c(24.2, 38.15), ylim = c(-36, 5)) + 
+  coord_cartesian(xlim = c(24.2, 38.15), ylim = c(-36, 5)) +
   theme_minimal() +
   theme(plot.margin = unit(c(0, .175, 0, 0), "cm"),
         axis.title.y = element_text(size = rel(.8)),
@@ -222,8 +224,7 @@ temp.plot = ggplot(Minard.temp, aes(long, temp)) +
         axis.text.x=element_blank(),
         axis.ticks.x=element_blank())
 
-#
-## Combine the plots
+# ## Combine the plots
 p1 = ggplot_gtable(ggplot_build(troop.plot))
 p2 = ggplot_gtable(ggplot_build(temp.plot))
 
@@ -234,12 +235,12 @@ p2$widths[2:3] <- maxWidth
 grid.arrange(p1, p2, heights = c(4, 1.5))
 
 # library(cowplot)
-# plot_grid(troop.plot, temp.plot, 
-#           nrow = 2, 
+# plot_grid(troop.plot, temp.plot,
+#           nrow = 2,
 #           rel_heights = c(4, 1.5), axis = "l")
 # library(ggpubr)
-# ggarrange(troop.plot, temp.plot, 
-#           nrow = 2, 
+# ggarrange(troop.plot, temp.plot,
+#           nrow = 2,
 #           heights = c(4, 1.5), align = "v")
 ```
 
@@ -264,6 +265,7 @@ https://cran.r-project.org/web/packages/atus/atus.pdf
 O*NET occupational information: knowledge, skills, abilties, task composition
 
 Yao about data and web scraping and the package 
+
 ```{r, happiness-plot, cache=TRUE}
 
 ## Read data from website
@@ -276,7 +278,7 @@ happiness.df = read.csv("data/world-happiness-report/2017.csv")
 
 highlight.df = happiness.df %>% filter(
   Economy..GDP.per.Capita.>1.75|
-  Happiness.Score>7.1|
+  Happiness.Score>7.4|
   (Happiness.Score>5&Economy..GDP.per.Capita.<.5)|
   (Happiness.Score>6&Economy..GDP.per.Capita.<1)|
     Country=="United States")
@@ -285,7 +287,9 @@ ggplot(happiness.df, aes(Economy..GDP.per.Capita., Happiness.Score)) +
   geom_point(colour = "grey25") +
   geom_point(data = highlight.df, color = "orange")+
   geom_text_repel(data = highlight.df, aes(label = Country))+
-  labs(title = "Money doesn't buy happiness, but it helps", y = "Happiness", x = "Per capita GDP")
+  labs(title = "Money doesn't buy happiness, but it helps", 
+       subtitle = "Source: https://www.kaggle.com/unsdsn/world-happiness 2017",
+       y = "Happiness", x = "Per capita GDP")
 
 ## Chocolate
 # chocolate.df = read.csv("flavors_of_cacao.csv")

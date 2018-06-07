@@ -5,7 +5,7 @@
 
 
 
-```{r graphtypes, echo=FALSE, message=FALSE, message=FALSE}
+```{r graphtypes, echo=FALSE, message=FALSE, cache=TRUE}
 
 #### Icons of graph type for common comparisons
 
@@ -327,6 +327,9 @@ Guidelines for HF publications [@Gillan1998]
 
 Comprehensive book on visualization [@Ware2013]
 
+
+
+Effort to separate and effort to integrate--focussed and selective attention
 
 
 ### Identify audience, story, and key relationships (Few)

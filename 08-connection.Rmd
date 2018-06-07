@@ -10,7 +10,7 @@ library(tidyverse)
 rm(list=ls())
 ```
 
-![My picture](images/Minard_migration.jpg)
+![Minard migration map](images/Minard_migration.jpg)
 
 ## Maps
 ```{r, message=FALSE}
@@ -18,6 +18,7 @@ library(tidyverse)
 library(ggalt)
 
 ```
+
 
 ### Choropleth
 ```{r, country-choropleth}
@@ -52,7 +53,7 @@ ggplot() +
 
 
 ### County map
-```{r, county-map, cache=TRUE, message=FALSE}
+```{r, county-choropleth, cache=TRUE, message=FALSE}
 # Based on example: https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html
 
 # TODO replace with poverty or health outcomes data
@@ -60,9 +61,7 @@ library(tidyverse)
 library(stringr)
 library(viridis)
 
-
-
-## Read and clean data 
+## Clean data 
 # https://www.ers.usda.gov/data-products/county-level-data-sets/download-data/
 poverty.df = read_csv("data/CountyPoverty/Poverty.csv")
 
@@ -72,7 +71,6 @@ names(poverty.df)[11] = "rate"
 poverty.df$county = str_replace(poverty.df$name, " County", "")
 poverty.df$county = str_replace(poverty.df$county, " Parish", "")
 poverty.df$county = tolower(poverty.df$county)
-
 
 
 unemp.df = read_csv("http://datasets.flowingdata.com/unemployment09.csv")
@@ -270,14 +268,14 @@ ggraph(graph, layout = 'kk') +
     geom_node_point(aes(size = Popularity)) + 
     facet_edges(~year) + 
     theme_graph(foreground = 'steelblue', fg_text_colour = 'white')
-```
 
+```
 
 
 ### Hierarchy
 link to treemap
 
-```{r}
+```{r, hierarchy-plot}
 ## TODO Convert to migration data
 library(ggraph)
 flare.df = ggraph::flare

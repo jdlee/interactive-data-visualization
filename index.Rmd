@@ -48,7 +48,7 @@ This book provides an introduction to ggplot2 for interactive data visualization
 Minard's plot shows the deaths of almost 300,000 troups as they march to Moscow demonstrates the horror of war, and is considered one of the best visualizations ever producced [@Tufte1983]. Reasons why this graph is so effect is that it has a clear purpose, it answers important questions with a comples array of data that are presented in an understandable and aesthetically pleasing manner.
 
 
-```{r minard, echo = FALSE, fig.cap = "Minards visualization of Napoleon's disastrous march to Moscow"}
+```{r minard, echo = FALSE, fig.cap = "Minards visualization of Napoleon's disasterous march to Moscow"}
 include_graphics("images/Minard_timeline_map.png")
 ```
 

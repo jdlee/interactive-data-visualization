@@ -160,88 +160,53 @@ Engage: the answer is known and must be communicated in an entertaining way to t
 
 Based on https://www.rdocumentation.org/packages/HistData/versions/0.8-4/topics/Minard
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE, fig.asp = 8.5/20.25}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(HistData)
 library(scales)
-library(ggmap)
-library(tidyverse)
 library(gridExtra)
-library(grid)
-library(gtable)
-#
-# ## Match troop data to temperature data
-# # Small difference in position require reconciliation
-Minard.troops$survivors[Minard.troops$survivors==340000] = 422000 # Data don't match annotation on original plot
-Minard.troop.temp = Minard.troops %>% filter(direction == "R") %>%
-  filter(round(long, 0) %in% round(Minard.temp$long, 0)) %>%
-  mutate(long = round(long, 0)) %>% distinct(long, .keep_all = TRUE)
 
-Minard.temp = Minard.temp %>% mutate(long = round(long, 0))
+#' ## plot path of troops, and another layer for city names
+ plot_troops <- ggplot(Minard.troops, aes(long, lat)) +
+		geom_path(aes(size = survivors, colour = direction, group = group),
+                 lineend = "square", linejoin = "mitre")
+ plot_cities <- geom_text(aes(label = city), size = 4, data = Minard.cities)
+ 
+#' ## Combine these, and add scale information, labels, etc.
+#' Set the x-axis limits for longitude explicitly, to coincide with those for temperature
 
+breaks <- c(1, 2, 3) * 10^5 
+plot_minard <- plot_troops + plot_cities +
+ 	scale_size("Survivors", range = c(1, 15), 
+ 	            breaks = breaks, labels = scales::comma(breaks)) +
+  scale_color_manual("Direction", 
+                     values = c("grey85", "grey25"), 
+                     labels=c("Advance", "Retreat")) +
+  coord_cartesian(xlim = c(24, 38)) +
+  xlab(NULL) + 
+  ylab("Latitude") + 
+  ggtitle("Napoleon's March on Moscow") +
+  theme_bw() +
+  theme(
+      #legend.position=c(.8, .2), 
+    legend.position = "none",
+    legend.box="horizontal")
+ 
+#' ## plot temperature vs. longitude, with labels for dates
+plot_temp <- ggplot(Minard.temp, aes(long, temp)) +
+	geom_path(color="grey", size=1.5) +
+	geom_point(size=1) +
+	geom_text(aes(label=date)) +
+	xlab("Longitude") + ylab("Temperature") +
+	coord_cartesian(xlim = c(24, 38), ylim = c(-35, 5)) + 
+	theme_bw()
+	
 
-## Create map
-# campaign_map = get_map(
-#   location = c(min(Minard.troops$long)-1, min(Minard.troops$lat)-.5,
-#                max(Minard.troops$long)+1, max(Minard.troops$lat)+.75),
-#   maptype = "toner-lines", source = "stamen")
-# save(file = "minard_map", campaign_map)
+#' The plot works best if we  re-scale the plot window to an aspect ratio of ~ 2 x 1
+# windows(width=10, height=5)
 
-load(file = "minard_map")
+#' Combine the two plots into one
+grid.arrange(plot_minard, plot_temp, nrow=2, heights=c(3, 1.5))
 
-
-# ## Plot troop path
-troop.plot = ggmap(campaign_map) +
-  geom_path(data = Minard.troops,
-            aes(long, lat, size = (survivors)^1.33, colour = direction, group = group),
-            lineend = "round", linejoin = "bevel") +
-  geom_text(data = Minard.cities,
-            aes(long, lat, label = city), size = 2.75) +
-  geom_segment(data = Minard.troop.temp,
-            aes(x = long, xend = long, y = lat, yend = -Inf), alpha = .33) +
-  coord_cartesian(xlim = c(23.5, 38.5)) +
-  scale_size_continuous("Survivors", range = c(.25, 12)) +
-  scale_color_manual("Direction", values = c("grey75", "grey35")) +
-  labs(title = "Napoleon's March on Moscow") +
-  theme_void() +
-  theme(legend.position = "none",
-    legend.box="horizontal",
-    plot.margin = unit(c(0, 1.5, 0, 0), "cm"))
-
-#
-# ## Plot temperature vs. longitude, with labels for dates
-temp.plot = ggplot(Minard.temp, aes(long, temp)) +
-  geom_path(color = "grey75", size=1) +
-  geom_point(size=1) +
-  geom_segment(aes(x = long, xend = long, y = temp, yend = Inf), alpha = .33) +
-  geom_text(aes(label=paste(temp, "°", " ", date, sep = "")), nudge_y = -4, size = 3) +
-  labs(x= "", y = "Temp. (C°)") +
-  scale_y_continuous(position = "right") +
-  coord_cartesian(xlim = c(24.2, 38.15), ylim = c(-36, 5)) +
-  theme_minimal() +
-  theme(plot.margin = unit(c(0, .175, 0, 0), "cm"),
-        axis.title.y = element_text(size = rel(.8)),
-         panel.grid.minor = element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank())
-
-# ## Combine the plots
-p1 = ggplot_gtable(ggplot_build(troop.plot))
-p2 = ggplot_gtable(ggplot_build(temp.plot))
-
-maxWidth = unit.pmax(p1$widths[2:3], p2$widths[2:3])
-p1$widths[2:3] <- maxWidth
-p2$widths[2:3] <- maxWidth
-
-grid.arrange(p1, p2, heights = c(4, 1.5))
-
-# library(cowplot)
-# plot_grid(troop.plot, temp.plot,
-#           nrow = 2,
-#           rel_heights = c(4, 1.5), axis = "l")
-# library(ggpubr)
-# ggarrange(troop.plot, temp.plot,
-#           nrow = 2,
-#           heights = c(4, 1.5), align = "v")
 ```
 
 
@@ -265,31 +230,16 @@ https://cran.r-project.org/web/packages/atus/atus.pdf
 O*NET occupational information: knowledge, skills, abilties, task composition
 
 Yao about data and web scraping and the package 
-
-```{r, happiness-plot, cache=TRUE}
+```{r, happiness-plot}
 
 ## Read data from website
 # sports <- read_tsv("https://github.com/halhen/viz-pub/raw/master/sports-time-of-day/activity.tsv")
 
 
 ## Happiness
-
+# 
 happiness.df = read.csv("data/world-happiness-report/2017.csv")
-
-highlight.df = happiness.df %>% filter(
-  Economy..GDP.per.Capita.>1.75|
-  Happiness.Score>7.4|
-  (Happiness.Score>5&Economy..GDP.per.Capita.<.5)|
-  (Happiness.Score>6&Economy..GDP.per.Capita.<1)|
-    Country=="United States")
-
-ggplot(happiness.df, aes(Economy..GDP.per.Capita., Happiness.Score)) + 
-  geom_point(colour = "grey25") +
-  geom_point(data = highlight.df, color = "orange")+
-  geom_text_repel(data = highlight.df, aes(label = Country))+
-  labs(title = "Money doesn't buy happiness, but it helps", 
-       subtitle = "Source: https://www.kaggle.com/unsdsn/world-happiness 2017",
-       y = "Happiness", x = "Per capita GDP")
+ggplot(happiness.df, aes(Freedom, Happiness.Score)) + geom_point()
 
 ## Chocolate
 # chocolate.df = read.csv("flavors_of_cacao.csv")

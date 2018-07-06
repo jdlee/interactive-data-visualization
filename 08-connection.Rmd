@@ -7,10 +7,10 @@ Test of examples
 
 ```{r, message=FALSE}
 library(tidyverse)
-rm(list=ls())
+
 ```
 
-![Minard migration map](images/Minard_migration.jpg)
+![My picture](images/Minard_migration.jpg)
 
 ## Maps
 ```{r, message=FALSE}
@@ -18,7 +18,6 @@ library(tidyverse)
 library(ggalt)
 
 ```
-
 
 ### Choropleth
 ```{r, country-choropleth}
@@ -53,39 +52,38 @@ ggplot() +
 
 
 ### County map
-```{r, county-choropleth, cache=TRUE, message=FALSE}
-# Based on example: https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html
+```{r, county-map, cache=TRUE}
+## devtools::install_github("hrbrmstr/ggalt", force=TRUE) # To install development version
+## Examples from https://github.com/hrbrmstr/ggalt
 
 # TODO replace with poverty or health outcomes data
 library(tidyverse)
 library(stringr)
 library(viridis)
 
-## Clean data 
-# https://www.ers.usda.gov/data-products/county-level-data-sets/download-data/
-poverty.df = read_csv("data/CountyPoverty/Poverty.csv")
 
-names(poverty.df)[1:3] = c("id", "state", "name")
-names(poverty.df)[11] = "rate"
+# From https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html
 
-poverty.df$county = str_replace(poverty.df$name, " County", "")
-poverty.df$county = str_replace(poverty.df$county, " Parish", "")
-poverty.df$county = tolower(poverty.df$county)
-
-
+## Read and clean data
 unemp.df = read_csv("http://datasets.flowingdata.com/unemployment09.csv")
+save(unemp.df, file = "unemp")
+
+load("unemp")
+
 names(unemp.df) = c("id", "state_fips", "county_fips", "name", "year",
                   "--", "---", "---", "rate")
 unemp.df$county = tolower(str_replace(unemp.df$name, " County, [A-Z]{2}", ""))
-unemp.df$county = tolower(gsub(" County, [A-Z]{2}", "", unemp.df$name))
+
+#unemp.df$county <- tolower(gsub(" County, [A-Z]{2}", "", unemp.df$name))
 unemp.df$county = str_replace(unemp.df$county,"^(.*) parish, ..$","\\1")
 unemp.df$state = str_replace(unemp.df$name, "^.*([A-Z]{2}).*$", "\\1")
-
 
 ## Use the maps package to convert maps data to a data frame
 # "county" is a county map of the US
 county.df <- map_data("county", projection = "albers", parameters = c(39, 45))
+
 names(county.df) <- c("long", "lat", "group", "order", "state_name", "county")
+
 state.df <- map_data("state", projection = "albers", parameters = c(39, 45))
 
 ## Replace state name with state abbreviations
@@ -93,25 +91,19 @@ county.df$state <- state.abb[match(county.df$state_name, tolower(state.name))]
 county.df$state_name <- NULL
 
 ## Merge county and state shape information with unemployment data
-unemployment_choropleth.df = county.df %>% inner_join(unemp.df, by = c("state", "county"))
-poverty_choropleth.df = county.df %>% inner_join(poverty.df, by = c("state", "county"))
+choropleth.df <- merge(county.df, unemp.df, by = c("state", "county"))
+#choropleth.df = county.df %>% inner_join(unemp.df, by = c("state", "county"))
+  
 
+choropleth.df = choropleth.df %>% dplyr::select(state:rate)
+choropleth.df = choropleth.df %>% arrange(desc(order))
 
-ggplot(unemployment_choropleth.df, aes(long, lat, group = group)) +
+ggplot(choropleth.df, aes(long, lat, group = group)) +
   geom_polygon(aes(fill = rate), colour = alpha("white", 1/2), size = 0.05) +
-  geom_polygon(data = state.df, colour = "grey80", fill = NA, size = 0.33) +
+  geom_polygon(data = state.df, colour = "grey90", fill = NA, size = 0.5) +
   coord_fixed() +
   theme_minimal() +
   ggtitle("US unemployment rate by county") +
-  scale_fill_viridis(option="magma")+
-  theme_void()
-
-ggplot(poverty_choropleth.df, aes(long, lat, group = group)) +
-  geom_polygon(aes(fill = rate), colour = alpha("white", 1/2), size = 0.05) +
-  geom_polygon(data = state.df, colour = "grey80", fill = NA, size = 0.33) +
-  coord_fixed() +
-  theme_minimal() +
-  ggtitle("US poverty rate by county") +
   scale_fill_viridis(option="magma")+
   theme_void()
 
@@ -268,14 +260,14 @@ ggraph(graph, layout = 'kk') +
     geom_node_point(aes(size = Popularity)) + 
     facet_edges(~year) + 
     theme_graph(foreground = 'steelblue', fg_text_colour = 'white')
-
 ```
+
 
 
 ### Hierarchy
 link to treemap
 
-```{r, hierarchy-plot}
+```{r}
 ## TODO Convert to migration data
 library(ggraph)
 flare.df = ggraph::flare

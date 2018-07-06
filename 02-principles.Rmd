@@ -5,7 +5,7 @@
 
 
 
-```{r graphtypes, echo=FALSE, message=FALSE, cache=TRUE}
+```{r graphtypes, echo=FALSE, message=FALSE, message=FALSE}
 
 #### Icons of graph type for common comparisons
 
@@ -317,20 +317,7 @@ TODO Figure ground showing data and summary vs summary and data
 ## Principles from general to specific
 [@Tufte1983], [@Munzner2014, @Gelman2013a] 
 
-ten guidelines [@Kelleher2011a]
-
-
-Guidelines for HF publications [@Gillan1998]
-
-
-
-
-Comprehensive book on visualization [@Ware2013]
-
-
-
-Effort to separate and effort to integrate--focussed and selective attention
-
+%ten guidelines [@Kelleher2011a]
 
 ### Identify audience, story, and key relationships (Few)
 

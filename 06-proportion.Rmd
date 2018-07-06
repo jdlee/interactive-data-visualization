@@ -222,7 +222,7 @@ opposed.plot = ggplot(gender.diversity.df, aes(reorder(company, count), y=signed
   geom_bar(stat = "identity") +
   geom_bar(stat = "identity") +
   scale_y_continuous(labels = abs) +
-  labs(title = "Opposed", x = "") +
+  labs(title = "Opposed", x = "", y = "count") +
   coord_flip()
 
 gender.plot = ggarrange(stacked.plot, dodged.plot, opposed.plot, 

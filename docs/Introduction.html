@@ -25,7 +25,7 @@
 <meta name="author" content="John D. Lee">
 
 
-<meta name="date" content="2018-06-01">
+<meta name="date" content="2018-07-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -68,7 +68,7 @@
 <script src="libs/ggiraph/ggiraph_tooltip.js"></script>
 <script src="libs/ggiraph/ggiraph_selector.js"></script>
 <script src="libs/ggiraph-binding/ggiraph.js"></script>
-<script src="libs/svg_2/scripts_svg_2.js"></script>
+<script src="libs/svg_3/scripts_svg_3.js"></script>
 
 
 <style type="text/css">
@@ -176,14 +176,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="4" data-path="Distribution.html"><a href="Distribution.html"><i class="fa fa-check"></i><b>4</b> Distribution–histograms and density plots</a><ul>
 <li class="chapter" data-level="4.1" data-path="Distribution.html"><a href="Distribution.html#histograms-and-bin-choice"><i class="fa fa-check"></i><b>4.1</b> Histograms and bin choice</a></li>
-<li class="chapter" data-level="4.2" data-path="Distribution.html"><a href="Distribution.html#histogram-percentage-rather-than-count"><i class="fa fa-check"></i><b>4.2</b> Histogram percentage rather than count</a></li>
-<li class="chapter" data-level="4.3" data-path="Distribution.html"><a href="Distribution.html#histogram-density-overlay-and-normal-overlay"><i class="fa fa-check"></i><b>4.3</b> Histogram, density overlay, and normal overlay</a></li>
-<li class="chapter" data-level="4.4" data-path="Distribution.html"><a href="Distribution.html#cummulative-density"><i class="fa fa-check"></i><b>4.4</b> Cummulative density</a></li>
-<li class="chapter" data-level="4.5" data-path="Distribution.html"><a href="Distribution.html#quantile-quantle-plot"><i class="fa fa-check"></i><b>4.5</b> Quantile-quantle plot</a></li>
-<li class="chapter" data-level="4.6" data-path="Distribution.html"><a href="Distribution.html#cummulative-density-1"><i class="fa fa-check"></i><b>4.6</b> Cummulative density</a></li>
-<li class="chapter" data-level="4.7" data-path="Distribution.html"><a href="Distribution.html#distribution-2-d-distribution-and-overplotting-revisited"><i class="fa fa-check"></i><b>4.7</b> Distribution: 2-D distribution and overplotting revisited</a></li>
-<li class="chapter" data-level="4.8" data-path="Distribution.html"><a href="Distribution.html#histogram-with-density-and-median-reference-line"><i class="fa fa-check"></i><b>4.8</b> Histogram with density and median reference line</a></li>
-<li class="chapter" data-level="4.9" data-path="Distribution.html"><a href="Distribution.html#ridge-plotan-array-of-density-plots"><i class="fa fa-check"></i><b>4.9</b> Ridge plot–An array of density plots</a></li>
+<li class="chapter" data-level="4.2" data-path="Distribution.html"><a href="Distribution.html#density-and-kernel-adjustment"><i class="fa fa-check"></i><b>4.2</b> Density and kernel adjustment</a></li>
+<li class="chapter" data-level="4.3" data-path="Distribution.html"><a href="Distribution.html#histogram-percentage-rather-than-count"><i class="fa fa-check"></i><b>4.3</b> Histogram percentage rather than count</a></li>
+<li class="chapter" data-level="4.4" data-path="Distribution.html"><a href="Distribution.html#histogram-density-overlay-and-normal-overlay"><i class="fa fa-check"></i><b>4.4</b> Histogram, density overlay, and normal overlay</a></li>
+<li class="chapter" data-level="4.5" data-path="Distribution.html"><a href="Distribution.html#cummulative-density"><i class="fa fa-check"></i><b>4.5</b> Cummulative density</a></li>
+<li class="chapter" data-level="4.6" data-path="Distribution.html"><a href="Distribution.html#quantile-quantle-plot"><i class="fa fa-check"></i><b>4.6</b> Quantile-quantle plot</a></li>
+<li class="chapter" data-level="4.7" data-path="Distribution.html"><a href="Distribution.html#cummulative-density-1"><i class="fa fa-check"></i><b>4.7</b> Cummulative density</a></li>
+<li class="chapter" data-level="4.8" data-path="Distribution.html"><a href="Distribution.html#distribution-2-d-distribution-and-overplotting-revisited"><i class="fa fa-check"></i><b>4.8</b> Distribution: 2-D distribution and overplotting revisited</a></li>
+<li class="chapter" data-level="4.9" data-path="Distribution.html"><a href="Distribution.html#histogram-with-density-and-median-reference-line"><i class="fa fa-check"></i><b>4.9</b> Histogram with density and median reference line</a></li>
+<li class="chapter" data-level="4.10" data-path="Distribution.html"><a href="Distribution.html#ridge-plotan-array-of-density-plots"><i class="fa fa-check"></i><b>4.10</b> Ridge plot–An array of density plots</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="Comparison.html"><a href="Comparison.html"><i class="fa fa-check"></i><b>5</b> Comparison–barchart and boxplots</a><ul>
 <li class="chapter" data-level="5.1" data-path="Comparison.html"><a href="Comparison.html#graph-considerations-for-communication-aggregation-abstraction-complexity"><i class="fa fa-check"></i><b>5.1</b> Graph considerations for communication: aggregation, abstraction, complexity</a><ul>
@@ -211,7 +212,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.3" data-path="Proportion.html"><a href="Proportion.html#stacked-bar-chart"><i class="fa fa-check"></i><b>6.3</b> Stacked bar chart</a></li>
 <li class="chapter" data-level="6.4" data-path="Proportion.html"><a href="Proportion.html#faceted-bar-chart-with-overall-reference-distribution"><i class="fa fa-check"></i><b>6.4</b> Faceted Bar chart with overall reference distribution</a></li>
 <li class="chapter" data-level="6.5" data-path="Proportion.html"><a href="Proportion.html#rose-or-coxcomb-plots"><i class="fa fa-check"></i><b>6.5</b> Rose or Coxcomb plots</a></li>
-<li class="chapter" data-level="6.6" data-path="Proportion.html"><a href="Proportion.html#stacked-dodged-and-opposed-bar-chart"><i class="fa fa-check"></i><b>6.6</b> Stacked, dodged and opposed bar chart</a></li>
+<li class="chapter" data-level="6.6" data-path="Proportion.html"><a href="Proportion.html#stacked-dodged-and-opposed-bar-chart"><i class="fa fa-check"></i><b>6.6</b> Stacked, dodged, and opposed bar chart</a></li>
 <li class="chapter" data-level="6.7" data-path="Proportion.html"><a href="Proportion.html#likert-scale-plot"><i class="fa fa-check"></i><b>6.7</b> Likert scale plot</a></li>
 <li class="chapter" data-level="6.8" data-path="Proportion.html"><a href="Proportion.html#ternary-triangular-graph"><i class="fa fa-check"></i><b>6.8</b> ternary (triangular) graph</a></li>
 <li class="chapter" data-level="6.9" data-path="Proportion.html"><a href="Proportion.html#treemaps-for-whole-part-of-hierarchy"><i class="fa fa-check"></i><b>6.9</b> Treemaps for whole-part of hierarchy</a></li>
@@ -221,7 +222,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.1" data-path="Fluctuation.html"><a href="Fluctuation.html#multiple-time-series"><i class="fa fa-check"></i><b>7.1</b> Multiple time series</a></li>
 <li class="chapter" data-level="7.2" data-path="Fluctuation.html"><a href="Fluctuation.html#time-series-with-reference-line"><i class="fa fa-check"></i><b>7.2</b> Time series with reference line</a></li>
 <li class="chapter" data-level="7.3" data-path="Fluctuation.html"><a href="Fluctuation.html#cycle-plot"><i class="fa fa-check"></i><b>7.3</b> Cycle plot</a></li>
-<li class="chapter" data-level="7.4" data-path="Fluctuation.html"><a href="Fluctuation.html#time-series-with-lines-labeled"><i class="fa fa-check"></i><b>7.4</b> Time series with lines labeled</a></li>
+<li class="chapter" data-level="7.4" data-path="Fluctuation.html"><a href="Fluctuation.html#step-graph"><i class="fa fa-check"></i><b>7.4</b> Step graph</a></li>
 <li class="chapter" data-level="7.5" data-path="Fluctuation.html"><a href="Fluctuation.html#faceted-zoom"><i class="fa fa-check"></i><b>7.5</b> Faceted zoom</a></li>
 <li class="chapter" data-level="7.6" data-path="Fluctuation.html"><a href="Fluctuation.html#ridge-plot"><i class="fa fa-check"></i><b>7.6</b> Ridge plot</a></li>
 <li class="chapter" data-level="7.7" data-path="Fluctuation.html"><a href="Fluctuation.html#stacked-area-and-line-graphs"><i class="fa fa-check"></i><b>7.7</b> Stacked area and line graphs</a></li>
@@ -248,32 +249,36 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.1" data-path="Polishing.html"><a href="Polishing.html#highlighting-datapoints-to-make-a-point"><i class="fa fa-check"></i><b>10.1</b> Highlighting datapoints to make a point</a></li>
 <li class="chapter" data-level="10.2" data-path="Polishing.html"><a href="Polishing.html#labeling-and-annotation"><i class="fa fa-check"></i><b>10.2</b> Labeling and annotation</a><ul>
 <li class="chapter" data-level="10.2.1" data-path="Polishing.html"><a href="Polishing.html#annotating-data"><i class="fa fa-check"></i><b>10.2.1</b> Annotating data</a></li>
-<li class="chapter" data-level="10.2.2" data-path="Polishing.html"><a href="Polishing.html#annotating-points-and-select-points"><i class="fa fa-check"></i><b>10.2.2</b> Annotating points and select points</a></li>
-<li class="chapter" data-level="10.2.3" data-path="Polishing.html"><a href="Polishing.html#labels-on-lines"><i class="fa fa-check"></i><b>10.2.3</b> Labels on lines</a></li>
+<li class="chapter" data-level="10.2.2" data-path="Polishing.html"><a href="Polishing.html#time-series-with-lines-labeled"><i class="fa fa-check"></i><b>10.2.2</b> Time series with lines labeled</a></li>
+<li class="chapter" data-level="10.2.3" data-path="Polishing.html"><a href="Polishing.html#labelling-lines-bars-points-and-select-points"><i class="fa fa-check"></i><b>10.2.3</b> Labelling lines, bars, points, and select points</a></li>
 <li class="chapter" data-level="10.2.4" data-path="Polishing.html"><a href="Polishing.html#meaningful-symbols"><i class="fa fa-check"></i><b>10.2.4</b> Meaningful symbols</a></li>
-<li class="chapter" data-level="10.2.5" data-path="Polishing.html"><a href="Polishing.html#AddingRemovingLabels"><i class="fa fa-check"></i><b>10.2.5</b> Adding and removing labels: title, axis labels, facet labels, and legends</a></li>
-<li class="chapter" data-level="10.2.6" data-path="Polishing.html"><a href="Polishing.html#remove-and-position-one-or-more-legends"><i class="fa fa-check"></i><b>10.2.6</b> Remove and position one or more legends</a></li>
-<li class="chapter" data-level="10.2.7" data-path="Polishing.html"><a href="Polishing.html#setting-limits-on-axis-and-position-of-graph"><i class="fa fa-check"></i><b>10.2.7</b> Setting limits on axis and position of graph</a></li>
-<li class="chapter" data-level="10.2.8" data-path="Polishing.html"><a href="Polishing.html#adjust-margin-between-points-and-edge-of-plot-area"><i class="fa fa-check"></i><b>10.2.8</b> Adjust margin between points and edge of plot area</a></li>
+<li class="chapter" data-level="10.2.5" data-path="Polishing.html"><a href="Polishing.html#annotating-with-an-inset-plot"><i class="fa fa-check"></i><b>10.2.5</b> Annotating with an inset plot</a></li>
+<li class="chapter" data-level="10.2.6" data-path="Polishing.html"><a href="Polishing.html#labels-on-lines"><i class="fa fa-check"></i><b>10.2.6</b> Labels on lines</a></li>
+<li class="chapter" data-level="10.2.7" data-path="Polishing.html"><a href="Polishing.html#AddingRemovingLabels"><i class="fa fa-check"></i><b>10.2.7</b> Adding and removing labels: title, axis labels, and facet labels</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="Polishing.html"><a href="Polishing.html#color"><i class="fa fa-check"></i><b>10.3</b> Color</a><ul>
-<li class="chapter" data-level="10.3.1" data-path="Polishing.html"><a href="Polishing.html#resources-to-explain-the-basis-form-color-choice"><i class="fa fa-check"></i><b>10.3.1</b> Resources to explain the basis form color choice</a></li>
-<li class="chapter" data-level="10.3.2" data-path="Polishing.html"><a href="Polishing.html#large-and-small-area-colors"><i class="fa fa-check"></i><b>10.3.2</b> Large and small area colors</a></li>
-<li class="chapter" data-level="10.3.3" data-path="Polishing.html"><a href="Polishing.html#color-for-large-and-small-areas"><i class="fa fa-check"></i><b>10.3.3</b> Color for large and small areas</a></li>
-<li class="chapter" data-level="10.3.4" data-path="Polishing.html"><a href="Polishing.html#continuous-color-scales"><i class="fa fa-check"></i><b>10.3.4</b> Continuous color scales</a></li>
-<li class="chapter" data-level="10.3.5" data-path="Polishing.html"><a href="Polishing.html#discrete-color-mappings"><i class="fa fa-check"></i><b>10.3.5</b> Discrete color mappings</a></li>
+<li class="chapter" data-level="10.3" data-path="Polishing.html"><a href="Polishing.html#position-legend"><i class="fa fa-check"></i><b>10.3</b> Position legend</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="Polishing.html"><a href="Polishing.html#remove-one-or-more-legends"><i class="fa fa-check"></i><b>10.3.1</b> Remove one or more legends</a></li>
+<li class="chapter" data-level="10.3.2" data-path="Polishing.html"><a href="Polishing.html#setting-limits-on-axis-and-position-of-graph"><i class="fa fa-check"></i><b>10.3.2</b> Setting limits on axis and position of graph</a></li>
+<li class="chapter" data-level="10.3.3" data-path="Polishing.html"><a href="Polishing.html#adjust-margin-between-points-and-edge-of-plot-area"><i class="fa fa-check"></i><b>10.3.3</b> Adjust margin between points and edge of plot area</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="Polishing.html"><a href="Polishing.html#themes-and-theme-options"><i class="fa fa-check"></i><b>10.4</b> Themes and theme options</a><ul>
-<li class="chapter" data-level="10.4.1" data-path="Polishing.html"><a href="Polishing.html#remove-chart-details"><i class="fa fa-check"></i><b>10.4.1</b> Remove chart details</a></li>
-<li class="chapter" data-level="10.4.2" data-path="Polishing.html"><a href="Polishing.html#predefined-themes-adjust-many-elements"><i class="fa fa-check"></i><b>10.4.2</b> Predefined themes adjust many elements</a></li>
-<li class="chapter" data-level="10.4.3" data-path="Polishing.html"><a href="Polishing.html#ordering-theme-layers"><i class="fa fa-check"></i><b>10.4.3</b> Ordering theme layers</a></li>
-<li class="chapter" data-level="10.4.4" data-path="Polishing.html"><a href="Polishing.html#pre-set-theme-options"><i class="fa fa-check"></i><b>10.4.4</b> Pre-set theme options</a></li>
-<li class="chapter" data-level="10.4.5" data-path="Polishing.html"><a href="Polishing.html#themes-form-other-packages"><i class="fa fa-check"></i><b>10.4.5</b> Themes form other packages</a></li>
+<li class="chapter" data-level="10.4" data-path="Polishing.html"><a href="Polishing.html#color"><i class="fa fa-check"></i><b>10.4</b> Color</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="Polishing.html"><a href="Polishing.html#resources-to-explain-the-basis-form-color-choice"><i class="fa fa-check"></i><b>10.4.1</b> Resources to explain the basis form color choice</a></li>
+<li class="chapter" data-level="10.4.2" data-path="Polishing.html"><a href="Polishing.html#large-and-small-area-colors"><i class="fa fa-check"></i><b>10.4.2</b> Large and small area colors</a></li>
+<li class="chapter" data-level="10.4.3" data-path="Polishing.html"><a href="Polishing.html#color-for-large-and-small-areas"><i class="fa fa-check"></i><b>10.4.3</b> Color for large and small areas</a></li>
+<li class="chapter" data-level="10.4.4" data-path="Polishing.html"><a href="Polishing.html#continuous-color-scales"><i class="fa fa-check"></i><b>10.4.4</b> Continuous color scales</a></li>
+<li class="chapter" data-level="10.4.5" data-path="Polishing.html"><a href="Polishing.html#discrete-color-mappings"><i class="fa fa-check"></i><b>10.4.5</b> Discrete color mappings</a></li>
 </ul></li>
-<li class="chapter" data-level="10.5" data-path="Polishing.html"><a href="Polishing.html#saving-and-printing-plots-to-include-in-documents"><i class="fa fa-check"></i><b>10.5</b> Saving and printing plots to include in documents</a><ul>
-<li class="chapter" data-level="10.5.1" data-path="Polishing.html"><a href="Polishing.html#png-jpeg-pdf-and-svg"><i class="fa fa-check"></i><b>10.5.1</b> PNG, JPEG, PDF, and SVG</a></li>
-<li class="chapter" data-level="10.5.2" data-path="Polishing.html"><a href="Polishing.html#combining-multiple-graphs-for-publication"><i class="fa fa-check"></i><b>10.5.2</b> Combining multiple graphs for publication</a></li>
-<li class="chapter" data-level="10.5.3" data-path="Polishing.html"><a href="Polishing.html#faceted-pagination"><i class="fa fa-check"></i><b>10.5.3</b> Faceted pagination</a></li>
+<li class="chapter" data-level="10.5" data-path="Polishing.html"><a href="Polishing.html#themes-and-theme-options"><i class="fa fa-check"></i><b>10.5</b> Themes and theme options</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="Polishing.html"><a href="Polishing.html#remove-chart-details"><i class="fa fa-check"></i><b>10.5.1</b> Remove chart details</a></li>
+<li class="chapter" data-level="10.5.2" data-path="Polishing.html"><a href="Polishing.html#predefined-themes-adjust-many-elements"><i class="fa fa-check"></i><b>10.5.2</b> Predefined themes adjust many elements</a></li>
+<li class="chapter" data-level="10.5.3" data-path="Polishing.html"><a href="Polishing.html#ordering-theme-layers"><i class="fa fa-check"></i><b>10.5.3</b> Ordering theme layers</a></li>
+<li class="chapter" data-level="10.5.4" data-path="Polishing.html"><a href="Polishing.html#pre-set-theme-options"><i class="fa fa-check"></i><b>10.5.4</b> Pre-set theme options</a></li>
+<li class="chapter" data-level="10.5.5" data-path="Polishing.html"><a href="Polishing.html#themes-form-other-packages"><i class="fa fa-check"></i><b>10.5.5</b> Themes form other packages</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="Polishing.html"><a href="Polishing.html#saving-and-printing-plots-to-include-in-documents"><i class="fa fa-check"></i><b>10.6</b> Saving and printing plots to include in documents</a><ul>
+<li class="chapter" data-level="10.6.1" data-path="Polishing.html"><a href="Polishing.html#png-jpeg-pdf-and-svg"><i class="fa fa-check"></i><b>10.6.1</b> PNG, JPEG, PDF, and SVG</a></li>
+<li class="chapter" data-level="10.6.2" data-path="Polishing.html"><a href="Polishing.html#combining-multiple-graphs-for-publication"><i class="fa fa-check"></i><b>10.6.2</b> Combining multiple graphs for publication</a></li>
+<li class="chapter" data-level="10.6.3" data-path="Polishing.html"><a href="Polishing.html#faceted-pagination"><i class="fa fa-check"></i><b>10.6.3</b> Faceted pagination</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="Interaction.html"><a href="Interaction.html"><i class="fa fa-check"></i><b>11</b> Interaction–zoom, annotate, highlight</a></li>
@@ -309,7 +314,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Often this promise is not kept and data overwhelms rather than informs.</p>
 <p>Well-crafted visualization can make data meaningful.</p>
 <p>This book provides principles and examples for data visualization</p>
-<p>Provides ways of addressing common challenges: remove legend (Section <a href="Polishing.html#AddingRemovingLabels">10.2.5</a>) reorder categories of a bar chart or facets Creating Tufte inspired styles (Section <a href="Comparison.html#tufte-slopegraph">5.3.4</a>)</p>
+<p>Provides ways of addressing common challenges: remove legend (Section <a href="Polishing.html#AddingRemovingLabels">10.2.7</a>) reorder categories of a bar chart or facets Creating Tufte inspired styles (Section <a href="Comparison.html#tufte-slopegraph">5.3.4</a>)</p>
 <div id="seeing-meaning-rather-than-numbers" class="section level2">
 <h2><span class="header-section-number">1.1</span> Seeing meaning rather than numbers</h2>
 <p>Figure <a href="Introduction.html#fig:blood-tab">1.1</a> shows a typical report of a medical diagnostic test. The numerical summary shows the patient’s values and the range of standard values. The information is there to show if a patient is dangerously outside the range, but a quick glance at the table might miss these indications. Even a careful reading of the table might miss warning signs, particularly if the critical information is in the trend that requires looking at a second table on another tab. Figure <a href="Introduction.html#fig:blood-vis">1.2</a> shows the data relative to the high and low normal range and makes deviations much more apparent. The ghosted points show past results and roughly indicate trends.</p>
@@ -329,7 +334,7 @@ FIGURE 1.2: A visualization of the same results makes the deviations pop out.
 <div id="seeing-more-than-summary-statistics" class="section level2">
 <h2><span class="header-section-number">1.2</span> Seeing more than summary statistics</h2>
 <p>The easy availability of sophisticated machine learning and statistical models makes algorithmic interpretation of data tempting. However, such interpretations can mislead, with similar outcomes produced by very different underlying data.</p>
-<p>Figure <a href="Introduction.html#fig:anscombe-vis">1.3</a> shows four distinct sets of data. The differences are obvious when graphed. One might expect that the typical summary statistics–mean, standard deviation, and correlation–would show equally stark differences. Table <a href="Introduction.html#tab:anscombe-tab">1.1</a> shows this is not the case. Each data set has the same summary statistics.</p>
+<p>Figure <a href="Introduction.html#fig:anscombe-vis">1.3</a> shows four distinct sets of data. The differences are obvious when graphed. One might expect that the typical summary statistics–mean, standard deviation, and correlation–would show equally stark differences. Table <a href="#tab:anscombe-tab"><strong>??</strong></a> shows this is not the case. Each data set has the same summary statistics.</p>
 <div class="figure"><span id="fig:anscombe-vis"></span>
 <img src="visualizationwithggplot_files/figure-html/anscombe-vis-1.png" alt="The Anscombe quartet and the limits of summary statistics." width="672" />
 <p class="caption">
@@ -337,80 +342,77 @@ FIGURE 1.3: The Anscombe quartet and the limits of summary statistics.
 </p>
 </div>
 <table>
-<caption>
-<span id="tab:anscombe-tab">TABLE 1.1: </span>Four seemingly identical datasets that illustrate the limits of algorithmic interpretation.
-</caption>
 <thead>
 <tr>
-<th style="text-align:left;">
-Data set
+<th>
+set
 </th>
-<th style="text-align:right;">
-Mean
+<th>
+mean.y
 </th>
-<th style="text-align:right;">
-Standard deviation
+<th>
+sd.y
 </th>
-<th style="text-align:right;">
-Correlation
+<th>
+cor
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
 Set 1
 </td>
-<td style="text-align:right;">
-7.5
+<td>
+7.501
 </td>
-<td style="text-align:right;">
-2.03
+<td>
+2.032
 </td>
-<td style="text-align:right;">
-0.82
+<td>
+0.8164
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td>
 Set 2
 </td>
-<td style="text-align:right;">
-7.5
+<td>
+7.501
 </td>
-<td style="text-align:right;">
-2.03
+<td>
+2.032
 </td>
-<td style="text-align:right;">
-0.82
+<td>
+0.8162
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td>
 Set 3
 </td>
-<td style="text-align:right;">
-7.5
+<td>
+7.500
 </td>
-<td style="text-align:right;">
-2.03
+<td>
+2.030
 </td>
-<td style="text-align:right;">
-0.82
+<td>
+0.8163
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td>
 Set 4
 </td>
-<td style="text-align:right;">
-7.5
+<td>
+7.501
 </td>
-<td style="text-align:right;">
-2.03
+<td>
+2.031
 </td>
-<td style="text-align:right;">
-0.82
+<td>
+0.8165
 </td>
 </tr>
 </tbody>
@@ -452,9 +454,23 @@ Set 4
 
 
 ## Happiness
-<span class="co"># </span>
+
 happiness.df =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/world-happiness-report/2017.csv&quot;</span>)
-<span class="kw">ggplot</span>(happiness.df, <span class="kw">aes</span>(Freedom, Happiness.Score)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
+
+highlight.df =<span class="st"> </span>happiness.df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(
+  Economy..GDP.per.Capita.<span class="op">&gt;</span><span class="fl">1.75</span><span class="op">|</span>
+<span class="st">  </span>Happiness.Score<span class="op">&gt;</span><span class="fl">7.4</span><span class="op">|</span>
+<span class="st">  </span>(Happiness.Score<span class="op">&gt;</span><span class="dv">5</span><span class="op">&amp;</span>Economy..GDP.per.Capita.<span class="op">&lt;</span>.<span class="dv">5</span>)<span class="op">|</span>
+<span class="st">  </span>(Happiness.Score<span class="op">&gt;</span><span class="dv">6</span><span class="op">&amp;</span>Economy..GDP.per.Capita.<span class="op">&lt;</span><span class="dv">1</span>)<span class="op">|</span>
+<span class="st">    </span>Country<span class="op">==</span><span class="st">&quot;United States&quot;</span>)
+
+<span class="kw">ggplot</span>(happiness.df, <span class="kw">aes</span>(Economy..GDP.per.Capita., Happiness.Score)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">colour =</span> <span class="st">&quot;grey25&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> highlight.df, <span class="dt">color =</span> <span class="st">&quot;orange&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_text_repel</span>(<span class="dt">data =</span> highlight.df, <span class="kw">aes</span>(<span class="dt">label =</span> Country))<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Money doesn&#39;t buy happiness, but it helps&quot;</span>, 
+       <span class="dt">subtitle =</span> <span class="st">&quot;Source: https://www.kaggle.com/unsdsn/world-happiness 2017&quot;</span>,
+       <span class="dt">y =</span> <span class="st">&quot;Happiness&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Per capita GDP&quot;</span>)</code></pre></div>
 <p><img src="visualizationwithggplot_files/figure-html/happiness-plot-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Chocolate
 <span class="co"># chocolate.df = read.csv(&quot;flavors_of_cacao.csv&quot;)</span>

@@ -6,6 +6,8 @@
 ```{r, message=FALSE}
 library(tidyverse)
 library(ggrepel)
+rm(list=ls())
+
 mtcars.df = mtcars
 
 ```
@@ -50,7 +52,7 @@ ggplot(h.mtcars.df, aes(x = wt, y = mpg, colour = highlight)) +
 
 ## Labeling and annotation
 ### Annotating data
-```{r}
+```{r, annotation}
 ## Text and rectangle annotation 
 ggplot(mtcars.df, aes(disp,  mpg, color = as.factor(cyl))) + 
   annotate(geom = "rect", ymin = 20, ymax = 35, xmin = 65, xmax = 155, fill = "grey65", alpha = .5) +
@@ -68,98 +70,78 @@ library(ggalt)
     geom_encircle(data=filter(mtcars, mpg>24),
                    s_shape=0.75, expand=0.05) +
    labs(title = "ggalt: encircle annotation")
- 
 
-#
 
+## Regresion equation
 library(ggpmisc) # For stat_poly_eq for equation annotation  
 # https://cran.r-project.org/web/packages/ggpmisc/vignettes/user-guide-1.html
 
-formula <- y ~ poly(x, 1, raw = TRUE)
-regression.plot =
-  ggplot(mtcars, aes(x=disp, y=mpg)) + 
+formula <- y ~ poly(x, degree = 1, raw = TRUE)
+
+ggplot(mtcars, aes(x=disp, y=mpg)) + 
     geom_point() +
   geom_smooth(method = "lm", formula = formula) +
   stat_poly_eq(aes(label =  paste(..eq.label.., ..adj.rr.label.., sep = "~~~~")),
-                   formula = formula, parse = TRUE, coef.digits = 2, label.x = 200, label.y = 30)
-
-regression.plot 
-ggsave(file = "regression_annotation.pdf", plot = regression.plot)
+                   formula = formula, parse = TRUE, coef.digits = 2, 
+                   label.x = 200, label.y = 30)
 
 
 ```
 
-### Annotating points and select points
-library(ggrepel)
-```{r }
 
-# Annotated points 
-## ggrepel package
-# Add names of cars to dataframe
+### Time series with lines labeled
+Based on example from: https://cran.r-project.org/web/packages/ggrepel/vignettes/ggrepel.html
+
+```{r, line-annotation}
+library(ggrepel)
+
+```
+
+
+### Labelling lines, bars, points, and select points
+
+```{r, point-line-label}
+library(ggrepel)
+
 mtcars.df = mtcars
 mtcars.df$name = row.names(mtcars.df)
 
-ggplot(mtcars.df, aes(disp,  mpg, color = as.factor(cyl))) + 
-  geom_point()+
-  geom_text_repel(aes(label = name), size = 2, show.legend = FALSE)+
-  labs(x = "Displacement (cubic inches)", y = "Efficiency (mile per gallon)", 
-       title = "Efficiency and engine size", colour = "Number of cylinders")
+
+## Lines with labels rather than legend
+ggplot(Orange, aes(age, circumference, color = Tree)) +
+  geom_line() +
+  geom_text_repel(data = filter(Orange, age == max(age)),
+    aes(label = paste("Tree", Tree)),
+    size = 4, nudge_x = 45, segment.color = NA
+  ) +
+  coord_cartesian(xlim = c(min(Orange$age), max(Orange$age) + 90)) +
+  theme(legend.position = "none") +
+  labs(x = "Age (days)", y = "Circumference (mm)")
+
+count.mtcars.df = mtcars.df %>% 
+  mutate(cyl = as.factor(cyl), am = as.factor(am)) %>% 
+  group_by(am, cyl) %>% 
+  summarise(count = n()) %>% 
+  mutate(label.pos = cumsum(count) - (0.1 * count))
+
+ggplot(count.mtcars.df, aes(x = cyl, y = count, fill = am, label = count)) +
+  geom_bar(stat = "identity") +
+  geom_text(size = 3, position = position_stack(vjust = 0.5))
 
 
-## Add annotations to lines rather than legend
-s.mpg.df = mpg %>% group_by(year, class) %>% summarise(h_mpg = mean(hwy, na.rm = TRUE)) %>% ungroup()
- 
-       
-ggplot(s.mpg.df, aes(year, h_mpg, colour = class))+geom_line()+
-   coord_cartesian(xlim = c(min(s.mpg.df$year), max(s.mpg.df$year) + 1)) +
-   geom_text_repel(
-     data = filter(s.mpg.df, year == max(year)),
-     aes(label = class),
-     size = 3, nudge_x = .5) +
-  guides(color=FALSE)
-
-
+## Annotated point
 ggplot(mtcars.df, aes(disp,  mpg, color = as.factor(cyl))) +   
   geom_point()+  
   geom_text_repel(aes(label = name), size = 2, show.legend = FALSE)
 
+
+## Subset annotated
 ggplot(mtcars.df, aes(disp,  mpg, color = as.factor(cyl))) +   
   geom_point()+  
   geom_text_repel(data = mtcars.df %>% filter(mpg>30), aes(label = name), size = 2, show.legend = FALSE)
-```
 
-### Labels on lines
-```{r}
-s.mpg.df = mpg %>% group_by(year, class) %>% 
-  summarise(h_mpg = mean(hwy, na.rm = TRUE)) %>% 
-  ungroup()
-
-ggplot(s.mpg.df, aes(year, h_mpg, colour = class))+
-	geom_line()+ 	
-	coord_cartesian(xlim = c(min(s.mpg.df$year), max(s.mpg.df$year) + 1)) + 	geom_text_repel( data = filter(s.mpg.df, year == max(year)), 
-		aes(label = class), size = 3, nudge_x = .5) + 
-	guides(color=FALSE)
-
-library(ggpmisc) # For stat_poly_eq for equation annotation  
-formula <- y ~ poly(x, 1, raw = TRUE)
-ggplot(mtcars, aes(x=disp, y=mpg)) + 
-	geom_point() +  
-	geom_smooth(method = "lm", formula = formula) +  	stat_poly_eq(aes(label =  paste(..eq.label.., ..adj.rr.label.., 
-		sep = "~~~~")), formula = formula, parse = TRUE, coef.digits = 2, label.x = 200, label.y = 30)
 
 ```
-
-```{r}
-# Place legend at bottom
-ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point() +
-theme(legend.position = "bottom")
-
-# Place legend in graph
-ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point() +
-theme(legend.position = c(0.9, 0.8))
-
-```
-
 
 ### Meaningful symbols
 ```{r}
@@ -172,7 +154,51 @@ ggplot(mtcars,
 
 ```
 
-### Adding and removing labels: title, axis labels, facet labels, and legends{#AddingRemovingLabels}
+
+### Annotating with an inset plot
+```{r, inset-plot, cache=TRUE}
+library(tidyverse)
+diamonds.df = diamonds
+
+## Specify area of the plot to highlight
+xmin = .8; xmax = 1.2; ymin = 2000; ymax = 7500
+
+higlight.df = diamonds.df %>% 
+  filter(carat>xmin&carat<xmax, price>ymin&price<ymax)
+
+overall.plot = ggplot(diamonds.df, aes(carat, price))+
+  geom_point(alpha = .3, size = .3)+
+  geom_rect(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax,
+            fill = "transparent", color = "grey60")
+
+inset.plot = ggplot(higlight.df, aes(carat, price))+
+  geom_point(alpha = .3, size = .2) + 
+  labs(x = "", y = "") +
+  theme_minimal()
+
+## Create custom annotation and add to 
+inset.grob <- ggplotGrob(inset.plot )
+
+overall.plot + annotation_custom(grob = inset.grob, 
+                       xmin = 3.5, xmax = 5.2, ymin = 250, ymax = 16500)
+
+```
+
+
+### Labels on lines
+```{r}
+
+library(ggpmisc) # For stat_poly_eq for equation annotation  
+formula <- y ~ poly(x, 1, raw = TRUE)
+ggplot(mtcars, aes(x=disp, y=mpg)) + 
+	geom_point() +  
+	geom_smooth(method = "lm", formula = formula) +  	stat_poly_eq(aes(label =  paste(..eq.label.., ..adj.rr.label.., 
+		sep = "~~~~")), formula = formula, parse = TRUE, coef.digits = 2, label.x = 200, label.y = 30)
+
+```
+
+
+### Adding and removing labels: title, axis labels, and facet labels {#AddingRemovingLabels}
 ```{r}
 library(tidyverse)
 library(ggalt)
@@ -214,44 +240,42 @@ cyl_names <- as_labeller(c("4" = "Four", "6" = "Six", "8" = "Eight"))
 ```
 
 
-```{r}
+## Position legend
+```{r, legend}
 
-count.mtcars.df = mtcars.df %>% 
-  mutate(cyl = as.factor(cyl), am = as.factor(am)) %>% 
-  group_by(am, cyl) %>% 
-  summarise(count = n()) %>% 
-  mutate(label.pos = cumsum(count) - (0.1 * count))
+# Place legend at bottom
+ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point() +
+  theme(legend.position = "bottom")
 
-ggplot(count.mtcars.df, aes(x = cyl, y = count, fill = am, label = count)) +
-  geom_bar(stat = "identity") +
-  geom_text(size = 3, position = position_stack(vjust = 0.5))
+# Place legend in graph
+ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point() +
+  theme(legend.position = c(0.9, 0.8))
+
 ```
-
-
  
-
- 
-### Remove and position one or more legends
-
-```{r}
+### Remove one or more legends
+```{r, remove-legend}
 
 ggplot(mtcars.df, aes(wt, mpg, colour = cyl, size = hp))+
   geom_point()
 
+## Remove legend for single mapping
 ggplot(mtcars.df, aes(wt, mpg, colour = cyl, size = hp))+
   geom_point()+
   guides(colour=FALSE)
 
-
 ggplot(mtcars.df, aes(wt, mpg, colour = cyl, size = hp))+
   geom_point()+
-scale_colour_continuous(guide=FALSE) 
+  scale_colour_continuous(guide=FALSE) 
 
+## Remove legend for a single layer
 ggplot(mtcars.df, aes(wt, mpg, colour = cyl, size = hp))+
   geom_point(show.legend=FALSE)
 
-ggplot(mtcars.df, aes(wt, mpg, colour = cyl, size = hp))+
-theme(legend.position="none") # All legends
+# Remove all legend
+ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point() +
+  theme(legend.position = "none")
+
 ```
 
 
@@ -261,54 +285,30 @@ theme(legend.position="none") # All legends
  ```{r, plot-margin}
  
  ## Change axis limits to focus on part of data
- ggplot(mtcars.df, aes(wt, mpg))+
- geom_point()
+ggplot(mtcars.df, aes(wt, mpg))+
+   geom_point()
  
- ggplot(mtcars.df, aes(wt, mpg))+
+ggplot(mtcars.df, aes(wt, mpg))+
  geom_point()+
  lims(x = c(3, 4))
  
 ggplot(mtcars.df, aes(wt, mpg))+
  geom_point()+
  scale_x_continuous(limits = c(3, 4))
+ 
  ```
 
 ### Adjust margin between points and edge of plot area
 ```{r}
+
 ggplot(mtcars.df, aes(wt, mpg))+
  geom_point() +
   scale_x_continuous(expand = c(0, 0)) +
   scale_y_continuous(expand = c(0, 0)) 
-```
-
-
-
-```{r include=FALSE}
-mtcars.df = mtcars
-mtcars.df$name = row.names(mtcars)
-ggplot(mtcars.df, aes(disp, mpg, color = as.factor(cyl))) + geom_point() + 
-labs(x = "Displacement (cubic inches)",	 y = "Efficiency (mile per gallon)", 
-	 title = "Efficiency and engine size", 
-	 colour = "Number of cylinders")
 
 ```
 
 
-```{r, cache = TRUE}
-ggplot(mtcars.df, aes(disp,  mpg, color = as.factor(cyl))) +  
- annotate(geom = "rect", 
-	ymin = 20, ymax = 35, xmin = 65, xmax = 155, fill = "grey65", alpha = .5) +  
- annotate(geom = "text", x = 115, y = 36, label = "High-power cars" )+ 
- geom_point() +  
- labs(x = "Displacement (cubic inches)", y = "Efficiency (mile per gallon)",        	title = "Efficiency and engine size", colour = "Number of cylinders")
-
-
-library(ggalt) 
-ggplot(mtcars, aes(disp, mpg))+ 
-geom_point()+    
-geom_encircle(data=filter(mtcars, mpg>24), s_shape=0.75, expand=0.05) +   
-labs(title = "ggalt: encircle annotation")
-```
 
 
 

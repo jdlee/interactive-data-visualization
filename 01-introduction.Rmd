@@ -130,7 +130,7 @@ kable(s.anscombe.df,  caption = 'Four seemingly identical datasets that illustra
 
 ```
 
-## Purposse and audiences of visualizations
+## Purposes and audiences of visualizations
 What makes a "good" visualization depend on whether it is taylored to its purpose and its intended audience.  Generally graphs can serve three  general purposes--explore, inform, and engage [@Gelman2013]--and understanding what purpose the graph serves can help ensure the graph succedes. The purpose of the graph tends to depend on the audience, which can range from yourself, peers, scientists and engineers, managers, and the public. An extremely effective graph that you might use explore a dataset might fail to support peer in doing the same and might be completely inappropriate for presenting results to managers.  
 
 Explore: the answer is unknown and audience is likely yourself and peers involved in the research.

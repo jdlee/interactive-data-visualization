@@ -330,9 +330,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 crimes.l.df &lt;-<span class="st"> </span><span class="kw">gather</span>(crimes.df, <span class="dt">key =</span> type, <span class="dt">value =</span> rate, <span class="op">-</span>state)
 
-states_map &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;state&quot;</span>)
-
-<span class="kw">ggplot</span>() <span class="op">+</span>
+states_map &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;state&quot;</span>)</code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;maps&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     map</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>() <span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_cartogram</span>(<span class="dt">data=</span>states_map, <span class="kw">aes</span>(long, lat, <span class="dt">map_id =</span> region), <span class="dt">map=</span>states_map) <span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_cartogram</span>(<span class="dt">data=</span>crimes.df, <span class="kw">aes</span>(<span class="dt">fill =</span> Murder, <span class="dt">map_id =</span> state), <span class="dt">map=</span>states_map) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">coord_map</span>(<span class="st">&quot;polyconic&quot;</span>)<span class="op">+</span>
@@ -456,8 +460,13 @@ graph &lt;-<span class="st"> </span><span class="kw">graph_from_data_frame</span
 <h3><span class="header-section-number">8.4.2</span> Hierarchy</h3>
 <p>link to treemap</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## <span class="al">TODO</span> Convert to migration data
-<span class="kw">library</span>(ggraph)
-flare.df =<span class="st"> </span>ggraph<span class="op">::</span>flare
+<span class="kw">library</span>(ggraph)</code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;ggraph&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:treemapify&#39;:
+## 
+##     geom_treemap</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flare.df =<span class="st"> </span>ggraph<span class="op">::</span>flare
 
 graph &lt;-<span class="st"> </span><span class="kw">graph_from_data_frame</span>(flare.df<span class="op">$</span>edges, <span class="dt">vertices =</span> flare.df<span class="op">$</span>vertices)
 

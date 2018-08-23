@@ -570,8 +570,14 @@ test.m &lt;-<span class="st"> </span><span class="kw">gather</span>(test, <span 
 <h2><span class="header-section-number">6.10</span> Circle packing</h2>
 <p>The most valuable graphical dimensions of x and y position are wasted in this plot becaue they have no meaning, but it can be engaging</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(packcircles)
-<span class="kw">library</span>(viridis)
-<span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(viridis)</code></pre></div>
+<pre><code>## Loading required package: viridisLite</code></pre>
+<pre><code>## 
+## Attaching package: &#39;viridis&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:scales&#39;:
+## 
+##     viridis_pal</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
 <span class="kw">library</span>(treemapify)
 
 <span class="co"># Show with radius vs area </span>

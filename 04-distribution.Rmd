@@ -59,10 +59,11 @@ ggarrange(a10.plot, a1.plot, a01.plot,
 ## Histogram percentage rather than count
 
 ```{r, histogram-percentage}
+library(scales)
 
 ggplot(mtcars.df , aes(x = as.factor(cyl))) + 
     geom_bar(aes(y = (..count..)/sum(..count..))) + 
-    scale_y_continuous(labels = percent)
+    scale_y_continuous(labels = scales::percent)
 
 ```
     

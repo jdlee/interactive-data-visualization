@@ -390,8 +390,13 @@ belts.DriversKilled.bymonth =<span class="st"> </span>belts.df <span class="op">
 <h2><span class="header-section-number">7.6</span> Ridge plot</h2>
 <p><a href="https://cran.r-project.org/web/packages/ggridges/vignettes/gallery.html" class="uri">https://cran.r-project.org/web/packages/ggridges/vignettes/gallery.html</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Ridge plot
-<span class="kw">library</span>(ggridges)
-<span class="kw">library</span>(ggplot2movies)
+<span class="kw">library</span>(ggridges)</code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;ggridges&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     scale_discrete_manual</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2movies)
 
 movies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(year<span class="op">&gt;</span><span class="dv">1912</span>, length<span class="op">&lt;</span><span class="dv">250</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> length, <span class="dt">y =</span> year, <span class="dt">group =</span> year)) <span class="op">+</span>
@@ -461,8 +466,24 @@ xts_heatmap &lt;-<span class="st"> </span><span class="cf">function</span>(x){
 <span class="st">    </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Week of Month&quot;</span>, <span class="dt">y=</span><span class="ot">NULL</span>)
 }
   
-<span class="kw">require</span>(quantmod)
-<span class="co"># Download some Data, e.g. the CBOE VIX </span>
+<span class="kw">require</span>(quantmod)</code></pre></div>
+<pre><code>## Loading required package: quantmod</code></pre>
+<pre><code>## Loading required package: xts</code></pre>
+<pre><code>## Loading required package: zoo</code></pre>
+<pre><code>## 
+## Attaching package: &#39;zoo&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     as.Date, as.Date.numeric</code></pre>
+<pre><code>## 
+## Attaching package: &#39;xts&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     first, last</code></pre>
+<pre><code>## Loading required package: TTR</code></pre>
+<pre><code>## Version 0.4-0 included new data defaults. See ?getSymbols.
+## Learn from a quantmod author: https://www.datacamp.com/courses/importing-and-managing-financial-data-in-r</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Download some Data, e.g. the CBOE VIX </span>
 quantmod<span class="op">::</span><span class="kw">getSymbols</span>(<span class="st">&quot;^VIX&quot;</span>,<span class="dt">src=</span><span class="st">&quot;yahoo&quot;</span>)</code></pre></div>
 <pre><code>## &#39;getSymbols&#39; currently uses auto.assign=TRUE by default, but will
 ## use auto.assign=FALSE in 0.5-0. You will still be able to use

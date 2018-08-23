@@ -356,8 +356,10 @@ mtcars.df =<span class="st"> </span>mtcars</code></pre></div>
 <span class="st">   </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;ggalt: encircle annotation&quot;</span>)</code></pre></div>
 <p><img src="visualizationwithggplot_files/figure-html/annotation-2.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Regresion equation
-<span class="kw">library</span>(ggpmisc) <span class="co"># For stat_poly_eq for equation annotation  </span>
-<span class="co"># https://cran.r-project.org/web/packages/ggpmisc/vignettes/user-guide-1.html</span>
+<span class="kw">library</span>(ggpmisc) <span class="co"># For stat_poly_eq for equation annotation  </span></code></pre></div>
+<pre><code>## For news about &#39;ggpmisc&#39;, please, see https://www.r4photobiology.info/</code></pre>
+<pre><code>## For on-line documentation see https://docs.r4photobiology.info/ggpmisc/</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># https://cran.r-project.org/web/packages/ggpmisc/vignettes/user-guide-1.html</span>
 
 formula &lt;-<span class="st"> </span>y <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(x, <span class="dt">degree =</span> <span class="dv">1</span>, <span class="dt">raw =</span> <span class="ot">TRUE</span>)
 
@@ -629,9 +631,14 @@ cyl_names &lt;-<span class="st"> </span><span class="kw">as_labeller</span>(<spa
 </div>
 <div id="predefined-themes-adjust-many-elements" class="section level3">
 <h3><span class="header-section-number">10.5.2</span> Predefined themes adjust many elements</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(hrbrthemes) <span class="co"># Precise font and minimal grid</span>
-<span class="kw">library</span>(ggthemes) <span class="co"># Huge variety of themes including Tufte and Few</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(hrbrthemes) <span class="co"># Precise font and minimal grid</span></code></pre></div>
+<pre><code>## NOTE: Either Arial Narrow or Roboto Condensed fonts are *required* to use these themes.</code></pre>
+<pre><code>##       Please use hrbrthemes::import_roboto_condensed() to install Roboto Condensed and</code></pre>
+<pre><code>##       if Arial Narrow is not on your system, please see http://bit.ly/arialnarrow</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggthemes) <span class="co"># Huge variety of themes including Tufte and Few</span>
 <span class="kw">library</span>(xkcd) <span class="co"># Plots in the xkcd comic style</span></code></pre></div>
+<pre><code>## Loading required package: extrafont</code></pre>
+<pre><code>## Registering fonts with R</code></pre>
 <p>An engaging and fun theme <a href="ftp://200.236.31.7/CRAN/web/packages/xkcd/vignettes/xkcd-intro.pdf" class="uri">ftp://200.236.31.7/CRAN/web/packages/xkcd/vignettes/xkcd-intro.pdf</a></p>
 <p><img src="visualizationwithggplot_files/figure-html/xkcd-plot-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(disp, mpg, <span class="dt">color =</span> <span class="kw">as.factor</span>(cyl))) <span class="op">+</span><span class="st"> </span>

@@ -16,10 +16,9 @@ Good pie chart: Few elements, directly labled, alpha for pie pieces
 
 Small multiple for pie vs stacked bar likert ratings or time trends
 
-```{r, proportion-plot}
+```{r}
 library(HistData)
 library(tidyverse)
-library(ggpubr)
 
 night.df = Nightingale %>% 
   gather(key = cause, value = deaths, Disease:Other) %>%
@@ -69,7 +68,7 @@ deaths.plot
 
   
 ## Pareto plot: Whole part and and ranking
-```{r, pareto-plot}
+```{r}
 ## Calculate percent and cumulative percent
 
 sum.night.df = night.df %>% ungroup() %>%
@@ -113,8 +112,7 @@ ggplot(data = sum.night.df) +
 
 
 ## Stacked bar chart
-```{r, stacked-bar}
-
+```{r}
 sum.night.df = night.df %>% ungroup() %>%
   mutate(total.deaths = sum(deaths)) %>% group_by(cause, intervention) %>% 
   summarise(cause.percent = 100*sum(deaths)/max(total.deaths),
@@ -135,16 +133,14 @@ ggplot(sum.night.df, aes(intervention, cause.percent, fill = cause))+
 ggplot(sum.night.df, aes(intervention, cause.percent, fill = cause))+
 	geom_bar(position = "dodge", stat = "identity") +
    fill_palette(palette = "grey") +
-   labs(x = "", y = "")+
-  theme_bw()
+   labs(x = "", y = "")+theme_bw()
 
 ```
 
 ## Faceted Bar chart with overall reference distribution
 The grey bars in the background represent the overall distribution and provide a referende for each of the marginal distributions.  
 
-```{r, reference-bar}
-
+```{r, Reference-bar}
 diamonds.df = diamonds
 
 count.diamonds.df = diamonds.df %>% group_by(cut, color) %>% summarise(count = n()) %>% 
@@ -166,8 +162,7 @@ This "Diagram of the causes of mortality in the army in the East" was published 
 ![My picture](images/Nightingale-mortality.jpg)
 
 Coxcombe plot diminishes small values and requires square root transform
-
-```{r, coxcombe, cache=TRUE}
+```{r}
 ggplot(night.df, aes(x = Month, y = deaths, fill = cause)) +
   geom_bar(width = 1, position = "identity", color="black", stat = "identity") + 
   scale_y_log10() + 
@@ -186,8 +181,7 @@ ggplot(night.df, aes(Month, deaths, fill = cause)) +
 
 ```
 
-
-## Stacked, dodged, and opposed bar chart
+## Stacked, dodged and opposed bar chart
 Comparison of many categories
 
 * Stacked makes grouping easy
@@ -196,9 +190,7 @@ Comparison of many categories
 
 * Opposing makes gender more apparent
 
-
-```{r, stacked-dodged-opposed, message=FALSE, warning=FALSE}
-
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 ## Diversity in Silicon Valley
 diversity.df = read.csv("data/Reveal_EEO1_for_2016.csv")
 diversity.df$count = as.numeric(diversity.df$count)
@@ -209,20 +201,15 @@ gender.diversity.df = diversity.df %>% filter(job_category=="Professionals", gen
   mutate(signed.gender = if_else(gender=="female", -count, count)) 
 
 stacked.plot = ggplot(gender.diversity.df, aes(reorder(company, count), y=count, fill = gender))+
-  geom_bar(stat = "identity") +
-  labs(title = "Stacked",  x = "") +
+  geom_bar(stat = "identity")+
   coord_flip()
 
 dodged.plot = ggplot(gender.diversity.df, aes(reorder(company, count), y=count, fill = gender))+
-  geom_bar(stat = "identity", position ="dodge") +
-  labs(title = "Dodged", x = "") +
+  geom_bar(stat = "identity", position ="dodge")+
   coord_flip()
 
 opposed.plot = ggplot(gender.diversity.df, aes(reorder(company, count), y=signed.gender, fill = gender))+
-  geom_bar(stat = "identity") +
-  geom_bar(stat = "identity") +
-  scale_y_continuous(labels = abs) +
-  labs(title = "Opposed", x = "", y = "count") +
+  geom_bar(stat = "identity")+
   coord_flip()
 
 gender.plot = ggarrange(stacked.plot, dodged.plot, opposed.plot, 
@@ -231,10 +218,9 @@ gender.plot
 
 ```
 
-
 ## Likert scale plot
 
-```{r, likert-plot, cache=TRUE}
+```{r}
 
 library(tidyr)
 test<-data.frame(Q1=c(10,5,70,5,10),
@@ -265,7 +251,6 @@ ggplot(test.m, aes(x=question, fill=category)) +
 position = position_stack(reverse = TRUE)
 ```
 
-
 ## ternary (triangular) graph
 Shows proportion of three variables that sum to 100 percent. Unfamiliar to most and so can be hard to interpret
 ggtern
@@ -274,36 +259,27 @@ ggtern
 ## Treemaps for whole-part of hierarchy
 Schneiderman
 
-```{r, treemap, cache=TRUE}
+```{r}
 library(treemapify)
 
-
-# Include websites
-# ggplot(G20,
-#        aes(area = gdp_mil_usd, fill = hdi,
-#            label = country, subgroup = region)) +
-#   geom_node_tile() +
-#   geom_treemap_subgroup_border() +
-#   geom_treemap_subgroup_text(place = "centre", grow = T, alpha = 0.5, colour =
-#                              "black", fontface = "italic", min.size = 0) +
-#   geom_treemap_text(colour = "white", place = "topleft", reflow = T)
-
-
+ggplot(G20, ggplot2::aes(area = gdp_mil_usd, fill = hdi, label = country, subgroup = region)) +
+  treemapify::geom_treemap() +
+  geom_treemap_subgroup_border() +
+  geom_treemap_subgroup_text(place = "centre", grow = T, alpha = 0.5, colour =
+                             "black", fontface = "italic", min.size = 0) +
+  geom_treemap_text(colour = "white", place = "topleft", reflow = T)
 ```
 
 
 ## Circle packing
 The most valuable graphical dimensions of x and y position are wasted in this plot becaue they have no meaning, but it can be engaging
-
-```{r, circle-pack, warning=FALSE}
-
+```{r, circle-pack}
 library(packcircles)
 library(viridis)
 library(tidyverse)
-library(treemapify)
 
 # Show with radius vs area 
-packing = circleProgressiveLayout(G20$gdp_mil_usd, sizetype='area')
+packing <- circleProgressiveLayout(G20$gdp_mil_usd, sizetype='area')
 G20.df = cbind(G20, packing)
 layout = G20.df %>% 
   dplyr::select(country, x, y, radius)

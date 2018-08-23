@@ -26,8 +26,16 @@ The simplest plot must include data, aesthetic mapping, and geom a geometric ele
 
 Figure \@ref(fig:simple-scatterplot) shows the ggplot2 code and associated scatterplot. The equation used to specify the plot implicitly specifies the values by their position, such as data being identifed as following "ggplot(".  The following speciifcations are equivalent:
 
+``
+ggplot(data = mtcars.df, mapping = aes(x = wt, y = mpg)) +
+  geom_point(colour = "darkblue")
+  
+ggplot(mtcars.df, aes(wt, mpg)) +
+  geom_point(colour = "darkblue")
+``
 
-```{r, simple-scatterplot, message=FALSE, cache=TRUE}
+
+```{r, simple-scatterplot, message=FALSE}
 
 library(tidyverse)
 
@@ -39,13 +47,11 @@ ggplot(data = mtcars.df, mapping = aes(x = wt, y = mpg)) +
 ```
 
 A powerful feature of ggplot2 is the abilty to add layers of geometric elements to a plot. Each layer can have its own data, mapping of aesthetic properties, and setting of aesthetic properties. The data and mapping specified in the base plot statement--"ggplot(data = mtcars.df, mapping = aes(x = wt, y = mpg))"--are global and apply to all layers, but can overridden by the any mappings specific to a layer. 
-
 Figure \@ref(fig:scatterplot-layering) shows a layer of red circles based on a subset of the data.
 
 
 
-```{r, scatterplot-layering, cache=TRUE}
-
+```{r, scatterplot-layering}
 fourcyl.mtcars.df = mtcars.df %>% filter(cyl==4)
 
 ggplot(data = mtcars.df, mapping = aes(x = wt, y = mpg)) +
@@ -53,6 +59,7 @@ ggplot(data = mtcars.df, mapping = aes(x = wt, y = mpg)) +
   geom_point(data = fourcyl.mtcars.df, colour = "red", shape = 21, size = 4)
   
   
+
 ```
 
 
@@ -61,17 +68,15 @@ ggplot(data = mtcars.df, mapping = aes(x = wt, y = mpg)) +
 The scatterplot typically maps variables to the x and y position of the points, but ggplot allows for other mappings.  Figure \@ref(fig:scatterplot-mapping) shows mapping variables to the fill and size of the points. The shape, stroke, and color of the points are set to values they could also be mapped, which could quickly overload the graph. Note that only shapes 21-25 in Figure \@ref(fig:symbols) can include fill and stroke, with the other symbols color determines the color of the whole symbol not just the border.
 
 ```{r, scatterplot-mapping, cache=TRUE}
-
 ggplot(data = mtcars, mapping = aes(x = wt, y = mpg, fill = hp, size = 1/qsec)) + 
   geom_point(shape = 21, colour = "darkred", stroke = 2.) 
 ```
 
 
 ```{r, symbols, echo=FALSE, cache=TRUE}
-library(ggpubr)
 
 symbol.plot = ggplot(data = data.frame(x = c(0: 25)), aes(x = x, y = x, shape = x)) + 
-  geom_point(size = 6) +
+  geom_point(size = 8) +
   scale_shape_identity() +
   facet_wrap(~ x, scales = 'free') + 
   theme_void()
@@ -79,7 +84,7 @@ symbol.plot = ggplot(data = data.frame(x = c(0: 25)), aes(x = x, y = x, shape = 
 line.plot = ggplot(data=data.frame(x=c(1:6))) + 
   geom_hline(size=2, aes(yintercept=x, linetype=x)) +
   scale_linetype_identity() +
-  xlim(c(0, 50)) +
+  xlim(c(0,100)) +
   facet_wrap(~ x, ncol = 2, scales = 'free')+
   theme_void()
 
@@ -89,19 +94,14 @@ nrow=1, ncol = 2)
 ```
 
 
-```{r, colors}
+```{r}
 library(RColorBrewer)
+# display.brewer.all(type="qual")
+# 
+# display.brewer.all(type="div")
 
-display.brewer.all(type="qual")
- 
-display.brewer.all(type="seq")
-
-display.brewer.all(type="div")
-
-# display.brewer.all(n=NULL, type="all", 
-#                    select=NULL, exact.n=TRUE, 
-#                    colorblindFriendly=FALSE)
-
+display.brewer.all(n=NULL, type="all", select=NULL, exact.n=TRUE, 
+colorblindFriendly=FALSE)
 ```
 
 
@@ -135,10 +135,9 @@ knitr::kable(ls(pattern = '^geom_', env = as.environment('package:ggplot2')))
 
 ## Global and local regression 
 
-```{r, scatterplot-globallocal}
-
+```{r,, scatterplot-globallocal}
 ggplot(data = mtcars.df, aes(x = wt, y = mpg)) +
-  geom_smooth(method = lm, colour = "darkgrey", size = .5) +
+    geom_smooth(method = lm, colour = "darkgrey", size = .5) +
   geom_point(aes(colour = as.factor(cyl))) +
   geom_smooth(aes(colour = as.factor(cyl)), method = lm, se = FALSE)
 
@@ -148,7 +147,6 @@ ggplot(data = mtcars.df, aes(x = wt, y = mpg)) +
 ## Quantile regression and other functional relationships
 Often the question the graph is meant to answer is not about the central tendency, but about the likelihood of relatively extreme values, such as the 25th and 75th percentiles.
 ```{r, scatterplot-quantile}
-
 ggplot(data = mtcars.df, aes(x = wt, y = mpg)) +
     geom_smooth(method = lm, colour = "darkgrey", size = .5) +
   geom_point() +
@@ -167,11 +165,10 @@ Chapter \@ref(Polishing) shows how to add annotations, such as the equation.
 Derived from: 
 http://t-redactyl.io/blog/2016/05/creating-plots-in-r-using-ggplot2-part-11-linear-regression-plots.html
 
-```{r, scatterplot-marginal, cache=TRUE}
+```{r, scatterplot-marginal}
 library(ggthemes)
 library(ggExtra) # For marginal histograms
 
-mtcars.df = mtcars
 
 equation = function(x) {
   lm_coef <- list(a = round(coef(x)[1], digits = 2),
@@ -181,7 +178,7 @@ equation = function(x) {
   as.character(as.expression(lm_eq));                 
 }
 
-
+mtcars.df = mtcars
 fit = lm(mpg~wt, data = mtcars.df)
 
 p = ggplot(mtcars.df, aes(x=wt, y=mpg)) + 
@@ -201,7 +198,6 @@ p
 
 ## Categorical scatterplot
 ```{r, scatterplot-categorical, cache=TRUE}
-
 mtcars.df = mtcars
 mtcars.df$gear = as.factor(mtcars.df$gear)
 mtcars.df$am = as.factor(mtcars.df$am)
@@ -225,7 +221,6 @@ Table lens serves a similar purpose to the scatterplot but might be more familia
 
 ```{r, table_lens, echo=FALSE, message=FALSE}
 library(DT)
-
 sub.mtcars.df = mtcars.df %>% 
   dplyr::select(mpg, wt) %>% 
   rownames_to_column("name") 
@@ -281,7 +276,7 @@ ggplot(data = mtcars.df, aes( x = disp, y = hp)) +
 
 
 ## A matrix of scatterplots
-```{r, scatterplot-matrix, echo=FALSE, warning=FALSE, message=FALSE, cache=TRUE}
+```{r, scatterplot-matrix, echo=FALSE, warning=FALSE, message=FALSE}
 library(lattice)
 library (car)
 library(hexbin)
@@ -326,5 +321,7 @@ splom(sub.data,
 )
 
 ```
+
+
 
 

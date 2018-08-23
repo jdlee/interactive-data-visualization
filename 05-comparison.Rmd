@@ -8,7 +8,7 @@
 ## Graph considerations for communication: aggregation, abstraction, complexity 
 ### Simple bar chart
 ```{r message=FALSE}
-library(tidyr)
+library(tidyverse)
 library(ggforce)
 library(ggthemes)
 library(ggstance)
@@ -160,13 +160,13 @@ ggplot(mtcars.df) +
 ### Tufte-inspired minimal bar chart
 http://motioninsocial.com/tufte/
 
-```{r}
+```{r, tufte-barchart}
 #TODO replace with better dataset with for more columns
 library(ggthemes)
 ggplot(mtcars.df, aes(x=as.factor(cyl))) + 
   geom_bar(width=0.25, fill="gray") +  
   scale_y_continuous(breaks=seq(2, 12, 2)) + 
-  geom_hline(yintercept=seq(2, 12, 2), colour="white", lwd=1) +
+  geom_hline(yintercept=seq(2, 12, 2), colour="white", lwd=.5) +
   theme_tufte(base_size=12, ticks=F, base_family = "Arial") 
 ```
    
@@ -174,7 +174,8 @@ ggplot(mtcars.df, aes(x=as.factor(cyl))) +
 ## Comparing across many variables
 ### Dot plots and reordering
 Comparing many mean values
-```{r}
+```{r, dotplot}
+
 #TODO Change to mean sd catepilar plot
 mtcars.df = mtcars
 mtcars.df$name = rownames(mtcars.df)
@@ -194,7 +195,7 @@ ggplot(data = mtcars.df, aes(reorder(name, hp), y = hp, colour = as.factor(cyl))
 ### Point range on x and y
 ```{r, xycomparison}
 ## Point range on x and y
-library(ggstance)
+#library(ggstance)
 s.mtcars.df = mtcars %>% group_by(cyl) %>% 
   summarise(m.hp = mean(hp), se.hp = sd(hp)/n()^.5,
             m.mpg = mean(mpg), se.mpg = sd(mpg)/n()^.5)
@@ -202,7 +203,7 @@ s.mtcars.df = mtcars %>% group_by(cyl) %>%
 
     
 ### Tufte boxplot for many variables
-```{r, cache=TRUE}
+```{r, tufte-boxplot, cache=TRUE}
 library(ggthemes)
 
 ggplot(mtcars, aes(factor(cyl), mpg)) +
@@ -221,8 +222,9 @@ geom_point()+
 
 ```
 
+
 ### Tufte-inspired slope graphs {#tufte-slopegraph}
-```{r, fig.asp = 1.3, fig.height = 5}
+```{r, tufte-slopegraph, fig.asp = 1.3, fig.height = 5}
 library(tidyverse)
 library(ggrepel)
 
@@ -249,45 +251,57 @@ ggplot(l.cancer.df, aes(year, rate, group = Type))+
   
 ```
 
+
 ### Parallel coordinate plot with similar items highlighted
-Link to network for showing links in multivariate data
+Scatterplots can show how items relate when there are only two dimensions, but many situations involve comparison between items based on 4-10 dimensions. Parallel coordinate plots can show how items relate on many dimenions by arraying the dimesions on the horizontal axis and the value for that dimension on the vertical axis. Each line represents an item and sets of lines that rise and fall in parallel indicate similar items. For comparisons that involve more dimensions it dimensionality reduction techniques, such as PCA or t-SNE can provide a meaningful two-dimensional representation that can be easily visualized with a scatter plot.
 
-```{r, cache=TRUE, echo=FALSE, warning=FALSE}
+Creating a parallel coordinate plot involves five steps:
+1. Transform the variables to make uniform comparisons, such as greater values have similar meaning
+2. Select variables or dimensions of interest and convert to long format--one column for the variable names and one for the values
+3. Scale the items for each variable--subtract the mean value and divide by the standard deviation
+4. Highlight one or more items
+6. Order the variables in a meaningful fashion, such as by the standard deviation
+
+
+```{r, parallel-coordinate, cache=TRUE, echo=TRUE, warning=FALSE}
 ## Highlight closest pair of items multidimensional space ##
-library(tidyr)
-
+library(tidyverse)
 mtcars.df = mtcars
 mtcars.df$name = row.names(mtcars.df)
 
-
-## Scale variables and calculate distances between cases
+## Transform variables 
 mtcars.df = mtcars.df %>% mutate(gpm = 1/mpg) %>% mutate(speed = 1/qsec) %>% 
-  dplyr::select(-mpg, -qsec) %>% 
-  dplyr::select(cyl:carb, gpm, speed, name)
+  dplyr::select(-mpg, -qsec)
 
+## Select variables 
+  mtcars.df = mtcars.df %>% dplyr::select(cyl:carb, gpm, speed, name)
+
+##  Scale items
 scaled_mtcars.df = mtcars.df %>% mutate_at(vars(cyl:speed), scale)
 
-dist.df =dist(scaled_mtcars.df, upper = TRUE, diag = FALSE)
-dist.df = as.data.frame(as.matrix(dist.df))
-
+## Highlight similar items
+dist.df = as.matrix(dist(scaled_mtcars.df, upper = TRUE, diag = FALSE))  %>% as.data.frame()
 
 ## Find the closest vehicle to target vehicle
-target = 18
+target = 18 # specifies the row number of interest
 closest = which(min(dist.df[dist.df[, target]>0, target])==dist.df[, target])
-
-
-## Convert to long format for parallel coordinate plot
-l.scaled_mtcars.df = scaled_mtcars.df %>% gather(var, value, -name)
-
 mtcars.df$name[target]
 mtcars.df$name[closest]
 
-pair = l.scaled_mtcars.df %>% filter(name==mtcars.df$name[target]|name==mtcars.df$name[closest])
+## Convert to long format
+l.scaled_mtcars.df = scaled_mtcars.df %>% gather(key = var, value = value, -name)
 
-ggplot(l.scaled_mtcars.df, aes(reorder(var, -value, sd), value, group = name))+
+
+## Select pair to highlight
+pair.df = l.scaled_mtcars.df %>% filter(name==mtcars.df$name[target]|name==mtcars.df$name[closest])
+
+## Order variables by the standard deviation
+
+library(ggrepel)
+ggplot(l.scaled_mtcars.df, aes(reorder(var, value, sd), value, group = name))+
   geom_line(alpha = .3, size = .2)+
-  geom_point(data = pair, colour = "red", alpha = .5) +
-  geom_line(data = pair, colour = "red", alpha = .5) +
+  geom_line(data = pair, colour = "red", size = .6, alpha = .6) +
+  geom_label_repel(data = pair %>% filter(var=="speed"), aes("speed", value, label = name), nudge_y = -.75)+
   theme_minimal()
 ```
 

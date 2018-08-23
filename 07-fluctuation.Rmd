@@ -18,7 +18,8 @@ faceting
         
 ## Time series with reference line
 
-```{r}
+```{r, facet-timeseries}
+
 ## Reference lines in time series
 belts = Seatbelts
 belts.df = as.data.frame(
@@ -39,19 +40,14 @@ ggplot(belts.df, aes(x = Month, y = belts.DriversKilled)) +
   theme(axis.text.x = element_blank(),
         axis.ticks.x = element_blank(),
         legend.position = "none")
+
 ```
 
 
 
-```{r}
-ggplot(belts.df, aes(Month, belts.DriversKilled)) + 
-  	geom_path(aes(colour = belts.law, size = belts.PetrolPrice, group = Year), lineend = "round") + 
-	geom_line(data = belts.DriversKilled.bymonth,  aes(x = Month, y = mean.DriversKilled)) +
-  facet_wrap(~Year, nrow= 4, ncol= 4) # Creates a matrix of graphs
-```
-
 
 ```{r}
+
 belts.df = belts.df %>% group_by(Year) %>% mutate(summer.s=Month[Month==5], summer.e=Month[Month==9])
 
 ggplot(belts.df, aes(Month, belts.DriversKilled)) + 
@@ -65,12 +61,13 @@ ggplot(belts.df, aes(Month, belts.DriversKilled)) +
 
 ## Cycle plot
 Cycle plot make comparions between months easy.  Showing bars rather than lines helps focus attenton the specitic years when the seatbelt law was enacted.
-```{r}
+
+```{r, cycle-plot}
 hline.df <- belts.df %>% group_by(Month) %>% summarize(m.killed = mean(belts.DriversKilled))
 
 
 ggplot() +
-  geom_line(data = belts.df, aes(x = Year, y = belts.DriversKilled, group = Month), alpha = .6) +
+  geom_path(data = belts.df, aes(x = Year, y = belts.DriversKilled, group = Month, color = belts.law), alpha = .6) +
   geom_hline( data = hline.df, aes(yintercept = m.killed), colour = "grey15", size = 1.5) +
   facet_grid(~Month) +
   theme(axis.text.x = element_blank())
@@ -85,31 +82,11 @@ ggplot() +
 ```
 
 
-## Time series with lines labeled
-Based on example from: https://cran.r-project.org/web/packages/ggrepel/vignettes/ggrepel.html
-
-```{r}
-library(ggrepel)
-
-## Lines with labels rather than legend
-ggplot(Orange, aes(age, circumference, color = Tree)) +
-  geom_line() +
-  coord_cartesian(xlim = c(min(Orange$age), max(Orange$age) + 90)) +
-  geom_text_repel(
-    data = subset(Orange, age == max(age)),
-    aes(label = paste("Tree", Tree)),
-    size = 6,
-    nudge_x = 45,
-    segment.color = NA
-  ) +
-  theme_classic(base_size = 16) +
-  theme(legend.position = "none") +
-  labs(x = "Age (days)", y = "Circumference (mm)")
-```
-
+## Step graph
+TODO
 
 ## Faceted zoom
-```{r}
+```{r, facet-zoom}
 library(ggforce)
 ## Examples from: https://cran.r-project.org/web/packages/ggforce/vignettes/Visual_Guide.html
 
@@ -121,12 +98,9 @@ ggplot(iris, aes(Petal.Length, Petal.Width, colour = Species)) +
 ```
 
 
-
-TODO Step graph
-
 ## Ridge plot
 https://cran.r-project.org/web/packages/ggridges/vignettes/gallery.html
-```{r}
+```{r, ridge-plot}
 
 ## Ridge plot
 library(ggridges)
@@ -148,7 +122,8 @@ Stream plot
 
 "A steamgraph is a more aesthetically appealing version of a stacked area chart. It tries to highlight the changes in the data by placing the groups with the most variance on the edges, and the groups with the least variance towards the centre. This feature in conjunction with the centred alignment of each of the contributing areas makes it easier for the viewer to compare the contribution of any of the components across time."
 
-```{r, cache=TRUE}
+
+```{r, streamplot, cache=TRUE}
 #devtools::install_github('Ather-Energy/ggTimeSeries')
 library(babynames)
 library(ggTimeSeries)
@@ -173,7 +148,7 @@ ggplot(names.df, aes(year, y = nn, group = name, fill = name)) +
 ## Temporal heatmap 
 TODO replace with rain data for SEA
 from https://www.r-bloggers.com/ggplot2-time-series-heatmaps-revisited-in-the-tidyverse/
-```{r}
+```{r, temporal-heatmap}
 # The core idea is to transform the data such that one can
 # plot "Value" as a function of "WeekOfMonth" versus "DayOfWeek"
 # and facet this Year versus Month
@@ -210,8 +185,6 @@ require(quantmod)
 # Download some Data, e.g. the CBOE VIX 
 quantmod::getSymbols("^VIX",src="yahoo")
 
-# lets see
 xts_heatmap(Cl(VIX)) + labs(title="Heatmap of VIX")
-# ok
 ```
 

@@ -19,6 +19,7 @@ library(ggpubr)
 Seeing the smooth and rough of data
 bins or binwidth, default number of bins is 30
 ```{r, histogram-bin, cache=TRUE, warning=FALSE}
+
 h10.plot = ggplot(data = diamonds.df, aes(price)) + 
   geom_histogram(bins = 10) 
 
@@ -33,11 +34,13 @@ ggarrange(h10.plot, h30.plot, h80.plot,
 
 ```
 
+
+## Density and kernel adjustment 
 Density as abstraction and model
 
 Adjust is a multiplier on the default kernel bandwidth and so 1 represents the default
-## Density and kernel adjustment 
 ```{r, density-adjust, cache=TRUE}
+
 a10.plot = ggplot(data = diamonds.df, aes(price)) + 
   geom_density(adjust = 10) 
 
@@ -50,24 +53,29 @@ a01.plot = ggplot(data = diamonds.df, aes(price)) +
 ggarrange(a10.plot, a1.plot, a01.plot,
 	nrow=1, ncol = 3, align = "h")
 
-
 ```
+
 
 ## Histogram percentage rather than count
 
 ```{r, histogram-percentage}
-ggplot(mtcars.df , aes(x = cyl)) + 
+
+ggplot(mtcars.df , aes(x = as.factor(cyl))) + 
     geom_bar(aes(y = (..count..)/sum(..count..))) + 
     scale_y_continuous(labels = percent)
+
 ```
     
 ## Histogram, density overlay, and normal overlay
 
     
 ## Cummulative density
-```{r}
+```{r, cummulative-density, cache=TRUE}
+diamonds.df = diamonds
+
 ggplot(diamonds.df, aes(price, colour = cut)) + 
   stat_ecdf(geom = "step")
+
 ```
 
 
@@ -75,50 +83,54 @@ ggplot(diamonds.df, aes(price, colour = cut)) +
 Plots quantiles of sample as a function of the quantiles of the theoretical distribution. 
 ```{r, qqplot, cache=TRUE}
 
-diamonds.df = diamonds
-
 ggplot(diamonds.df, aes(sample = price)) + 
   geom_qq(distribution = qlnorm) +
   geom_abline(intercept = mean(diamonds.df$price), slope = sd(diamonds.df$price))
 
 ```
 
+
 ## Cummulative density
 ```{r}
+
 ggplot(diamonds.df, aes(price, colour = cut)) + 
   stat_ecdf(geom = "step")
+
 ```
 
 
 ## Distribution: 2-D distribution and overplotting revisited
-```{r}
-ggplot(diamonds, aes(log(carat), log(price)))+
+```{r, 2D-distribution, cache=TRUE}
+
+ggplot(diamonds.df, aes(log(carat), log(price)))+
   geom_point(alpha = .01)+ 
   theme_bw()
 
-ggplot(diamonds, aes(log(carat), log(price)))+
+ggplot(diamonds.df, aes(log(carat), log(price)))+
   geom_point(size = .5)+ 
   geom_density2d(size=1.2)+
   theme_bw()
 
-ggplot(diamonds, aes(log(carat), log(price)))+
+ggplot(diamonds.df, aes(log(carat), log(price)))+
   geom_point(size = .5)+ 
   geom_density2d(size=1.2)+
   geom_hex(alpha = .6) +
   theme_bw()
 
-ggplot(diamonds, aes(log(carat), log(price)))+
+ggplot(diamonds.df, aes(log(carat), log(price)))+
   #geom_point( )+
   #geom_point(size = .5)+ 
   #geom_density2d(size=1.2)+
   geom_hex(bins = 50) +
   theme_bw()
+
 ```
 
 
-## Histogram with density and median reference line
+## Small multiple histogram with density and median reference lines {#tufte-smallmultiples}
 TODO change to diversity data gender across job types
-```{r}
+```{r, hitogram-comparison, cache=TRUE}
+
 diamonds.df = diamonds
 
 sum.diamonds.df = diamonds.df %>% group_by(cut) %>% 
@@ -134,9 +146,8 @@ ggplot(data = diamonds.df, aes(price)) +
 
 ## Ridge plot--An array of density plots
 https://cran.r-project.org/web/packages/ggridges/vignettes/gallery.html
-```{r}
+```{r, ridgeplot, cache=TRUE}
 
-## Ridge plot
 library(ggridges)
 library(ggplot2movies)
 

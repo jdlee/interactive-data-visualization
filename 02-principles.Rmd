@@ -1,6 +1,16 @@
 \cleardoublepage 
 
 # Visualization types and principles {#Principles}
+Questions guide choice of general graph types
+Cognitive operations needed to answer questions guide the choice of graphical details
+The path of attention associated with a sequence of cognitive operations needed to form a coherent story guides the choice of layout and interactive elements 
+
+Four general aspects of visual perception and cognition govern how well people interpret graphs: 
+
+1. Guidance and span of the attentional spotlight
+2. Sensitivity to grouping and patterns
+3. Discrimination and judgement of values
+4. Sensitivity to navigation cohence and narative structure 
 
 
 
@@ -260,10 +270,24 @@ Compatability
 Conventions and familiarity
 
 
-### Comparing and reading values
+### Reading and judging values
 Differences between conditions, Compare to zero?
 Perceptual sensitivity
 Proximity compatibility principle (enable relative rather than absolute comparisons with reference lines and data ordering)
+
+```{r}
+cyl_mtcars.df = mtcars %>% mutate(cyl = as.factor(cyl)) %>% 
+  group_by(cyl) %>% 
+  summarise(m.mpg = mean(mpg))
+
+ggplot(cyl_mtcars.df, aes(cyl, m.mpg)) +
+  geom_col(fill = "grey70") +
+  geom_text(aes(label = round(m.mpg, 1)), vjust = 1.5)
+  
+```
+
+### Comparing values
+
 
 ### Detecting and selecting
 Outliers, deviations from assumptions
@@ -313,6 +337,12 @@ Grouping and gestalt
 
 TODO Figure ground showing data and summary vs summary and data
 
+
+### Narrative structure and sequence
+
+
+
+Storytelling and visual momentum
 
 ## Principles from general to specific
 [@Tufte1983], [@Munzner2014, @Gelman2013a] 

@@ -1,11 +1,16 @@
 \cleardoublepage 
 
-# Introduction: Purposes, questions, and audiences {#Introduction}
+
+```{r, echo=FALSE, message=FALSE}
+library(knitr)
+library(tidyverse)
+```
+
+# Introduction: Audiences, purposes, questions {#Introduction}
 
 Information technology has brought large volumes of data and the promise of a deeper understanding of a wide range of challenges from understanding the quarterly performance of a company to the effectiveness of a healthcare system or the health of an individual. Often this promise is not kept and data overwhelms rather than informs. Often a well-crafted visualization can address this problem and make data meaningful. This book provides principles and examples to make large volumes of data meaningful through visualization.
 
-
-The book combines generla visualization principles illustrated with many example graphs.  It also includes the computer code so that each graph can be reporduced and adjusted to plot other data. Nearly all the examples use ggplot2 which makes it relatively easy to replicate some of the classic visualization suggestions of E. Tufte, such as his minimalitic graph styles inspired styles, as well as slope graphs (Section \@ref(tufte-slopegraph)) and small multiples (Section \@ref(#tufte-smallmultiples)).
+The book combines general visualization principles illustrated with examples.  It also includes the computer code so that each graph can be reporduced and used to plot other data. Nearly all the examples use ggplot2 which makes it relatively easy to replicate some of the classic visualization suggestions of E. Tufte, such as his minimalitic graph styles, as well as slope graphs (Section \@ref(tufte-slopegraph)) and small multiples (Section \@ref(tufte-smallmultiples)).
 
 The book also includes ways of addressing common challenges with ggplot2, such as removing legend (Section \@ref(AddingRemovingLabels)) and reordering categories of column charts.
 
@@ -16,8 +21,6 @@ Figure \@ref(fig:blood-tab) shows a typical report of a medical diagnostic test.
 
 
 ```{r blood-tab, echo = FALSE, fig.cap = "A typical report of a medical test makes finding deviations from the normal range difficult."}
-library(knitr)
-library(tidyverse)
 knitr::include_graphics("images/Blood_table.jpg")
 ```
 
@@ -142,8 +145,20 @@ Engage: the answer is known and must be communicated in an entertaining way to t
 
 
 ## What question to answer?
+Triadic perspective that links three distinct elements:
+1. the person and their questions
+2. the underlying data and its meaning
+3. the graphical representation
 
-Matching types of graphs to types of questions
+This triadic perspective places equal emphasis on the analytics and processing of data and the visual representation that must be tailored to the motivation, needs and capacity of the people viewing the graph.
+
+This requires:
+1. Abstracting and aggregating (properties of the data) to address the intersts of the audience.11
+
+2. matching types of graphs (visual representations) to types of questions (properties of the data)
+
+3. matching types of graphs (visual representations) to the audience (properties of people, their interests, and experience)
+
 
   
 ## Storytelling with graphics

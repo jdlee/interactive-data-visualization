@@ -1,7 +1,7 @@
 \cleardoublepage 
 
-# Comparison--barchart and boxplots{#Comparison}
-
+# Comparison--barchart, boxplots, synaplots {#Comparison}
+Comparison as assessing overlapping distributions
 
 
 
@@ -263,6 +263,7 @@ Creating a parallel coordinate plot involves five steps:
 6. Order the variables in a meaningful fashion, such as by the standard deviation
 
 
+
 ```{r, parallel-coordinate, cache=TRUE, echo=TRUE, warning=FALSE}
 ## Highlight closest pair of items multidimensional space ##
 library(tidyverse)
@@ -270,11 +271,27 @@ mtcars.df = mtcars
 mtcars.df$name = row.names(mtcars.df)
 
 ## Transform variables 
-mtcars.df = mtcars.df %>% mutate(gpm = 1/mpg) %>% mutate(speed = 1/qsec) %>% 
-  dplyr::select(-mpg, -qsec)
+mtcars.df = mtcars.df %>% mutate(gpm = 1/mpg) %>% mutate(speed = 1/qsec) 
 
 ## Select variables 
-  mtcars.df = mtcars.df %>% dplyr::select(cyl:carb, gpm, speed, name)
+mtcars.df = mtcars.df %>% dplyr::select(cyl:carb, gpm, speed, name)
+
+## Convert to long format
+l.mtcars.df = mtcars.df %>% gather(key = var, value = value, -name)
+
+##  Scale values
+l.scaled.mtcars.df = l.mtcars.df %>% group_by(var, s.value = scale(value)) %>% 
+  ungroup()
+
+## Identify similar items
+target = "Datsun 710" # specifies the row number of interest
+l.scaled.mtcars.df$target_s.value = l.scaled.mtcars.df$s.value[l.scaled.mtcars.df$name==target]
+
+l.scaled.mtcars.df = l.scaled.mtcars.df %>% group_by(name) %>% 
+  mutate(distance = (sum((s.value-target_s.value)^2))^0.5)
+
+
+
 
 ##  Scale items
 scaled_mtcars.df = mtcars.df %>% mutate_at(vars(cyl:speed), scale)

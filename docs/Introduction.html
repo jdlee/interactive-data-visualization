@@ -25,7 +25,7 @@
 <meta name="author" content="John D. Lee">
 
 
-<meta name="date" content="2018-08-23">
+<meta name="date" content="2018-10-20">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -47,17 +47,12 @@
 
 
 
-<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
-<script src="libs/d3-4.3.0/d3.min.js"></script>
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<script src="libs/d3-5.7.0/d3.min.js"></script>
 <script src="libs/d3-lasso-0.0.5/d3-lasso.min.js"></script>
-<link href="libs/ggiraph-0.3.0/styles.css" rel="stylesheet" />
-<script src="libs/ggiraph-0.3.0/ggiraph_utils.js"></script>
-<script src="libs/ggiraph-0.3.0/ggiraph_over_effect.js"></script>
-<script src="libs/ggiraph-0.3.0/ggiraph_zoom.js"></script>
-<script src="libs/ggiraph-0.3.0/ggiraph_tooltip.js"></script>
-<script src="libs/ggiraph-0.3.0/ggiraph_selector.js"></script>
-<script src="libs/ggiraph-binding-0.4.4/ggiraph.js"></script>
-<script src="libs/svg_1-0.0.1/scripts_svg_1.js"></script>
+<link href="libs/ggiraphjs-0.1.0/styles.css" rel="stylesheet" />
+<script src="libs/ggiraphjs-0.1.0/ggiraphjs.min.js"></script>
+<script src="libs/girafe-binding-0.5.0/girafe.js"></script>
 
 
 <style type="text/css">
@@ -121,10 +116,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i>Acknowledgments</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="about-the-author.html"><a href="about-the-author.html"><i class="fa fa-check"></i>About the Author</a></li>
-<li class="chapter" data-level="2" data-path="Introduction.html"><a href="Introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction: Purposes, questions, and audiences</a><ul>
+<li class="chapter" data-level="2" data-path="Introduction.html"><a href="Introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction: Audiences, purposes, questions</a><ul>
 <li class="chapter" data-level="2.1" data-path="Introduction.html"><a href="Introduction.html#seeing-meaning-rather-than-numbers"><i class="fa fa-check"></i><b>2.1</b> Seeing meaning rather than numbers</a></li>
 <li class="chapter" data-level="2.2" data-path="Introduction.html"><a href="Introduction.html#seeing-more-than-summary-statistics"><i class="fa fa-check"></i><b>2.2</b> Seeing more than summary statistics</a></li>
-<li class="chapter" data-level="2.3" data-path="Introduction.html"><a href="Introduction.html#purposse-and-audiences-of-visualizations"><i class="fa fa-check"></i><b>2.3</b> Purposse and audiences of visualizations</a></li>
+<li class="chapter" data-level="2.3" data-path="Introduction.html"><a href="Introduction.html#purposes-and-audiences-of-visualizations"><i class="fa fa-check"></i><b>2.3</b> Purposes and audiences of visualizations</a></li>
 <li class="chapter" data-level="2.4" data-path="Introduction.html"><a href="Introduction.html#what-question-to-answer"><i class="fa fa-check"></i><b>2.4</b> What question to answer?</a></li>
 <li class="chapter" data-level="2.5" data-path="Introduction.html"><a href="Introduction.html#storytelling-with-graphics"><i class="fa fa-check"></i><b>2.5</b> Storytelling with graphics</a></li>
 <li class="chapter" data-level="2.6" data-path="Introduction.html"><a href="Introduction.html#data-sources"><i class="fa fa-check"></i><b>2.6</b> Data sources</a></li>
@@ -137,9 +132,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.2" data-path="Principles.html"><a href="Principles.html#create-data"><i class="fa fa-check"></i><b>3.2</b> Create data</a></li>
 <li class="chapter" data-level="3.3" data-path="Principles.html"><a href="Principles.html#pairing-questions-and-graph-types"><i class="fa fa-check"></i><b>3.3</b> Pairing questions and graph types</a></li>
 <li class="chapter" data-level="3.4" data-path="Principles.html"><a href="Principles.html#percpetual-processes-to-be-supported-comparison-detection-pattern-identification"><i class="fa fa-check"></i><b>3.4</b> Percpetual processes to be supported: Comparison, Detection, Pattern identification</a><ul>
-<li class="chapter" data-level="3.4.1" data-path="Principles.html"><a href="Principles.html#comparing-and-reading-values"><i class="fa fa-check"></i><b>3.4.1</b> Comparing and reading values</a></li>
-<li class="chapter" data-level="3.4.2" data-path="Principles.html"><a href="Principles.html#detecting-and-selecting"><i class="fa fa-check"></i><b>3.4.2</b> Detecting and selecting</a></li>
-<li class="chapter" data-level="3.4.3" data-path="Principles.html"><a href="Principles.html#identifying-groups-and-patterns"><i class="fa fa-check"></i><b>3.4.3</b> Identifying groups and patterns</a></li>
+<li class="chapter" data-level="3.4.1" data-path="Principles.html"><a href="Principles.html#reading-and-judging-values"><i class="fa fa-check"></i><b>3.4.1</b> Reading and judging values</a></li>
+<li class="chapter" data-level="3.4.2" data-path="Principles.html"><a href="Principles.html#comparing-values"><i class="fa fa-check"></i><b>3.4.2</b> Comparing values</a></li>
+<li class="chapter" data-level="3.4.3" data-path="Principles.html"><a href="Principles.html#detecting-and-selecting"><i class="fa fa-check"></i><b>3.4.3</b> Detecting and selecting</a></li>
+<li class="chapter" data-level="3.4.4" data-path="Principles.html"><a href="Principles.html#identifying-groups-and-patterns"><i class="fa fa-check"></i><b>3.4.4</b> Identifying groups and patterns</a></li>
+<li class="chapter" data-level="3.4.5" data-path="Principles.html"><a href="Principles.html#narrative-structure-and-sequence"><i class="fa fa-check"></i><b>3.4.5</b> Narrative structure and sequence</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="Principles.html"><a href="Principles.html#principles-from-general-to-specific"><i class="fa fa-check"></i><b>3.5</b> Principles from general to specific</a><ul>
 <li class="chapter" data-level="3.5.1" data-path="Principles.html"><a href="Principles.html#identify-audience-story-and-key-relationships-few"><i class="fa fa-check"></i><b>3.5.1</b> Identify audience, story, and key relationships (Few)</a></li>
@@ -180,7 +177,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.9" data-path="Distribution.html"><a href="Distribution.html#tufte-smallmultiples"><i class="fa fa-check"></i><b>5.9</b> Small multiple histogram with density and median reference lines</a></li>
 <li class="chapter" data-level="5.10" data-path="Distribution.html"><a href="Distribution.html#ridge-plotan-array-of-density-plots"><i class="fa fa-check"></i><b>5.10</b> Ridge plot–An array of density plots</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="Comparison.html"><a href="Comparison.html"><i class="fa fa-check"></i><b>6</b> Comparison–barchart and boxplots</a><ul>
+<li class="chapter" data-level="6" data-path="Comparison.html"><a href="Comparison.html"><i class="fa fa-check"></i><b>6</b> Comparison–barchart, boxplots, synaplots</a><ul>
 <li class="chapter" data-level="6.1" data-path="Comparison.html"><a href="Comparison.html#graph-considerations-for-communication-aggregation-abstraction-complexity"><i class="fa fa-check"></i><b>6.1</b> Graph considerations for communication: aggregation, abstraction, complexity</a><ul>
 <li class="chapter" data-level="6.1.1" data-path="Comparison.html"><a href="Comparison.html#simple-bar-chart"><i class="fa fa-check"></i><b>6.1.1</b> Simple bar chart</a></li>
 </ul></li>
@@ -211,13 +208,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.10" data-path="Comparison.html"><a href="Comparison.html#highlight-closest-pair-of-items-multidimensional-space"><i class="fa fa-check"></i><b>6.10</b> Highlight closest pair of items multidimensional space</a></li>
 <li class="chapter" data-level="6.11" data-path="Comparison.html"><a href="Comparison.html#transform-variables"><i class="fa fa-check"></i><b>6.11</b> Transform variables</a></li>
 <li class="chapter" data-level="6.12" data-path="Comparison.html"><a href="Comparison.html#select-variables"><i class="fa fa-check"></i><b>6.12</b> Select variables</a></li>
-<li class="chapter" data-level="6.13" data-path="Comparison.html"><a href="Comparison.html#scale-items"><i class="fa fa-check"></i><b>6.13</b> Scale items</a></li>
-<li class="chapter" data-level="6.14" data-path="Comparison.html"><a href="Comparison.html#highlight-similar-items"><i class="fa fa-check"></i><b>6.14</b> Highlight similar items</a></li>
-<li class="chapter" data-level="6.15" data-path="Comparison.html"><a href="Comparison.html#find-the-closest-vehicle-to-target-vehicle"><i class="fa fa-check"></i><b>6.15</b> Find the closest vehicle to target vehicle</a></li>
-<li class="chapter" data-level="6.16" data-path="Comparison.html"><a href="Comparison.html#convert-to-long-format"><i class="fa fa-check"></i><b>6.16</b> Convert to long format</a></li>
-<li class="chapter" data-level="6.17" data-path="Comparison.html"><a href="Comparison.html#select-pair-to-highlight"><i class="fa fa-check"></i><b>6.17</b> Select pair to highlight</a></li>
-<li class="chapter" data-level="6.18" data-path="Comparison.html"><a href="Comparison.html#order-variables-by-the-standard-deviation"><i class="fa fa-check"></i><b>6.18</b> Order variables by the standard deviation</a></li>
-<li class="chapter" data-level="6.19" data-path="Comparison.html"><a href="Comparison.html#gliphs-chernof-face-and-radar-plots"><i class="fa fa-check"></i><b>6.19</b> Gliphs: Chernof face and radar plots</a></li>
+<li class="chapter" data-level="6.13" data-path="Comparison.html"><a href="Comparison.html#convert-to-long-format"><i class="fa fa-check"></i><b>6.13</b> Convert to long format</a></li>
+<li class="chapter" data-level="6.14" data-path="Comparison.html"><a href="Comparison.html#scale-values"><i class="fa fa-check"></i><b>6.14</b> Scale values</a></li>
+<li class="chapter" data-level="6.15" data-path="Comparison.html"><a href="Comparison.html#identify-similar-items"><i class="fa fa-check"></i><b>6.15</b> Identify similar items</a></li>
+<li class="chapter" data-level="6.16" data-path="Comparison.html"><a href="Comparison.html#scale-items"><i class="fa fa-check"></i><b>6.16</b> Scale items</a></li>
+<li class="chapter" data-level="6.17" data-path="Comparison.html"><a href="Comparison.html#highlight-similar-items"><i class="fa fa-check"></i><b>6.17</b> Highlight similar items</a></li>
+<li class="chapter" data-level="6.18" data-path="Comparison.html"><a href="Comparison.html#find-the-closest-vehicle-to-target-vehicle"><i class="fa fa-check"></i><b>6.18</b> Find the closest vehicle to target vehicle</a></li>
+<li class="chapter" data-level="6.19" data-path="Comparison.html"><a href="Comparison.html#convert-to-long-format-1"><i class="fa fa-check"></i><b>6.19</b> Convert to long format</a></li>
+<li class="chapter" data-level="6.20" data-path="Comparison.html"><a href="Comparison.html#select-pair-to-highlight"><i class="fa fa-check"></i><b>6.20</b> Select pair to highlight</a></li>
+<li class="chapter" data-level="6.21" data-path="Comparison.html"><a href="Comparison.html#order-variables-by-the-standard-deviation"><i class="fa fa-check"></i><b>6.21</b> Order variables by the standard deviation</a></li>
+<li class="chapter" data-level="6.22" data-path="Comparison.html"><a href="Comparison.html#gliphs-chernof-face-and-radar-plots"><i class="fa fa-check"></i><b>6.22</b> Gliphs: Chernof face and radar plots</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="Proportion.html"><a href="Proportion.html"><i class="fa fa-check"></i><b>7</b> Proportion–Pie charts and pareto plots</a><ul>
 <li class="chapter" data-level="7.1" data-path="Proportion.html"><a href="Proportion.html#pie-and-bar-chart"><i class="fa fa-check"></i><b>7.1</b> Pie and bar chart</a></li>
@@ -381,22 +381,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="Introduction" class="section level1">
-<h1><span class="header-section-number">Chapter 2</span> Introduction: Purposes, questions, and audiences</h1>
+<h1><span class="header-section-number">Chapter 2</span> Introduction: Audiences, purposes, questions</h1>
 <p>Information technology has brought large volumes of data and the promise of a deeper understanding of a wide range of challenges from understanding the quarterly performance of a company to the effectiveness of a healthcare system or the health of an individual. Often this promise is not kept and data overwhelms rather than informs. Often a well-crafted visualization can address this problem and make data meaningful. This book provides principles and examples to make large volumes of data meaningful through visualization.</p>
-<p>The book combines generla visualization principles illustrated with many example graphs. It also includes the computer code so that each graph can be reporduced and adjusted to plot other data. Nearly all the examples use ggplot2 which makes it relatively easy to replicate some of the classic visualization suggestions of E. Tufte, such as his minimalitic graph styles inspired styles, as well as slope graphs (Section <a href="Comparison.html#tufte-slopegraph">6.9.1</a>) and small multiples (Section @ref(#tufte-smallmultiples)).</p>
+<p>The book combines general visualization principles illustrated with examples. It also includes the computer code so that each graph can be reporduced and used to plot other data. Nearly all the examples use ggplot2 which makes it relatively easy to replicate some of the classic visualization suggestions of E. Tufte, such as his minimalitic graph styles, as well as slope graphs (Section <a href="Comparison.html#tufte-slopegraph">6.9.1</a>) and small multiples (Section <a href="Distribution.html#tufte-smallmultiples">5.9</a>).</p>
 <p>The book also includes ways of addressing common challenges with ggplot2, such as removing legend (Section <a href="Polishing.html#AddingRemovingLabels">11.10.2</a>) and reordering categories of column charts.</p>
 <div id="seeing-meaning-rather-than-numbers" class="section level2">
 <h2><span class="header-section-number">2.1</span> Seeing meaning rather than numbers</h2>
 <p>Figure <a href="Introduction.html#fig:blood-tab">2.1</a> shows a typical report of a medical diagnostic test. The numerical summary shows the patient’s values and the range of standard values. The information is there to show if a patient is dangerously outside the range, but a quick glance at the table might miss these indications. Even a careful reading of the table might miss warning signs, particularly if the critical information is in the trend that requires looking at a second table on another tab. Figure <a href="Introduction.html#fig:blood-vis">2.2</a> shows the data relative to the high and low normal range and makes deviations much more apparent. The ghosted points show past results and roughly indicate trends.</p>
-<pre><code>## ── Attaching packages ────────────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
-<pre><code>## ✔ ggplot2 3.0.0     ✔ purrr   0.2.5
-## ✔ tibble  1.4.2     ✔ dplyr   0.7.6
-## ✔ tidyr   0.8.1     ✔ stringr 1.3.1
-## ✔ readr   1.1.1     ✔ forcats 0.3.0</code></pre>
-<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.5.1</code></pre>
-<pre><code>## ── Conflicts ───────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()</code></pre>
 <div class="figure"><span id="fig:blood-tab"></span>
 <img src="images/Blood_table.jpg" alt="A typical report of a medical test makes finding deviations from the normal range difficult." width="2853" />
 <p class="caption">
@@ -458,8 +449,8 @@ FIGURE 2.3: The Anscombe quartet and the limits of summary statistics.
 </tbody>
 </table>
 </div>
-<div id="purposse-and-audiences-of-visualizations" class="section level2">
-<h2><span class="header-section-number">2.3</span> Purposse and audiences of visualizations</h2>
+<div id="purposes-and-audiences-of-visualizations" class="section level2">
+<h2><span class="header-section-number">2.3</span> Purposes and audiences of visualizations</h2>
 <p>What makes a “good” visualization depend on whether it is taylored to its purpose and its intended audience. Generally graphs can serve three general purposes–explore, inform, and engage <span class="citation">(Gelman and Unwin <a href="#ref-Gelman2013">2013</a>)</span>–and understanding what purpose the graph serves can help ensure the graph succedes. The purpose of the graph tends to depend on the audience, which can range from yourself, peers, scientists and engineers, managers, and the public. An extremely effective graph that you might use explore a dataset might fail to support peer in doing the same and might be completely inappropriate for presenting results to managers.</p>
 <p>Explore: the answer is unknown and audience is likely yourself and peers involved in the research.</p>
 <p>Inform: the answer is known and the audience is likely a broader audience of scientists, engineers, or manager not direclty involved in the research.</p>
@@ -467,7 +458,13 @@ FIGURE 2.3: The Anscombe quartet and the limits of summary statistics.
 </div>
 <div id="what-question-to-answer" class="section level2">
 <h2><span class="header-section-number">2.4</span> What question to answer?</h2>
-<p>Matching types of graphs to types of questions</p>
+<p>Triadic perspective that links three distinct elements: 1. the person and their questions 2. the underlying data and its meaning 3. the graphical representation</p>
+<p>This triadic perspective places equal emphasis on the analytics and processing of data and the visual representation that must be tailored to the motivation, needs and capacity of the people viewing the graph.</p>
+<p>This requires: 1. Abstracting and aggregating (properties of the data) to address the intersts of the audience.11</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>matching types of graphs (visual representations) to types of questions (properties of the data)</p></li>
+<li><p>matching types of graphs (visual representations) to the audience (properties of people, their interests, and experience)</p></li>
+</ol>
 </div>
 <div id="storytelling-with-graphics" class="section level2">
 <h2><span class="header-section-number">2.5</span> Storytelling with graphics</h2>
@@ -476,7 +473,7 @@ FIGURE 2.3: The Anscombe quartet and the limits of summary statistics.
 <li>Role of annotation in going beyond the data: direct attention and explain, as in Table <a href="#tab:test"><strong>??</strong></a>.</li>
 </ul>
 <p>Based on <a href="https://www.rdocumentation.org/packages/HistData/versions/0.8-4/topics/Minard" class="uri">https://www.rdocumentation.org/packages/HistData/versions/0.8-4/topics/Minard</a></p>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 </div>
 <div id="data-sources" class="section level2">
 <h2><span class="header-section-number">2.6</span> Data sources</h2>

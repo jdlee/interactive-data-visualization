@@ -12,9 +12,12 @@ Other examples of Minard's work: https://cartographia.wordpress.com/category/cha
 
 
 ## Pie and bar chart
+Defense of pie charts: https://serialmentor.com/dataviz/visualizing-proportions.html#a-case-for-pie-charts
 Good pie chart: Few elements, directly labled, alpha for pie pieces
 
 Small multiple for pie vs stacked bar likert ratings or time trends
+
+
 
 ```{r, proportion-plot}
 library(HistData)
@@ -42,6 +45,7 @@ sum.night.df = night.df %>% group_by(cause) %>% summarise(deaths = sum(deaths))
 # ggplot(sum.night.df) + 
 #   geom_bar(aes(reorder(cause, -cause.percent), cause.percent), stat = "identity") +
 #   coord_flip() 
+
 
 
 

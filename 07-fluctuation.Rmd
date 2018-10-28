@@ -47,7 +47,6 @@ ggplot(belts.df, aes(x = Month, y = belts.DriversKilled)) +
 
 
 ```{r}
-
 belts.df = belts.df %>% group_by(Year) %>% mutate(summer.s=Month[Month==5], summer.e=Month[Month==9])
 
 ggplot(belts.df, aes(Month, belts.DriversKilled)) + 
@@ -81,6 +80,18 @@ ggplot() +
   theme(axis.text.x = element_blank())
 ```
 
+## Connected scatterplot
+```{r, connected-scatterplot}
+
+year.belts.df = belts.df %>% group_by(Year) %>% 
+  summarise(m.drivers = mean(belts.drivers), m.killed = mean(belts.DriversKilled),
+  law = last(belts.law))
+  
+ggplot(data = year.belts.df, aes(x = m.drivers, y = m.killed)) +
+  geom_path(aes(alpha = Year)) +
+  geom_text(aes(label = Year, colour = law))
+
+```
 
 ## Step graph
 TODO

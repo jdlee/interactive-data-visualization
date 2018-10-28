@@ -47,8 +47,6 @@ sum.night.df = night.df %>% group_by(cause) %>% summarise(deaths = sum(deaths))
 #   coord_flip() 
 
 
-
-
 pie.plot = ggplot(sum.night.df, aes(x = factor(1), y = deaths, fill = cause)) +
   geom_bar(width = 1,  color="black", stat = "identity") + 
   coord_polar(theta="y") +
@@ -71,6 +69,24 @@ deaths.plot = ggarrange(pie.plot, stacked.plot, dodged.plot,
 deaths.plot
 ```
 
+## Waffle plot
+```{r, waffle-plot}
+# devtools::install_github("liamgilbey/ggwaffle")
+library(tidyverse)
+library(ggwaffle)
+
+
+mpg$cyl = as.character(mpg$cyl)
+waffle_data <- waffle_iron(mpg, aes_d(group = cyl))
+
+ggplot(waffle_data, aes(x, y, fill = group)) + 
+  geom_waffle() + 
+  coord_equal() + 
+  #scale_fill_waffle() + 
+  theme_waffle() +
+  labs(x = "", y = "", fill = "Cylinders")
+
+```
   
 ## Pareto plot: Whole part and and ranking
 ```{r, pareto-plot}

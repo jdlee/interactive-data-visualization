@@ -77,7 +77,7 @@ ggplotly(plot)
 ```
 
 
-## ## plotly: Map annotation 
+## plotly: Map annotation 
 ```{r, interactive_map, warning=FALSE}
 library(plotly)
 library(sf)

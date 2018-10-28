@@ -25,7 +25,7 @@
 <meta name="author" content="John D. Lee">
 
 
-<meta name="date" content="2018-08-23">
+<meta name="date" content="2018-10-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -61,14 +61,15 @@
 <script src="libs/selectize/selectize.min.js"></script>
 <script src="libs/d3/d3.min.js"></script>
 <script src="libs/d3-lasso/d3-lasso.min.js"></script>
-<link href="libs/ggiraph/styles.css" rel="stylesheet" />
-<script src="libs/ggiraph/ggiraph_utils.js"></script>
-<script src="libs/ggiraph/ggiraph_over_effect.js"></script>
-<script src="libs/ggiraph/ggiraph_zoom.js"></script>
-<script src="libs/ggiraph/ggiraph_tooltip.js"></script>
-<script src="libs/ggiraph/ggiraph_selector.js"></script>
-<script src="libs/ggiraph-binding/ggiraph.js"></script>
-<script src="libs/svg_1/scripts_svg_1.js"></script>
+<link href="libs/ggiraphjs/styles.css" rel="stylesheet" />
+<script src="libs/ggiraphjs/ggiraphjs.min.js"></script>
+<script src="libs/girafe-binding/girafe.js"></script>
+<script src="libs/plotly-binding/plotly.js"></script>
+<script src="libs/typedarray/typedarray.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main/plotly-latest.min.js"></script>
+<link href="libs/colourpicker/colourpicker.min.css" rel="stylesheet" />
+<script src="libs/colourpicker/colourpicker.min.js"></script>
 
 
 <style type="text/css">
@@ -132,10 +133,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i>Acknowledgments</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="about-the-author.html"><a href="about-the-author.html"><i class="fa fa-check"></i>About the Author</a></li>
-<li class="chapter" data-level="1" data-path="Introduction.html"><a href="Introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction: Purposes, questions, and audiences</a><ul>
+<li class="chapter" data-level="1" data-path="Introduction.html"><a href="Introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction: Audiences, purposes, questions</a><ul>
 <li class="chapter" data-level="1.1" data-path="Introduction.html"><a href="Introduction.html#seeing-meaning-rather-than-numbers"><i class="fa fa-check"></i><b>1.1</b> Seeing meaning rather than numbers</a></li>
 <li class="chapter" data-level="1.2" data-path="Introduction.html"><a href="Introduction.html#seeing-more-than-summary-statistics"><i class="fa fa-check"></i><b>1.2</b> Seeing more than summary statistics</a></li>
-<li class="chapter" data-level="1.3" data-path="Introduction.html"><a href="Introduction.html#purposse-and-audiences-of-visualizations"><i class="fa fa-check"></i><b>1.3</b> Purposse and audiences of visualizations</a></li>
+<li class="chapter" data-level="1.3" data-path="Introduction.html"><a href="Introduction.html#purposes-and-audiences-of-visualizations"><i class="fa fa-check"></i><b>1.3</b> Purposes and audiences of visualizations</a></li>
 <li class="chapter" data-level="1.4" data-path="Introduction.html"><a href="Introduction.html#what-question-to-answer"><i class="fa fa-check"></i><b>1.4</b> What question to answer?</a></li>
 <li class="chapter" data-level="1.5" data-path="Introduction.html"><a href="Introduction.html#storytelling-with-graphics"><i class="fa fa-check"></i><b>1.5</b> Storytelling with graphics</a></li>
 <li class="chapter" data-level="1.6" data-path="Introduction.html"><a href="Introduction.html#data-sources"><i class="fa fa-check"></i><b>1.6</b> Data sources</a></li>
@@ -146,9 +147,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2" data-path="Principles.html"><a href="Principles.html"><i class="fa fa-check"></i><b>2</b> Visualization types and principles</a><ul>
 <li class="chapter" data-level="2.1" data-path="Principles.html"><a href="Principles.html#pairing-questions-and-graph-types"><i class="fa fa-check"></i><b>2.1</b> Pairing questions and graph types</a></li>
 <li class="chapter" data-level="2.2" data-path="Principles.html"><a href="Principles.html#percpetual-processes-to-be-supported-comparison-detection-pattern-identification"><i class="fa fa-check"></i><b>2.2</b> Percpetual processes to be supported: Comparison, Detection, Pattern identification</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="Principles.html"><a href="Principles.html#comparing-and-reading-values"><i class="fa fa-check"></i><b>2.2.1</b> Comparing and reading values</a></li>
-<li class="chapter" data-level="2.2.2" data-path="Principles.html"><a href="Principles.html#detecting-and-selecting"><i class="fa fa-check"></i><b>2.2.2</b> Detecting and selecting</a></li>
-<li class="chapter" data-level="2.2.3" data-path="Principles.html"><a href="Principles.html#identifying-groups-and-patterns"><i class="fa fa-check"></i><b>2.2.3</b> Identifying groups and patterns</a></li>
+<li class="chapter" data-level="2.2.1" data-path="Principles.html"><a href="Principles.html#reading-and-judging-values"><i class="fa fa-check"></i><b>2.2.1</b> Reading and judging values</a></li>
+<li class="chapter" data-level="2.2.2" data-path="Principles.html"><a href="Principles.html#comparing-values"><i class="fa fa-check"></i><b>2.2.2</b> Comparing values</a></li>
+<li class="chapter" data-level="2.2.3" data-path="Principles.html"><a href="Principles.html#detecting-and-selecting"><i class="fa fa-check"></i><b>2.2.3</b> Detecting and selecting</a></li>
+<li class="chapter" data-level="2.2.4" data-path="Principles.html"><a href="Principles.html#identifying-groups-and-patterns"><i class="fa fa-check"></i><b>2.2.4</b> Identifying groups and patterns</a></li>
+<li class="chapter" data-level="2.2.5" data-path="Principles.html"><a href="Principles.html#narrative-structure-and-sequence"><i class="fa fa-check"></i><b>2.2.5</b> Narrative structure and sequence</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="Principles.html"><a href="Principles.html#principles-from-general-to-specific"><i class="fa fa-check"></i><b>2.3</b> Principles from general to specific</a><ul>
 <li class="chapter" data-level="2.3.1" data-path="Principles.html"><a href="Principles.html#identify-audience-story-and-key-relationships-few"><i class="fa fa-check"></i><b>2.3.1</b> Identify audience, story, and key relationships (Few)</a></li>
@@ -189,7 +192,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.9" data-path="Distribution.html"><a href="Distribution.html#tufte-smallmultiples"><i class="fa fa-check"></i><b>4.9</b> Small multiple histogram with density and median reference lines</a></li>
 <li class="chapter" data-level="4.10" data-path="Distribution.html"><a href="Distribution.html#ridge-plotan-array-of-density-plots"><i class="fa fa-check"></i><b>4.10</b> Ridge plot–An array of density plots</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="Comparison.html"><a href="Comparison.html"><i class="fa fa-check"></i><b>5</b> Comparison–barchart and boxplots</a><ul>
+<li class="chapter" data-level="5" data-path="Comparison.html"><a href="Comparison.html"><i class="fa fa-check"></i><b>5</b> Comparison–barchart, boxplots, synaplots</a><ul>
 <li class="chapter" data-level="5.1" data-path="Comparison.html"><a href="Comparison.html#graph-considerations-for-communication-aggregation-abstraction-complexity"><i class="fa fa-check"></i><b>5.1</b> Graph considerations for communication: aggregation, abstraction, complexity</a><ul>
 <li class="chapter" data-level="5.1.1" data-path="Comparison.html"><a href="Comparison.html#simple-bar-chart"><i class="fa fa-check"></i><b>5.1.1</b> Simple bar chart</a></li>
 <li class="chapter" data-level="5.1.2" data-path="Comparison.html"><a href="Comparison.html#bar-chart-with-error-bars"><i class="fa fa-check"></i><b>5.1.2</b> Bar chart with error bars</a></li>
@@ -211,25 +214,27 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="6" data-path="Proportion.html"><a href="Proportion.html"><i class="fa fa-check"></i><b>6</b> Proportion–Pie charts and pareto plots</a><ul>
 <li class="chapter" data-level="6.1" data-path="Proportion.html"><a href="Proportion.html#pie-and-bar-chart"><i class="fa fa-check"></i><b>6.1</b> Pie and bar chart</a></li>
-<li class="chapter" data-level="6.2" data-path="Proportion.html"><a href="Proportion.html#pareto-plot-whole-part-and-and-ranking"><i class="fa fa-check"></i><b>6.2</b> Pareto plot: Whole part and and ranking</a></li>
-<li class="chapter" data-level="6.3" data-path="Proportion.html"><a href="Proportion.html#stacked-bar-chart"><i class="fa fa-check"></i><b>6.3</b> Stacked bar chart</a></li>
-<li class="chapter" data-level="6.4" data-path="Proportion.html"><a href="Proportion.html#faceted-bar-chart-with-overall-reference-distribution"><i class="fa fa-check"></i><b>6.4</b> Faceted Bar chart with overall reference distribution</a></li>
-<li class="chapter" data-level="6.5" data-path="Proportion.html"><a href="Proportion.html#rose-or-coxcomb-plots"><i class="fa fa-check"></i><b>6.5</b> Rose or Coxcomb plots</a></li>
-<li class="chapter" data-level="6.6" data-path="Proportion.html"><a href="Proportion.html#stacked-dodged-and-opposed-bar-chart"><i class="fa fa-check"></i><b>6.6</b> Stacked, dodged, and opposed bar chart</a></li>
-<li class="chapter" data-level="6.7" data-path="Proportion.html"><a href="Proportion.html#likert-scale-plot"><i class="fa fa-check"></i><b>6.7</b> Likert scale plot</a></li>
-<li class="chapter" data-level="6.8" data-path="Proportion.html"><a href="Proportion.html#ternary-triangular-graph"><i class="fa fa-check"></i><b>6.8</b> ternary (triangular) graph</a></li>
-<li class="chapter" data-level="6.9" data-path="Proportion.html"><a href="Proportion.html#treemaps-for-whole-part-of-hierarchy"><i class="fa fa-check"></i><b>6.9</b> Treemaps for whole-part of hierarchy</a></li>
-<li class="chapter" data-level="6.10" data-path="Proportion.html"><a href="Proportion.html#circle-packing"><i class="fa fa-check"></i><b>6.10</b> Circle packing</a></li>
+<li class="chapter" data-level="6.2" data-path="Proportion.html"><a href="Proportion.html#waffle-plot"><i class="fa fa-check"></i><b>6.2</b> Waffle plot</a></li>
+<li class="chapter" data-level="6.3" data-path="Proportion.html"><a href="Proportion.html#pareto-plot-whole-part-and-and-ranking"><i class="fa fa-check"></i><b>6.3</b> Pareto plot: Whole part and and ranking</a></li>
+<li class="chapter" data-level="6.4" data-path="Proportion.html"><a href="Proportion.html#stacked-bar-chart"><i class="fa fa-check"></i><b>6.4</b> Stacked bar chart</a></li>
+<li class="chapter" data-level="6.5" data-path="Proportion.html"><a href="Proportion.html#faceted-bar-chart-with-overall-reference-distribution"><i class="fa fa-check"></i><b>6.5</b> Faceted Bar chart with overall reference distribution</a></li>
+<li class="chapter" data-level="6.6" data-path="Proportion.html"><a href="Proportion.html#rose-or-coxcomb-plots"><i class="fa fa-check"></i><b>6.6</b> Rose or Coxcomb plots</a></li>
+<li class="chapter" data-level="6.7" data-path="Proportion.html"><a href="Proportion.html#stacked-dodged-and-opposed-bar-chart"><i class="fa fa-check"></i><b>6.7</b> Stacked, dodged, and opposed bar chart</a></li>
+<li class="chapter" data-level="6.8" data-path="Proportion.html"><a href="Proportion.html#likert-scale-plot"><i class="fa fa-check"></i><b>6.8</b> Likert scale plot</a></li>
+<li class="chapter" data-level="6.9" data-path="Proportion.html"><a href="Proportion.html#ternary-triangular-graph"><i class="fa fa-check"></i><b>6.9</b> ternary (triangular) graph</a></li>
+<li class="chapter" data-level="6.10" data-path="Proportion.html"><a href="Proportion.html#treemaps-for-whole-part-of-hierarchy"><i class="fa fa-check"></i><b>6.10</b> Treemaps for whole-part of hierarchy</a></li>
+<li class="chapter" data-level="6.11" data-path="Proportion.html"><a href="Proportion.html#circle-packing"><i class="fa fa-check"></i><b>6.11</b> Circle packing</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="Fluctuation.html"><a href="Fluctuation.html"><i class="fa fa-check"></i><b>7</b> Fluctuation–timelines</a><ul>
 <li class="chapter" data-level="7.1" data-path="Fluctuation.html"><a href="Fluctuation.html#multiple-time-series"><i class="fa fa-check"></i><b>7.1</b> Multiple time series</a></li>
 <li class="chapter" data-level="7.2" data-path="Fluctuation.html"><a href="Fluctuation.html#time-series-with-reference-line"><i class="fa fa-check"></i><b>7.2</b> Time series with reference line</a></li>
 <li class="chapter" data-level="7.3" data-path="Fluctuation.html"><a href="Fluctuation.html#cycle-plot"><i class="fa fa-check"></i><b>7.3</b> Cycle plot</a></li>
-<li class="chapter" data-level="7.4" data-path="Fluctuation.html"><a href="Fluctuation.html#step-graph"><i class="fa fa-check"></i><b>7.4</b> Step graph</a></li>
-<li class="chapter" data-level="7.5" data-path="Fluctuation.html"><a href="Fluctuation.html#faceted-zoom"><i class="fa fa-check"></i><b>7.5</b> Faceted zoom</a></li>
-<li class="chapter" data-level="7.6" data-path="Fluctuation.html"><a href="Fluctuation.html#ridge-plot"><i class="fa fa-check"></i><b>7.6</b> Ridge plot</a></li>
-<li class="chapter" data-level="7.7" data-path="Fluctuation.html"><a href="Fluctuation.html#stacked-area-and-line-graphs"><i class="fa fa-check"></i><b>7.7</b> Stacked area and line graphs</a></li>
-<li class="chapter" data-level="7.8" data-path="Fluctuation.html"><a href="Fluctuation.html#temporal-heatmap"><i class="fa fa-check"></i><b>7.8</b> Temporal heatmap</a></li>
+<li class="chapter" data-level="7.4" data-path="Fluctuation.html"><a href="Fluctuation.html#connected-scatterplot"><i class="fa fa-check"></i><b>7.4</b> Connected scatterplot</a></li>
+<li class="chapter" data-level="7.5" data-path="Fluctuation.html"><a href="Fluctuation.html#step-graph"><i class="fa fa-check"></i><b>7.5</b> Step graph</a></li>
+<li class="chapter" data-level="7.6" data-path="Fluctuation.html"><a href="Fluctuation.html#faceted-zoom"><i class="fa fa-check"></i><b>7.6</b> Faceted zoom</a></li>
+<li class="chapter" data-level="7.7" data-path="Fluctuation.html"><a href="Fluctuation.html#ridge-plot"><i class="fa fa-check"></i><b>7.7</b> Ridge plot</a></li>
+<li class="chapter" data-level="7.8" data-path="Fluctuation.html"><a href="Fluctuation.html#stacked-area-and-line-graphs"><i class="fa fa-check"></i><b>7.8</b> Stacked area and line graphs</a></li>
+<li class="chapter" data-level="7.9" data-path="Fluctuation.html"><a href="Fluctuation.html#temporal-heatmap"><i class="fa fa-check"></i><b>7.9</b> Temporal heatmap</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="Connection.html"><a href="Connection.html"><i class="fa fa-check"></i><b>8</b> Connection–maps and network plots</a><ul>
 <li class="chapter" data-level="8.1" data-path="Connection.html"><a href="Connection.html#maps"><i class="fa fa-check"></i><b>8.1</b> Maps</a><ul>
@@ -284,7 +289,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.6.3" data-path="Polishing.html"><a href="Polishing.html#faceted-pagination"><i class="fa fa-check"></i><b>10.6.3</b> Faceted pagination</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="Interaction.html"><a href="Interaction.html"><i class="fa fa-check"></i><b>11</b> Interaction–zoom, annotate, highlight</a></li>
+<li class="chapter" data-level="11" data-path="Interaction.html"><a href="Interaction.html"><i class="fa fa-check"></i><b>11</b> Interaction–annotate, highlight, link, and animate</a><ul>
+<li class="chapter" data-level="11.1" data-path="Interaction.html"><a href="Interaction.html#ggiraph-simple-annotation"><i class="fa fa-check"></i><b>11.1</b> ggiraph: Simple annotation</a></li>
+<li class="chapter" data-level="11.2" data-path="Interaction.html"><a href="Interaction.html#ggiraph-multi-plot-linking-with-highlighting-and-annotation"><i class="fa fa-check"></i><b>11.2</b> ggiraph: Multi-plot linking with highlighting and annotation</a></li>
+<li class="chapter" data-level="11.3" data-path="Interaction.html"><a href="Interaction.html#plotly-annotation"><i class="fa fa-check"></i><b>11.3</b> plotly: annotation</a></li>
+<li class="chapter" data-level="11.4" data-path="Interaction.html"><a href="Interaction.html#plotly-map-annotation"><i class="fa fa-check"></i><b>11.4</b> ## plotly: Map annotation</a></li>
+<li class="chapter" data-level="11.5" data-path="Interaction.html"><a href="Interaction.html#plotly-highlight-time-series-across-graphs"><i class="fa fa-check"></i><b>11.5</b> plotly: Highlight time series across graphs</a></li>
+<li class="chapter" data-level="11.6" data-path="Interaction.html"><a href="Interaction.html#highlight-and-annotate-data-and-fit"><i class="fa fa-check"></i><b>11.6</b> Highlight and annotate data and fit</a></li>
+<li class="chapter" data-level="11.7" data-path="Interaction.html"><a href="Interaction.html#time-series-scatterplot-animation"><i class="fa fa-check"></i><b>11.7</b> Time series scatterplot animation</a></li>
+</ul></li>
 <li class="chapter" data-level="12" data-path="shinyadvanced-interactive-graphics.html"><a href="shinyadvanced-interactive-graphics.html"><i class="fa fa-check"></i><b>12</b> Shiny–Advanced interactive graphics</a></li>
 <li class="appendix"><span><b>Appendix</b></span><ul>
 <li class="chapter" data-level="A.1" data-path="08-connection.html"><a href="#data-sources-1"><i class="fa fa-check"></i><b>A.1</b> Data sources</a></li>
@@ -330,13 +343,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 crimes.l.df &lt;-<span class="st"> </span><span class="kw">gather</span>(crimes.df, <span class="dt">key =</span> type, <span class="dt">value =</span> rate, <span class="op">-</span>state)
 
-states_map &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;state&quot;</span>)</code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;maps&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:purrr&#39;:
-## 
-##     map</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>() <span class="op">+</span>
+states_map &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;state&quot;</span>)
+
+<span class="kw">ggplot</span>() <span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_cartogram</span>(<span class="dt">data=</span>states_map, <span class="kw">aes</span>(long, lat, <span class="dt">map_id =</span> region), <span class="dt">map=</span>states_map) <span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_cartogram</span>(<span class="dt">data=</span>crimes.df, <span class="kw">aes</span>(<span class="dt">fill =</span> Murder, <span class="dt">map_id =</span> state), <span class="dt">map=</span>states_map) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">coord_map</span>(<span class="st">&quot;polyconic&quot;</span>)<span class="op">+</span>
@@ -438,7 +447,7 @@ poverty_choropleth.df =<span class="st"> </span>county.df <span class="op">%&gt;
 <p>TODO adjust to reflect migration data Based on <a href="https://datascience.blog.wzb.eu/2018/05/31/three-ways-of-visualizing-a-graph-on-a-map/" class="uri">https://datascience.blog.wzb.eu/2018/05/31/three-ways-of-visualizing-a-graph-on-a-map/</a></p>
 <pre><code>## [1] TRUE</code></pre>
 <pre><code>## [1] TRUE</code></pre>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <p>Examples from: <a href="https://github.com/thomasp85/ggraph" class="uri">https://github.com/thomasp85/ggraph</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggraph) <span class="co"># ggplot extension</span>
 <span class="kw">library</span>(igraph) <span class="co"># For network calculations</span>
@@ -454,19 +463,14 @@ graph &lt;-<span class="st"> </span><span class="kw">graph_from_data_frame</span
 <span class="st">    </span><span class="kw">geom_node_point</span>(<span class="kw">aes</span>(<span class="dt">size =</span> Popularity)) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">facet_edges</span>(<span class="op">~</span>year) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">theme_graph</span>(<span class="dt">foreground =</span> <span class="st">&#39;steelblue&#39;</span>, <span class="dt">fg_text_colour =</span> <span class="st">&#39;white&#39;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 </div>
 <div id="hierarchy" class="section level3">
 <h3><span class="header-section-number">8.4.2</span> Hierarchy</h3>
 <p>link to treemap</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## <span class="al">TODO</span> Convert to migration data
-<span class="kw">library</span>(ggraph)</code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;ggraph&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:treemapify&#39;:
-## 
-##     geom_treemap</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flare.df =<span class="st"> </span>ggraph<span class="op">::</span>flare
+<span class="kw">library</span>(ggraph)
+flare.df =<span class="st"> </span>ggraph<span class="op">::</span>flare
 
 graph &lt;-<span class="st"> </span><span class="kw">graph_from_data_frame</span>(flare.df<span class="op">$</span>edges, <span class="dt">vertices =</span> flare.df<span class="op">$</span>vertices)
 

@@ -291,8 +291,6 @@ l.scaled.mtcars.df = l.scaled.mtcars.df %>% group_by(name) %>%
   mutate(distance = (sum((s.value-target_s.value)^2))^0.5)
 
 
-
-
 ##  Scale items
 scaled_mtcars.df = mtcars.df %>% mutate_at(vars(cyl:speed), scale)
 
@@ -315,10 +313,11 @@ pair.df = l.scaled_mtcars.df %>% filter(name==mtcars.df$name[target]|name==mtcar
 ## Order variables by the standard deviation
 
 library(ggrepel)
-ggplot(l.scaled_mtcars.df, aes(reorder(var, value, sd), value, group = name))+
-  geom_line(alpha = .3, size = .2)+
-  geom_line(data = pair, colour = "red", size = .6, alpha = .6) +
-  geom_label_repel(data = pair %>% filter(var=="speed"), aes("speed", value, label = name), nudge_y = -.75)+
+ggplot(l.scaled_mtcars.df, aes(reorder(var, value, sd), value, group = name)) +
+  geom_line(alpha = .3, size = .2) +
+  geom_line(data = pair.df, colour = "red", size = .6, alpha = .6) +
+  geom_label_repel(data = pair.df %>% filter(var=="speed"), 
+                   aes("speed", value, label = name), nudge_y = -.75)+
   theme_minimal()
 ```
 

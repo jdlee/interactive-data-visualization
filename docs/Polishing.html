@@ -25,7 +25,7 @@
 <meta name="author" content="John D. Lee">
 
 
-<meta name="date" content="2018-08-23">
+<meta name="date" content="2018-10-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -61,14 +61,15 @@
 <script src="libs/selectize/selectize.min.js"></script>
 <script src="libs/d3/d3.min.js"></script>
 <script src="libs/d3-lasso/d3-lasso.min.js"></script>
-<link href="libs/ggiraph/styles.css" rel="stylesheet" />
-<script src="libs/ggiraph/ggiraph_utils.js"></script>
-<script src="libs/ggiraph/ggiraph_over_effect.js"></script>
-<script src="libs/ggiraph/ggiraph_zoom.js"></script>
-<script src="libs/ggiraph/ggiraph_tooltip.js"></script>
-<script src="libs/ggiraph/ggiraph_selector.js"></script>
-<script src="libs/ggiraph-binding/ggiraph.js"></script>
-<script src="libs/svg_1/scripts_svg_1.js"></script>
+<link href="libs/ggiraphjs/styles.css" rel="stylesheet" />
+<script src="libs/ggiraphjs/ggiraphjs.min.js"></script>
+<script src="libs/girafe-binding/girafe.js"></script>
+<script src="libs/plotly-binding/plotly.js"></script>
+<script src="libs/typedarray/typedarray.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main/plotly-latest.min.js"></script>
+<link href="libs/colourpicker/colourpicker.min.css" rel="stylesheet" />
+<script src="libs/colourpicker/colourpicker.min.js"></script>
 
 
 <style type="text/css">
@@ -132,10 +133,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i>Acknowledgments</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="about-the-author.html"><a href="about-the-author.html"><i class="fa fa-check"></i>About the Author</a></li>
-<li class="chapter" data-level="1" data-path="Introduction.html"><a href="Introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction: Purposes, questions, and audiences</a><ul>
+<li class="chapter" data-level="1" data-path="Introduction.html"><a href="Introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction: Audiences, purposes, questions</a><ul>
 <li class="chapter" data-level="1.1" data-path="Introduction.html"><a href="Introduction.html#seeing-meaning-rather-than-numbers"><i class="fa fa-check"></i><b>1.1</b> Seeing meaning rather than numbers</a></li>
 <li class="chapter" data-level="1.2" data-path="Introduction.html"><a href="Introduction.html#seeing-more-than-summary-statistics"><i class="fa fa-check"></i><b>1.2</b> Seeing more than summary statistics</a></li>
-<li class="chapter" data-level="1.3" data-path="Introduction.html"><a href="Introduction.html#purposse-and-audiences-of-visualizations"><i class="fa fa-check"></i><b>1.3</b> Purposse and audiences of visualizations</a></li>
+<li class="chapter" data-level="1.3" data-path="Introduction.html"><a href="Introduction.html#purposes-and-audiences-of-visualizations"><i class="fa fa-check"></i><b>1.3</b> Purposes and audiences of visualizations</a></li>
 <li class="chapter" data-level="1.4" data-path="Introduction.html"><a href="Introduction.html#what-question-to-answer"><i class="fa fa-check"></i><b>1.4</b> What question to answer?</a></li>
 <li class="chapter" data-level="1.5" data-path="Introduction.html"><a href="Introduction.html#storytelling-with-graphics"><i class="fa fa-check"></i><b>1.5</b> Storytelling with graphics</a></li>
 <li class="chapter" data-level="1.6" data-path="Introduction.html"><a href="Introduction.html#data-sources"><i class="fa fa-check"></i><b>1.6</b> Data sources</a></li>
@@ -146,9 +147,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2" data-path="Principles.html"><a href="Principles.html"><i class="fa fa-check"></i><b>2</b> Visualization types and principles</a><ul>
 <li class="chapter" data-level="2.1" data-path="Principles.html"><a href="Principles.html#pairing-questions-and-graph-types"><i class="fa fa-check"></i><b>2.1</b> Pairing questions and graph types</a></li>
 <li class="chapter" data-level="2.2" data-path="Principles.html"><a href="Principles.html#percpetual-processes-to-be-supported-comparison-detection-pattern-identification"><i class="fa fa-check"></i><b>2.2</b> Percpetual processes to be supported: Comparison, Detection, Pattern identification</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="Principles.html"><a href="Principles.html#comparing-and-reading-values"><i class="fa fa-check"></i><b>2.2.1</b> Comparing and reading values</a></li>
-<li class="chapter" data-level="2.2.2" data-path="Principles.html"><a href="Principles.html#detecting-and-selecting"><i class="fa fa-check"></i><b>2.2.2</b> Detecting and selecting</a></li>
-<li class="chapter" data-level="2.2.3" data-path="Principles.html"><a href="Principles.html#identifying-groups-and-patterns"><i class="fa fa-check"></i><b>2.2.3</b> Identifying groups and patterns</a></li>
+<li class="chapter" data-level="2.2.1" data-path="Principles.html"><a href="Principles.html#reading-and-judging-values"><i class="fa fa-check"></i><b>2.2.1</b> Reading and judging values</a></li>
+<li class="chapter" data-level="2.2.2" data-path="Principles.html"><a href="Principles.html#comparing-values"><i class="fa fa-check"></i><b>2.2.2</b> Comparing values</a></li>
+<li class="chapter" data-level="2.2.3" data-path="Principles.html"><a href="Principles.html#detecting-and-selecting"><i class="fa fa-check"></i><b>2.2.3</b> Detecting and selecting</a></li>
+<li class="chapter" data-level="2.2.4" data-path="Principles.html"><a href="Principles.html#identifying-groups-and-patterns"><i class="fa fa-check"></i><b>2.2.4</b> Identifying groups and patterns</a></li>
+<li class="chapter" data-level="2.2.5" data-path="Principles.html"><a href="Principles.html#narrative-structure-and-sequence"><i class="fa fa-check"></i><b>2.2.5</b> Narrative structure and sequence</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="Principles.html"><a href="Principles.html#principles-from-general-to-specific"><i class="fa fa-check"></i><b>2.3</b> Principles from general to specific</a><ul>
 <li class="chapter" data-level="2.3.1" data-path="Principles.html"><a href="Principles.html#identify-audience-story-and-key-relationships-few"><i class="fa fa-check"></i><b>2.3.1</b> Identify audience, story, and key relationships (Few)</a></li>
@@ -189,7 +192,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.9" data-path="Distribution.html"><a href="Distribution.html#tufte-smallmultiples"><i class="fa fa-check"></i><b>4.9</b> Small multiple histogram with density and median reference lines</a></li>
 <li class="chapter" data-level="4.10" data-path="Distribution.html"><a href="Distribution.html#ridge-plotan-array-of-density-plots"><i class="fa fa-check"></i><b>4.10</b> Ridge plot–An array of density plots</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="Comparison.html"><a href="Comparison.html"><i class="fa fa-check"></i><b>5</b> Comparison–barchart and boxplots</a><ul>
+<li class="chapter" data-level="5" data-path="Comparison.html"><a href="Comparison.html"><i class="fa fa-check"></i><b>5</b> Comparison–barchart, boxplots, synaplots</a><ul>
 <li class="chapter" data-level="5.1" data-path="Comparison.html"><a href="Comparison.html#graph-considerations-for-communication-aggregation-abstraction-complexity"><i class="fa fa-check"></i><b>5.1</b> Graph considerations for communication: aggregation, abstraction, complexity</a><ul>
 <li class="chapter" data-level="5.1.1" data-path="Comparison.html"><a href="Comparison.html#simple-bar-chart"><i class="fa fa-check"></i><b>5.1.1</b> Simple bar chart</a></li>
 <li class="chapter" data-level="5.1.2" data-path="Comparison.html"><a href="Comparison.html#bar-chart-with-error-bars"><i class="fa fa-check"></i><b>5.1.2</b> Bar chart with error bars</a></li>
@@ -211,25 +214,27 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="6" data-path="Proportion.html"><a href="Proportion.html"><i class="fa fa-check"></i><b>6</b> Proportion–Pie charts and pareto plots</a><ul>
 <li class="chapter" data-level="6.1" data-path="Proportion.html"><a href="Proportion.html#pie-and-bar-chart"><i class="fa fa-check"></i><b>6.1</b> Pie and bar chart</a></li>
-<li class="chapter" data-level="6.2" data-path="Proportion.html"><a href="Proportion.html#pareto-plot-whole-part-and-and-ranking"><i class="fa fa-check"></i><b>6.2</b> Pareto plot: Whole part and and ranking</a></li>
-<li class="chapter" data-level="6.3" data-path="Proportion.html"><a href="Proportion.html#stacked-bar-chart"><i class="fa fa-check"></i><b>6.3</b> Stacked bar chart</a></li>
-<li class="chapter" data-level="6.4" data-path="Proportion.html"><a href="Proportion.html#faceted-bar-chart-with-overall-reference-distribution"><i class="fa fa-check"></i><b>6.4</b> Faceted Bar chart with overall reference distribution</a></li>
-<li class="chapter" data-level="6.5" data-path="Proportion.html"><a href="Proportion.html#rose-or-coxcomb-plots"><i class="fa fa-check"></i><b>6.5</b> Rose or Coxcomb plots</a></li>
-<li class="chapter" data-level="6.6" data-path="Proportion.html"><a href="Proportion.html#stacked-dodged-and-opposed-bar-chart"><i class="fa fa-check"></i><b>6.6</b> Stacked, dodged, and opposed bar chart</a></li>
-<li class="chapter" data-level="6.7" data-path="Proportion.html"><a href="Proportion.html#likert-scale-plot"><i class="fa fa-check"></i><b>6.7</b> Likert scale plot</a></li>
-<li class="chapter" data-level="6.8" data-path="Proportion.html"><a href="Proportion.html#ternary-triangular-graph"><i class="fa fa-check"></i><b>6.8</b> ternary (triangular) graph</a></li>
-<li class="chapter" data-level="6.9" data-path="Proportion.html"><a href="Proportion.html#treemaps-for-whole-part-of-hierarchy"><i class="fa fa-check"></i><b>6.9</b> Treemaps for whole-part of hierarchy</a></li>
-<li class="chapter" data-level="6.10" data-path="Proportion.html"><a href="Proportion.html#circle-packing"><i class="fa fa-check"></i><b>6.10</b> Circle packing</a></li>
+<li class="chapter" data-level="6.2" data-path="Proportion.html"><a href="Proportion.html#waffle-plot"><i class="fa fa-check"></i><b>6.2</b> Waffle plot</a></li>
+<li class="chapter" data-level="6.3" data-path="Proportion.html"><a href="Proportion.html#pareto-plot-whole-part-and-and-ranking"><i class="fa fa-check"></i><b>6.3</b> Pareto plot: Whole part and and ranking</a></li>
+<li class="chapter" data-level="6.4" data-path="Proportion.html"><a href="Proportion.html#stacked-bar-chart"><i class="fa fa-check"></i><b>6.4</b> Stacked bar chart</a></li>
+<li class="chapter" data-level="6.5" data-path="Proportion.html"><a href="Proportion.html#faceted-bar-chart-with-overall-reference-distribution"><i class="fa fa-check"></i><b>6.5</b> Faceted Bar chart with overall reference distribution</a></li>
+<li class="chapter" data-level="6.6" data-path="Proportion.html"><a href="Proportion.html#rose-or-coxcomb-plots"><i class="fa fa-check"></i><b>6.6</b> Rose or Coxcomb plots</a></li>
+<li class="chapter" data-level="6.7" data-path="Proportion.html"><a href="Proportion.html#stacked-dodged-and-opposed-bar-chart"><i class="fa fa-check"></i><b>6.7</b> Stacked, dodged, and opposed bar chart</a></li>
+<li class="chapter" data-level="6.8" data-path="Proportion.html"><a href="Proportion.html#likert-scale-plot"><i class="fa fa-check"></i><b>6.8</b> Likert scale plot</a></li>
+<li class="chapter" data-level="6.9" data-path="Proportion.html"><a href="Proportion.html#ternary-triangular-graph"><i class="fa fa-check"></i><b>6.9</b> ternary (triangular) graph</a></li>
+<li class="chapter" data-level="6.10" data-path="Proportion.html"><a href="Proportion.html#treemaps-for-whole-part-of-hierarchy"><i class="fa fa-check"></i><b>6.10</b> Treemaps for whole-part of hierarchy</a></li>
+<li class="chapter" data-level="6.11" data-path="Proportion.html"><a href="Proportion.html#circle-packing"><i class="fa fa-check"></i><b>6.11</b> Circle packing</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="Fluctuation.html"><a href="Fluctuation.html"><i class="fa fa-check"></i><b>7</b> Fluctuation–timelines</a><ul>
 <li class="chapter" data-level="7.1" data-path="Fluctuation.html"><a href="Fluctuation.html#multiple-time-series"><i class="fa fa-check"></i><b>7.1</b> Multiple time series</a></li>
 <li class="chapter" data-level="7.2" data-path="Fluctuation.html"><a href="Fluctuation.html#time-series-with-reference-line"><i class="fa fa-check"></i><b>7.2</b> Time series with reference line</a></li>
 <li class="chapter" data-level="7.3" data-path="Fluctuation.html"><a href="Fluctuation.html#cycle-plot"><i class="fa fa-check"></i><b>7.3</b> Cycle plot</a></li>
-<li class="chapter" data-level="7.4" data-path="Fluctuation.html"><a href="Fluctuation.html#step-graph"><i class="fa fa-check"></i><b>7.4</b> Step graph</a></li>
-<li class="chapter" data-level="7.5" data-path="Fluctuation.html"><a href="Fluctuation.html#faceted-zoom"><i class="fa fa-check"></i><b>7.5</b> Faceted zoom</a></li>
-<li class="chapter" data-level="7.6" data-path="Fluctuation.html"><a href="Fluctuation.html#ridge-plot"><i class="fa fa-check"></i><b>7.6</b> Ridge plot</a></li>
-<li class="chapter" data-level="7.7" data-path="Fluctuation.html"><a href="Fluctuation.html#stacked-area-and-line-graphs"><i class="fa fa-check"></i><b>7.7</b> Stacked area and line graphs</a></li>
-<li class="chapter" data-level="7.8" data-path="Fluctuation.html"><a href="Fluctuation.html#temporal-heatmap"><i class="fa fa-check"></i><b>7.8</b> Temporal heatmap</a></li>
+<li class="chapter" data-level="7.4" data-path="Fluctuation.html"><a href="Fluctuation.html#connected-scatterplot"><i class="fa fa-check"></i><b>7.4</b> Connected scatterplot</a></li>
+<li class="chapter" data-level="7.5" data-path="Fluctuation.html"><a href="Fluctuation.html#step-graph"><i class="fa fa-check"></i><b>7.5</b> Step graph</a></li>
+<li class="chapter" data-level="7.6" data-path="Fluctuation.html"><a href="Fluctuation.html#faceted-zoom"><i class="fa fa-check"></i><b>7.6</b> Faceted zoom</a></li>
+<li class="chapter" data-level="7.7" data-path="Fluctuation.html"><a href="Fluctuation.html#ridge-plot"><i class="fa fa-check"></i><b>7.7</b> Ridge plot</a></li>
+<li class="chapter" data-level="7.8" data-path="Fluctuation.html"><a href="Fluctuation.html#stacked-area-and-line-graphs"><i class="fa fa-check"></i><b>7.8</b> Stacked area and line graphs</a></li>
+<li class="chapter" data-level="7.9" data-path="Fluctuation.html"><a href="Fluctuation.html#temporal-heatmap"><i class="fa fa-check"></i><b>7.9</b> Temporal heatmap</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="Connection.html"><a href="Connection.html"><i class="fa fa-check"></i><b>8</b> Connection–maps and network plots</a><ul>
 <li class="chapter" data-level="8.1" data-path="Connection.html"><a href="Connection.html#maps"><i class="fa fa-check"></i><b>8.1</b> Maps</a><ul>
@@ -284,7 +289,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.6.3" data-path="Polishing.html"><a href="Polishing.html#faceted-pagination"><i class="fa fa-check"></i><b>10.6.3</b> Faceted pagination</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="Interaction.html"><a href="Interaction.html"><i class="fa fa-check"></i><b>11</b> Interaction–zoom, annotate, highlight</a></li>
+<li class="chapter" data-level="11" data-path="Interaction.html"><a href="Interaction.html"><i class="fa fa-check"></i><b>11</b> Interaction–annotate, highlight, link, and animate</a><ul>
+<li class="chapter" data-level="11.1" data-path="Interaction.html"><a href="Interaction.html#ggiraph-simple-annotation"><i class="fa fa-check"></i><b>11.1</b> ggiraph: Simple annotation</a></li>
+<li class="chapter" data-level="11.2" data-path="Interaction.html"><a href="Interaction.html#ggiraph-multi-plot-linking-with-highlighting-and-annotation"><i class="fa fa-check"></i><b>11.2</b> ggiraph: Multi-plot linking with highlighting and annotation</a></li>
+<li class="chapter" data-level="11.3" data-path="Interaction.html"><a href="Interaction.html#plotly-annotation"><i class="fa fa-check"></i><b>11.3</b> plotly: annotation</a></li>
+<li class="chapter" data-level="11.4" data-path="Interaction.html"><a href="Interaction.html#plotly-map-annotation"><i class="fa fa-check"></i><b>11.4</b> ## plotly: Map annotation</a></li>
+<li class="chapter" data-level="11.5" data-path="Interaction.html"><a href="Interaction.html#plotly-highlight-time-series-across-graphs"><i class="fa fa-check"></i><b>11.5</b> plotly: Highlight time series across graphs</a></li>
+<li class="chapter" data-level="11.6" data-path="Interaction.html"><a href="Interaction.html#highlight-and-annotate-data-and-fit"><i class="fa fa-check"></i><b>11.6</b> Highlight and annotate data and fit</a></li>
+<li class="chapter" data-level="11.7" data-path="Interaction.html"><a href="Interaction.html#time-series-scatterplot-animation"><i class="fa fa-check"></i><b>11.7</b> Time series scatterplot animation</a></li>
+</ul></li>
 <li class="chapter" data-level="12" data-path="shinyadvanced-interactive-graphics.html"><a href="shinyadvanced-interactive-graphics.html"><i class="fa fa-check"></i><b>12</b> Shiny–Advanced interactive graphics</a></li>
 <li class="appendix"><span><b>Appendix</b></span><ul>
 <li class="chapter" data-level="A.1" data-path="10-polishing.html"><a href="#data-sources-1"><i class="fa fa-check"></i><b>A.1</b> Data sources</a></li>
@@ -327,12 +340,12 @@ mtcars.df =<span class="st"> </span>mtcars</code></pre></div>
 <span class="kw">ggplot</span>(h.mtcars.df, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.factor</span>(cyl), <span class="dt">fill =</span> highlight)) <span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">alpha =</span> .<span class="dv">6</span>) <span class="op">+</span>
 <span class="st">    </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;yes&quot;</span>=<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;no&quot;</span>=<span class="st">&quot;gray15&quot;</span>), <span class="dt">guide =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">h.mtcars.df =<span class="st"> </span>mtcars.df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">highlight =</span> <span class="kw">if_else</span>(mpg<span class="op">&gt;</span><span class="dv">24</span> <span class="op">&amp;</span>wt<span class="op">&gt;</span><span class="dv">3</span>, <span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>))
 <span class="kw">ggplot</span>(h.mtcars.df, <span class="kw">aes</span>(<span class="dt">x =</span> wt, <span class="dt">y =</span> mpg, <span class="dt">colour =</span> highlight)) <span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">    </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;yes&quot;</span>=<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;no&quot;</span>=<span class="st">&quot;gray60&quot;</span>), <span class="dt">guide =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-23-2.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-25-2.png" width="672" /></p>
 </div>
 <div id="labeling-and-annotation" class="section level2">
 <h2><span class="header-section-number">10.2</span> Labeling and annotation</h2>
@@ -356,10 +369,8 @@ mtcars.df =<span class="st"> </span>mtcars</code></pre></div>
 <span class="st">   </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;ggalt: encircle annotation&quot;</span>)</code></pre></div>
 <p><img src="visualizationwithggplot_files/figure-html/annotation-2.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Regresion equation
-<span class="kw">library</span>(ggpmisc) <span class="co"># For stat_poly_eq for equation annotation  </span></code></pre></div>
-<pre><code>## For news about &#39;ggpmisc&#39;, please, see https://www.r4photobiology.info/</code></pre>
-<pre><code>## For on-line documentation see https://docs.r4photobiology.info/ggpmisc/</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># https://cran.r-project.org/web/packages/ggpmisc/vignettes/user-guide-1.html</span>
+<span class="kw">library</span>(ggpmisc) <span class="co"># For stat_poly_eq for equation annotation  </span>
+<span class="co"># https://cran.r-project.org/web/packages/ggpmisc/vignettes/user-guide-1.html</span>
 
 formula &lt;-<span class="st"> </span>y <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(x, <span class="dt">degree =</span> <span class="dv">1</span>, <span class="dt">raw =</span> <span class="ot">TRUE</span>)
 
@@ -424,7 +435,7 @@ mtcars.df<span class="op">$</span>name =<span class="st"> </span><span class="kw
 <span class="st">    </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;0&quot;</span> =<span class="st"> &quot;blue&quot;</span>, <span class="st">&quot;1&quot;</span> =<span class="st"> &quot;red&quot;</span>)) <span class="op">+</span><span class="st">  </span>
 <span class="st">  </span><span class="kw">scale_shape_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;0&quot;</span> =<span class="st"> &quot;\u2642&quot;</span>, <span class="st">&quot;1&quot;</span> =<span class="st"> &quot;\u2640&quot;</span>)) <span class="op">+</span><span class="st">  </span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;custom shape: Male/Female&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 </div>
 <div id="annotating-with-an-inset-plot" class="section level3">
 <h3><span class="header-section-number">10.2.5</span> Annotating with an inset plot</h3>
@@ -462,7 +473,7 @@ formula &lt;-<span class="st"> </span>y <span class="op">~</span><span class="st
 <span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st">  </span>
 <span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">formula =</span> formula) <span class="op">+</span><span class="st">     </span><span class="kw">stat_poly_eq</span>(<span class="kw">aes</span>(<span class="dt">label =</span>  <span class="kw">paste</span>(..eq.label.., ..adj.rr.label.., 
         <span class="dt">sep =</span> <span class="st">&quot;~~~~&quot;</span>)), <span class="dt">formula =</span> formula, <span class="dt">parse =</span> <span class="ot">TRUE</span>, <span class="dt">coef.digits =</span> <span class="dv">2</span>, <span class="dt">label.x =</span> <span class="dv">200</span>, <span class="dt">label.y =</span> <span class="dv">30</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 </div>
 <div id="AddingRemovingLabels" class="section level3">
 <h3><span class="header-section-number">10.2.7</span> Adding and removing labels: title, axis labels, and facet labels</h3>
@@ -479,7 +490,7 @@ mtcars.df<span class="op">$</span>name =<span class="st"> </span><span class="kw
 <span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Displacement (cubic inches)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Efficiency (mile per gallon)&quot;</span>, 
        <span class="dt">title =</span> <span class="st">&quot;Efficiency and engine size&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Number of cylinders&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Subtitle and caption
 <span class="kw">ggplot</span>(mtcars.df, <span class="kw">aes</span>(disp,  mpg, <span class="dt">color =</span> <span class="kw">as.factor</span>(cyl))) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
@@ -487,19 +498,19 @@ mtcars.df<span class="op">$</span>name =<span class="st"> </span><span class="kw
        <span class="dt">title =</span> <span class="st">&quot;Efficiency and engine size&quot;</span>, <span class="dt">subtitle =</span> <span class="st">&quot;mtcars data&quot;</span>,
        <span class="dt">caption =</span> <span class="st">&quot;Caption if needed&quot;</span>,
        <span class="dt">colour =</span> <span class="st">&quot;Number of cylinders&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-26-2.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-28-2.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Remove labels 
 <span class="kw">ggplot</span>(mtcars.df, <span class="kw">aes</span>(disp,  mpg, <span class="dt">color =</span> <span class="kw">as.factor</span>(cyl))) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-26-3.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-28-3.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Facet labels 
 cyl_names &lt;-<span class="st"> </span><span class="kw">as_labeller</span>(<span class="kw">c</span>(<span class="st">&quot;4&quot;</span> =<span class="st"> &quot;Four&quot;</span>, <span class="st">&quot;6&quot;</span> =<span class="st"> &quot;Six&quot;</span>, <span class="st">&quot;8&quot;</span> =<span class="st"> &quot;Eight&quot;</span>))
 
  <span class="kw">ggplot</span>(mtcars.df, <span class="kw">aes</span>(wt, mpg))<span class="op">+</span><span class="st"> </span>
 <span class="st">   </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">   </span><span class="kw">facet_grid</span>(cyl <span class="op">~</span><span class="st"> </span>., <span class="dt">labeller =</span> <span class="kw">as_labeller</span>(cyl_names))</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-26-4.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-28-4.png" width="672" /></p>
 </div>
 </div>
 <div id="position-legend" class="section level2">
@@ -552,7 +563,7 @@ cyl_names &lt;-<span class="st"> </span><span class="kw">as_labeller</span>(<spa
 <span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) </code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 </div>
 </div>
 <div id="color" class="section level2">
@@ -573,22 +584,22 @@ cyl_names &lt;-<span class="st"> </span><span class="kw">as_labeller</span>(<spa
 </div>
 <div id="large-and-small-area-colors" class="section level3">
 <h3><span class="header-section-number">10.4.2</span> Large and small area colors</h3>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
 </div>
 <div id="color-for-large-and-small-areas" class="section level3">
 <h3><span class="header-section-number">10.4.3</span> Color for large and small areas</h3>
-<p>What works for large areas of color might not work for small areas <img src="visualizationwithggplot_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p>What works for large areas of color might not work for small areas <img src="visualizationwithggplot_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
 </div>
 <div id="continuous-color-scales" class="section level3">
 <h3><span class="header-section-number">10.4.4</span> Continuous color scales</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Scales made for factors do not work with continuous variables</span>
 <span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(disp,  mpg, <span class="dt">color =</span> mpg))<span class="op">+</span><span class="kw">geom_point</span>()<span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;gplot: Default&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(disp,  mpg, <span class="dt">color =</span> mpg))<span class="op">+</span><span class="kw">geom_point</span>()<span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">scale_color_viridis</span>(<span class="dt">discrete =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;viridis: viridis&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-30-2.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-32-2.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##TODO Add parula</code></pre></div>
 </div>
 <div id="discrete-color-mappings" class="section level3">
@@ -597,11 +608,11 @@ cyl_names &lt;-<span class="st"> </span><span class="kw">as_labeller</span>(<spa
 <span class="st">    </span><span class="kw">geom_bar</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_fill_hue</span>()<span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;ggplot: Default&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(<span class="dt">x =</span> color, <span class="dt">fill =</span> cut)) <span class="op">+</span><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Accent&quot;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Brewer: Accent&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-31-2.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-33-2.png" width="672" /></p>
 </div>
 </div>
 <div id="themes-and-theme-options" class="section level2">
@@ -610,7 +621,7 @@ cyl_names &lt;-<span class="st"> </span><span class="kw">as_labeller</span>(<spa
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(disp, mpg, <span class="dt">color =</span> <span class="kw">as.factor</span>(cyl))) <span class="op">+</span><span class="st"> </span>
 <span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.line=</span><span class="kw">element_blank</span>(), <span class="dt">axis.text.x=</span><span class="kw">element_blank</span>(),   <span class="dt">axis.text.y=</span><span class="kw">element_blank</span>(), <span class="dt">axis.ticks=</span><span class="kw">element_blank</span>(),    <span class="dt">axis.title.x=</span><span class="kw">element_blank</span>(), <span class="dt">axis.title.y=</span><span class="kw">element_blank</span>(),     <span class="dt">legend.position=</span><span class="st">&quot;none&quot;</span>, <span class="dt">panel.background=</span><span class="kw">element_blank</span>(),   <span class="dt">panel.border=</span><span class="kw">element_blank</span>(), <span class="dt">panel.grid.major=</span><span class="kw">element_blank</span>(),     <span class="dt">panel.grid.minor=</span><span class="kw">element_blank</span>(), <span class="dt">plot.background=</span><span class="kw">element_blank</span>())</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
 <div id="remove-chart-details" class="section level3">
 <h3><span class="header-section-number">10.5.1</span> Remove chart details</h3>
 <p>Useful for plotting graphs and networks and maps</p>
@@ -627,28 +638,23 @@ cyl_names &lt;-<span class="st"> </span><span class="kw">as_labeller</span>(<spa
       <span class="dt">panel.grid.major=</span><span class="kw">element_blank</span>(),
       <span class="dt">panel.grid.minor=</span><span class="kw">element_blank</span>(),
       <span class="dt">plot.background=</span><span class="kw">element_blank</span>())</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
 </div>
 <div id="predefined-themes-adjust-many-elements" class="section level3">
 <h3><span class="header-section-number">10.5.2</span> Predefined themes adjust many elements</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(hrbrthemes) <span class="co"># Precise font and minimal grid</span></code></pre></div>
-<pre><code>## NOTE: Either Arial Narrow or Roboto Condensed fonts are *required* to use these themes.</code></pre>
-<pre><code>##       Please use hrbrthemes::import_roboto_condensed() to install Roboto Condensed and</code></pre>
-<pre><code>##       if Arial Narrow is not on your system, please see http://bit.ly/arialnarrow</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggthemes) <span class="co"># Huge variety of themes including Tufte and Few</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(hrbrthemes) <span class="co"># Precise font and minimal grid</span>
+<span class="kw">library</span>(ggthemes) <span class="co"># Huge variety of themes including Tufte and Few</span>
 <span class="kw">library</span>(xkcd) <span class="co"># Plots in the xkcd comic style</span></code></pre></div>
-<pre><code>## Loading required package: extrafont</code></pre>
-<pre><code>## Registering fonts with R</code></pre>
 <p>An engaging and fun theme <a href="ftp://200.236.31.7/CRAN/web/packages/xkcd/vignettes/xkcd-intro.pdf" class="uri">ftp://200.236.31.7/CRAN/web/packages/xkcd/vignettes/xkcd-intro.pdf</a></p>
 <p><img src="visualizationwithggplot_files/figure-html/xkcd-plot-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(disp, mpg, <span class="dt">color =</span> <span class="kw">as.factor</span>(cyl))) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">    </span><span class="kw">theme_void</span>()</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(disp, mpg, <span class="dt">color =</span> <span class="kw">as.factor</span>(cyl))) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_minimal</span>(<span class="dt">base_size =</span> <span class="dv">18</span>, <span class="dt">base_family =</span> <span class="st">&quot;Avenir&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#ipsum, latin for neat</span>
 
 <span class="kw">library</span>(hrbrthemes)
@@ -657,32 +663,32 @@ cyl_names &lt;-<span class="st"> </span><span class="kw">as_labeller</span>(<spa
 <span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st">    </span>
 <span class="st">  </span><span class="kw">scale_colour_ipsum</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">theme_ipsum</span>()</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(disp, mpg, <span class="dt">color =</span> <span class="kw">as.factor</span>(cyl))) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">scale_color_fivethirtyeight</span>() <span class="op">+</span>
 <span class="st">    </span><span class="kw">theme_fivethirtyeight</span>()</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-37-2.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-39-2.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(disp, mpg, <span class="dt">color =</span> <span class="kw">as.factor</span>(cyl))) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span><span class="st">     </span>
 <span class="st">  </span><span class="kw">scale_color_few</span>() <span class="op">+</span>
 <span class="st">    </span><span class="kw">theme_few</span>()</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-37-3.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-39-3.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(disp, mpg, <span class="dt">color =</span> <span class="kw">as.factor</span>(cyl))) <span class="op">+</span><span class="st">    </span>
 <span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">geom_rangeframe</span>()<span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">theme_tufte</span>()</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-37-4.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-39-4.png" width="672" /></p>
 <p>order of application matters</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(disp, mpg, <span class="dt">color =</span> <span class="kw">as.factor</span>(cyl))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()<span class="op">+</span><span class="st">  </span><span class="kw">scale_colour_ipsum</span>() <span class="op">+</span><span class="st"> </span>
 <span class="kw">theme_ipsum</span>() <span class="op">+</span>
 <span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(.<span class="dv">85</span>, .<span class="dv">8</span>))</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(disp, mpg, <span class="dt">color =</span> <span class="kw">as.factor</span>(cyl))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()<span class="op">+</span><span class="st">  </span><span class="kw">scale_colour_ipsum</span>() <span class="op">+</span><span class="st"> </span>
 <span class="kw">theme_ipsum</span>() <span class="op">+</span>
 <span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(.<span class="dv">85</span>, .<span class="dv">8</span>))<span class="op">+</span><span class="st">  </span>
 <span class="kw">theme_ipsum</span>()</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-38-2.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-40-2.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(mtcars.df, <span class="kw">aes</span>(wt, mpg)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">margin =</span> <span class="kw">margin</span>(<span class="dt">t =</span> <span class="dv">10</span>, <span class="dt">r =</span> <span class="dv">10</span>, <span class="dt">b =</span> <span class="dv">80</span>, <span class="dt">l =</span> <span class="dv">20</span>)))</code></pre></div>
@@ -694,21 +700,21 @@ cyl_names &lt;-<span class="st"> </span><span class="kw">as_labeller</span>(<spa
 <span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(disp,  mpg, <span class="dt">color =</span> <span class="kw">as.factor</span>(cyl))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()<span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">theme_ipsum</span>()<span class="op">+</span>
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(.<span class="dv">85</span>, .<span class="dv">8</span>))</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Adjusts legend, but the overrides with setting theme </span>
 <span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(disp,  mpg, <span class="dt">color =</span> <span class="kw">as.factor</span>(cyl))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()<span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(.<span class="dv">85</span>, .<span class="dv">8</span>))<span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_ipsum</span>()</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-39-2.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-41-2.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## To set for all plots
 <span class="kw">theme_set</span>(<span class="kw">theme_few</span>())
 <span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(disp,  mpg, <span class="dt">color =</span> <span class="kw">as.factor</span>(cyl))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-39-3.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-41-3.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">theme_set</span>(<span class="kw">theme_gray</span>()) <span class="co"># Returns to default theme</span></code></pre></div>
 </div>
 <div id="pre-set-theme-options" class="section level3">
 <h3><span class="header-section-number">10.5.4</span> Pre-set theme options</h3>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
 </div>
 <div id="themes-form-other-packages" class="section level3">
 <h3><span class="header-section-number">10.5.5</span> Themes form other packages</h3>
@@ -886,7 +892,7 @@ cyl_names &lt;-<span class="st"> </span><span class="kw">as_labeller</span>(<spa
 <pre><code>## Warning in align_plots(plotlist = plots, align = align,
 ## axis = axis): Graphs cannot be horizontally aligned,
 ## unless axis parameter set. Placing graphs unaligned.</code></pre>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
 </div>
 </div>
 <div id="saving-and-printing-plots-to-include-in-documents" class="section level2">
@@ -909,7 +915,7 @@ cyl_names &lt;-<span class="st"> </span><span class="kw">as_labeller</span>(<spa
       <span class="dt">plot =</span> mpg.plot, <span class="dt">height =</span> <span class="dv">4</span>, <span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">units =</span> <span class="st">&quot;in&quot;</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(svglite)
 <span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(disp,  mpg, <span class="dt">color =</span> <span class="kw">as.factor</span>(cyl))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mpg.plot =<span class="st"> </span><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(disp,  mpg, <span class="dt">color =</span> <span class="kw">as.factor</span>(cyl))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()
 
 ## Possible formats:
@@ -955,7 +961,7 @@ hp.plot =<span class="st"> </span><span class="kw">ggplot</span>(mtcars, <span c
 
 combined.plot =<span class="st"> </span><span class="kw">ggarrange</span>(displ.plot, hp.plot, <span class="dt">nrow=</span><span class="dv">1</span>, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">align =</span> <span class="st">&quot;hv&quot;</span>)
 combined.plot</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
 </div>
 <div id="faceted-pagination" class="section level3">
 <h3><span class="header-section-number">10.6.3</span> Faceted pagination</h3>
@@ -967,7 +973,7 @@ combined.plot</code></pre></div>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_grid_paginate</span>(color<span class="op">~</span>cut<span class="op">:</span>clarity, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">page =</span> <span class="dv">1</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;ggforce: facet pagination&quot;</span>)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
 
 
 </div>

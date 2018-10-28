@@ -1,6 +1,6 @@
 \cleardoublepage 
 
-# Interaction--zoom, annotate, highlight{#Interaction}
+# Interaction--annotate, highlight, link, and animate{#Interaction}
 
 
 
@@ -9,14 +9,171 @@ library(tidyverse)
 
 ```
 
+##  ggiraph: Simple annotation
+tooltip: mouse-over tooltips display information when mouse is over elements.
+onclick: executes java script when elements are clicked.
+data_id: id to be associated with elements.
 
 
-```{r}
+Annotate details on hover
+```{r, warning=FALSE, message=FALSE}
 library(ggiraph)
 
-mpg.plot =  ggplot(mpg, aes( x = displ, y = cty, color = hwy))+  	geom_point_interactive(aes(tooltip = model), size = 2) +  	labs(title = "ggiraph: interactive plots")
+mpg.plot =  ggplot(mpg, aes( x = displ, y = cty, color = hwy))+  
+  geom_point_interactive(aes(tooltip = model), size = 2) +  	
+  labs(title = "ggiraph: interactive plots")
 	
 ggiraph(code = 	print(mpg.plot))
 
 ```
 
+## ggiraph: Multi-plot linking with highlighting and annotation
+```{r, linked-plot, warning=FALSE, message=FALSE}
+#devtools::install_github("thomasp85/patchwork")
+library(patchwork) # For combining multiple plots
+library(cowplot)
+
+
+mtcars.df <- mtcars
+mtcars.df$tooltip <- rownames(mtcars.df)
+theme_set(theme_minimal())
+
+plot1 <- ggplot(mtcars.df) +
+  geom_point_interactive(aes(x = drat, y = wt, color = qsec, 
+    tooltip = tooltip, data_id = tooltip ), size = 2) 
+
+plot2 <- ggplot(mtcars.df) +
+  geom_point_interactive(aes(x = qsec, y = disp, color = mpg, 
+    tooltip = tooltip, data_id = tooltip ), size = 2)
+
+
+girafe(code = print(plot1 + plot2))
+```
+
+
+## plotly: annotation
+
+Plotly supports filtering, highlighting, and linking views. To link views plotly uses SharedData class from crosstalk package as a key to link dataframes being plotted
+
+
+```{r, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(plotly)
+library(MESS)
+
+data("happiness")
+
+plot = 
+  ggplot(happiness, 
+            aes(x=tax, y=happy, color=continent, size=population, 
+                text = paste("country:", country))) + 
+  geom_point(alpha = .8) + 
+  scale_size_area(max_size = 30) + 
+  geom_smooth(aes(linetype = continent, group = continent),
+              method="lm", se= F, size = 1
+              )
+
+ggplotly(plot)
+```
+
+
+## ## plotly: Map annotation 
+```{r, interactive_map, warning=FALSE}
+library(plotly)
+library(sf)
+library(albersusa)
+
+us_laea <- usa_sf("laea")
+us_laea = us_laea %>% mutate(density_2014 = pop_2014/census_area)
+
+plot =  
+ggplot(us_laea) + 
+  geom_sf(aes(fill = log(density_2014), 
+              text = paste(name, "had a density of", round(density_2014, 0))))
+
+ggplotly(plot, tooltip = "text") %>%
+  style(hoverlabel = list(bgcolor = "grey85"), hoveron = "fill")
+```
+
+## plotly: Highlight time series across graphs
+Adapted from https://github.com/ropensci/plotly/tree/master/demo
+
+```{r, faceted_highlight, warnings = FALSE, message=FALSE}
+
+
+txhousing.sd <- highlight_key(txhousing, ~year)
+
+plot =  ggplot(txhousing.sd, aes(month, median)) +
+  geom_line(aes(group = year)) + 
+  geom_smooth(data = txhousing, method = "gam") + 
+  facet_wrap(~ city) +
+  labs(title = "Click on a line to highlight a year")
+
+ggplotly(plot, height = 800, width = 1600)
+
+```
+## plotly: Linked plots
+Adapted from https://plotly-book.cpsievert.me/linking-views-without-shiny.html
+
+```{r, linked_plot, message=FALSE, warning=FALSE}
+
+txhousing.sd <- highlight_key(txhousing, ~city, "Select a city")
+
+base <- plot_ly(txhousing.sd, color = I("black"), height = 400) %>%
+  group_by(city)
+
+plot1 <- base %>%
+  summarise(miss = sum(is.na(median))) %>%
+  filter(miss > 0) %>%
+  add_markers(x = ~miss, y = ~forcats::fct_reorder(city, miss), hoverinfo = "x+y") %>%
+  layout(
+    barmode = "overlay",
+    xaxis = list(title = "Number of months missing"),
+    yaxis = list(title = "")
+  ) 
+
+plot2 <- base %>%
+  add_lines(x = ~date, y = ~median, alpha = 0.3) %>%
+  layout(xaxis = list(title = ""))
+
+subplot(plot1, plot2, titleX = TRUE, widths = c(0.3, 0.7)) %>% 
+  hide_legend() %>%
+  highlight(dynamic = TRUE, selectize = TRUE)
+
+```
+
+## Highlight and annotate data and fit
+```{r, warnings = FALSE, message=FALSE}
+library(crosstalk)
+data(mpg)
+
+mpg.sd <-highlight_key(mpg, ~new)
+
+mpg.sd <- highlight_key(mpg, ~class)
+
+plot <- ggplot(mpg.sd, aes(displ, hwy, colour = class)) +
+  geom_point() +
+  geom_smooth(se = FALSE, method = "lm")
+
+ggplotly(plot) %>% highlight("plotly_hover")
+```
+
+## Time series scatterplot animation
+
+ids and frame specify the data elements for the animation and slider
+```{r, scatterplot_time, warning=FALSE}
+library(gapminder)
+
+data(gapminder)
+
+plot = 
+ggplot(gapminder, aes(gdpPercap/1000, lifeExp, color = continent)) +
+  geom_point(aes(size = pop, frame = year, ids = country)) +
+  scale_x_log10()
+
+ggplotly(plot)
+
+
+```
+  
+  

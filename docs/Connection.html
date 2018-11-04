@@ -25,7 +25,7 @@
 <meta name="author" content="John D. Lee">
 
 
-<meta name="date" content="2018-10-28">
+<meta name="date" content="2018-11-04">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -59,6 +59,9 @@
 <script src="libs/nouislider/jquery.nouislider.min.js"></script>
 <link href="libs/selectize/selectize.bootstrap3.css" rel="stylesheet" />
 <script src="libs/selectize/selectize.min.js"></script>
+<link href="libs/jquery-sparkline/jquery.sparkline.css" rel="stylesheet" />
+<script src="libs/jquery-sparkline/jquery.sparkline.js"></script>
+<script src="libs/sparkline-binding/sparkline.js"></script>
 <script src="libs/d3/d3.min.js"></script>
 <script src="libs/d3-lasso/d3-lasso.min.js"></script>
 <link href="libs/ggiraphjs/styles.css" rel="stylesheet" />
@@ -68,8 +71,6 @@
 <script src="libs/typedarray/typedarray.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main/plotly-latest.min.js"></script>
-<link href="libs/colourpicker/colourpicker.min.css" rel="stylesheet" />
-<script src="libs/colourpicker/colourpicker.min.js"></script>
 
 
 <style type="text/css">
@@ -253,7 +254,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.2" data-path="Tables.html"><a href="Tables.html#table-lens-with-a-integrated-bar"><i class="fa fa-check"></i><b>9.2</b> Table lens with a integrated bar</a></li>
 <li class="chapter" data-level="9.3" data-path="Tables.html"><a href="Tables.html#sparkline"><i class="fa fa-check"></i><b>9.3</b> Sparkline</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="Polishing.html"><a href="Polishing.html"><i class="fa fa-check"></i><b>10</b> Highlighting, annotating, and polishing graphs</a><ul>
+<li class="chapter" data-level="10" data-path="Polishing.html"><a href="Polishing.html"><i class="fa fa-check"></i><b>10</b> Highlighting, annotating, polishing, and automating graphs</a><ul>
 <li class="chapter" data-level="10.1" data-path="Polishing.html"><a href="Polishing.html#highlighting-datapoints-to-make-a-point"><i class="fa fa-check"></i><b>10.1</b> Highlighting datapoints to make a point</a></li>
 <li class="chapter" data-level="10.2" data-path="Polishing.html"><a href="Polishing.html#labeling-and-annotation"><i class="fa fa-check"></i><b>10.2</b> Labeling and annotation</a><ul>
 <li class="chapter" data-level="10.2.1" data-path="Polishing.html"><a href="Polishing.html#annotating-data"><i class="fa fa-check"></i><b>10.2.1</b> Annotating data</a></li>
@@ -288,15 +289,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.6.2" data-path="Polishing.html"><a href="Polishing.html#combining-multiple-graphs-for-publication"><i class="fa fa-check"></i><b>10.6.2</b> Combining multiple graphs for publication</a></li>
 <li class="chapter" data-level="10.6.3" data-path="Polishing.html"><a href="Polishing.html#faceted-pagination"><i class="fa fa-check"></i><b>10.6.3</b> Faceted pagination</a></li>
 </ul></li>
+<li class="chapter" data-level="10.7" data-path="Polishing.html"><a href="Polishing.html#functions-with-dplyr"><i class="fa fa-check"></i><b>10.7</b> Functions with dplyr</a></li>
+<li class="chapter" data-level="10.8" data-path="Polishing.html"><a href="Polishing.html#create-functions-for-custom-plot"><i class="fa fa-check"></i><b>10.8</b> Create functions for custom plot</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="Interaction.html"><a href="Interaction.html"><i class="fa fa-check"></i><b>11</b> Interaction–annotate, highlight, link, and animate</a><ul>
-<li class="chapter" data-level="11.1" data-path="Interaction.html"><a href="Interaction.html#ggiraph-simple-annotation"><i class="fa fa-check"></i><b>11.1</b> ggiraph: Simple annotation</a></li>
-<li class="chapter" data-level="11.2" data-path="Interaction.html"><a href="Interaction.html#ggiraph-multi-plot-linking-with-highlighting-and-annotation"><i class="fa fa-check"></i><b>11.2</b> ggiraph: Multi-plot linking with highlighting and annotation</a></li>
-<li class="chapter" data-level="11.3" data-path="Interaction.html"><a href="Interaction.html#plotly-annotation"><i class="fa fa-check"></i><b>11.3</b> plotly: annotation</a></li>
-<li class="chapter" data-level="11.4" data-path="Interaction.html"><a href="Interaction.html#plotly-map-annotation"><i class="fa fa-check"></i><b>11.4</b> ## plotly: Map annotation</a></li>
-<li class="chapter" data-level="11.5" data-path="Interaction.html"><a href="Interaction.html#plotly-highlight-time-series-across-graphs"><i class="fa fa-check"></i><b>11.5</b> plotly: Highlight time series across graphs</a></li>
-<li class="chapter" data-level="11.6" data-path="Interaction.html"><a href="Interaction.html#highlight-and-annotate-data-and-fit"><i class="fa fa-check"></i><b>11.6</b> Highlight and annotate data and fit</a></li>
-<li class="chapter" data-level="11.7" data-path="Interaction.html"><a href="Interaction.html#time-series-scatterplot-animation"><i class="fa fa-check"></i><b>11.7</b> Time series scatterplot animation</a></li>
+<li class="chapter" data-level="11.1" data-path="Interaction.html"><a href="Interaction.html#dt-interactive-tables"><i class="fa fa-check"></i><b>11.1</b> DT: Interactive tables</a></li>
+<li class="chapter" data-level="11.2" data-path="Interaction.html"><a href="Interaction.html#dt-interactive-tables-with-sparklines"><i class="fa fa-check"></i><b>11.2</b> DT: Interactive tables with sparklines</a></li>
+<li class="chapter" data-level="11.3" data-path="Interaction.html"><a href="Interaction.html#ggiraph-simple-annotation"><i class="fa fa-check"></i><b>11.3</b> ggiraph: Simple annotation</a></li>
+<li class="chapter" data-level="11.4" data-path="Interaction.html"><a href="Interaction.html#ggiraph-highlighting-and-multi-plot-linking"><i class="fa fa-check"></i><b>11.4</b> ggiraph: Highlighting and multi-plot linking</a></li>
+<li class="chapter" data-level="11.5" data-path="Interaction.html"><a href="Interaction.html#plotly-map-annotation-with-flexible-tooltip-annotation"><i class="fa fa-check"></i><b>11.5</b> plotly: Map annotation with flexible tooltip annotation</a></li>
+<li class="chapter" data-level="11.6" data-path="Interaction.html"><a href="Interaction.html#plotly-detailed-annotation-legend-based-selection-and-brush-to-zoom"><i class="fa fa-check"></i><b>11.6</b> plotly: Detailed annotation, legend-based selection, and brush to zoom</a></li>
+<li class="chapter" data-level="11.7" data-path="Interaction.html"><a href="Interaction.html#plotly-linked-plots"><i class="fa fa-check"></i><b>11.7</b> plotly: Linked plots</a></li>
+<li class="chapter" data-level="11.8" data-path="Interaction.html"><a href="Interaction.html#plotly-highlight-and-annotate-data-and-fit"><i class="fa fa-check"></i><b>11.8</b> plotly: Highlight and annotate data and fit</a></li>
+<li class="chapter" data-level="11.9" data-path="Interaction.html"><a href="Interaction.html#plotly-time-series-scatterplot-animation"><i class="fa fa-check"></i><b>11.9</b> plotly: Time series scatterplot animation</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="shinyadvanced-interactive-graphics.html"><a href="shinyadvanced-interactive-graphics.html"><i class="fa fa-check"></i><b>12</b> Shiny–Advanced interactive graphics</a></li>
 <li class="appendix"><span><b>Appendix</b></span><ul>
@@ -343,9 +348,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 crimes.l.df &lt;-<span class="st"> </span><span class="kw">gather</span>(crimes.df, <span class="dt">key =</span> type, <span class="dt">value =</span> rate, <span class="op">-</span>state)
 
-states_map &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;state&quot;</span>)
-
-<span class="kw">ggplot</span>() <span class="op">+</span>
+states_map &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;state&quot;</span>)</code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;maps&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     map</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>() <span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_cartogram</span>(<span class="dt">data=</span>states_map, <span class="kw">aes</span>(long, lat, <span class="dt">map_id =</span> region), <span class="dt">map=</span>states_map) <span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_cartogram</span>(<span class="dt">data=</span>crimes.df, <span class="kw">aes</span>(<span class="dt">fill =</span> Murder, <span class="dt">map_id =</span> state), <span class="dt">map=</span>states_map) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">coord_map</span>(<span class="st">&quot;polyconic&quot;</span>)<span class="op">+</span>
@@ -470,6 +479,7 @@ graph &lt;-<span class="st"> </span><span class="kw">graph_from_data_frame</span
 <p>link to treemap</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## <span class="al">TODO</span> Convert to migration data
 <span class="kw">library</span>(ggraph)
+<span class="kw">library</span>(igraph)
 flare.df =<span class="st"> </span>ggraph<span class="op">::</span>flare
 
 graph &lt;-<span class="st"> </span><span class="kw">graph_from_data_frame</span>(flare.df<span class="op">$</span>edges, <span class="dt">vertices =</span> flare.df<span class="op">$</span>vertices)

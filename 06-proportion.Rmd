@@ -70,21 +70,41 @@ deaths.plot
 ```
 
 ## Waffle plot
-```{r, waffle-plot}
+Waffle plots provide an alternative to pie charts to show proportion. They do so by showing the individual elements that make up the whole and so they often inculde icons rather than an a more abstracted representation.  Below icons of cars from the typeface "fontawesome" replace the filled squares.  
+
+People process frequencies different from proportions and so waffle charts can provide an intuitive representation of the prevalance of false positive results for a diagnostic test for a rare condition. 
+
+```{r, waffle-plot, fig.height = 7}
 # devtools::install_github("liamgilbey/ggwaffle")
 library(tidyverse)
 library(ggwaffle)
+library(extrafont)
+library(emojifont)
+library(ggpubr)
 
 
 mpg$cyl = as.character(mpg$cyl)
 waffle_data <- waffle_iron(mpg, aes_d(group = cyl))
 
-ggplot(waffle_data, aes(x, y, fill = group)) + 
+wp1 = ggplot(waffle_data, aes(x, y, fill = group)) + 
   geom_waffle() + 
   coord_equal() + 
   #scale_fill_waffle() + 
   theme_waffle() +
   labs(x = "", y = "", fill = "Cylinders")
+
+
+
+waffle_data <- waffle_iron(mpg, aes_d(group = cyl)) %>% 
+  mutate(icon = fontawesome('fa-car'))
+
+wp2 = ggplot(waffle_data, aes(x, y, colour = group)) + 
+  geom_text(aes(label=icon), family='fontawesome-webfont', size=3) +
+  coord_equal() + 
+  theme_waffle() +
+  labs(x = "", y = "", colour = "Cylinders")
+
+ggarrange(wp1, wp2, nrow = 2, common.legend = TRUE)
 
 ```
   

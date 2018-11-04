@@ -278,6 +278,7 @@ link to treemap
 ```{r, hierarchy-plot}
 ## TODO Convert to migration data
 library(ggraph)
+library(igraph)
 flare.df = ggraph::flare
 
 graph <- graph_from_data_frame(flare.df$edges, vertices = flare.df$vertices)

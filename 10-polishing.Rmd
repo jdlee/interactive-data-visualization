@@ -1,9 +1,10 @@
 \cleardoublepage 
 
-# Highlighting, annotating, and polishing graphs{#Polishing}
+# Highlighting, annotating, polishing, and automating graphs{#Polishing}
 
 
 ```{r, message=FALSE}
+library(gapminder)
 library(tidyverse)
 library(ggrepel)
 rm(list=ls())
@@ -821,3 +822,43 @@ ggplot(diamonds, aes(carat, price)) +
 
 ```
 
+## Functions with dplyr 
+```{r}
+
+gapminder.df = gapminder
+
+mean_grouped<- function(df, group_var, summary_var) {
+  group_var = enquo(group_var)
+  summary_var = enquo(summary_var)
+  df %>% group_by(UQ(group_var)) %>% 
+    summarise(m.pop = mean(UQ(summary_var)))
+}
+
+mean_grouped(gapminder, continent, pop)
+```
+
+
+## Create functions for custom plot
+```{r}
+library(gapminder)
+library(ggpubr)
+
+
+timeline_highlight <- function(df, x_var, y_var, size_var, highlight_country) {
+  
+  ggplot(df, aes_string(x_var, y_var, size = size_var)) +
+    geom_point(alpha = .1) +
+    geom_point(data = df %>% filter(highlight_country==country), 
+               colour = "red") +
+    labs(title = highlight_country)
+}
+
+
+US.plot = timeline_highlight(gapminder.df, "year", "lifeExp", "gdpPercap", "United States")
+Rwanda.plot = timeline_highlight(gapminder.df, "year", "lifeExp", "gdpPercap", "Rwanda")
+
+combined.plot = ggarrange(US.plot, Rwanda.plot, 
+                          nrow=1, ncol = 2, align = "hv", 
+                          common.legend = TRUE)
+combined.plot
+```

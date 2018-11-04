@@ -2,177 +2,274 @@
 
 # Interaction--annotate, highlight, link, and animate{#Interaction}
 
+Client-side interactions
+Client-side interactions produce an html rendering of the notebook that can be shared with those that do not have R or the underlying data. The main drawback with client-side interactions is that they support only simple annotation, zooming, and linking and not any data filtering or transformation.
+
+DataTable and other HTML widgets (See Chapter **)
+ggiraph provides simple annotation and linking
+ggplotly provides zooming based on brushed data, as well as more flexible annotation and linking
+
+
+Server-side interactions
+Server-sider interactions provide great flexibility in linking graphs and selecting, filtering and transforming data based on user input.
+
+Shiny notebooks
+Shiny applications
 
 
 ```{r, message=FALSE}
+library(DT)
+library(data.table)
+library(sparkline)
+library(ggiraph)
+#devtools::install_github("thomasp85/patchwork")
+library(patchwork) # For combining multiple plots
+library(cowplot)
+
+library(plotly)
+library(sf) # simple features for maps
+library(albersusa)
+library(gapminder)
 library(tidyverse)
+
+#library(crosstalk)
 
 ```
 
+
+##  DT: Interactive tables
+DT is a very powerful package for creating interactive tables. By default it supports sorting sorting and searching. It can also be configured so that each column can be used to filter the data.  Extensions even make it possible to fill the cells with small graphical summaries--sparklines. 
+Kowarik, A., Meindl, B., & Templ, M. (2014). sparkTable: Generating graphical tables for websites and documents with R. R J., 7(1), 24-37.
+
+```{r}
+
+mtcars %>% dplyr::select(mpg, cyl, wt, hp, qsec) %>% 
+  datatable(filter = 'top')
+
+```
+
+##  DT: Interactive tables with sparklines
+```{r, echo=FALSE, warning=FALSE}
+## https://leonawicz.github.io/HtmlWidgetExamples/ex_dt_sparkline.html
+
+l.iris= iris %>% gather(key = Var, Value, -Species)
+r = range(l.iris$Value) # To place boxplots on an absolute range
+
+# Set parameters of sparklines --------------------------------------------
+bar_string <- "type: 'bar', barColor: 'orange', negBarColor: 'purple', highlightColor: 'black'"
+cb_bar = JS(paste0("function (oSettings, json) { $('.spark:not(:has(canvas))').sparkline('html', { ", bar_string, " }); }"), collapse="")
+
+line_string <- "type: 'line', lineColor: 'black', width: '200', fillColor: '#ccc', highlightLineColor: 'orange', highlightSpotColor: 'orange'"
+
+line_string2 = "type: 'line', lineColor: 'black', width: '200', fillColor: '#ccc', highlightLineColor: 'orange', highlightSpotColor: 'orange', chartRangeMin: ', r[1],' ,chartRangeMax: ', r[2]'"
+cb_line = JS(paste0("function (oSettings, json) { $('.spark:not(:has(canvas))').sparkline('html', { ", line_string, ", chartRangeMin: ", r[1], ", chartRangeMax: ", r[2], " }); }"), collapse="")
+
+box_string <- "type: 'box', lineColor: 'black',  width: '300', whiskerColor: 'black', outlierFillColor: 'black', outlierLineColor: 'black', medianColor: 'black', boxFillColor: 'orange', boxLineColor: 'black'"
+cb_box1 = JS(paste0("function (oSettings, json) { $('.spark:not(:has(canvas))').sparkline('html', { ", box_string," }); }"), collapse="")
+
+cb_box2 = JS(paste0("function (oSettings, json) { $('.spark:not(:has(canvas))').sparkline('html', { ", box_string,", chartRangeMin: ", r[1], ", chartRangeMax: ", r[2], " }); }"), collapse="")
+
+
+s.iris <- l.iris %>% 
+  group_by(Species, Var) %>% 
+  summarise(Mean = round(mean(Value), 1), SD = round(sd(Value),2), Min = min(Value), Max = max(Value), 
+    Samples = paste(Value, collapse = ","), Series = paste(Value, collapse = ",")) %>% # Specifies spark data based on individual values
+  arrange(Var) %>% 
+  data.table
+
+# Set column and callback definitions  --------------------------------------------
+# "targets"" specify column for sparklines
+cd <- list(list(targets = 6, render = JS("function(data, type, full){ return '<span class=sparkSamples>' + data + '</span>' }")), 
+           list(targets = 7, render = JS("function(data, type, full){ return '<span class=sparkSeries>' + data + '</span>' }")))
+
+cb = JS(paste0("function (oSettings, json) {\n  $('.sparkSeries:not(:has(canvas))').sparkline('html', { ", 
+               line_string,"});\n  $('.sparkSamples:not(:has(canvas))').sparkline('html', { ", 
+               box_string,", chartRangeMin: ", r[1], ", chartRangeMax: ", r[2], " });\n}"), collapse = "")
+      # r defined by range of the data 
+
+# Render data table  --------------------------------------------
+iris.dt <- datatable(data.table(s.iris), rownames = FALSE, 
+                      options = list(pageLength = 12, lengthMenu = c(6, 12, 24),
+                      columnDefs = cd, fnDrawCallback = cb, autoWidth = TRUE, 
+                      columnDefs = list(list(width = '100px', targets = c(6, 7)))
+                ))
+
+iris.dt$dependencies <- append(iris.dt$dependencies, htmlwidgets:::getDependency("sparkline"))
+iris.dt
+
+```
+
+
+
 ##  ggiraph: Simple annotation
+ggirpah makes it very easy to create interacive graphic.  This package supports three interactive elements
 tooltip: mouse-over tooltips display information when mouse is over elements.
-onclick: executes java script when elements are clicked.
-data_id: id to be associated with elements.
+data_id: highlights elements that share the same variable value.
+onclick: executes java script when elements are clicked, such as opening a webpage associated with the point.
+
 
 
 Annotate details on hover
 ```{r, warning=FALSE, message=FALSE}
-library(ggiraph)
 
-mpg.plot =  ggplot(mpg, aes( x = displ, y = cty, color = hwy))+  
-  geom_point_interactive(aes(tooltip = model), size = 2) +  	
-  labs(title = "ggiraph: interactive plots")
+mtcars.df = mtcars
+mtcars.df$name = rownames(mtcars.df)
+
+mpg.plot =  ggplot(mtcars.df, aes( x = disp, y = mpg))+  
+  geom_point_interactive(aes(tooltip = name), size = 2) +  	
+  labs(title = "Hover to reveal name")
 	
 ggiraph(code = 	print(mpg.plot))
 
 ```
 
-## ggiraph: Multi-plot linking with highlighting and annotation
+## ggiraph: Highlighting and multi-plot linking
+
 ```{r, linked-plot, warning=FALSE, message=FALSE}
-#devtools::install_github("thomasp85/patchwork")
-library(patchwork) # For combining multiple plots
-library(cowplot)
+
+hp.plot = ggplot(mtcars.df) +
+  geom_point_interactive(aes(x = hp, y = mpg,
+    tooltip = name, data_id = name), size = 2) +
+  labs(title = "Hover to locate vehicle in both plots")
+
+wt.plot <- ggplot(mtcars.df) +
+  geom_point_interactive(aes(x = wt, y = mpg,
+    tooltip = name, data_id = name), size = 2)
+
+girafe(code = print(hp.plot + wt.plot))
 
 
-mtcars.df <- mtcars
-mtcars.df$tooltip <- rownames(mtcars.df)
-theme_set(theme_minimal())
 
-plot1 <- ggplot(mtcars.df) +
-  geom_point_interactive(aes(x = drat, y = wt, color = qsec, 
-    tooltip = tooltip, data_id = tooltip ), size = 2) 
+gapminder.df = gapminder %>% group_by(continent, year) %>% 
+  summarise(m.gdpPercap = mean(gdpPercap), m.lifeExp = mean(lifeExp))
 
-plot2 <- ggplot(mtcars.df) +
-  geom_point_interactive(aes(x = qsec, y = disp, color = mpg, 
-    tooltip = tooltip, data_id = tooltip ), size = 2)
+gap_scatter.plot = 
+ggplot(gapminder.df) + 
+  geom_point_interactive(aes(x=m.gdpPercap, y=m.lifeExp, colour = continent,
+    tool_tip = continent, data_id = continent), alpha = .8) +
+  labs(title = "Hover to highlight data for a continent") +
+  theme(legend.position = "bottom")
 
-
-girafe(code = print(plot1 + plot2))
+ 
+gap_timeline.plot = 
+ggplot(gapminder.df) + 
+  geom_line_interactive(aes(x=year, y=m.lifeExp, group = continent, colour= continent,
+      tool_tip = continent, data_id = continent),alpha = .8) +
+  theme(legend.position = "none")
+ 
+girafe(code = print(gap_scatter.plot + gap_timeline.plot)) %>% 
+   girafe_options(opts_hover(css = "stroke-width:3px;"))
+ 
 ```
 
 
-## plotly: annotation
 
-Plotly supports filtering, highlighting, and linking views. To link views plotly uses SharedData class from crosstalk package as a key to link dataframes being plotted
+## plotly: Map annotation with flexible tooltip annotation
+Plotly supports filtering, highlighting, and linking views
+Legend selection of data
+Brush zooming
+Slider filter and animation
 
+More flexibiltiy with tooltip annotations compared to ggiraph
 
-```{r, warning=FALSE, message=FALSE}
-library(ggplot2)
-library(plotly)
-library(MESS)
-
-data("happiness")
-
-plot = 
-  ggplot(happiness, 
-            aes(x=tax, y=happy, color=continent, size=population, 
-                text = paste("country:", country))) + 
-  geom_point(alpha = .8) + 
-  scale_size_area(max_size = 30) + 
-  geom_smooth(aes(linetype = continent, group = continent),
-              method="lm", se= F, size = 1
-              )
-
-ggplotly(plot)
-```
-
-
-## plotly: Map annotation 
 ```{r, interactive_map, warning=FALSE}
-library(plotly)
-library(sf)
-library(albersusa)
 
 us_laea <- usa_sf("laea")
 us_laea = us_laea %>% mutate(density_2014 = pop_2014/census_area)
 
-plot =  
+map.plot =  
 ggplot(us_laea) + 
   geom_sf(aes(fill = log(density_2014), 
-              text = paste(name, "had a density of", round(density_2014, 0))))
+              text = paste(name, " density: ", round(density_2014, 0),
+                           "people per square mile")))+
+  scale_fill_viridis_c() +
+  labs(title = "Hover show details") +
+  theme_void()
 
-ggplotly(plot, tooltip = "text") %>%
+ggplotly(map.plot, tooltip = "text") %>%
   style(hoverlabel = list(bgcolor = "grey85"), hoveron = "fill")
-```
-
-## plotly: Highlight time series across graphs
-Adapted from https://github.com/ropensci/plotly/tree/master/demo
-
-```{r, faceted_highlight, warnings = FALSE, message=FALSE}
-
-
-txhousing.sd <- highlight_key(txhousing, ~year)
-
-plot =  ggplot(txhousing.sd, aes(month, median)) +
-  geom_line(aes(group = year)) + 
-  geom_smooth(data = txhousing, method = "gam") + 
-  facet_wrap(~ city) +
-  labs(title = "Click on a line to highlight a year")
-
-ggplotly(plot, height = 800, width = 1600)
 
 ```
+
+## plotly: Detailed annotation, legend-based selection, and brush to zoom
+
+
+
+```{r, warning=FALSE, message=FALSE}
+
+gap.plot = 
+  ggplot(gapminder.df, 
+         aes(x = m.gdpPercap/1000, y = m.lifeExp, colour = continent, text = year)) +
+  geom_point() +
+  labs(title = "Brush points to zoom in on a subset of data")
+
+ggplotly(gap.plot, tooltip = c("text", "x", "y", "colour")) 
+
+```
+
+
+
+
 ## plotly: Linked plots
-Adapted from https://plotly-book.cpsievert.me/linking-views-without-shiny.html
+Unlike the linked plot with ggiraph, there is no easy way to avoid showing a duplicate legend.
 
 ```{r, linked_plot, message=FALSE, warning=FALSE}
 
-txhousing.sd <- highlight_key(txhousing, ~city, "Select a city")
+gapminder.sd <- highlight_key(gapminder.df, ~continent)
 
-base <- plot_ly(txhousing.sd, color = I("black"), height = 400) %>%
-  group_by(city)
-
-plot1 <- base %>%
-  summarise(miss = sum(is.na(median))) %>%
-  filter(miss > 0) %>%
-  add_markers(x = ~miss, y = ~forcats::fct_reorder(city, miss), hoverinfo = "x+y") %>%
-  layout(
-    barmode = "overlay",
-    xaxis = list(title = "Number of months missing"),
-    yaxis = list(title = "")
-  ) 
-
-plot2 <- base %>%
-  add_lines(x = ~date, y = ~median, alpha = 0.3) %>%
-  layout(xaxis = list(title = ""))
-
-subplot(plot1, plot2, titleX = TRUE, widths = c(0.3, 0.7)) %>% 
-  hide_legend() %>%
-  highlight(dynamic = TRUE, selectize = TRUE)
-
-```
-
-## Highlight and annotate data and fit
-```{r, warnings = FALSE, message=FALSE}
-library(crosstalk)
-data(mpg)
-
-mpg.sd <-highlight_key(mpg, ~new)
-
-mpg.sd <- highlight_key(mpg, ~class)
-
-plot <- ggplot(mpg.sd, aes(displ, hwy, colour = class)) +
+p1 = 
+ggplot(gapminder.sd, aes(m.gdpPercap/1000, m.lifeExp, colour = continent)) +
   geom_point() +
-  geom_smooth(se = FALSE, method = "lm")
+  labs(title = "Hover show details, click to highlight group")+
+  theme(legend.position = "none")
 
-ggplotly(plot) %>% highlight("plotly_hover")
+p2 = 
+ggplot(gapminder.sd, aes(year, m.lifeExp, colour = continent)) +
+  geom_point()+
+  theme(legend.position = "bottom")
+
+pl1 = ggplotly(p1, tooltip = c("continent", "m.gdpPercap"))
+pl2 = ggplotly(p2, tooltip = c("continent", "year"))
+
+subplot(pl1, pl2, nrows = 2)
+
 ```
 
-## Time series scatterplot animation
+
+
+## plotly: Highlight and annotate data and fit
+Adding year as grouping factor makes it possible to include in tooltip annotation
+Highlight commands makes all but selected items semi-transparent
+Highlight from legend or points
+```{r, warning = FALSE, message=FALSE}
+
+gap.sd = highlight_key(gapminder, ~new) # Annotates points
+gap.sd = highlight_key(gapminder, ~continent) # Annotates fits
+
+gap.plot =
+ggplot(gap.sd, aes(gdpPercap/1000, lifeExp, colour = continent)) +
+  geom_point(aes(text = country, group = year), size =.75) +
+  geom_smooth(se = FALSE, method = "lm") +
+  scale_x_log10() +
+  labs(title = "Hover to highlight and show details")
+  
+ggplotly(gap.plot,  tooltip = c("text", "y", "year"))%>% 
+  highlight("plotly_hover") 
+```
+
+
+## plotly: Time series scatterplot animation
 
 ids and frame specify the data elements for the animation and slider
 ```{r, scatterplot_time, warning=FALSE}
-library(gapminder)
 
-data(gapminder)
-
-plot = 
+time.plot = 
 ggplot(gapminder, aes(gdpPercap/1000, lifeExp, color = continent)) +
   geom_point(aes(size = pop, frame = year, ids = country)) +
-  scale_x_log10()
+  scale_x_log10() +
+  labs(title = "Slide to change year or Play to animate")
 
-ggplotly(plot)
-
+ggplotly(time.plot)
 
 ```
   

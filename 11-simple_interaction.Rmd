@@ -2,32 +2,36 @@
 
 # Interaction--annotate, highlight, link, and animate{#Interaction}
 
-Client-side interactions
+**Client-side interactions**
 Client-side interactions produce an html rendering of the notebook that can be shared with those that do not have R or the underlying data. The main drawback with client-side interactions is that they support only simple annotation, zooming, and linking and not any data filtering or transformation.
 
-DataTable and other HTML widgets (See Chapter **)
-ggiraph provides simple annotation and linking
-ggplotly provides zooming based on brushed data, as well as more flexible annotation and linking
+Useful client-side interaction packages include:
+* DataTable and other HTML widgets (See Chapter 10 for more details)
+* ggiraph provides simple annotation and linking
+* ggplotly provides zooming based on brushed data, as well as more flexible annotation and linking
 
 
-Server-side interactions
+**Server-side interactions**
 Server-sider interactions provide great flexibility in linking graphs and selecting, filtering and transforming data based on user input.
 
-Shiny notebooks
-Shiny applications
+Useful approaches for server-side interactions
+* Shiny notebooks provides simple way of adding data selection and linking
+* Shiny applications provides may layout options that notebooks don't support
 
 
-```{r, message=FALSE}
+```{r, message=FALSE, warning=FALSE}
 library(DT)
 library(data.table)
 library(sparkline)
 library(ggiraph)
 #devtools::install_github("thomasp85/patchwork")
-library(patchwork) # For combining multiple plots
+library(patchwork) # For combining multiple plots with ggiraph
 library(cowplot)
 
 library(plotly)
 library(sf) # simple features for maps
+# devtools::install_github("hrbrmstr/albersusa")
+
 library(albersusa)
 library(gapminder)
 library(tidyverse)
@@ -43,7 +47,7 @@ Kowarik, A., Meindl, B., & Templ, M. (2014). sparkTable: Generating graphical ta
 
 ```{r}
 
-mtcars %>% dplyr::select(mpg, cyl, wt, hp, qsec) %>% 
+mtcars %>% select(mpg, cyl, wt, hp, qsec) %>% 
   datatable(filter = 'top')
 
 ```
@@ -182,7 +186,7 @@ ggplot(us_laea) +
   geom_sf(aes(fill = log(density_2014), 
               text = paste(name, " density: ", round(density_2014, 0),
                            "people per square mile")))+
-  scale_fill_viridis_c() +
+  scale_fill_viridis_c(option="magma") +
   labs(title = "Hover show details") +
   theme_void()
 
@@ -255,6 +259,7 @@ ggplot(gap.sd, aes(gdpPercap/1000, lifeExp, colour = continent)) +
   
 ggplotly(gap.plot,  tooltip = c("text", "y", "year"))%>% 
   highlight("plotly_hover") 
+
 ```
 
 

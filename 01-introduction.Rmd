@@ -3,6 +3,7 @@
 
 ```{r, echo=FALSE, message=FALSE}
 library(knitr)
+library(ggrepel)
 library(tidyverse)
 ```
 

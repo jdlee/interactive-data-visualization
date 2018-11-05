@@ -2,11 +2,13 @@
 
 # Connection--maps and network plots {#Connection}
 
-Test of examples
 
 
 ```{r, message=FALSE}
 library(tidyverse)
+library(stringr)
+library(viridis)
+library(ggalt)
 rm(list=ls())
 ```
 
@@ -14,8 +16,7 @@ rm(list=ls())
 
 ## Maps
 ```{r, message=FALSE}
-library(tidyverse)
-library(ggalt)
+
 
 ```
 
@@ -53,13 +54,12 @@ ggplot() +
 
 
 ### County map
+Based on example: 
+https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html
 ```{r, county-choropleth, cache=TRUE, message=FALSE}
-# Based on example: https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html
 
+rm(list=ls())
 # TODO replace with poverty or health outcomes data
-library(tidyverse)
-library(stringr)
-library(viridis)
 
 ## Clean data 
 # https://www.ers.usda.gov/data-products/county-level-data-sets/download-data/
@@ -93,18 +93,20 @@ county.df$state <- state.abb[match(county.df$state_name, tolower(state.name))]
 county.df$state_name <- NULL
 
 ## Merge county and state shape information with unemployment data
-unemployment_choropleth.df = county.df %>% inner_join(unemp.df, by = c("state", "county"))
-poverty_choropleth.df = county.df %>% inner_join(poverty.df, by = c("state", "county"))
+# unemployment_choropleth.df = county.df %>% 
+#   inner_join(unemp.df, by = c("state", "county"))
+poverty_choropleth.df = county.df %>% 
+  inner_join(poverty.df, by = c("state", "county"))
 
 
-ggplot(unemployment_choropleth.df, aes(long, lat, group = group)) +
-  geom_polygon(aes(fill = rate), colour = alpha("white", 1/2), size = 0.05) +
-  geom_polygon(data = state.df, colour = "grey80", fill = NA, size = 0.33) +
-  coord_fixed() +
-  theme_minimal() +
-  ggtitle("US unemployment rate by county") +
-  scale_fill_viridis(option="magma")+
-  theme_void()
+# ggplot(unemployment_choropleth.df, aes(long, lat, group = group)) +
+#   geom_polygon(aes(fill = rate), colour = alpha("white", 1/2), size = 0.05) +
+#   geom_polygon(data = state.df, colour = "grey80", fill = NA, size = 0.33) +
+#   coord_fixed() +
+#   theme_minimal() +
+#   ggtitle("US unemployment rate by county") +
+#   scale_fill_viridis(option="magma")+
+#   theme_void()
 
 ggplot(poverty_choropleth.df, aes(long, lat, group = group)) +
   geom_polygon(aes(fill = rate), colour = alpha("white", 1/2), size = 0.05) +

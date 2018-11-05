@@ -25,7 +25,7 @@
 <meta name="author" content="John D. Lee">
 
 
-<meta name="date" content="2018-11-04">
+<meta name="date" content="2018-11-05">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -419,13 +419,8 @@ belts.DriversKilled.bymonth =<span class="st"> </span>belts.df <span class="op">
 <h2><span class="header-section-number">7.7</span> Ridge plot</h2>
 <p><a href="https://cran.r-project.org/web/packages/ggridges/vignettes/gallery.html" class="uri">https://cran.r-project.org/web/packages/ggridges/vignettes/gallery.html</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Ridge plot
-<span class="kw">library</span>(ggridges)</code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;ggridges&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
-## 
-##     scale_discrete_manual</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2movies)
+<span class="kw">library</span>(ggridges)
+<span class="kw">library</span>(ggplot2movies)
 
 movies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(year<span class="op">&gt;</span><span class="dv">1912</span>, length<span class="op">&lt;</span><span class="dv">250</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> length, <span class="dt">y =</span> year, <span class="dt">group =</span> year)) <span class="op">+</span>
@@ -443,9 +438,10 @@ movies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">f
 <p>“A steamgraph is a more aesthetically appealing version of a stacked area chart. It tries to highlight the changes in the data by placing the groups with the most variance on the edges, and the groups with the least variance towards the centre. This feature in conjunction with the centred alignment of each of the contributing areas makes it easier for the viewer to compare the contribution of any of the components across time.”</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#devtools::install_github(&#39;Ather-Energy/ggTimeSeries&#39;)</span>
 <span class="kw">library</span>(babynames)
-<span class="kw">library</span>(ggTimeSeries)
-
-names.df =<span class="st"> </span>babynames <span class="op">%&gt;%</span>
+<span class="kw">library</span>(ggTimeSeries)</code></pre></div>
+<pre><code>## Warning: package &#39;ggTimeSeries&#39; was built under R
+## version 3.4.4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">names.df =<span class="st"> </span>babynames <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">&quot;^Jo&quot;</span>, name)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(year, name) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">tally</span>(<span class="dt">wt=</span>n)
@@ -495,39 +491,9 @@ xts_heatmap &lt;-<span class="st"> </span><span class="cf">function</span>(x){
 <span class="st">    </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Week of Month&quot;</span>, <span class="dt">y=</span><span class="ot">NULL</span>)
 }
   
-<span class="kw">require</span>(quantmod)</code></pre></div>
-<pre><code>## Loading required package: quantmod</code></pre>
-<pre><code>## Loading required package: xts</code></pre>
-<pre><code>## Loading required package: zoo</code></pre>
-<pre><code>## 
-## Attaching package: &#39;zoo&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     as.Date, as.Date.numeric</code></pre>
-<pre><code>## 
-## Attaching package: &#39;xts&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
-## 
-##     first, last</code></pre>
-<pre><code>## Loading required package: TTR</code></pre>
-<pre><code>## Version 0.4-0 included new data defaults. See ?getSymbols.
-## Learn from a quantmod author: https://www.datacamp.com/courses/importing-and-managing-financial-data-in-r</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Download some Data, e.g. the CBOE VIX </span>
+<span class="kw">require</span>(quantmod)
+<span class="co"># Download some Data, e.g. the CBOE VIX </span>
 quantmod<span class="op">::</span><span class="kw">getSymbols</span>(<span class="st">&quot;^VIX&quot;</span>,<span class="dt">src=</span><span class="st">&quot;yahoo&quot;</span>)</code></pre></div>
-<pre><code>## &#39;getSymbols&#39; currently uses auto.assign=TRUE by default, but will
-## use auto.assign=FALSE in 0.5-0. You will still be able to use
-## &#39;loadSymbols&#39; to automatically load data. getOption(&quot;getSymbols.env&quot;)
-## and getOption(&quot;getSymbols.auto.assign&quot;) will still be checked for
-## alternate defaults.
-## 
-## This message is shown once per session and may be disabled by setting 
-## options(&quot;getSymbols.warning4.0&quot;=FALSE). See ?getSymbols for details.</code></pre>
-<pre><code>## 
-## WARNING: There have been significant changes to Yahoo Finance data.
-## Please see the Warning section of &#39;?getSymbols.yahoo&#39; for details.
-## 
-## This message is shown once per session and may be disabled by setting
-## options(&quot;getSymbols.yahoo.warning&quot;=FALSE).</code></pre>
 <pre><code>## [1] &quot;VIX&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">xts_heatmap</span>(<span class="kw">Cl</span>(VIX)) <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;Heatmap of VIX&quot;</span>)</code></pre></div>
 <p><img src="visualizationwithggplot_files/figure-html/temporal-heatmap-1.png" width="672" /></p>

@@ -145,9 +145,9 @@ names.df = babynames %>%
   tally(wt=n)
 ##TODO smooth sequence
 
-ggplot(names.df, aes(year, y = nn, group = name, fill = name)) +
+ggplot(names.df, aes(year, y = n, group = name, fill = name)) +
   stat_steamgraph() +
-  labs(x="", y = "") +
+  labs(x = "", y = "") +
   scale_x_continuous(expand = c(0, 0)) +
   theme_minimal() +
   theme(legend.position = "none", 

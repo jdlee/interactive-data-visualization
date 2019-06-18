@@ -2,6 +2,9 @@
 
 # Interaction--annotate, highlight, link, and animate{#Interaction}
 
+Animations tend to be less effective than well-crafted static represetation.
+Tversky, B., Morrison, J. B., & Betrancourt, M. (2002). Animation: can it facilitate? Int. J. Human-Computer Studies Schnotz & Kulhavy, 57, 247–262. http://doi.org/10.1006/ijhc.1017
+
 **Client-side interactions**
 Client-side interactions produce an html rendering of the notebook that can be shared with those that do not have R or the underlying data. The main drawback with client-side interactions is that they support only simple annotation, zooming, and linking and not any data filtering or transformation.
 
@@ -174,24 +177,24 @@ Legend selection of data
 Brush zooming
 Slider filter and animation
 
-More flexibiltiy with tooltip annotations compared to ggiraph
+ggplotly provides more flexibiltiy with tooltip annotations compared to ggiraph
 
 ```{r, interactive_map, warning=FALSE}
+# 
+# us_laea <- usa_sf("laea")
+# us_laea = us_laea %>% mutate(density_2014 = pop_2014/census_area)
+# 
+# map.plot =  
+# ggplot(us_laea) + 
+#   geom_sf(aes(fill = log(density_2014), 
+#               text = paste(name, " density: ", round(density_2014, 0),
+#                            "people per square mile")))+
+#   scale_fill_viridis_c(option="magma") +
+#   labs(title = "Hover show details") +
+#   theme_void()
 
-us_laea <- usa_sf("laea")
-us_laea = us_laea %>% mutate(density_2014 = pop_2014/census_area)
-
-map.plot =  
-ggplot(us_laea) + 
-  geom_sf(aes(fill = log(density_2014), 
-              text = paste(name, " density: ", round(density_2014, 0),
-                           "people per square mile")))+
-  scale_fill_viridis_c(option="magma") +
-  labs(title = "Hover show details") +
-  theme_void()
-
-ggplotly(map.plot, tooltip = "text") %>%
-  style(hoverlabel = list(bgcolor = "grey85"), hoveron = "fill")
+# ggplotly(map.plot, tooltip = "text") %>%
+#   style(hoverlabel = list(bgcolor = "grey85"), hoveron = "fill")
 
 ```
 

@@ -270,7 +270,7 @@ Compatability
 Conventions and familiarity
 
 
-### Reading and judging values
+### Read and judge values
 Differences between conditions, Compare to zero?
 Perceptual sensitivity
 Proximity compatibility principle (enable relative rather than absolute comparisons with reference lines and data ordering)
@@ -286,10 +286,10 @@ ggplot(cyl_mtcars.df, aes(cyl, m.mpg)) +
   
 ```
 
-### Comparing values
+### Compare values
 
 
-### Detecting and selecting
+### Detect and select
 Outliers, deviations from assumptions
 Popout effects 
 TODO Create figure to show cost of conjunctive search and benefit of redundant coding
@@ -318,7 +318,7 @@ ggarrange(serial.plot, popout.plot,
 
 
 
-### Identifying groups and patterns
+### Identify groups and patterns
 Associations, interactions, and changes over time
 Gestalt principles 
 

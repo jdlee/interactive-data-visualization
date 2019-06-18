@@ -5,9 +5,9 @@ date: "`r Sys.Date()`"
 output: pdf_document
 cover-image: images/Minard_timeline_map.png
 bibliography:
-- vis.bib
-- book.bib
-- packages.bib
+- vis
+- book
+- packages
 description: A book of ggplot examples
 documentclass: krantz
 always_allow_html: yes

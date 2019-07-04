@@ -122,6 +122,33 @@ ggplot(poverty_choropleth.df, aes(long, lat, group = group)) +
 ## US county small multiples
 
 
+## State bins
+From https://git.rud.is/hrbrmstr/statebins
+```{r, statebins, cache=TRUE, message=FALSE}
+#devtools::install_github("hrbrmstr/statebins")
+
+library(statebins)
+library(cdcfluview)
+library(hrbrthemes)
+
+
+flu <- ili_weekly_activity_indicators(2015:2017)
+
+ggplot(flu, aes(state=statename, fill=activity_level)) +
+  geom_statebins(lbl_size=2) +
+  coord_equal() +
+  viridis::scale_fill_viridis(
+    name = "ILI Activity Level  ", limits=c(0,10), breaks=0:10, option = "magma", direction = -1
+  ) +
+  facet_wrap(~season) +
+  labs(title="2015-18 Flu Activity Level") +
+  theme_statebins()+
+  theme(plot.title=element_text(size=16, hjust=0)) +
+  theme(plot.margin = margin(30,30,30,30))
+
+```
+
+
 ## World migration
 TODO Add plot with migration data from kaggle
 

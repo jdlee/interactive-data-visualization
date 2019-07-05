@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Interactive data visualization</title>
-  <meta name="description" content="A book of ggplot examples">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Distribution–histograms and density plots | Interactive data visualization</title>
+  <meta name="description" content="A book of ggplot examples" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Interactive data visualization" />
+  <meta property="og:title" content="Chapter 4 Distribution–histograms and density plots | Interactive data visualization" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/Minard_timeline_map.png" />
@@ -17,25 +16,26 @@
   <meta name="github-repo" content="jdlee/ggplot-examples" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Interactive data visualization" />
+  <meta name="twitter:title" content="Chapter 4 Distribution–histograms and density plots | Interactive data visualization" />
   
   <meta name="twitter:description" content="A book of ggplot examples" />
   <meta name="twitter:image" content="images/Minard_timeline_map.png" />
 
-<meta name="author" content="John D. Lee">
+<meta name="author" content="John D. Lee" />
 
 
-<meta name="date" content="2018-11-05">
+<meta name="date" content="2019-07-04" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="Association.html">
 <link rel="next" href="Comparison.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
@@ -74,41 +74,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -148,10 +174,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2" data-path="Principles.html"><a href="Principles.html"><i class="fa fa-check"></i><b>2</b> Visualization types and principles</a><ul>
 <li class="chapter" data-level="2.1" data-path="Principles.html"><a href="Principles.html#pairing-questions-and-graph-types"><i class="fa fa-check"></i><b>2.1</b> Pairing questions and graph types</a></li>
 <li class="chapter" data-level="2.2" data-path="Principles.html"><a href="Principles.html#percpetual-processes-to-be-supported-comparison-detection-pattern-identification"><i class="fa fa-check"></i><b>2.2</b> Percpetual processes to be supported: Comparison, Detection, Pattern identification</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="Principles.html"><a href="Principles.html#reading-and-judging-values"><i class="fa fa-check"></i><b>2.2.1</b> Reading and judging values</a></li>
-<li class="chapter" data-level="2.2.2" data-path="Principles.html"><a href="Principles.html#comparing-values"><i class="fa fa-check"></i><b>2.2.2</b> Comparing values</a></li>
-<li class="chapter" data-level="2.2.3" data-path="Principles.html"><a href="Principles.html#detecting-and-selecting"><i class="fa fa-check"></i><b>2.2.3</b> Detecting and selecting</a></li>
-<li class="chapter" data-level="2.2.4" data-path="Principles.html"><a href="Principles.html#identifying-groups-and-patterns"><i class="fa fa-check"></i><b>2.2.4</b> Identifying groups and patterns</a></li>
+<li class="chapter" data-level="2.2.1" data-path="Principles.html"><a href="Principles.html#read-and-judge-values"><i class="fa fa-check"></i><b>2.2.1</b> Read and judge values</a></li>
+<li class="chapter" data-level="2.2.2" data-path="Principles.html"><a href="Principles.html#compare-values"><i class="fa fa-check"></i><b>2.2.2</b> Compare values</a></li>
+<li class="chapter" data-level="2.2.3" data-path="Principles.html"><a href="Principles.html#detect-and-select"><i class="fa fa-check"></i><b>2.2.3</b> Detect and select</a></li>
+<li class="chapter" data-level="2.2.4" data-path="Principles.html"><a href="Principles.html#identify-groups-and-patterns"><i class="fa fa-check"></i><b>2.2.4</b> Identify groups and patterns</a></li>
 <li class="chapter" data-level="2.2.5" data-path="Principles.html"><a href="Principles.html#narrative-structure-and-sequence"><i class="fa fa-check"></i><b>2.2.5</b> Narrative structure and sequence</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="Principles.html"><a href="Principles.html#principles-from-general-to-specific"><i class="fa fa-check"></i><b>2.3</b> Principles from general to specific</a><ul>
@@ -243,10 +269,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.1.2" data-path="Connection.html"><a href="Connection.html#county-map"><i class="fa fa-check"></i><b>8.1.2</b> County map</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="Connection.html"><a href="Connection.html#us-county-small-multiples"><i class="fa fa-check"></i><b>8.2</b> US county small multiples</a></li>
-<li class="chapter" data-level="8.3" data-path="Connection.html"><a href="Connection.html#world-migration"><i class="fa fa-check"></i><b>8.3</b> World migration</a></li>
-<li class="chapter" data-level="8.4" data-path="Connection.html"><a href="Connection.html#networks"><i class="fa fa-check"></i><b>8.4</b> Networks</a><ul>
-<li class="chapter" data-level="8.4.1" data-path="Connection.html"><a href="Connection.html#world-migration-network"><i class="fa fa-check"></i><b>8.4.1</b> World migration network</a></li>
-<li class="chapter" data-level="8.4.2" data-path="Connection.html"><a href="Connection.html#hierarchy"><i class="fa fa-check"></i><b>8.4.2</b> Hierarchy</a></li>
+<li class="chapter" data-level="8.3" data-path="Connection.html"><a href="Connection.html#state-bins"><i class="fa fa-check"></i><b>8.3</b> State bins</a></li>
+<li class="chapter" data-level="8.4" data-path="Connection.html"><a href="Connection.html#world-migration"><i class="fa fa-check"></i><b>8.4</b> World migration</a></li>
+<li class="chapter" data-level="8.5" data-path="Connection.html"><a href="Connection.html#networks"><i class="fa fa-check"></i><b>8.5</b> Networks</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="Connection.html"><a href="Connection.html#world-migration-network"><i class="fa fa-check"></i><b>8.5.1</b> World migration network</a></li>
+<li class="chapter" data-level="8.5.2" data-path="Connection.html"><a href="Connection.html#hierarchy"><i class="fa fa-check"></i><b>8.5.2</b> Hierarchy</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="Tables.html"><a href="Tables.html"><i class="fa fa-check"></i><b>9</b> Graphical tables–interactive tables, highlights, and sparklines</a><ul>
@@ -309,6 +336,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="A.2" data-path="shinyadvanced-interactive-graphics.html"><a href="shinyadvanced-interactive-graphics.html#visualization-resources"><i class="fa fa-check"></i><b>A.2</b> Visualization resources</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="B" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>B</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
 
@@ -331,13 +359,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="Distribution" class="section level1">
 <h1><span class="header-section-number">Chapter 4</span> Distribution–histograms and density plots</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
 <span class="kw">library</span>(HistData)
-<span class="kw">library</span>(ggpubr)</code></pre></div>
+<span class="kw">library</span>(ggpubr)</code></pre>
 <div id="histograms-and-bin-choice" class="section level2">
 <h2><span class="header-section-number">4.1</span> Histograms and bin choice</h2>
-<p>Seeing the smooth and rough of data bins or binwidth, default number of bins is 30</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">h10.plot =<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> diamonds.df, <span class="kw">aes</span>(price)) <span class="op">+</span><span class="st"> </span>
+<p>Seeing the smooth and rough of data
+bins or binwidth, default number of bins is 30</p>
+<pre class="sourceCode r"><code class="sourceCode r">h10.plot =<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> diamonds.df, <span class="kw">aes</span>(price)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">10</span>) 
 
 h30.plot =<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> diamonds.df, <span class="kw">aes</span>(price)) <span class="op">+</span><span class="st"> </span>
@@ -347,14 +376,14 @@ h80.plot =<span class="st"> </span><span class="kw">ggplot</span>(<span class="d
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">80</span>) 
 
 <span class="kw">ggarrange</span>(h10.plot, h30.plot, h80.plot,
-    <span class="dt">nrow=</span><span class="dv">1</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">align =</span> <span class="st">&quot;h&quot;</span>)</code></pre></div>
+    <span class="dt">nrow=</span><span class="dv">1</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">align =</span> <span class="st">&quot;h&quot;</span>)</code></pre>
 <p><img src="visualizationwithggplot_files/figure-html/histogram-bin-1.png" width="672" /></p>
 </div>
 <div id="density-and-kernel-adjustment" class="section level2">
 <h2><span class="header-section-number">4.2</span> Density and kernel adjustment</h2>
 <p>Density as abstraction and model</p>
 <p>Adjust is a multiplier on the default kernel bandwidth and so 1 represents the default</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a10.plot =<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> diamonds.df, <span class="kw">aes</span>(price)) <span class="op">+</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r">a10.plot =<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> diamonds.df, <span class="kw">aes</span>(price)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">adjust =</span> <span class="dv">10</span>) 
 
 a1.plot =<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> diamonds.df, <span class="kw">aes</span>(price)) <span class="op">+</span><span class="st"> </span>
@@ -364,16 +393,16 @@ a01.plot =<span class="st"> </span><span class="kw">ggplot</span>(<span class="d
 <span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">adjust  =</span> <span class="fl">0.1</span>) 
 
 <span class="kw">ggarrange</span>(a10.plot, a1.plot, a01.plot,
-    <span class="dt">nrow=</span><span class="dv">1</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">align =</span> <span class="st">&quot;h&quot;</span>)</code></pre></div>
+    <span class="dt">nrow=</span><span class="dv">1</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">align =</span> <span class="st">&quot;h&quot;</span>)</code></pre>
 <p><img src="visualizationwithggplot_files/figure-html/density-adjust-1.png" width="672" /></p>
 </div>
 <div id="histogram-percentage-rather-than-count" class="section level2">
 <h2><span class="header-section-number">4.3</span> Histogram percentage rather than count</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(scales)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(scales)
 
 <span class="kw">ggplot</span>(mtcars.df , <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.factor</span>(cyl))) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">y =</span> (..count..)<span class="op">/</span><span class="kw">sum</span>(..count..))) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>percent)</code></pre></div>
+<span class="st">    </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>percent)</code></pre>
 <p><img src="visualizationwithggplot_files/figure-html/histogram-percentage-1.png" width="672" /></p>
 </div>
 <div id="histogram-density-overlay-and-normal-overlay" class="section level2">
@@ -381,55 +410,55 @@ a01.plot =<span class="st"> </span><span class="kw">ggplot</span>(<span class="d
 </div>
 <div id="cummulative-density" class="section level2">
 <h2><span class="header-section-number">4.5</span> Cummulative density</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">diamonds.df =<span class="st"> </span>diamonds
+<pre class="sourceCode r"><code class="sourceCode r">diamonds.df =<span class="st"> </span>diamonds
 
 <span class="kw">ggplot</span>(diamonds.df, <span class="kw">aes</span>(price, <span class="dt">colour =</span> cut)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">stat_ecdf</span>(<span class="dt">geom =</span> <span class="st">&quot;step&quot;</span>)</code></pre></div>
+<span class="st">  </span><span class="kw">stat_ecdf</span>(<span class="dt">geom =</span> <span class="st">&quot;step&quot;</span>)</code></pre>
 <p><img src="visualizationwithggplot_files/figure-html/cummulative-density-1.png" width="672" /></p>
 </div>
 <div id="quantile-quantle-plot" class="section level2">
 <h2><span class="header-section-number">4.6</span> Quantile-quantle plot</h2>
 <p>Plots quantiles of sample as a function of the quantiles of the theoretical distribution.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds.df, <span class="kw">aes</span>(<span class="dt">sample =</span> price)) <span class="op">+</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds.df, <span class="kw">aes</span>(<span class="dt">sample =</span> price)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_qq</span>(<span class="dt">distribution =</span> qlnorm) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="kw">mean</span>(diamonds.df<span class="op">$</span>price), <span class="dt">slope =</span> <span class="kw">sd</span>(diamonds.df<span class="op">$</span>price))</code></pre></div>
+<span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="kw">mean</span>(diamonds.df<span class="op">$</span>price), <span class="dt">slope =</span> <span class="kw">sd</span>(diamonds.df<span class="op">$</span>price))</code></pre>
 <p><img src="visualizationwithggplot_files/figure-html/qqplot-1.png" width="672" /></p>
 </div>
 <div id="cummulative-density-1" class="section level2">
 <h2><span class="header-section-number">4.7</span> Cummulative density</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds.df, <span class="kw">aes</span>(price, <span class="dt">colour =</span> cut)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">stat_ecdf</span>(<span class="dt">geom =</span> <span class="st">&quot;step&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds.df, <span class="kw">aes</span>(price, <span class="dt">colour =</span> cut)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">stat_ecdf</span>(<span class="dt">geom =</span> <span class="st">&quot;step&quot;</span>)</code></pre>
 <p><img src="visualizationwithggplot_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </div>
 <div id="distribution-2-d-distribution-and-overplotting-revisited" class="section level2">
 <h2><span class="header-section-number">4.8</span> Distribution: 2-D distribution and overplotting revisited</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds.df, <span class="kw">aes</span>(<span class="kw">log</span>(carat), <span class="kw">log</span>(price)))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> .<span class="dv">01</span>)<span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds.df, <span class="kw">aes</span>(<span class="kw">log</span>(carat), <span class="kw">log</span>(price)))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">.01</span>)<span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
 <p><img src="visualizationwithggplot_files/figure-html/2D-distribution-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds.df, <span class="kw">aes</span>(<span class="kw">log</span>(carat), <span class="kw">log</span>(price)))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> .<span class="dv">5</span>)<span class="op">+</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds.df, <span class="kw">aes</span>(<span class="kw">log</span>(carat), <span class="kw">log</span>(price)))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">.5</span>)<span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_density2d</span>(<span class="dt">size=</span><span class="fl">1.2</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
 <p><img src="visualizationwithggplot_files/figure-html/2D-distribution-2.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds.df, <span class="kw">aes</span>(<span class="kw">log</span>(carat), <span class="kw">log</span>(price)))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> .<span class="dv">5</span>)<span class="op">+</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds.df, <span class="kw">aes</span>(<span class="kw">log</span>(carat), <span class="kw">log</span>(price)))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">.5</span>)<span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_density2d</span>(<span class="dt">size=</span><span class="fl">1.2</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_hex</span>(<span class="dt">alpha =</span> .<span class="dv">6</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
+<span class="st">  </span><span class="kw">geom_hex</span>(<span class="dt">alpha =</span> <span class="fl">.6</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
 <p><img src="visualizationwithggplot_files/figure-html/2D-distribution-3.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds.df, <span class="kw">aes</span>(<span class="kw">log</span>(carat), <span class="kw">log</span>(price)))<span class="op">+</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds.df, <span class="kw">aes</span>(<span class="kw">log</span>(carat), <span class="kw">log</span>(price)))<span class="op">+</span>
 <span class="st">  </span><span class="co">#geom_point( )+</span>
 <span class="st">  </span><span class="co">#geom_point(size = .5)+ </span>
 <span class="st">  </span><span class="co">#geom_density2d(size=1.2)+</span>
 <span class="st">  </span><span class="kw">geom_hex</span>(<span class="dt">bins =</span> <span class="dv">50</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
 <p><img src="visualizationwithggplot_files/figure-html/2D-distribution-4.png" width="672" /></p>
 </div>
 <div id="tufte-smallmultiples" class="section level2">
 <h2><span class="header-section-number">4.9</span> Small multiple histogram with density and median reference lines</h2>
 <p>TODO change to diversity data gender across job types</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">diamonds.df =<span class="st"> </span>diamonds
+<pre class="sourceCode r"><code class="sourceCode r">diamonds.df =<span class="st"> </span>diamonds
 
 sum.diamonds.df =<span class="st"> </span>diamonds.df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(cut) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">q85 =</span> <span class="kw">quantile</span>(price, <span class="fl">0.85</span>))
@@ -438,28 +467,21 @@ sum.diamonds.df =<span class="st"> </span>diamonds.df <span class="op">%&gt;%</s
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ..density..), <span class="dt">bins =</span> <span class="dv">40</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">colour =</span> <span class="st">&quot;darkblue&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> sum.diamonds.df, <span class="kw">aes</span>(<span class="dt">xintercept =</span> q85)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">facet_grid</span>(cut <span class="op">~</span><span class="st"> </span>.)</code></pre></div>
+<span class="st">  </span><span class="kw">facet_grid</span>(cut <span class="op">~</span><span class="st"> </span>.)</code></pre>
 <p><img src="visualizationwithggplot_files/figure-html/hitogram-comparison-1.png" width="672" /></p>
 </div>
 <div id="ridge-plotan-array-of-density-plots" class="section level2">
 <h2><span class="header-section-number">4.10</span> Ridge plot–An array of density plots</h2>
 <p><a href="https://cran.r-project.org/web/packages/ggridges/vignettes/gallery.html" class="uri">https://cran.r-project.org/web/packages/ggridges/vignettes/gallery.html</a></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggridges)</code></pre></div>
-<pre><code>## Warning: package &#39;ggridges&#39; was built under R version
-## 3.4.4</code></pre>
-<pre><code>## 
-## Attaching package: &#39;ggridges&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
-## 
-##     scale_discrete_manual</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2movies)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggridges)
+<span class="kw">library</span>(ggplot2movies)
 
 movies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(year<span class="op">&gt;</span><span class="dv">1912</span>, length<span class="op">&lt;</span><span class="dv">250</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> length, <span class="dt">y =</span> year, <span class="dt">group =</span> year)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_density_ridges</span>(<span class="dt">scale =</span> <span class="dv">10</span>, <span class="dt">size =</span> <span class="fl">0.25</span>, <span class="dt">rel_min_height =</span> <span class="fl">0.03</span>, <span class="dt">alpha=</span>.<span class="dv">75</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">250</span>), <span class="dt">expand =</span> <span class="kw">c</span>(<span class="fl">0.01</span>, <span class="dv">0</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_y_reverse</span>(<span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">2000</span>, <span class="dv">1980</span>, <span class="dv">1960</span>, <span class="dv">1940</span>, <span class="dv">1920</span>, <span class="dv">1900</span>), <span class="dt">expand =</span> <span class="kw">c</span>(<span class="fl">0.01</span>, <span class="dv">0</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_ridges</span>()</code></pre></div>
+<span class="st">  </span><span class="kw">theme_ridges</span>()</code></pre>
 <pre><code>## Picking joint bandwidth of 6.89</code></pre>
 <p><img src="visualizationwithggplot_files/figure-html/ridgeplot-1.png" width="672" /></p>
 
@@ -492,7 +514,7 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
 "all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
@@ -504,6 +526,10 @@ gitbook.start({
 "edit": {
 "link": "https://github.com/jdlee/interactive-data-visualization/blob/master/04-distribution.Rmd",
 "text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
 },
 "download": ["visualizationwithggplot.pdf", "visualizationwithggplot.epub"],
 "toc": {

@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Interactive data visualization</title>
-  <meta name="description" content="A book of ggplot examples">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Introduction: Audiences, purposes, questions | Interactive data visualization</title>
+  <meta name="description" content="A book of ggplot examples" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Interactive data visualization" />
+  <meta property="og:title" content="Chapter 1 Introduction: Audiences, purposes, questions | Interactive data visualization" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/Minard_timeline_map.png" />
@@ -17,25 +16,26 @@
   <meta name="github-repo" content="jdlee/ggplot-examples" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Interactive data visualization" />
+  <meta name="twitter:title" content="Chapter 1 Introduction: Audiences, purposes, questions | Interactive data visualization" />
   
   <meta name="twitter:description" content="A book of ggplot examples" />
   <meta name="twitter:image" content="images/Minard_timeline_map.png" />
 
-<meta name="author" content="John D. Lee">
+<meta name="author" content="John D. Lee" />
 
 
-<meta name="date" content="2018-11-05">
+<meta name="date" content="2019-07-04" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="about-the-author.html">
 <link rel="next" href="Principles.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
@@ -74,41 +74,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -148,10 +174,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2" data-path="Principles.html"><a href="Principles.html"><i class="fa fa-check"></i><b>2</b> Visualization types and principles</a><ul>
 <li class="chapter" data-level="2.1" data-path="Principles.html"><a href="Principles.html#pairing-questions-and-graph-types"><i class="fa fa-check"></i><b>2.1</b> Pairing questions and graph types</a></li>
 <li class="chapter" data-level="2.2" data-path="Principles.html"><a href="Principles.html#percpetual-processes-to-be-supported-comparison-detection-pattern-identification"><i class="fa fa-check"></i><b>2.2</b> Percpetual processes to be supported: Comparison, Detection, Pattern identification</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="Principles.html"><a href="Principles.html#reading-and-judging-values"><i class="fa fa-check"></i><b>2.2.1</b> Reading and judging values</a></li>
-<li class="chapter" data-level="2.2.2" data-path="Principles.html"><a href="Principles.html#comparing-values"><i class="fa fa-check"></i><b>2.2.2</b> Comparing values</a></li>
-<li class="chapter" data-level="2.2.3" data-path="Principles.html"><a href="Principles.html#detecting-and-selecting"><i class="fa fa-check"></i><b>2.2.3</b> Detecting and selecting</a></li>
-<li class="chapter" data-level="2.2.4" data-path="Principles.html"><a href="Principles.html#identifying-groups-and-patterns"><i class="fa fa-check"></i><b>2.2.4</b> Identifying groups and patterns</a></li>
+<li class="chapter" data-level="2.2.1" data-path="Principles.html"><a href="Principles.html#read-and-judge-values"><i class="fa fa-check"></i><b>2.2.1</b> Read and judge values</a></li>
+<li class="chapter" data-level="2.2.2" data-path="Principles.html"><a href="Principles.html#compare-values"><i class="fa fa-check"></i><b>2.2.2</b> Compare values</a></li>
+<li class="chapter" data-level="2.2.3" data-path="Principles.html"><a href="Principles.html#detect-and-select"><i class="fa fa-check"></i><b>2.2.3</b> Detect and select</a></li>
+<li class="chapter" data-level="2.2.4" data-path="Principles.html"><a href="Principles.html#identify-groups-and-patterns"><i class="fa fa-check"></i><b>2.2.4</b> Identify groups and patterns</a></li>
 <li class="chapter" data-level="2.2.5" data-path="Principles.html"><a href="Principles.html#narrative-structure-and-sequence"><i class="fa fa-check"></i><b>2.2.5</b> Narrative structure and sequence</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="Principles.html"><a href="Principles.html#principles-from-general-to-specific"><i class="fa fa-check"></i><b>2.3</b> Principles from general to specific</a><ul>
@@ -243,10 +269,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.1.2" data-path="Connection.html"><a href="Connection.html#county-map"><i class="fa fa-check"></i><b>8.1.2</b> County map</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="Connection.html"><a href="Connection.html#us-county-small-multiples"><i class="fa fa-check"></i><b>8.2</b> US county small multiples</a></li>
-<li class="chapter" data-level="8.3" data-path="Connection.html"><a href="Connection.html#world-migration"><i class="fa fa-check"></i><b>8.3</b> World migration</a></li>
-<li class="chapter" data-level="8.4" data-path="Connection.html"><a href="Connection.html#networks"><i class="fa fa-check"></i><b>8.4</b> Networks</a><ul>
-<li class="chapter" data-level="8.4.1" data-path="Connection.html"><a href="Connection.html#world-migration-network"><i class="fa fa-check"></i><b>8.4.1</b> World migration network</a></li>
-<li class="chapter" data-level="8.4.2" data-path="Connection.html"><a href="Connection.html#hierarchy"><i class="fa fa-check"></i><b>8.4.2</b> Hierarchy</a></li>
+<li class="chapter" data-level="8.3" data-path="Connection.html"><a href="Connection.html#state-bins"><i class="fa fa-check"></i><b>8.3</b> State bins</a></li>
+<li class="chapter" data-level="8.4" data-path="Connection.html"><a href="Connection.html#world-migration"><i class="fa fa-check"></i><b>8.4</b> World migration</a></li>
+<li class="chapter" data-level="8.5" data-path="Connection.html"><a href="Connection.html#networks"><i class="fa fa-check"></i><b>8.5</b> Networks</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="Connection.html"><a href="Connection.html#world-migration-network"><i class="fa fa-check"></i><b>8.5.1</b> World migration network</a></li>
+<li class="chapter" data-level="8.5.2" data-path="Connection.html"><a href="Connection.html#hierarchy"><i class="fa fa-check"></i><b>8.5.2</b> Hierarchy</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="Tables.html"><a href="Tables.html"><i class="fa fa-check"></i><b>9</b> Graphical tables–interactive tables, highlights, and sparklines</a><ul>
@@ -309,6 +336,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="A.2" data-path="shinyadvanced-interactive-graphics.html"><a href="shinyadvanced-interactive-graphics.html#visualization-resources"><i class="fa fa-check"></i><b>A.2</b> Visualization resources</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="B" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>B</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
 
@@ -353,7 +381,7 @@ FIGURE 1.2: A visualization of the same results makes the deviations pop out.
 <div id="seeing-more-than-summary-statistics" class="section level2">
 <h2><span class="header-section-number">1.2</span> Seeing more than summary statistics</h2>
 <p>The easy availability of sophisticated machine learning and statistical models makes algorithmic interpretation of data tempting. However, such interpretations can mislead, with similar outcomes produced by very different underlying data.</p>
-<p>Figure <a href="Introduction.html#fig:anscombe-vis">1.3</a> shows four distinct sets of data. The differences are obvious when graphed. One might expect that the typical summary statistics–mean, standard deviation, and correlation–would show equally stark differences. Table <a href="Introduction.html#tab:anscombe-tab">1.1</a> shows this is not the case. Each data set has the same summary statistics.</p>
+<p>Figure <a href="Introduction.html#fig:anscombe-vis">1.3</a> shows four distinct sets of data. The differences are obvious when graphed. One might expect that the typical summary statistics–mean, standard deviation, and correlation–would show equally stark differences. Table <a href="#tab:anscombe-tab"><strong>??</strong></a> shows this is not the case. Each data set has the same summary statistics.</p>
 <div class="figure"><span id="fig:anscombe-vis"></span>
 <img src="visualizationwithggplot_files/figure-html/anscombe-vis-1.png" alt="The Anscombe quartet and the limits of summary statistics." width="672" />
 <p class="caption">
@@ -361,80 +389,77 @@ FIGURE 1.3: The Anscombe quartet and the limits of summary statistics.
 </p>
 </div>
 <table>
-<caption>
-<span id="tab:anscombe-tab">TABLE 1.1: </span>Four seemingly identical datasets that illustrate the limits of algorithmic interpretation.
-</caption>
 <thead>
 <tr>
-<th style="text-align:left;">
-Data set
+<th>
+set
 </th>
-<th style="text-align:right;">
-Mean
+<th>
+mean.y
 </th>
-<th style="text-align:right;">
-Standard deviation
+<th>
+sd.y
 </th>
-<th style="text-align:right;">
-Correlation
+<th>
+cor
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
 Set 1
 </td>
-<td style="text-align:right;">
-7.5
+<td>
+7.501
 </td>
-<td style="text-align:right;">
-2.03
+<td>
+2.032
 </td>
-<td style="text-align:right;">
-0.82
+<td>
+0.8164
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td>
 Set 2
 </td>
-<td style="text-align:right;">
-7.5
+<td>
+7.501
 </td>
-<td style="text-align:right;">
-2.03
+<td>
+2.032
 </td>
-<td style="text-align:right;">
-0.82
+<td>
+0.8162
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td>
 Set 3
 </td>
-<td style="text-align:right;">
-7.5
+<td>
+7.500
 </td>
-<td style="text-align:right;">
-2.03
+<td>
+2.030
 </td>
-<td style="text-align:right;">
-0.82
+<td>
+0.8163
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td>
 Set 4
 </td>
-<td style="text-align:right;">
-7.5
+<td>
+7.501
 </td>
-<td style="text-align:right;">
-2.03
+<td>
+2.031
 </td>
-<td style="text-align:right;">
-0.82
+<td>
+0.8165
 </td>
 </tr>
 </tbody>
@@ -449,9 +474,13 @@ Set 4
 </div>
 <div id="what-question-to-answer" class="section level2">
 <h2><span class="header-section-number">1.4</span> What question to answer?</h2>
-<p>Triadic perspective that links three distinct elements: 1. the person and their questions 2. the underlying data and its meaning 3. the graphical representation</p>
+<p>Triadic perspective that links three distinct elements:
+1. the person and their questions
+2. the underlying data and its meaning
+3. the graphical representation</p>
 <p>This triadic perspective places equal emphasis on the analytics and processing of data and the visual representation that must be tailored to the motivation, needs and capacity of the people viewing the graph.</p>
-<p>This requires: 1. Abstracting and aggregating (properties of the data) to address the intersts of the audience.11</p>
+<p>This requires:
+1. Abstracting and aggregating (properties of the data) to address the intersts of the audience.11</p>
 <ol start="2" style="list-style-type: decimal">
 <li><p>matching types of graphs (visual representations) to types of questions (properties of the data)</p></li>
 <li><p>matching types of graphs (visual representations) to the audience (properties of people, their interests, and experience)</p></li>
@@ -469,20 +498,28 @@ Set 4
 <div id="data-sources" class="section level2">
 <h2><span class="header-section-number">1.6</span> Data sources</h2>
 <p>This book uses data from the following sources:</p>
-<p>Work and life activity: American Time Use Survey (ATUS) <a href="https://www.bls.gov/tus/" class="uri">https://www.bls.gov/tus/</a> <a href="https://cran.r-project.org/web/packages/atus/atus.pdf" class="uri">https://cran.r-project.org/web/packages/atus/atus.pdf</a></p>
-<p>O*NET occupational information: knowledge, skills, abilties, task composition <a href="https://www.onetonline.org" class="uri">https://www.onetonline.org</a></p>
-<p>Accident data: Occupational injury, motor vehicle crashes Babynames Sleep data Healthcare: Taste: Wine, chocolate</p>
+<p>Work and life activity:
+American Time Use Survey (ATUS)
+<a href="https://www.bls.gov/tus/" class="uri">https://www.bls.gov/tus/</a>
+<a href="https://cran.r-project.org/web/packages/atus/atus.pdf" class="uri">https://cran.r-project.org/web/packages/atus/atus.pdf</a></p>
+<p>O*NET occupational information: knowledge, skills, abilties, task composition
+<a href="https://www.onetonline.org" class="uri">https://www.onetonline.org</a></p>
+<p>Accident data: Occupational injury, motor vehicle crashes
+Babynames
+Sleep data
+Healthcare:
+Taste: Wine, chocolate</p>
 <p><a href="https://www.kaggle.com" class="uri">https://www.kaggle.com</a></p>
 <p><a href="https://www.data.gov" class="uri">https://www.data.gov</a> Consumer complaint database, NTSB accident database</p>
 <p><a href="https://flowingdata.com/category/projects/data-underload/" class="uri">https://flowingdata.com/category/projects/data-underload/</a></p>
 <p><a href="http://www.wolframalpha.com" class="uri">http://www.wolframalpha.com</a></p>
 <p>R packages: HistData, babynames</p>
 <p>Yao about data and web scraping and the package</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Read data from website
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## Read data from website</span>
 <span class="co"># sports &lt;- read_tsv(&quot;https://github.com/halhen/viz-pub/raw/master/sports-time-of-day/activity.tsv&quot;)</span>
 
 
-## Happiness
+<span class="co">## Happiness</span>
 
 happiness.df =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/world-happiness-report/2017.csv&quot;</span>)
 
@@ -499,19 +536,19 @@ highlight.df =<span class="st"> </span>happiness.df <span class="op">%&gt;%</spa
 <span class="st">  </span><span class="kw">geom_text_repel</span>(<span class="dt">data =</span> highlight.df, <span class="kw">aes</span>(<span class="dt">label =</span> Country))<span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Money doesn&#39;t buy happiness, but it helps&quot;</span>, 
        <span class="dt">subtitle =</span> <span class="st">&quot;Source: https://www.kaggle.com/unsdsn/world-happiness 2017&quot;</span>,
-       <span class="dt">y =</span> <span class="st">&quot;Happiness&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Per capita GDP&quot;</span>)</code></pre></div>
+       <span class="dt">y =</span> <span class="st">&quot;Happiness&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Per capita GDP&quot;</span>)</code></pre>
 <p><img src="visualizationwithggplot_files/figure-html/happiness-plot-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Chocolate
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## Chocolate</span>
 <span class="co"># chocolate.df = read.csv(&quot;flavors_of_cacao.csv&quot;)</span>
 <span class="co"># chocolate.df$Cocoa.Percent = as.numeric(chocolate.df$Cocoa.Percent)</span>
 <span class="co"># ggplot(chocolate.df, aes(Cocoa.Percent, Rating)) + geom_point()</span>
 
 
-## Police
-## 2535 observations, Age, gender, how armed, state, threat, body cameraAll factors
+<span class="co">## Police</span>
+<span class="co">## 2535 observations, Age, gender, how armed, state, threat, body cameraAll factors</span>
  police.df =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/PoliceKillingsUS.csv&quot;</span>) 
 
-<span class="co"># Canadian vehicle specifications: http://www.carsp.ca/research/resources/safety-sources/canadian-vehicle-specifications/</span></code></pre></div>
+<span class="co"># Canadian vehicle specifications: http://www.carsp.ca/research/resources/safety-sources/canadian-vehicle-specifications/</span></code></pre>
 </div>
 <div id="grammar-of-data-manipulation" class="section level2">
 <h2><span class="header-section-number">1.7</span> Grammar of data manipulation</h2>
@@ -520,19 +557,21 @@ highlight.df =<span class="st"> </span>happiness.df <span class="op">%&gt;%</spa
 </div>
 <div id="grammar-of-graphics" class="section level2">
 <h2><span class="header-section-number">1.8</span> Grammar of graphics</h2>
-<p>Data, layers of geometric eleements, map and set aesthetic properties of each layer of geometric element locally or globally Simple example</p>
+<p>Data, layers of geometric eleements, map and set aesthetic properties of each layer of geometric element locally or globally
+Simple example</p>
 </div>
 <div id="considering-cognitive-capabilities-in-graphic-design" class="section level2">
 <h2><span class="header-section-number">1.9</span> Considering cognitive capabilities in graphic design</h2>
-<p>Capitalizing on power of visual perception Same graph with out without consideration</p>
+<p>Capitalizing on power of visual perception
+Same graph with out without consideration</p>
 
 
 </div>
 </div>
-<h3>References</h3>
+<h3><span class="header-section-number">B</span> References</h3>
 <div id="refs" class="references">
 <div id="ref-Gelman2013">
-<p>Gelman, Andrew, and Antony Unwin. 2013a. “Infovis and Statistical Graphics: Different Goals, Different Looks.” <em>Journal of Computational and Graphical Statistics</em> 22 (1): 2–28. doi:<a href="https://doi.org/10.1080/10618600.2012.761137">10.1080/10618600.2012.761137</a>.</p>
+<p>Gelman, Andrew, and Antony Unwin. 2013a. “Infovis and Statistical Graphics: Different Goals, Different Looks.” <em>Journal of Computational and Graphical Statistics</em> 22 (1): 2–28. <a href="https://doi.org/10.1080/10618600.2012.761137">https://doi.org/10.1080/10618600.2012.761137</a>.</p>
 </div>
 </div>
             </section>
@@ -561,7 +600,7 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
 "all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
@@ -573,6 +612,10 @@ gitbook.start({
 "edit": {
 "link": "https://github.com/jdlee/interactive-data-visualization/blob/master/01-introduction.Rmd",
 "text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
 },
 "download": ["visualizationwithggplot.pdf", "visualizationwithggplot.epub"],
 "toc": {

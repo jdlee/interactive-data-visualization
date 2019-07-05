@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Interactive data visualization</title>
-  <meta name="description" content="A book of ggplot examples">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Proportion–Pie charts and pareto plots | Interactive data visualization</title>
+  <meta name="description" content="A book of ggplot examples" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Interactive data visualization" />
+  <meta property="og:title" content="Chapter 6 Proportion–Pie charts and pareto plots | Interactive data visualization" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/Minard_timeline_map.png" />
@@ -17,25 +16,26 @@
   <meta name="github-repo" content="jdlee/ggplot-examples" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Interactive data visualization" />
+  <meta name="twitter:title" content="Chapter 6 Proportion–Pie charts and pareto plots | Interactive data visualization" />
   
   <meta name="twitter:description" content="A book of ggplot examples" />
   <meta name="twitter:image" content="images/Minard_timeline_map.png" />
 
-<meta name="author" content="John D. Lee">
+<meta name="author" content="John D. Lee" />
 
 
-<meta name="date" content="2018-11-05">
+<meta name="date" content="2019-07-04" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="Comparison.html">
 <link rel="next" href="Fluctuation.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
@@ -74,41 +74,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -148,10 +174,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2" data-path="Principles.html"><a href="Principles.html"><i class="fa fa-check"></i><b>2</b> Visualization types and principles</a><ul>
 <li class="chapter" data-level="2.1" data-path="Principles.html"><a href="Principles.html#pairing-questions-and-graph-types"><i class="fa fa-check"></i><b>2.1</b> Pairing questions and graph types</a></li>
 <li class="chapter" data-level="2.2" data-path="Principles.html"><a href="Principles.html#percpetual-processes-to-be-supported-comparison-detection-pattern-identification"><i class="fa fa-check"></i><b>2.2</b> Percpetual processes to be supported: Comparison, Detection, Pattern identification</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="Principles.html"><a href="Principles.html#reading-and-judging-values"><i class="fa fa-check"></i><b>2.2.1</b> Reading and judging values</a></li>
-<li class="chapter" data-level="2.2.2" data-path="Principles.html"><a href="Principles.html#comparing-values"><i class="fa fa-check"></i><b>2.2.2</b> Comparing values</a></li>
-<li class="chapter" data-level="2.2.3" data-path="Principles.html"><a href="Principles.html#detecting-and-selecting"><i class="fa fa-check"></i><b>2.2.3</b> Detecting and selecting</a></li>
-<li class="chapter" data-level="2.2.4" data-path="Principles.html"><a href="Principles.html#identifying-groups-and-patterns"><i class="fa fa-check"></i><b>2.2.4</b> Identifying groups and patterns</a></li>
+<li class="chapter" data-level="2.2.1" data-path="Principles.html"><a href="Principles.html#read-and-judge-values"><i class="fa fa-check"></i><b>2.2.1</b> Read and judge values</a></li>
+<li class="chapter" data-level="2.2.2" data-path="Principles.html"><a href="Principles.html#compare-values"><i class="fa fa-check"></i><b>2.2.2</b> Compare values</a></li>
+<li class="chapter" data-level="2.2.3" data-path="Principles.html"><a href="Principles.html#detect-and-select"><i class="fa fa-check"></i><b>2.2.3</b> Detect and select</a></li>
+<li class="chapter" data-level="2.2.4" data-path="Principles.html"><a href="Principles.html#identify-groups-and-patterns"><i class="fa fa-check"></i><b>2.2.4</b> Identify groups and patterns</a></li>
 <li class="chapter" data-level="2.2.5" data-path="Principles.html"><a href="Principles.html#narrative-structure-and-sequence"><i class="fa fa-check"></i><b>2.2.5</b> Narrative structure and sequence</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="Principles.html"><a href="Principles.html#principles-from-general-to-specific"><i class="fa fa-check"></i><b>2.3</b> Principles from general to specific</a><ul>
@@ -243,10 +269,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.1.2" data-path="Connection.html"><a href="Connection.html#county-map"><i class="fa fa-check"></i><b>8.1.2</b> County map</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="Connection.html"><a href="Connection.html#us-county-small-multiples"><i class="fa fa-check"></i><b>8.2</b> US county small multiples</a></li>
-<li class="chapter" data-level="8.3" data-path="Connection.html"><a href="Connection.html#world-migration"><i class="fa fa-check"></i><b>8.3</b> World migration</a></li>
-<li class="chapter" data-level="8.4" data-path="Connection.html"><a href="Connection.html#networks"><i class="fa fa-check"></i><b>8.4</b> Networks</a><ul>
-<li class="chapter" data-level="8.4.1" data-path="Connection.html"><a href="Connection.html#world-migration-network"><i class="fa fa-check"></i><b>8.4.1</b> World migration network</a></li>
-<li class="chapter" data-level="8.4.2" data-path="Connection.html"><a href="Connection.html#hierarchy"><i class="fa fa-check"></i><b>8.4.2</b> Hierarchy</a></li>
+<li class="chapter" data-level="8.3" data-path="Connection.html"><a href="Connection.html#state-bins"><i class="fa fa-check"></i><b>8.3</b> State bins</a></li>
+<li class="chapter" data-level="8.4" data-path="Connection.html"><a href="Connection.html#world-migration"><i class="fa fa-check"></i><b>8.4</b> World migration</a></li>
+<li class="chapter" data-level="8.5" data-path="Connection.html"><a href="Connection.html#networks"><i class="fa fa-check"></i><b>8.5</b> Networks</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="Connection.html"><a href="Connection.html#world-migration-network"><i class="fa fa-check"></i><b>8.5.1</b> World migration network</a></li>
+<li class="chapter" data-level="8.5.2" data-path="Connection.html"><a href="Connection.html#hierarchy"><i class="fa fa-check"></i><b>8.5.2</b> Hierarchy</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="Tables.html"><a href="Tables.html"><i class="fa fa-check"></i><b>9</b> Graphical tables–interactive tables, highlights, and sparklines</a><ul>
@@ -309,6 +336,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="A.2" data-path="shinyadvanced-interactive-graphics.html"><a href="shinyadvanced-interactive-graphics.html#visualization-resources"><i class="fa fa-check"></i><b>A.2</b> Visualization resources</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="B" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>B</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
 
@@ -335,13 +363,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <img src="images/Playfair_piecharts.jpg" alt="My picture" />
 <p class="caption">My picture</p>
 </div>
-<p>From wikipedia: “The French engineer Charles Joseph Minard was one of the first to use pie charts in 1858, in particular in maps. Minard’s map, 1858 used pie charts to represent the cattle sent from all around France for consumption in Paris (1858).” <img src="images/Minard_pie.png" alt="My picture" /></p>
+<p>From wikipedia: “The French engineer Charles Joseph Minard was one of the first to use pie charts in 1858, in particular in maps. Minard’s map, 1858 used pie charts to represent the cattle sent from all around France for consumption in Paris (1858).”
+<img src="images/Minard_pie.png" alt="My picture" /></p>
 <p>Other examples of Minard’s work: <a href="https://cartographia.wordpress.com/category/charles-joseph-minard/" class="uri">https://cartographia.wordpress.com/category/charles-joseph-minard/</a></p>
 <div id="pie-and-bar-chart" class="section level2">
 <h2><span class="header-section-number">6.1</span> Pie and bar chart</h2>
-<p>Defense of pie charts: <a href="https://serialmentor.com/dataviz/visualizing-proportions.html#a-case-for-pie-charts" class="uri">https://serialmentor.com/dataviz/visualizing-proportions.html#a-case-for-pie-charts</a> Good pie chart: Few elements, directly labled, alpha for pie pieces</p>
+<p>Defense of pie charts: <a href="https://serialmentor.com/dataviz/visualizing-proportions.html#a-case-for-pie-charts" class="uri">https://serialmentor.com/dataviz/visualizing-proportions.html#a-case-for-pie-charts</a>
+Good pie chart: Few elements, directly labled, alpha for pie pieces</p>
 <p>Small multiple for pie vs stacked bar likert ratings or time trends</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(HistData)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(HistData)
 <span class="kw">library</span>(tidyverse)
 <span class="kw">library</span>(ggpubr)
 
@@ -387,14 +417,14 @@ dodged.plot =<span class="st">  </span><span class="kw">ggplot</span>(sum.night.
 deaths.plot =<span class="st"> </span><span class="kw">ggarrange</span>(pie.plot, stacked.plot, dodged.plot, 
                        <span class="dt">nrow=</span><span class="dv">1</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">align =</span> <span class="st">&quot;hv&quot;</span>, <span class="dt">common.legend =</span> <span class="ot">TRUE</span>)
 
-deaths.plot</code></pre></div>
+deaths.plot</code></pre>
 <p><img src="visualizationwithggplot_files/figure-html/proportion-plot-1.png" width="672" /></p>
 </div>
 <div id="waffle-plot" class="section level2">
 <h2><span class="header-section-number">6.2</span> Waffle plot</h2>
 <p>Waffle plots provide an alternative to pie charts to show proportion. They do so by showing the individual elements that make up the whole and so they often inculde icons rather than an a more abstracted representation. Below icons of cars from the typeface “fontawesome” replace the filled squares.</p>
 <p>People process frequencies different from proportions and so waffle charts can provide an intuitive representation of the prevalance of false positive results for a diagnostic test for a rare condition.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># devtools::install_github(&quot;liamgilbey/ggwaffle&quot;)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># devtools::install_github(&quot;liamgilbey/ggwaffle&quot;)</span>
 <span class="kw">library</span>(tidyverse)
 <span class="kw">library</span>(ggwaffle)
 <span class="kw">library</span>(extrafont)
@@ -423,12 +453,12 @@ wp2 =<span class="st"> </span><span class="kw">ggplot</span>(waffle_data, <span 
 <span class="st">  </span><span class="kw">theme_waffle</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Cylinders&quot;</span>)
 
-<span class="kw">ggarrange</span>(wp1, wp2, <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">common.legend =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<span class="kw">ggarrange</span>(wp1, wp2, <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">common.legend =</span> <span class="ot">TRUE</span>)</code></pre>
 <p><img src="visualizationwithggplot_files/figure-html/waffle-plot-1.png" width="672" /></p>
 </div>
 <div id="pareto-plot-whole-part-and-and-ranking" class="section level2">
 <h2><span class="header-section-number">6.3</span> Pareto plot: Whole part and and ranking</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Calculate percent and cumulative percent
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## Calculate percent and cumulative percent</span>
 
 sum.night.df =<span class="st"> </span>night.df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">total.deaths =</span> <span class="kw">sum</span>(deaths)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(cause) <span class="op">%&gt;%</span><span class="st"> </span>
@@ -437,21 +467,21 @@ sum.night.df =<span class="st"> </span>night.df <span class="op">%&gt;%</span><s
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cum.cause.percent =</span> <span class="kw">cumsum</span>(cause.percent)) 
 
 
-## Pareto plot: Individual and cummulative proportion
+<span class="co">## Pareto plot: Individual and cummulative proportion</span>
 <span class="kw">ggplot</span>(sum.night.df) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="kw">reorder</span>(cause, <span class="op">-</span>cause.percent), cause.percent), <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="kw">reorder</span>(cause, <span class="op">-</span>cause.percent), cum.cause.percent), <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="dv">3</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="kw">reorder</span>(cause, <span class="op">-</span>cause.percent), cum.cause.percent, <span class="dt">group =</span> <span class="dv">1</span>), <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>)</code></pre></div>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="kw">reorder</span>(cause, <span class="op">-</span>cause.percent), cum.cause.percent, <span class="dt">group =</span> <span class="dv">1</span>), <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>)</code></pre>
 <p><img src="visualizationwithggplot_files/figure-html/pareto-plot-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> sum.night.df) <span class="op">+</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> sum.night.df) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">80</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="kw">reorder</span>(cause, <span class="op">-</span>cause.percent), 
                   <span class="dt">ymin =</span> <span class="dv">0</span>, <span class="dt">ymax =</span> cum.cause.percent, <span class="dt">group =</span> <span class="dv">1</span>), <span class="dt">fill =</span> <span class="st">&quot;darkgrey&quot;</span>, <span class="dt">alpha =</span>.<span class="dv">8</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="kw">reorder</span>(cause, <span class="op">-</span>cause.percent), cause.percent), <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">width =</span> .<span class="dv">8</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="kw">reorder</span>(cause, <span class="op">-</span>cause.percent), cause.percent), <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">width =</span> <span class="fl">.8</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="kw">reorder</span>(cause, <span class="op">-</span>cause.percent), cum.cause.percent), <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
 <p><img src="visualizationwithggplot_files/figure-html/pareto-plot-2.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ## Pareto plot</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ## Pareto plot</span>
 <span class="co"># mtcars.df = mtcars</span>
 <span class="co"># sum.mtcars.df = mtcars.df %&gt;% ungroup() %&gt;%</span>
 <span class="co">#   mutate(total.n = n()) %&gt;% group_by(gear) %&gt;% </span>
@@ -464,70 +494,71 @@ sum.night.df =<span class="st"> </span>night.df <span class="op">%&gt;%</span><s
 <span class="co">#   geom_ribbon(aes(reorder(gear, -gear.percent), </span>
 <span class="co">#                   ymin = 0, ymax = cum.gear.percent, group = 1), fill = &quot;darkgrey&quot;, alpha =.8) +</span>
 <span class="co">#   geom_bar(aes(reorder(gear, -gear.percent), gear.percent), stat = &quot;identity&quot;, width = .8) +</span>
-<span class="co">#   geom_point(aes(reorder(gear, -gear.percent), cum.gear.percent), size = 3, colour = &quot;red&quot;)</span></code></pre></div>
+<span class="co">#   geom_point(aes(reorder(gear, -gear.percent), cum.gear.percent), size = 3, colour = &quot;red&quot;)</span></code></pre>
 </div>
 <div id="stacked-bar-chart" class="section level2">
 <h2><span class="header-section-number">6.4</span> Stacked bar chart</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sum.night.df =<span class="st"> </span>night.df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">sum.night.df =<span class="st"> </span>night.df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">total.deaths =</span> <span class="kw">sum</span>(deaths)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(cause, intervention) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">cause.percent =</span> <span class="dv">100</span><span class="op">*</span><span class="kw">sum</span>(deaths)<span class="op">/</span><span class="kw">max</span>(total.deaths),
             <span class="dt">deaths =</span> <span class="kw">sum</span>(deaths))
 
-## Stacked bar with count: Shows data directly
+<span class="co">## Stacked bar with count: Shows data directly</span>
 <span class="kw">ggplot</span>(sum.night.df, <span class="kw">aes</span>(intervention, deaths, <span class="dt">fill =</span> cause)) <span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;stack&quot;</span>, <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span>
 <span class="st">   </span><span class="kw">fill_palette</span>(<span class="dt">palette =</span> <span class="st">&quot;grey&quot;</span>) <span class="op">+</span>
-<span class="st">   </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;&quot;</span>)</code></pre></div>
+<span class="st">   </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;&quot;</span>)</code></pre>
 <p><img src="visualizationwithggplot_files/figure-html/stacked-bar-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Stacked bar with proportion: Abstracts to proportion
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## Stacked bar with proportion: Abstracts to proportion</span>
 <span class="kw">ggplot</span>(sum.night.df, <span class="kw">aes</span>(intervention, cause.percent, <span class="dt">fill =</span> cause))<span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;fill&quot;</span>, <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span>
 <span class="st">   </span><span class="kw">fill_palette</span>(<span class="dt">palette =</span> <span class="st">&quot;grey&quot;</span>) <span class="op">+</span>
-<span class="st">   </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;&quot;</span>)</code></pre></div>
+<span class="st">   </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;&quot;</span>)</code></pre>
 <p><img src="visualizationwithggplot_files/figure-html/stacked-bar-2.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(sum.night.df, <span class="kw">aes</span>(intervention, cause.percent, <span class="dt">fill =</span> cause))<span class="op">+</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(sum.night.df, <span class="kw">aes</span>(intervention, cause.percent, <span class="dt">fill =</span> cause))<span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span>
 <span class="st">   </span><span class="kw">fill_palette</span>(<span class="dt">palette =</span> <span class="st">&quot;grey&quot;</span>) <span class="op">+</span>
 <span class="st">   </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
 <p><img src="visualizationwithggplot_files/figure-html/stacked-bar-3.png" width="672" /></p>
 </div>
 <div id="faceted-bar-chart-with-overall-reference-distribution" class="section level2">
 <h2><span class="header-section-number">6.5</span> Faceted Bar chart with overall reference distribution</h2>
 <p>The grey bars in the background represent the overall distribution and provide a referende for each of the marginal distributions.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">diamonds.df =<span class="st"> </span>diamonds
+<pre class="sourceCode r"><code class="sourceCode r">diamonds.df =<span class="st"> </span>diamonds
 
 count.diamonds.df =<span class="st"> </span>diamonds.df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(cut, color) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">count =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(color) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">color.count =</span> <span class="kw">sum</span>(count))
 
 <span class="kw">ggplot</span>(count.diamonds.df, <span class="kw">aes</span>(color, count)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(color, color.count), <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">alpha =</span>.<span class="dv">33</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">alpha =</span> .<span class="dv">8</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">facet_grid</span>(cut<span class="op">~</span>.)</code></pre></div>
-<p><img src="visualizationwithggplot_files/figure-html/reference-bar-1.png" width="672" /></p>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">alpha =</span> <span class="fl">.8</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_grid</span>(cut<span class="op">~</span>.)</code></pre>
+<p><img src="visualizationwithggplot_files/figure-html/Reference-bar-1.png" width="672" /></p>
 </div>
 <div id="rose-or-coxcomb-plots" class="section level2">
 <h2><span class="header-section-number">6.6</span> Rose or Coxcomb plots</h2>
 <p>Nightingale produced a graph “Diagram of the Causes of Mortality in the Army in the East” that showed that most soldiers during the Crimean war died of disease rather than wounds. Improving hygiene in March of 1855 led to fewer disease related deaths.</p>
-<p>This “Diagram of the causes of mortality in the army in the East” was published in Notes on Matters Affecting the Health, Efficiency, and Hospital Administration of the British Army and sent to Queen Victoria in 1858. <img src="images/Nightingale-mortality.jpg" alt="My picture" /></p>
+<p>This “Diagram of the causes of mortality in the army in the East” was published in Notes on Matters Affecting the Health, Efficiency, and Hospital Administration of the British Army and sent to Queen Victoria in 1858.
+<img src="images/Nightingale-mortality.jpg" alt="My picture" /></p>
 <p>Coxcombe plot diminishes small values and requires square root transform</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(night.df, <span class="kw">aes</span>(<span class="dt">x =</span> Month, <span class="dt">y =</span> deaths, <span class="dt">fill =</span> cause)) <span class="op">+</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(night.df, <span class="kw">aes</span>(<span class="dt">x =</span> Month, <span class="dt">y =</span> deaths, <span class="dt">fill =</span> cause)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">width =</span> <span class="dv">1</span>, <span class="dt">position =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">color=</span><span class="st">&quot;black&quot;</span>, <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">scale_y_log10</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">coord_polar</span>(<span class="dt">start=</span><span class="dv">3</span><span class="op">*</span>pi<span class="op">/</span><span class="dv">2</span>)  <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_grid</span>(.<span class="op">~</span>intervention)  <span class="op">+</span>
 <span class="st">  </span><span class="kw">fill_palette</span>(<span class="dt">palette =</span> <span class="st">&quot;grey&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
 <pre><code>## Warning: Transformation introduced infinite values in
 ## continuous y-axis</code></pre>
 <p><img src="visualizationwithggplot_files/figure-html/coxcombe-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(night.df, <span class="kw">aes</span>(Month, deaths, <span class="dt">fill =</span> cause)) <span class="op">+</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(night.df, <span class="kw">aes</span>(Month, deaths, <span class="dt">fill =</span> cause)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_grid</span>(intervention<span class="op">~</span>.) <span class="op">+</span>
 <span class="st">   </span><span class="kw">fill_palette</span>(<span class="dt">palette =</span> <span class="st">&quot;grey&quot;</span>) <span class="op">+</span>
 <span class="st">   </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
 <p><img src="visualizationwithggplot_files/figure-html/coxcombe-2.png" width="672" /></p>
 </div>
 <div id="stacked-dodged-and-opposed-bar-chart" class="section level2">
@@ -538,7 +569,7 @@ count.diamonds.df =<span class="st"> </span>diamonds.df <span class="op">%&gt;%<
 <li><p>Dodge makes comparison easy with common axis and relative judgment</p></li>
 <li><p>Opposing makes gender more apparent</p></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Diversity in Silicon Valley
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## Diversity in Silicon Valley</span>
 diversity.df =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/Reveal_EEO1_for_2016.csv&quot;</span>)
 diversity.df<span class="op">$</span>count =<span class="st"> </span><span class="kw">as.numeric</span>(diversity.df<span class="op">$</span>count)
 
@@ -566,12 +597,12 @@ opposed.plot =<span class="st"> </span><span class="kw">ggplot</span>(gender.div
 
 gender.plot =<span class="st"> </span><span class="kw">ggarrange</span>(stacked.plot, dodged.plot, opposed.plot, 
                        <span class="dt">nrow=</span><span class="dv">1</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">align =</span> <span class="st">&quot;hv&quot;</span>, <span class="dt">common.legend =</span> <span class="ot">TRUE</span>)
-gender.plot</code></pre></div>
+gender.plot</code></pre>
 <p><img src="visualizationwithggplot_files/figure-html/stacked-dodged-opposed-1.png" width="672" /></p>
 </div>
 <div id="likert-scale-plot" class="section level2">
 <h2><span class="header-section-number">6.8</span> Likert scale plot</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyr)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyr)
 test&lt;-<span class="kw">data.frame</span>(<span class="dt">Q1=</span><span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">5</span>,<span class="dv">70</span>,<span class="dv">5</span>,<span class="dv">10</span>),
                  <span class="dt">Q2=</span><span class="kw">c</span>(<span class="dv">20</span>,<span class="dv">20</span>,<span class="dv">20</span>,<span class="dv">20</span>,<span class="dv">20</span>),
                  <span class="dt">Q3=</span><span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">10</span>,<span class="dv">10</span>,<span class="dv">10</span>,<span class="dv">60</span>),
@@ -580,7 +611,7 @@ test&lt;-<span class="kw">data.frame</span>(<span class="dt">Q1=</span><span cla
 test<span class="op">$</span>category &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;VeryH&quot;</span>, <span class="st">&quot;H&quot;</span>,<span class="st">&quot;Neutral&quot;</span>, <span class="st">&quot;L&quot;</span>,<span class="st">&quot;VeryL&quot;</span>),
                         <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;VeryL&quot;</span>, <span class="st">&quot;L&quot;</span>, <span class="st">&quot;Neutral&quot;</span>, <span class="st">&quot;H&quot;</span>, <span class="st">&quot;VeryH&quot;</span>))
 
-## Likert scale plots
+<span class="co">## Likert scale plots</span>
 test[<span class="dv">3</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>] =<span class="st"> </span>test[<span class="dv">3</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]<span class="op">/</span><span class="dv">2</span> <span class="co"># Divide by two to plot above and below zero</span>
 
 test.m &lt;-<span class="st"> </span><span class="kw">gather</span>(test, <span class="dt">key =</span> question, <span class="dt">value =</span> rating, <span class="op">-</span>category)
@@ -595,21 +626,22 @@ test.m &lt;-<span class="st"> </span><span class="kw">gather</span>(test, <span 
                     <span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;darkgoldenrod2&quot;</span>,<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;grey90&quot;</span>,<span class="st">&quot;darkgoldenrod4&quot;</span>,<span class="st">&quot;lightblue4&quot;</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Percent&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Question&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">ylim</span>(<span class="op">-</span><span class="dv">100</span>,<span class="dv">100</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
 <p><img src="visualizationwithggplot_files/figure-html/likert-plot-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">position =<span class="st"> </span><span class="kw">position_stack</span>(<span class="dt">reverse =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">position =<span class="st"> </span><span class="kw">position_stack</span>(<span class="dt">reverse =</span> <span class="ot">TRUE</span>)</code></pre>
 </div>
 <div id="ternary-triangular-graph" class="section level2">
 <h2><span class="header-section-number">6.9</span> ternary (triangular) graph</h2>
-<p>Shows proportion of three variables that sum to 100 percent. Unfamiliar to most and so can be hard to interpret ggtern</p>
+<p>Shows proportion of three variables that sum to 100 percent. Unfamiliar to most and so can be hard to interpret
+ggtern</p>
 </div>
 <div id="treemaps-for-whole-part-of-hierarchy" class="section level2">
 <h2><span class="header-section-number">6.10</span> Treemaps for whole-part of hierarchy</h2>
 <p>Schneiderman</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(treemapify)</code></pre></div>
-<pre><code>## Warning: package &#39;treemapify&#39; was built under R version
-## 3.4.4</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Include websites</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(treemapify)
+
+
+<span class="co"># Include websites</span>
 <span class="co"># ggplot(G20,</span>
 <span class="co">#        aes(area = gdp_mil_usd, fill = hdi,</span>
 <span class="co">#            label = country, subgroup = region)) +</span>
@@ -617,12 +649,12 @@ test.m &lt;-<span class="st"> </span><span class="kw">gather</span>(test, <span 
 <span class="co">#   geom_treemap_subgroup_border() +</span>
 <span class="co">#   geom_treemap_subgroup_text(place = &quot;centre&quot;, grow = T, alpha = 0.5, colour =</span>
 <span class="co">#                              &quot;black&quot;, fontface = &quot;italic&quot;, min.size = 0) +</span>
-<span class="co">#   geom_treemap_text(colour = &quot;white&quot;, place = &quot;topleft&quot;, reflow = T)</span></code></pre></div>
+<span class="co">#   geom_treemap_text(colour = &quot;white&quot;, place = &quot;topleft&quot;, reflow = T)</span></code></pre>
 </div>
 <div id="circle-packing" class="section level2">
 <h2><span class="header-section-number">6.11</span> Circle packing</h2>
 <p>The most valuable graphical dimensions of x and y position are wasted in this plot becaue they have no meaning, but it can be engaging</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(packcircles)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(packcircles)
 <span class="kw">library</span>(viridis)
 <span class="kw">library</span>(tidyverse)
 <span class="kw">library</span>(treemapify)
@@ -644,7 +676,7 @@ dat.pack =<span class="st"> </span><span class="kw">left_join</span>(dat.pack, G
 <span class="st">  </span><span class="kw">scale_size_continuous</span>(<span class="dt">range =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">4</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_void</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;none&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">coord_equal</span>()</code></pre></div>
+<span class="st">  </span><span class="kw">coord_equal</span>()</code></pre>
 <p><img src="visualizationwithggplot_files/figure-html/circle-pack-1.png" width="672" /></p>
 
 
@@ -676,7 +708,7 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
 "all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
@@ -688,6 +720,10 @@ gitbook.start({
 "edit": {
 "link": "https://github.com/jdlee/interactive-data-visualization/blob/master/06-proportion.Rmd",
 "text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
 },
 "download": ["visualizationwithggplot.pdf", "visualizationwithggplot.epub"],
 "toc": {

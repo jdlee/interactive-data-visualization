@@ -83,6 +83,7 @@ library(emojifont)
 library(ggpubr)
 
 
+## Number of cars with different number of cylinders
 mpg$cyl = as.character(mpg$cyl)
 waffle_data <- waffle_iron(mpg, aes_d(group = cyl))
 
@@ -99,12 +100,41 @@ waffle_data <- waffle_iron(mpg, aes_d(group = cyl)) %>%
   mutate(icon = fontawesome('fa-car'))
 
 wp2 = ggplot(waffle_data, aes(x, y, colour = group)) + 
-  geom_text(aes(label=icon), family='fontawesome-webfont', size=3) +
+  geom_text(aes(label=icon), family='fontawesome-webfont', size=6) +
   coord_equal() + 
   theme_waffle() +
   labs(x = "", y = "", colour = "Cylinders")
 
 ggarrange(wp1, wp2, nrow = 2, common.legend = TRUE)
+
+
+
+## Time spent in ML
+activity = (c("cleaning","explaining", "modeling"))
+
+time.df = tibble(hour = 1:100, 
+                 activity = rep(activity, times = c(90, 5, 5))
+                )
+
+time.df$activity = as.character(time.df$activity)
+waffle_data = waffle_iron(time.df, aes_d(group = activity))
+
+MLtime = ggplot(waffle_data, aes(x, y, fill = as.factor(group))) + 
+  geom_waffle() + 
+  coord_equal() + 
+  theme_waffle() +
+  #scale_fill_brewer(palette = "Set2")
+  scale_fill_manual(values = c("grey90", "grey75", "navy"), 
+                    breaks = c("cleaning", "explaining", "modeling"),
+                    labels = c("cleaning", "explaining", "modeling")) +
+  labs(x = "", y = "", fill = "Activity", 
+       title = "Most time in machine learning projects is not spent modeling",
+       subtitle = "Visualization and data management dominate",
+       caption = "Source: Data created for example")
+
+ggsave(filename = "MLtime.pdf", plot = MLtime)
+
+MLtime
 
 ```
   

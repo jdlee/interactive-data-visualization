@@ -50,7 +50,7 @@ Kowarik, A., Meindl, B., & Templ, M. (2014). sparkTable: Generating graphical ta
 
 ```{r}
 
-mtcars %>% select(mpg, cyl, wt, hp, qsec) %>% 
+mtcars %>% dplyr::select(mpg, cyl, wt, hp, qsec) %>% 
   datatable(filter = 'top')
 
 ```

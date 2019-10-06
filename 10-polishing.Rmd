@@ -7,6 +7,8 @@
 library(gapminder)
 library(tidyverse)
 library(ggrepel)
+library(hrbrthemes)
+library(ggpubr)
 rm(list=ls())
 
 mtcars.df = mtcars
@@ -159,30 +161,49 @@ ggplot(mtcars,
 ### Annotating with an inset plot
 ```{r, inset-plot, cache=TRUE}
 library(tidyverse)
+library(ggforce)
 diamonds.df = diamonds
 
 ## Specify area of the plot to highlight
-xmin = .8; xmax = 1.2; ymin = 2000; ymax = 7500
+xmin = .4; xmax = .75
+ymin = 800; ymax = 4000
 
 higlight.df = diamonds.df %>% 
-  filter(carat>xmin&carat<xmax, price>ymin&price<ymax)
+  filter(carat > xmin & carat < xmax, 
+         price > ymin & price < ymax)
 
-overall.plot = ggplot(diamonds.df, aes(carat, price))+
-  geom_point(alpha = .3, size = .3)+
-  geom_rect(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax,
-            fill = "transparent", color = "grey60")
 
-inset.plot = ggplot(higlight.df, aes(carat, price))+
-  geom_point(alpha = .3, size = .2) + 
+## Create overall plot
+overall.plot = ggplot(diamonds.df, aes(carat, price)) +
+  geom_point(alpha = .3, size = .3) +
+  annotate(geom = "rect", xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax,
+            alpha = .3, fill = "tomato", color = "tomato") 
+  # Use annotate rather than geom_rect otherwise rectangle is plotted for every datapoint
+
+## Create inset plot
+inset.plot = ggplot(higlight.df, aes(carat, price)) +
+  geom_point(alpha = .3, size = .4, shape = 21, stroke = .2) + 
   labs(x = "", y = "") +
-  theme_minimal()
+  theme_minimal() +
+  theme(plot.background = element_rect(fill = "#f6d2cc", color = "tomato"))
 
-## Create custom annotation and add to 
+## Create custom annotation and add to annotate plot
 inset.grob <- ggplotGrob(inset.plot )
 
-overall.plot + annotation_custom(grob = inset.grob, 
-                       xmin = 3.5, xmax = 5.2, ymin = 250, ymax = 16500)
+combined.plot = overall.plot + 
+    annotation_custom(grob = inset.grob, 
+                       xmin = 3.5, xmax = 5.2, ymin = 250, ymax = 13000) +
+  geom_link0(x = xmax, y = ymax, xend = 3.5, yend = 13000, colour = "tomato", alpha = .3, size =.3) +
+  geom_link0(x = xmax, y = ymin, xend = 3.5, yend = 250, colour = "tomato", alpha = .3, size = .3)
+  
 
+combined.plot +
+  labs(title = "Bigger diamonds cost more", 
+       subtitle = "Odd gap for prices around $1500",
+       caption = "data from tidyverse \"diamonds\" ",
+       x = "Diamond size (carats)", y = "Price ($US)") +
+  theme_minimal()
+  
 ```
 
 
@@ -427,6 +448,7 @@ small.color.plot
 ### Continuous color scales
 ```{r}
 # Scales made for factors do not work with continuous variables
+library(viridis)
 ggplot(mtcars, aes(disp,  mpg, color = mpg))+geom_point()+
   labs(title = "gplot: Default")
   
@@ -560,7 +582,8 @@ ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) +
 ```{r}
 ggplot(mtcars, aes(disp, mpg, color = as.factor(cyl))) + 
 	geom_point() +
-  theme_minimal(base_size = 18, base_family = "Avenir")
+  theme_minimal(base_size = 18)
+#, base_family = "Avenir"
 ```
 
 
@@ -646,83 +669,90 @@ theme_set(theme_gray()) # Returns to default theme
 
 ### Pre-set theme options
 ```{r, echo=FALSE}
-gt1.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + 
-  geom_point() +
-  theme(legend.position = "none") +
-  labs(title = "Default: theme_gray()")
-
-gt2.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + 
-  geom_point() +
-  theme_bw()+
-  theme(legend.position = "none") +
-  labs(title = "theme_bw()")
-
-gt3.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + 
-  geom_point() +
-  theme_base() +
-  theme(legend.position = "none") +
-  labs(title = "theme_base()")
-
-gt4.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + 
-  geom_point() +
-  theme_minimal() +
-  theme(legend.position = "none") +
-  labs(title = "theme_minimal()")
-
-gt5.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point() +
-  theme_classic2() +
-  theme(legend.position = "none") +
-  labs(title = "theme_classic2")
-
-gt6.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + 
-  geom_point() +
-  theme_void() +
-  theme(legend.position = "none") +
-  labs(title = "theme_void()")
-
-gtheme.plot = ggarrange(gt1.plot, gt2.plot, gt3.plot, 
-                        gt4.plot, gt5.plot, gt6.plot,
-                        nrow=3, ncol = 2, align = "hv")
-gtheme.plot
+# library(ggpubr)
+# 
+# gt1.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + 
+#   geom_point() +
+#   theme(legend.position = "none") +
+#   labs(title = "Default: theme_gray()")
+# 
+# gt2.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + 
+#   geom_point() +
+#   theme_bw()+
+#   theme(legend.position = "none") +
+#   labs(title = "theme_bw()")
+# 
+# # gt3.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + 
+# #   geom_point() +
+# #   theme_base() +
+# #   theme(legend.position = "none") +
+# #   labs(title = "theme_base()")
+# 
+# gt4.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + 
+#   geom_point() +
+#   theme_minimal() +
+#   theme(legend.position = "none") +
+#   labs(title = "theme_minimal()")
+# 
+# # gt5.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point() +
+# #   theme_classic2() +
+# #   theme(legend.position = "none") +
+# #   labs(title = "theme_classic2")
+# 
+# gt6.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + 
+#   geom_point() +
+#   theme_void() +
+#   theme(legend.position = "none") +
+#   labs(title = "theme_void()")
+# 
+# gtheme.plot = ggarrange(gt1.plot, gt2.plot, 
+#                         #gt3.plot, 
+#                         gt4.plot, 
+#                         #gt5.plot,
+#                         gt6.plot,
+#                         nrow=3, ncol = 2, align = "hv")
+# gtheme.plot
 ```
 
 
 ### Themes form other packages
 ```{r, echo=FALSE}
-## hbrtthemes
-t1.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point()+ 
-  scale_colour_ipsum() +
-  theme_ipsum() +
-  labs(title = "hbrthemes: theme_ipsum()")
+# library(ggpubr)
+# ## hbrtthemes
+# t1.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point()+ 
+#   scale_colour_ipsum() +
+#   theme_ipsum() +
+#   labs(title = "hbrthemes: theme_ipsum()")
+# 
+# ## ggthemes
+# t2.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point()+
+#   scale_color_fivethirtyeight() +
+#   theme_fivethirtyeight() +
+#   labs(title = "ggthemes: theme_fivethirtyeight()")
+# 
+# t3.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point()+
+#   #scale_color_few() +
+#   theme_few() +
+#   labs(title = "ggthemes: theme_few()")
+# 
+# t4.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point()+
+#   #geom_rangeframe() +
+#   theme_tufte() +
+#   labs(title = "ggthemes: theme_tufte()")
+# 
+# t5.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point()+
+#   theme_economist_white() +
+#   labs(title = "ggthemes: theme_economist_white()")
+# 
+# t6.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point()+
+#   theme_excel() +
+#   labs(title = "ggthemes: theme_excel()")
+# 
+# theme.plot = ggarrange(t1.plot, t2.plot, t3.plot, 
+#                        t4.plot, t5.plot, t6.plot,
+#                        nrow=3, ncol = 2, align = "hv")
+# theme.plot
 
-## ggthemes
-t2.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point()+
-  scale_color_fivethirtyeight() +
-  theme_fivethirtyeight() +
-  labs(title = "ggthemes: theme_fivethirtyeight()")
-
-t3.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point()+
-  #scale_color_few() +
-  theme_few() +
-  labs(title = "ggthemes: theme_few()")
-
-t4.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point()+
-  #geom_rangeframe() +
-  theme_tufte() +
-  labs(title = "ggthemes: theme_tufte()")
-
-t5.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point()+
-  theme_economist_white() +
-  labs(title = "ggthemes: theme_economist_white()")
-
-t6.plot = ggplot(mtcars, aes(disp,  mpg, color = as.factor(cyl))) + geom_point()+
-  theme_excel() +
-  labs(title = "ggthemes: theme_excel()")
-
-theme.plot = ggarrange(t1.plot, t2.plot, t3.plot, 
-                       t4.plot, t5.plot, t6.plot,
-                       nrow=3, ncol = 2, align = "hv")
-theme.plot
 ```
 
 
@@ -779,19 +809,19 @@ ggsave(filename = "mpg.svg", device = "svg",
 
 ## Saving many plots into a single file
 # Calculate the number of pages with 9 panels per page
-n_pages <- ceiling(
-  length(levels(diamonds$color)) * length(levels(diamonds$cut:diamonds$clarity)) / 9
-)
-
-pdf("multipage.pdf")
-  for (i in seq_len(n_pages)) {
-    p=  ggplot(diamonds, aes(carat, price)) +
-          geom_point(alpha = 0.1) +
-          facet_grid_paginate(color~cut:clarity, ncol = 3, nrow = 3, page = i)+
-        labs(title = "ggforce: facet pagination")
-    print(p)
-}
-dev.off()
+# n_pages <- ceiling(
+#   length(levels(diamonds$color)) * length(levels(diamonds$cut:diamonds$clarity)) / 9
+# )
+# 
+# pdf("multipage.pdf")
+#   for (i in seq_len(n_pages)) {
+#     p=  ggplot(diamonds, aes(carat, price)) +
+#           geom_point(alpha = 0.1) +
+#           facet_grid_paginate(color~cut:clarity, ncol = 3, nrow = 3, page = i)+
+#         labs(title = "ggforce: facet pagination")
+#     print(p)
+# }
+# dev.off()
 
 ```
 
